@@ -1,0 +1,1 @@
+Una manera de explorar los clientes en la interfaz web, al mirar un cliente se deberia de poder ver un historico de sus compras
