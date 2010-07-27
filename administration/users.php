@@ -1,4 +1,4 @@
-<?php
+ <?php
 require_once "../functions.php";
 if(!$_SESSION["user"]->hasRole("root")){
 	die("Usted no tiene permisos para administrar usuarios");
@@ -101,7 +101,7 @@ switch($task){
 		SELECT u.idusuario, p.nombre, u.username
 		FROM usuarios u
 		JOIN personas p ON p.idpersona = u.idusuario
-		WHERE u.estado = 1 AND u.idusuario != 1
+		WHERE u.estado = 1
 		");
 		$rsUserRoles = $dbc->query("
 		SELECT uhr.idusuario, uhr.idrol

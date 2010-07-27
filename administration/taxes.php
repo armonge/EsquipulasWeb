@@ -10,6 +10,8 @@ if(isset($_POST["update"])){
 		case 1:
 		case 4:
 		case 6:
+		case 8:
+		case 10:
 			$query = "UPDATE costosagregados SET activo = 0 WHERE idtipocosto = $taxtype AND activo = 1 LIMIT 1";
 			$dbc->query($query);
 			$query = "INSERT INTO costosagregados (valorcosto, fechaestablecido, activo, idtipocosto) 
@@ -40,11 +42,13 @@ SELECT
 	SUM(IF(ca.idtipocosto = 4, ca.valorcosto, 0)) spe,
 	SUM(IF(ca.idtipocosto = 5, ca.valorcosto, 0)) tsim,
 	SUM(IF(ca.idtipocosto = 5, ts.factorpeso, 0)) as factorpeso,
-	SUM(IF(ca.idtipocosto = 6, ca.valorcosto, 0)) iso
+	SUM(IF(ca.idtipocosto = 6, ca.valorcosto, 0)) iso,
+	SUM(IF(ca.idtipocosto = 8, ca.valorcosto, 0)) retencionprof,
+	SUM(IF(ca.idtipocosto = 10, ca.valorcosto, 0)) retencionf
 FROM costosagregados ca
 JOIN tiposcosto tc ON tc.idtipocosto = ca.idtipocosto
 LEFT JOIN tsim ts ON ts.idtsim = ca.idcostoagregado
-WHERE ca.idtipocosto IN ( 1,4,5, 6)
+WHERE ca.idtipocosto IN ( 1,4,5, 6, 8,10)
 AND activo = 1
 ");
 $row_rsTax = $rsTaxes->fetch_array(MYSQLI_ASSOC);
@@ -68,6 +72,8 @@ $(function(){
 	$("#iva").validate();
 	$("#spe").validate();
 	$("#tsim").validate();
+	$("#retencionprof").validate();
+	$("#retencionf").validate();
 });
 </script>
 <style type="text/css">
@@ -81,6 +87,9 @@ h2{
 	float:left;
 	clear:both;
 }
+.tax{
+display:inline-block;
+}
 </style>
 
 </head>
@@ -88,8 +97,8 @@ h2{
 <div id="wrap">
 <?php include "../header.php"?>
 <div id="content">
-	<div id="left-column">
 		<h1>Impuestos</h1>
+		<div class="tax">
 		<h2>IVA</h2>
 			<form id="iva" action="administration/taxes.php" method="post" class="cforms">
 				<p>
@@ -101,6 +110,8 @@ h2{
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>
+			</div>
+			<div class="tax">
 		<h2>SPE</h2>
 			<form id="spe" action="administration/taxes.php" method="post" class="cforms">
 				<p>
@@ -112,6 +123,8 @@ h2{
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>
+			</div>
+			<div class="tax">
 			<h2>ISO</h2>
 			<form id="iso" action="administration/taxes.php" method="post" class="cforms">
 				<p>
@@ -123,6 +136,8 @@ h2{
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>
+			</div>
+			<div class="tax">
 		<h2>TSIM</h2>
 			<form id="tsim" action="administration/taxes.php" method="post" class="cforms">
 				<p>
@@ -137,7 +152,33 @@ h2{
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>
-	</div>
+			</div>
+			<div class="tax">
+			<h2>Retenci&oacute;n por servicios profesionales</h2>
+			<form id="retencionprof" action="administration/taxes.php" method="post" class="cforms">
+				<p>
+					<label><span>Valor:</span> <input type="text" name="value" class="required number"  value="<?php echo $row_rsTax["retencionprof"]?>" /></label>
+				</p>
+				<p>
+					<input type="submit" value="aceptar" />
+					<input type="hidden" name="type" value="8" />
+					<input type="hidden" name="update" value="yes" />
+				</p>
+			</form>
+			</div>
+			<div class="tax">
+			<h2>Retenci&oacute;n en la fuente</h2>
+			<form id="retencionf" action="administration/taxes.php" method="post" class="cforms">
+				<p>
+					<label><span>Valor:</span> <input type="text" name="value" class="required number"  value="<?php echo $row_rsTax["retencionf"]?>" /></label>
+				</p>
+				<p>
+					<input type="submit" value="aceptar" />
+					<input type="hidden" name="type" value="10" />
+					<input type="hidden" name="update" value="yes" />
+				</p>
+			</form>
+			</div>
 </div>
 <?php include "../footer.php" ?>
 </div>
