@@ -25,7 +25,22 @@ $modules = array(
 	5=>"ADMINISTRACION",
 	6=>"REPORTES",
 );
-
+/**********document ids*******************/
+$docids = array(
+"IDFACTURA" => 5,
+"IDDEVOLUCION" => 10,
+"IDND" => 11,
+"IDCHEQUE" => 12,
+"IDDEPOSITO" => 13,
+"IDNC" => 14,
+"IDRECIBO" => 18,
+"IDRETENCION" => 19,
+"IDENTRADALOCAL" => 21,
+"IDAJUSTECONTABLE" => 24,
+"IDCONCILIACION" => 25,
+"IDERROR" => 26,
+"IDKARDEX" => 27,
+);
 /*************db connection ***************/
 $dbc = new MySQLI(DBHOST,DBUSER,DBPASS,DB);
 
