@@ -20,6 +20,7 @@ if(isset($_POST["add"])){
 	if(!$name){
 		$error="No especifico el nombre del Vendedor";
 	}elseif(!$phone){
+//		FIXME: Que pasa cuando $phone == 0
 		$error="No escribio el tel&eacute;fono del Vendedor";
 	}elseif(!$email){
 		$error="No escribio el e-mail del Vendedor";

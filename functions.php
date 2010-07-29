@@ -9,7 +9,7 @@ session_regenerate_id();
 
 /*********general settings ***********/
 #TODO: configure settings for when not localhost
-if($_SERVER["REMOTE_ADDR"]=="127.0.0.1"){
+if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="192.168.1.10") || ($_SERVER["REMOTE_ADDR"]=="192.168.1.11")){
 	$path = "/srv/http/EsquipulasWeb/";
     require_once('conn.php');
 }else{

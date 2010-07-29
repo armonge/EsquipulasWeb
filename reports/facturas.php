@@ -13,19 +13,14 @@ $rsDocumento = $dbc->query("
 		d.total* (1-IF(valorcosto IS NULL,0,valorcosto)/100) as subtotal,
 		d.total*ca.valorcosto/100 as iva,
 		d.total,
-		d.observacion,
 		DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
-		b.nombrebodega as Bodega,
-		tc.tasa as 'Tipo de Cambio Oficial',
-		tc.tasabanco as 'Tipo de Cambio Banco',
-		d.idtipodoc,
 		d.escontado
 	FROM documentos d
 	JOIN tiposdoc td ON td.idtipodoc=d.idtipodoc
 	JOIN bodegas b ON b.idbodega=d.idbodega
 	JOIN tiposcambio tc ON tc.idtc=d.idtipocambio
 	JOIN personasxdocumento pxd ON d.iddocumento = pxd.iddocumento
-	JOIN personas p ON p.idpersona=pxd.idpersona AND p.tipopersona != 4
+	JOIN personas p ON p.idpersona=pxd.idpersona AND p.tipopersona = 1
 	LEFT JOIN costosxdocumento cd ON cd.iddocumento=d.iddocumento
 	LEFT JOIN costosagregados ca ON ca.idcostoagregado=cd.idcostoagregado
 	WHERE d.idtipodoc={$docids["IDFACTURA"]}
@@ -57,27 +52,42 @@ $rsArticulos = $dbc->query("
 <title>Llantera Esquipulas: Devoluci&oacute;n No <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
 <style type="text/css">
 body {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10pt;
-	width:680pt;
-	padding:20pt 50pt;
+	font-family: Arial;
+	font-size: 12pt;
+	width: 690pt;
+	padding:0;
+	margin:0;
+	margin-left:60pt;
+	margin-top:50pt;
+	height:900pt;
+/* 	border:1px solid #000; */
 }
-#type{
-	text-align:right;
-}
-#header{
-	text-align:center;
-}
-#header p, #header h1{
-	margin-bottom:0;
+
+#type {
+	text-align: right;
+	padding-right:6%;
 	margin-top:0;
+	clear:both;
 }
-#header2 h2{
-	display:inline-block
+
+#header {
+	text-align: center;
+	height:100pt;
 }
-#header2 table{
-	float:right;
+
+#header p,#header h1 {
+	margin-bottom: 0;
+	margin-top: 0;
 }
+
+#header2 h2 {
+	display: inline-block
+}
+
+#header2 table {
+	float: right;
+}
+
 .gray {
 	background: #f4f4f4;
 }
@@ -85,7 +95,6 @@ body {
 .rigth {
 	text-align: right;
 }
-
 
 .noborder {
 	border: 0;
@@ -107,51 +116,102 @@ p {
 
 table {
 	text-align: center;
+	border:0;
 }
+
 thead {
-	    display:table-header-group;
-	    border-width: 1px 0;
-	    border-color:#000;
-	    border-style:solid;
+	display: table-header-group;
+	height:30pt;
 }
+
 tbody {
-    display:table-row-group;
+	display: table-row-group;
 }
-#authorization{
+
+#table {
+	height: 425pt;
+	border: 1px solid #000;
+	width: 100%;
+	margin-top:25pt;
+	float: left;
+}
+
+#authorization {
+	border: 1px solid #000;
+	padding: 20pt;
+	padding-top: 40pt;
+	width: 50%;
+	margin-top: 5pt;
+	display: inline-block;
+	text-align: center;
+}
+
+#authorization span {
+	padding-top: 10pt;
+	border-top: 1px solid #000;
+}
+
+#details {
+	width: 100%;
+	table-layout:fixed;
+}
+#fecha{
+    table-layout:fixed;
+}
+}
+
+#details tbody tr td,#details tbody tr {
+	height: 15pt;
+}
+
+#totals {
+	width: 30%;
+	height:144pt;
+	float: right;
+}
+#totals tr{
+    height:20pt;
 	border:1px solid #000;
-	padding:20pt;
-	padding-top:40pt;
-	width:50%;
-	margin-top:5pt;
-	display:inline-block;
-	text-align:center;
+	border-top:0;
 }
-#authorization span{
-	padding-top:10pt;
-	border-top:1px solid #000;
+#persons{
+    margin-top:20pt;
 }
-#details{
+#persons table {
 	width:100%;
 }
-#details tbody tr td, #details tbody tr{
-	height:10pt;
+#persons .pwrap{
+	width: 46%;
+	border:1px solid #000;
+	float: right;
+	margin: 0 0 36pt 2%;
+	height:108pt;
 }
-#totals{
-	width:30%;
-	float:right;
+.square{
+    display: inline-block;
+    width: 15pt;
+    height: 15pt;
+    border: 1px solid #000;
 }
-#persons table{
-	float:left;
-	width:46%;
-	margin:2%;
-}
-@media print{
+@media print {
+	#header,thead{
+		color:#fff;
+	}
 	.gray {
 		background: #fff;
 	}
 	th {
 		background: #fff;
-		color: #000;
+	}
+	.white{
+        color:#fff;
+	}
+
+	#table,#persons .pwrap,#authorization, #authorization span, #totals tr{
+		border:0;
+	}
+	.square{
+        border:0;
 	}
 }
 </style>
@@ -165,106 +225,105 @@ tbody {
 <p><b>RUC: 050404-9515</b></p>
 </div>
 <div id="header2">
-<h2>Factura N&deg; <?php echo $row_rsDocumento["ndocimpreso"] ?></h2>
-
-<table border="1" frame="border" rules="all" cellpadding="5" cellspacing="1">
-<thead>
-<tr>
-	<th>Fecha</th>
-	<th>FACTURA No.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-	<td><?php echo $row_rsDocumento["fechacreacion"]?></td>
-	<td><?php echo $row_rsDocumento["ndocimpreso"]?></td>
-</tr>
-</tbody>
+<h2><span class="white">Factura N&deg; <?php echo $row_rsDocumento["ndocimpreso"] ?></span></h2>
+                                        
+<table border="0"  rules="none" cellpadding="5"
+	cellspacing="0" id="fecha">
+	<thead>
+		<tr>
+			<th style="width:100pt">Fecha</th>
+			<th>FACTURA No.</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?php echo $row_rsDocumento["fechacreacion"]?></td>
+			<td><?php echo $row_rsDocumento["ndocimpreso"]?></td>
+		</tr>
+	</tbody>
 </table>
 </div>
-<p id="type">
-CONTADO <?php if($row_rsDocumento["escontado"]){ ?><img src="img/checkbox.png" alt="checked"/> <?php }else{echo '<span style="display:inline-block;width:15pt;height:15pt;border:1px solid #000;"></span>'; } ?> 
-CREDITO <?php if(!$row_rsDocumento["escontado"]){ ?><img src="img/checkbox.png" alt="checked"/><?php }else{echo '<span style="display:inline-block;width:15pt;height:15pt;border:1px solid #000;"></span>'; } ?>
+<p id="type"><span class="white">CONTADO</span> <span class="square" style="margin-right:50pt"><?php if($row_rsDocumento["escontado"]){ echo "X&nbsp;" ; }else{ echo "&nbsp;&nbsp;"; } ?></span>
+<span class="white">CREDITO</span> <span class="square" ><?php if(!$row_rsDocumento["escontado"]){ echo "X&nbsp;" ; }else{ echo "&nbsp;&nbsp;"; }	 ?></span>
 </p>
 
 <div id="persons">
-<table border="1" frame="border" rules="all" cellpadding="5" cellspacing="1">
-<thead>
-<tr>
-	<th>Facturar a:</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-	<?php echo $row_rsDocumento["cliente"]?>
-</td>
-</tr>
-</tbody>
-</table>
-<table border="1" frame="border" rules="all" cellpadding="5" cellspacing="1">
-<thead>
-<tr>
-	<th>Entregar a:</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-	<?php echo $row_rsDocumento["cliente"]?>
-</td>
-</tr>
-</tbody>
+
+<div class="pwrap">
+<table border="0" frame="border" rules="none" cellpadding="5"
+	cellspacing="0">
+	<thead>
+		<tr>
+			<th>Entregar a:</th>
+		</tr>
+	</thead>
+	<tbody  valign="top">
+		<tr>
+			<td><?php echo $row_rsDocumento["cliente"]?></td>
+		</tr>
+	</tbody>
 </table>
 </div>
-<table border="1" frame="border" rules="all" cellpadding="5" cellspacing="1"	summary="Detalle factura" id="details">
-<thead>
-	<tr>
-		<th>Item No.</th>
-		<th>Cantidad</th>
-		<th>Descripcion</th>
-		<th>Precio Unit</th>
-		<th>Valor</th>
-	</tr>
+<div class="pwrap">
+<table border="0" frame="border" rules="none" cellpadding="5"
+	cellspacing="0">
+	<thead >
+		<tr>
+			<th>Facturar a:</th>
+		</tr>
+	</thead>
+	<tbody  valign="top">
+		<tr>
+			<td><?php echo $row_rsDocumento["cliente"]?></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+<div id="table">
+<table border="0" frame="border" rules="none" cellpadding="5"
+	cellspacing="0" summary="Detalle factura" id="details">
+	<thead>
+		<tr>
+			<th style="width:100pt">Item No.</th>
+			<th style="width:102pt" >Cantidad</th>
+			<th style="width:280pt">Descripci&oacute;n</th>
+			<th style="width:100pt" >Precio Unit</th>
+			<th>Valor</th>
+		</tr>
 	</thead>
 	<tbody valign="top">
 	<?php $color = 1; while ($row_rsArticulos = $rsArticulos->fetch_assoc() ){ $color++;  ?>
-	<tr <?php if($color % 2 == 0 ){ echo "class='gray'"; } ?> >
-		<td><?php echo $row_rsArticulos["idarticulo"] ?></td>
-		<td><?php echo $row_rsArticulos["unidades"] ?></td>
-		<td><?php echo $row_rsArticulos["descripcion"] ?></td>
-		<td>US$ <?php echo number_format($row_rsArticulos["preciounit"],4) ?></td>
-		<td>US$ <?php echo number_format($row_rsArticulos["unidades"]*$row_rsArticulos["preciounit"],4) ?>
-		</td>
-	</tr>
-	<?php } ?>
+		<tr <?php if($color % 2 == 0 ){ echo "class='gray'"; } ?>>
+			<td ><?php echo $row_rsArticulos["idarticulo"] ?></td>
+			<td ><?php echo $row_rsArticulos["unidades"] ?></td>
+			<td style="text-align:left"><?php echo utf8tohtml($row_rsArticulos["descripcion"]) ?></td>
+			<td >US$ <?php echo number_format($row_rsArticulos["preciounit"],2) ?></td>
+			<td >US$ <?php echo number_format($row_rsArticulos["unidades"]*$row_rsArticulos["preciounit"],2) ?>
+			</td>
+		</tr>
+		<?php } ?>
 	</tbody>
 </table>
-<div  id="authorization">
-	<span>AUTORIZADO POR</span>
-</div>		
-<table border="1" frame="border" rules="all" cellpadding="5" cellspacing="1"	summary="Totales factura" id="totals">
-<tbody>
-	<tr>
-		<td>
-			Subtotal US$ <?php echo number_format($row_rsDocumento["subtotal"],4) ?>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			IVA US$ <?php echo number_format($row_rsDocumento["iva"],4) ?>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Total US$ <?php echo number_format($row_rsDocumento["total"],4) ?>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Balance Final US$ <?php echo number_format($row_rsDocumento["total"],4) ?>
-		</td>
-	</tr>
+</div>
+<div id="authorization"><span class="white">AUTORIZADO POR</span></div>
+<table border="0" frame="border" rules="none" cellpadding="5"	cellspacing="0" summary="Totales factura" id="totals">
+	<tbody>
+		<tr>
+			<td class="white">
+               Subtotal
+            </td>
+            <td>
+                US$ <?php echo number_format($row_rsDocumento["subtotal"],2) ?>
+			</td>
+		</tr>
+		<tr>
+			<td class="white">IVA</td><td> US$ <?php echo number_format($row_rsDocumento["iva"],2) ?></td>
+		</tr>
+		<tr>
+			<td class="white">Total</td><td> US$ <?php echo number_format($row_rsDocumento["total"],2) ?>
+			</td>
+		</tr>
 	</tbody>
 </table>
 </body>
