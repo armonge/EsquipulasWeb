@@ -8,7 +8,7 @@ if($iddoc){
 		SELECT
 			d.iddocumento,
 			d.ndocimpreso,
-			d.fechacreacion,
+			DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
 			l.procedencia,
 			l.totalagencia,
 			l.totalalmacen,
@@ -24,8 +24,8 @@ if($iddoc){
 			tc.tasa
 		FROM documentos d
 		JOIN liquidaciones l ON d.iddocumento = l.iddocumento
-				JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
-		JOIN personas p ON p.idpersona = pxd.idpersona
+        JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
+		JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["PROVEEDOR"]}
 		JOIN bodegas b ON b.idbodega = d.idbodega
 		LEFT JOIN costosxdocumento cxd ON d.iddocumento = cxd.iddocumento
 		LEFT JOIN costosagregados ca ON cxd.idcostoagregado = ca.idcostoagregado
@@ -71,11 +71,13 @@ if($iddoc){
 <meta http-equiv="Content-Type"
 	content="application/xhtml+xml; charset=UTF-8" />
 <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
-<title>Llantera Esquipulas: Entrada No <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
+<title>Llantera Esquipulas: Liquidaci&oacute;n <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
 <style type="text/css">
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10pt;
+	font-size: 14pt;
+	width:900pt;
+	margin:40pt 50pt;
 }
 
 .gray {
@@ -124,6 +126,22 @@ thead {
 tbody {
 	display: table-row-group;
 }
+table{
+    width:100%;
+}
+@media print {
+    .gray {
+        background: #fff;
+    }
+    th {
+        background: #fff;
+        color:#000;
+    }
+    thead{
+        color:#000;
+    }
+
+}
 </style>
 </head>
 <body>
@@ -134,6 +152,8 @@ tbody {
 
 <p><strong>Poliza </strong><?php echo $row_rsDocumento["ndocimpreso"] ?></p>
 <p><strong>Procedencia </strong><?php echo $row_rsDocumento["procedencia"] ?></p>
+</div>
+<div class="float">
 <p><strong>Fecha </strong><?php echo $row_rsDocumento["fechacreacion"] ?></p>
 <p><strong>Bodega </strong><?php echo $row_rsDocumento["nombrebodega"] ?></p>
 </div>

@@ -27,19 +27,26 @@ $modules = array(
 );
 /**********document ids*******************/
 $docids = array(
-"IDFACTURA" => 5,
-"IDDEVOLUCION" => 10,
-"IDND" => 11,
-"IDCHEQUE" => 12,
-"IDDEPOSITO" => 13,
-"IDNC" => 14,
-"IDRECIBO" => 18,
-"IDRETENCION" => 19,
-"IDENTRADALOCAL" => 21,
-"IDAJUSTECONTABLE" => 24,
-"IDCONCILIACION" => 25,
-"IDERROR" => 26,
-"IDKARDEX" => 27,
+    "IDFACTURA" => 5,
+    "IDDEVOLUCION" => 10,
+    "IDND" => 11,
+    "IDCHEQUE" => 12,
+    "IDDEPOSITO" => 13,
+    "IDNC" => 14,
+    "IDRECIBO" => 18,
+    "IDRETENCION" => 19,
+    "IDENTRADALOCAL" => 21,
+    "IDAJUSTECONTABLE" => 24,
+    "IDCONCILIACION" => 25,
+    "IDERROR" => 26,
+    "IDKARDEX" => 27,
+);
+/************person types********************/
+$persontypes = array(
+    "CLIENTE" => 1,
+    "PROVEEDOR" => 2,
+    "VENDEDOR" => 3,
+    "USUARIO" => 4
 );
 /*************db connection ***************/
 $dbc = new MySQLI(DBHOST,DBUSER,DBPASS,DB);
