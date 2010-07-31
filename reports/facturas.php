@@ -51,15 +51,20 @@ $rsArticulos = $dbc->query("
 <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
 <title>Llantera Esquipulas: Devoluci&oacute;n No <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
 <style type="text/css">
+html{
+    border:0;
+    margin:0;
+    padding:0;
+}
 body {
 	font-family: Arial;
 	font-size: 12pt;
-	width: 690pt;
+	width: 750pt;
 	padding:0;
 	margin:0;
-	margin-left:60pt;
-	margin-top:50pt;
-	height:900pt;
+	padding-left:60pt;
+	padding-top:50pt;
+	height:960pt;
 /* 	border:1px solid #000; */
 }
 

@@ -73,11 +73,18 @@ if($iddoc){
 <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
 <title>Llantera Esquipulas: Liquidaci&oacute;n <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
 <style type="text/css">
+html{
+    border:0;
+    padding:0;
+    margin:0;
+}
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14pt;
-	width:900pt;
-	margin:40pt 50pt;
+	font-size: 8pt;
+	float:left;
+	width:1020pt;
+	padding:40pt 50pt;
+/* 	border:1px solid #000; */
 }
 
 .gray {
@@ -114,6 +121,7 @@ table {
 	text-align: center;
 	float: left;
 	clear: both;
+	table-layout:fixed;
 }
 
 thead {
@@ -146,7 +154,7 @@ table{
 </head>
 <body>
 <h1>Llantera Esquipulas</h1>
-<div><?php if($iddoc){ ?>
+<div style="width:100%">
 <h2>Liquidaci&oacute;n de costos</h2>
 <div class="float">
 
@@ -163,28 +171,28 @@ table{
 
 </div>
 </div>
-<table border="1" frame="border" rules="all" cellpadding="5"
-	cellspacing="1" summary="Reporte de liquidacion">
+<table border="1" frame="border" rules="rows" cellpadding="2"
+	cellspacing="0" summary="Reporte de liquidacion">
 	<tr>
-		<th>Articulo</th>
-		<th>Cantidad</th>
-		<th>Precio Unitario</th>
-		<th>FOB</th>
+		<th  style="width:100pt">Articulo</th>
+		<th style="width:20pt">Cantidad</th>
+		<th style="width:25pt">Precio Unit</th>
+		<th style="width:30pt">FOB</th>
 
-		<th>Flete</th>
-		<th>Seguro</th>
-		<th>Otros Gastos</th>
-		<th>CIF</th>
-		<th>Comisi&oacute;n</th>
-		<th>Agencia</th>
-		<th>Almacen</th>
-		<th>Papeleria</th>
-		<th>Impuestos</th>
-		<th>Acarreo</th>
+		<th style="width:20pt">Flete</th>
+		<th style="width:20pt">Seguro</th>
+		<th style="width:20pt">Otros Gastos</th>
+		<th style="width:25pt">CIF</th>
+		<th style="width:25pt">Comisi&oacute;n</th>
+		<th style="width:20pt">Agencia</th>
+		<th style="width:20pt">Almacen</th>
+		<th style="width:25pt">Papeleria</th>
+		<th style="width:25pt">Impuestos</th>
+		<th style="width:25pt">Acarreo</th>
 	</tr>
 	<?php $color = 1; 	while ( $row_rsArticulo = $rsArticulos->fetch_assoc() ){	 ?>
 	<tr <?php if($color % 2 == 0 ){ echo "class='gray'"; } ?>>
-		<td><?php echo $row_rsArticulo["descripcion"] ?></td>
+		<td style="text-align:left"><?php echo $row_rsArticulo["descripcion"] ?></td>
 		<td><?php echo $row_rsArticulo["unidades"] ?></td>
 		<td><?php echo number_format($row_rsArticulo["costocompra"], 4) ?></td>
 		<td><?php echo number_format($row_rsArticulo["fob"],4) ?></td>
@@ -210,27 +218,6 @@ table{
 <h2>Observaciones</h2>
 <div><?php echo $row_rsDocumento["observacion"] ?></div>
 	<?php } ?>
-	<?php }else{ ?>
-		<h1>Lista de liquidaciones</h1>
-		<table border="1" frame="border" rules="all" cellpadding="5"
-	cellspacing="1" summary="Reporte de liquidacion">
-	<thead>
-		<tr>
-			<th>Numero de Liquidacion</th>
-			<th>Fecha</th>
-			<th>Total</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php while($row_rsLiquidacion = $rsLiquidaciones->fetch_assoc()){?>
-		<tr>
-			<td><a href="liquidaciones.php?doc=<?php echo $row_rsLiquidacion["iddocumento"] ?>"><?php echo $row_rsLiquidacion["ndocimpreso"]?></a></td>
-			<td><?php echo $row_rsLiquidacion["fechacreacion"]?></td>
-			<td>C$ <?php echo number_format($row_rsLiquidacion["total"], 4 ) ?></td>
-		</tr>
-		<?php } ?>
-	</tbody>
-	</table>
-	<?php } ?>
+
 </body>
 </html>
