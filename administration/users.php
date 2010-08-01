@@ -1,4 +1,4 @@
- <?php
+<?php
 require_once "../functions.php";
 if(!$_SESSION["user"]->hasRole("root")){
 	die("Usted no tiene permisos para administrar usuarios");
@@ -18,15 +18,15 @@ if((isset($_POST["pwd"])) && ($_POST["pwd"]=="change")){
 }else if( isset($_POST["rolchange"])  ){
 	//cambiar los roles de un usuario
 	if( count($_POST["roles"]) > 0){
-	$uid = (int)$_POST["uid"];
-	if($uid){
-		$dbc->query("DELETE FROM usuarios_has_roles WHERE idusuario = $uid ");
-		foreach($_POST["roles"] as $rol){
-			if((int)$rol){
-				$dbc->query("INSERT INTO usuarios_has_roles VALUES ( $uid, $rol )");
+		$uid = (int)$_POST["uid"];
+		if($uid){
+			$dbc->query("DELETE FROM usuarios_has_roles WHERE idusuario = $uid ");
+			foreach($_POST["roles"] as $rol){
+				if((int)$rol){
+					$dbc->query("INSERT INTO usuarios_has_roles VALUES ( $uid, $rol )");
+				}
 			}
 		}
-	}
 	}else{
 		$error = "No se pudo realizar el cambio por que: 'Un usuario deberia de tener por lo menos un permiso asignado'";
 	}
@@ -83,7 +83,7 @@ if((isset($_POST["pwd"])) && ($_POST["pwd"]=="change")){
 			}
 		}
 		if(!$c){
-				$dbc->query("DELETE FROM usuarios WHERE idusuario = $insertedId LIMIT 1");
+			$dbc->query("DELETE FROM usuarios WHERE idusuario = $insertedId LIMIT 1");
 		}
 	}
 }
@@ -144,125 +144,110 @@ $(function(){
 });
 </script>
 <style type="text/css">
-#m3 a{
+#m3 a {
 	background: url(img/nav-left.png) no-repeat left;
 }
-#m3 span{
-	background:  #99AB63 url(img/nav-right.png) no-repeat right;
+
+#m3 span {
+	background: #99AB63 url(img/nav-right.png) no-repeat right;
 }
-.permissions{
-    display:inline-block;
+
+.permissions {
+	display: inline-block;
 }
 </style>
 
 
 </head>
 <body>
-<div id="wrap">
-<?php include "../header.php"?>
+<div id="wrap"><?php include "../header.php"?>
 <div id="content">
-	<div id="left-column">
-		<h1>Administraci&oacute;n de Usuarios</h1>
-		<?php echo "<div class='error'>$error</div>" ?>
-		<?php if (!$task){ ?>
-			<ul>
-				<li><a href="administration/users.php?task=list"> Lista de Usuarios</a></li>
-				<li><a href="administration/users.php?task=new">Crear un nuevo usuario</a></li>
-			</ul>
-		<?php }else if($task=="list"){
-			$roles = $rsRoles->fetch_all(MYSQLI_ASSOC);
-		 ?>
-			<h2>Lista de usuarios</h2>
-			<?php if($users){ ?>
-			<ul>
-			<?php
-			 foreach ($users as $user){
+<div id="left-column">
+<h1>Administraci&oacute;n de Usuarios</h1>
+<?php echo "<div class='error'>$error</div>" ?> <?php if (!$task){ ?>
+<ul>
+	<li><a href="administration/users.php?task=list"> Lista de Usuarios</a></li>
+	<li><a href="administration/users.php?task=new">Crear un nuevo usuario</a></li>
+</ul>
+<?php }else if($task=="list"){
+	$roles = $rsRoles->fetch_all(MYSQLI_ASSOC);
+	?>
+<h2>Lista de usuarios</h2>
+	<?php if($users){ ?>
+<ul>
+<?php
+foreach ($users as $user){
+	?>
+	<li><strong><?php echo $user["nombre"]?> ( <?php echo $user["username"]?>
+	)</strong> <br />
+	<a onclick=" return confirm('Seguro que desea borrar el usuario?')"
+		class="del"
+		href="administration/users.php?task=del&amp;uid=<?php echo $user["idusuario"] ?>">Borrar</a>
+	/ <a class="pwd" id="apwd<?php echo $user["idusuario"] ?>" href="#">Cambiar
+	Contraseña</a> / <a class="roles"
+		id="aroles<?php echo $user["idusuario"] ?>" href="#">Cambiar Permisos</a>
+	<form class="cforms hide" method="post"
+		id="fpwd<?php echo $user["idusuario"] ?>"
+		action="./administration/users.php?task=list">
+	<p><label><span>Contrase&ntilde;a</span><input type="password"
+		name="pwd1" /></label></p>
+	<p><label><span>Repita la Contrase&ntilde;a</span><input
+		type="password" name="pwd2" /></label></p>
+	<p><input type="submit" value="Aceptar" /> <input type="hidden"
+		name="uid" value="<?php echo $user["idusuario"]?>" /> <input
+		type="hidden" name="pwd" value="change" /></p>
+	</form>
+	<form class="cforms hide" method="post"
+		id="froles<?php echo $user["idusuario"] ?>"
+		action="./administration/users.php?task=list">
+		<?php foreach($roles as $rol){
+
 			?>
-				<li>
-					<strong><?php echo $user["nombre"]?> ( <?php echo $user["username"]?> )</strong> <br />
-					<a onclick=" return confirm('Seguro que desea borrar el usuario?')"  class="del" href="administration/users.php?task=del&amp;uid=<?php echo $row_rsUsers["idusuario"] ?>">Borrar</a> /
-					<a class="pwd"  id="apwd<?php echo $user["idusuario"] ?>" href="#">Cambiar Contraseña</a> /
-					<a class="roles" id="aroles<?php echo $user["idusuario"] ?>" href="#">Cambiar Permisos</a>
-					<form class="cforms hide" method="post" id="fpwd<?php echo $user["idusuario"] ?>" action="./administration/users.php?task=list">
-						<p>
-							<label><span>Contrase&ntilde;a</span><input type="password" name="pwd1" /></label>
-						</p>
-						<p>
-							<label><span>Repita la Contrase&ntilde;a</span><input type="password" name="pwd2" /></label>
-						</p>
-						<p>
-							<input type="submit" value="Aceptar" />
-							<input type="hidden" name="uid" value="<?php echo $user["idusuario"]?>" />
-							<input type="hidden" name="pwd" value="change" />
-						</p>
-					</form>
-					<form class="cforms hide" method="post" id="froles<?php echo $user["idusuario"] ?>" action="./administration/users.php?task=list">
-					<?php foreach($roles as $rol){
-
-					?>
-						<p>
-							<label>
-								<span><?php  echo $rol["descripcion"] ?></span>
-								<input type="checkbox" name="roles[]" value="<?php echo $rol["idrol"] ?>" <?php
-								foreach($userRoles as $urol){
-									if($urol["idusuario"] == $user["idusuario"]){
-										if ($rol["idrol"] == $urol["idrol"]){
-											echo "checked='checked'";
-										}
-									}
-								} ?> />
-							</label>
-						</p>
-					<?php } ?>
-					<p>
-						<input type="submit" value="Aceptar" />
-						<input type="hidden" name="uid" value="<?php echo $user["idusuario"] ?>" />
-						<input type="hidden" name="rolchange" value="yes" />
-					</p>
-					</form>
-				 </li>
-			<?php }  ?>
-			</ul>
-			<?php }else{ ?>
-				<p>No hay usuarios</p>
-			<?php } ?>
-		<?php }else if($task == "new"){ ?>
-		<h2>Crear un nuevo Usuario</h2>
-		<form action="administration/users.php?task=list" method="post" class="cforms">
-			<p>
-				<label><span>Nombre Completo</span><input type="text" name="nombre"  value="<?php echo $_POST["nombre"]?>" /></label>
-			</p>
-			<p>
-				<label><span>Telef&oacute;no</span><input type="text" name="phone" value="<?php echo $_POST["phone"]?>" /></label>
-			</p>
-			<p>
-				<label><span>Usuario</span><input type="text" name="uname" value="<?php echo $_POST["uname"]?>" /></label>
-			</p>
-			<p>
-				<label><span>Contrase&ntilde;a</span><input type="password" name="pwd1" /></label>
-			</p>
-			<p>
-				<label><span>Repita la Contrase&ntilde;a</span><input type="password" name="pwd2" /></label>
-			</p>
-			<h3>Permisos</h3>
-			<?php while($row_rsRol = $rsRoles->fetch_assoc()){ ?>
-				<p class="permissions">
-						<label>
-							<span><?php echo $row_rsRol["descripcion"] ?></span>
-							<input type="checkbox" name="roles[]" value="<?php echo $row_rsRol["idrol"] ?>" />
-							</label>
-				</p>
-			<?php }?>
-			<p>
-				<input type="hidden" name="add" value="yes" />
-				<input type="submit" value="Aceptar" />
-			</p>
-		</form>
+	<p><label> <span><?php  echo $rol["descripcion"] ?></span> <input
+		type="checkbox" name="roles[]" value="<?php echo $rol["idrol"] ?>"
+		<?php
+		foreach($userRoles as $urol){
+			if($urol["idusuario"] == $user["idusuario"]){
+				if ($rol["idrol"] == $urol["idrol"]){
+					echo "checked='checked'";
+				}
+			}
+		} ?> /> </label></p>
 		<?php } ?>
-
-	</div>
+	<p><input type="submit" value="Aceptar" /> <input type="hidden"
+		name="uid" value="<?php echo $user["idusuario"] ?>" /> <input
+		type="hidden" name="rolchange" value="yes" /></p>
+	</form>
+	</li>
+	<?php }  ?>
+</ul>
+	<?php }else{ ?>
+<p>No hay usuarios</p>
+<?php } ?> <?php }else if($task == "new"){ ?>
+<h2>Crear un nuevo Usuario</h2>
+<form action="administration/users.php?task=list" method="post"
+	class="cforms">
+<p><label><span>Nombre Completo</span><input type="text" name="nombre"
+	value="<?php echo $_POST["nombre"]?>" /></label></p>
+<p><label><span>Telef&oacute;no</span><input type="text" name="phone"
+	value="<?php echo $_POST["phone"]?>" /></label></p>
+<p><label><span>Usuario</span><input type="text" name="uname"
+	value="<?php echo $_POST["uname"]?>" /></label></p>
+<p><label><span>Contrase&ntilde;a</span><input type="password"
+	name="pwd1" /></label></p>
+<p><label><span>Repita la Contrase&ntilde;a</span><input type="password"
+	name="pwd2" /></label></p>
+<h3>Permisos</h3>
+<?php while($row_rsRol = $rsRoles->fetch_assoc()){ ?>
+<p class="permissions"><label> <span><?php echo $row_rsRol["descripcion"] ?></span>
+<input type="checkbox" name="roles[]"
+	value="<?php echo $row_rsRol["idrol"] ?>" /> </label></p>
+<?php }?>
+<p><input type="hidden" name="add" value="yes" /> <input type="submit"
+	value="Aceptar" /></p>
+</form>
+<?php } ?></div>
 </div>
-<?php include "../footer.php" ?>
-</div>
+<?php include "../footer.php" ?></div>
 </body>
 </html>
