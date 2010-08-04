@@ -8,7 +8,7 @@ if(!$iddoc){
 $rsDocumento = $dbc->query("
 	SELECT 
 	    d.ndocimpreso,
-	    DATE(d.fechacreacion) as Fecha,
+	    DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
 	    c.descripcion,d.total,p.nombre		
 	FROM documentos d 
 	JOIN conceptos c ON c.idconcepto=d.idconcepto
@@ -17,7 +17,6 @@ $rsDocumento = $dbc->query("
 	WHERE d.idtipodoc= {$docids["IDCHEQUE"]} 
 	AND p.tipopersona = {$persontypes["PROVEEDOR"]}
 	AND d.iddocumento = $iddoc
-	ORDER BY CAST(d.ndocimpreso AS SIGNED)
 ");
 $row_rsDocumento = $rsDocumento->fetch_assoc();
 
@@ -43,7 +42,7 @@ $rsCuentasContables = $dbc->query("
 	content="application/xhtml+xml; charset=UTF-8" />
 <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
 <title>Llantera Esquipulas: Cheque <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
-<style type="text/css">
+<style type="text/css">y 
 html{
     border:0;
     padding:0;
@@ -54,7 +53,8 @@ body {
 	font-size: 10pt;
 	float:left;
 	width: 750pt;
-	padding:40pt 50pt;
+	padding:0;
+	margin:0;
 /* 	border:1px solid #000; */
 }
 
@@ -97,9 +97,6 @@ table {
 
 thead {
 	display: table-header-group;
-	border-width: 1px 0;
-	border-color: #000;
-	border-style: solid;
 }
 .float {
 	float: left;
@@ -132,7 +129,7 @@ table{
 <h1>Llantera Esquipulas</h1>
 <h2>Cheques</h2>
 <div class="float">
-<p><strong>Fecha </strong><?php echo $row_rsDocumento["Fecha"] ?></p>
+<p><strong>Fecha </strong><?php echo $row_rsDocumento["fechacreacion"] ?></p>
 <p><strong>Cheque# </strong><?php echo $row_rsDocumento["ndocimpreso"] ?> </p>
 </div>
 <div class="float">

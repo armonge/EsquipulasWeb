@@ -77,12 +77,12 @@ $(function(){
 <div class="float">
 <h2>Activo</h2>
 <strong><?php echo $catActivo ?></strong>
-<table border="0" frame="border" rules="none" cellpadding="3" cellspacing="1"	summary="Activos">
+<table border="0" frame="void" rules="none" cellpadding="3" cellspacing="1"	summary="Activos">
 <?php do{
 	if($catActivo!= $row_rsActivo["categoria"]){ ?>
 		</table>
 		<strong><?php echo $row_rsActivo["categoria"] ?></strong>
-		<table border="0" frame="border" rules="none" cellpadding="3" cellspacing="1"	summary="Activos">		
+		<table border="0" frame="void" rules="none" cellpadding="3" cellspacing="1"	summary="Activos">		
 	<?php }
 	$catActivo = $row_rsActivo["categoria"]; 
 ?>
@@ -99,7 +99,7 @@ $(function(){
 <div class="float">
 <h2>Pasivo</h2>
 <strong><?php echo $catPasivo ?></strong>
-<table border="0" frame="border" rules="none" cellpadding="3" cellspacing="1"	summary="Activos">
+<table border="0" frame="void" rules="none" cellpadding="3" cellspacing="1"	summary="Activos">
 <?php do{
 	if($catPasivo!= $row_rsPasivo["categoria"]){ ?>
 		</table>

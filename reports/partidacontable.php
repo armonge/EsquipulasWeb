@@ -117,7 +117,11 @@ var dates = $('#from, #to').datepicker({
 <?php if(! ($rsMovimientos->num_rows >  0) ) { ?>
 	<p>No existen movimientos contables para el periodo seleccionado</p>
 <?php }else{?>
-<?php if ($start && $end){ ?> <p>Desde <?php echo $start ?> hasta <?php echo $end ?></p> <?php } ?>
+<?php if ($start && $end){ ?> 
+	<p>Desde <?php echo date("d/m/Y", strtotime($start)) ?> hasta <?php echo date("d/m/Y", strtotime($end)) ?></p> 
+<?php }else{ ?>
+	<p>Desde <?php echo date("01/m/Y") ?> hasta <?php echo date("d/m/Y") ?></p>
+<?php } ?>
 <table border="1" frame="border" rules="all" cellpadding="3" cellspacing="1"	summary="Reporte de partida contable">
 	<thead>
 	<tr>

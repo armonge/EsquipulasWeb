@@ -36,6 +36,7 @@ $docids = array(
     "IDRECIBO" => 18,
     "IDRETENCION" => 19,
     "IDENTRADALOCAL" => 21,
+	"IDARQUEO" => 23,
     "IDAJUSTECONTABLE" => 24,
     "IDCONCILIACION" => 25,
     "IDERROR" => 26,
@@ -47,6 +48,11 @@ $persontypes = array(
     "PROVEEDOR" => 2,
     "VENDEDOR" => 3,
     "USUARIO" => 4
+);
+/*************monedas*************************/
+$moneda = array(
+	"CORDOBA" => 1,
+	"DOLAR" => 2
 );
 /*************db connection ***************/
 $dbc = new MySQLI(DBHOST,DBUSER,DBPASS,DB);
