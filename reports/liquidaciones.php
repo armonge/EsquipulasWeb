@@ -80,10 +80,10 @@ html{
 }
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 8pt;
-	float:left;
-	width:1020pt;
-	padding:40pt 50pt;
+	font-size: 10pt;
+	padding:0;
+	margin:0;
+	width:970pt;
 /* 	border:1px solid #000; */
 }
 
@@ -117,25 +117,20 @@ p {
 	margin: 10px;
 }
 
-table {
-	text-align: center;
-	float: left;
-	clear: both;
-	table-layout:fixed;
-}
 
 thead {
 	display: table-header-group;
-	border-width: 1px 0;
-	border-color: #000;
-	border-style: solid;
 }
 
 tbody {
 	display: table-row-group;
 }
-table{
-    width:100%;
+#details{
+    table-layout:fixed;
+    width:98%;
+    padding:1%;
+    margin:auto;
+    text-align:center;
 }
 @media print {
     .gray {
@@ -171,7 +166,7 @@ table{
 
 </div>
 </div>
-<table border="1" frame="border" rules="rows" cellpadding="2"
+<table border="1pt" frame="box" rules="rows" cellpadding="2" id="details"
 	cellspacing="0" summary="Reporte de liquidacion">
 	<tr>
 		<th  style="width:100pt">Articulo</th>
@@ -194,25 +189,26 @@ table{
 	<tr <?php if($color % 2 == 0 ){ echo "class='gray'"; } ?>>
 		<td style="text-align:left"><?php echo $row_rsArticulo["descripcion"] ?></td>
 		<td><?php echo $row_rsArticulo["unidades"] ?></td>
-		<td><?php echo number_format($row_rsArticulo["costocompra"], 4) ?></td>
-		<td><?php echo number_format($row_rsArticulo["fob"],4) ?></td>
+		<td><?php echo $row_rsArticulo["costocompra"]  != 0 ? number_format($row_rsArticulo["costocompra"], 4) : 0 ; ?></td>
+		<td><?php echo $row_rsArticulo["fob"] != 0 ? number_format($row_rsArticulo["fob"],4) : 0; ?></td>
 
-		<td><?php echo number_format($row_rsArticulo["flete"],4)  ?></td>
-		<td><?php echo number_format($row_rsArticulo["seguro"],4)  ?></td>
-		<td><?php echo number_format($row_rsArticulo["otrosgastos"],4)  ?></td>
-		<td><?php echo number_format($row_rsArticulo["cif"],4) ?></td>
-		<td><?php echo number_format($row_rsArticulo["comision"],4) ?></td>
-		<td><?php echo number_format($row_rsArticulo["agencia"],4) ?></td>
-		<td><?php echo number_format($row_rsArticulo["almacen"], 4)?></td>
-		<td><?php echo number_format( $row_rsArticulo["papeleria"] ,4    )?></td>
+		<td><?php echo $row_rsArticulo["flete"] != 0 ? number_format($row_rsArticulo["flete"],4) : 0 ?></td>
+		<td><?php echo $row_rsArticulo["seguro"] != 0 ? number_format($row_rsArticulo["seguro"],4) : 0 ?></td>
+		<td><?php echo $row_rsArticulo["otrosgastos"] != 0 ? number_format($row_rsArticulo["otrosgastos"],4)  :0 ?></td>
+		<td><?php echo  $row_rsArticulo["cif"] != 0 ? number_format($row_rsArticulo["cif"],4) :0 ?></td>
+		<td><?php echo  $row_rsArticulo["commision"] != 0 ? number_format($row_rsArticulo["comision"],4) :0 ?></td>
+		<td><?php echo  $row_rsArticulo["agencia"] != 0 ? number_format($row_rsArticulo["agencia"],4) :0 ?></td>
+		<td><?php echo  $row_rsArticulo["almacen"] != 0 ? number_format($row_rsArticulo["almacen"], 4) :0 ?></td>
+		<td><?php echo  $row_rsArticulo["papeleria"] != 0 ? number_format( $row_rsArticulo["papeleria"] ,4    ):0 ?></td>
 
-		<td><?php echo number_format($row_rsArticulo["impuestos"], 4)  ?></td>
+		<td><?php echo  $row_rsArticulo["impuestos"] != 0 ? number_format($row_rsArticulo["impuestos"], 4) :0 ?></td>
 
-		<td><?php echo number_format( $row_rsArticulo["transporte"] ,4    )?></td>
+		<td><?php echo  $row_rsArticulo["transporte"] != 0 ? number_format( $row_rsArticulo["transporte"] ,4    ) :0 ?></td>
 
 
 	</tr>
 	<?php }?>
+
 </table>
 	<?php if($row_rsDocumento["observacion"]){ ?>
 <h2>Observaciones</h2>
