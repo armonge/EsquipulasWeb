@@ -30,7 +30,7 @@ if(isset($_POST["add"])){
 <script type="text/javascript">
 $(function(){
 	$("#add").click(function(e){
-		$(".addconcept").toggle()
+		$(".addconcept").toggle();		
 		return false;
 	});
 
@@ -53,7 +53,7 @@ $(function(){
 	<div id="left-column">
 		<h1>Conceptos</h1>
 		<a href="#" id="add">A&ntilde;adir Concepto</a>
-		<div class="addconcept">
+		<div class="addconcept  hide">
 			<form class="cform" method="post" action="administration/concepts.php">
 				<p>
 					<label><span>Nombre del concepto:</span> <input type="text" name="cname" /></label>
