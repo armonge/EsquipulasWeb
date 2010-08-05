@@ -12,7 +12,8 @@ SELECT
 	d.ndocimpreso AS 'Numero de Arqueo', 
 	UPPER(DATE_FORMAT(fechacreacion,'%d DE %M DEL  %Y')) AS 'fecha', 
 	p.nombre AS 'Arqueador', 
-	CONCAT('US$',FORMAT(d.total,4))  as 'Total US$'
+	CONCAT('US$',FORMAT(d.total,4))  AS 'totald',
+	tc.tasa AS 'cambio'
 FROM documentos d  
 JOIN tiposcambio tc ON tc.idtc = d.idtipocambio
 JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
@@ -83,6 +84,10 @@ body {
 	/* 	border:1px solid #000; */
 }
 
+table{
+	text-align:center;
+	table-layout:fixed;
+}
 .gray {
 	background: #f4f4f4;
 }
@@ -94,7 +99,9 @@ body {
 h2 {
 	border-bottom: 4px solid #000000;
 }
-
+.aleft{
+	text-align:left;
+}
 .noborder {
 	border: 0;
 }
@@ -131,9 +138,14 @@ tbody {
 	width: 50%;
 	float: left;
 }
-.aright{
-	text-align:right;
+#more-details{
+	margin-top:30pt;
+	float:left;
 }
+.aright {
+	text-align: right;
+}
+
 @media print {
 	.gray {
 		background: #fff;
@@ -154,29 +166,27 @@ tbody {
 <table border="1" frame="border" rules="all" cellpadding="2"
 	cellspacing="0" summary="Cordobas" class="details">
 	<thead>
-		<thead>
-			<tr>
-				<th colspan="3">Cordobas</th>
-			</tr>
-			<tr>
-				<th>CANTIDAD</th>
-				<th>DENOMINACI&Oacute;N</th>
-				<th>TOTAL</th>
-			</tr>
-		</thead>
+		<tr>
+			<th colspan="3">Cordobas</th>
+		</tr>
+		<tr>
+			<th>CANTIDAD</th>
+			<th>DENOMINACI&Oacute;N</th>
+			<th>TOTAL</th>
+		</tr>
 	</thead>
 	<tbody>
-	<?php $total = 0; while($row_rsCordoba = $rsCordobas->fetch_array(MYSQLI_ASSOC)){?>
+	<?php $totalC = 0; while($row_rsCordoba = $rsCordobas->fetch_array(MYSQLI_ASSOC)){?>
 		<tr>
 			<td><?php echo $row_rsCordoba["cantidad"]?></td>
 			<td><?php echo $row_rsCordoba["denominacion"]?></td>
-			<td><?php $total += $row_rsCordoba["totalnf"]; echo $row_rsCordoba["total"]?></td>
+			<td><?php $totalC = bcadd($totalC, $row_rsCordoba["totalnf"]); ; echo $row_rsCordoba["total"]?></td>
 		</tr>
 		<?php }?>
 		<tr>
 			<td></td>
 			<td class="aright"><strong>TOTAL:</strong></td>
-			<td><strong>C$ <?php echo number_format($total,4)?></strong></td>
+			<td><strong>C$ <?php echo number_format($totalC,4)?></strong></td>
 		</tr>
 	</tbody>
 
@@ -194,20 +204,121 @@ tbody {
 		</tr>
 	</thead>
 	<tbody>
-	<?php $total = 0; while($row_rsDolar = $rsDolares->fetch_array(MYSQLI_ASSOC)){?>
+	<?php $totalD = 0; while($row_rsDolar = $rsDolares->fetch_array(MYSQLI_ASSOC)){?>
 		<tr>
 			<td><?php echo $row_rsDolar["cantidad"]?></td>
 			<td><?php echo $row_rsDolar["denominacion"]?></td>
-			<td><?php $total += $row_rsDolar["totalnf"]; echo $row_rsDolar["total"]?></td>
+			<td><?php $totalD = bcadd($totalD, $row_rsDolar["totalnf"]);  echo $row_rsDolar["total"]?></td>
 		</tr>
 		<?php }?>
 		<tr>
 			<td></td>
 			<td class="aright"><strong>TOTAL:</strong></td>
-			<td><strong>US$ <?php echo number_format($total,4)?></strong></td>
+			<td><strong>US$ <?php echo number_format($totalD,4)?></strong></td>
 		</tr>
 	</tbody>
 
+</table>
+
+<table border="1" frame="rhs" rules="none" cellpadding="2"
+	cellspacing="0" summary="Otros datos" id="more-details">
+	<tbody>
+		<tr>
+			<td class="aleft">SALDO ANTERIOR</td>
+			<td style="border:1px solid #000; width:90pt;"></td>
+			<td style="border:1px solid #000; width:90pt;"></td>
+		</tr>
+		<tr>
+			<td class="aleft">TOTAL CORDOBAS SEG&Uacute;N RECIBOS DE CAJA</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">SALDO ANTERIOR + SALDO SEG&Uacute;N RECIBOS DE CAJA</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">SALDO EN US$</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">TOTAL EFECTIVO CORDOBAS (C$ + US$)</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">TOTAL FASTOS EN EFECTIVO</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">TOTAL DEPOSITOS</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">TOTAL TRANSFERENCIAS</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">CHEQUES (EMITIDOS Y RECIBIDOS)</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">BAUCHER BAC</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">GASTOS PENDIENTES DE ALMACEN</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">GASTOS PENDIENTES DE LLAEXSA</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">RECIBOS CONTRAENTREGA</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">GASTOS PENDIENTES ESQUIPULAS</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">PRESTAMO AGENCIA</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">SALDO TOTAL CAJA</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">SALDO SEG&Uacute;N ARQUEO DE CAJA</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">DIFERENCIA (SOBRANTE - FALTANTE) (CAJA)</td>
+			<td style="border:1px solid #000"></td>
+			<td style="border:1px solid #000"></td>
+		</tr>
+		<tr>
+			<td class="aleft">T/CAMBIO</td>
+			<td style="border:1px solid #000"><?php echo $row_rsDocumento["cambio"] ?></td>
+			<td style="border:1px solid #000"><?php echo $row_rsDocumento["cambio"]*$totalD ?></td>
+		</tr>
+	</tbody>
 </table>
 </body>
 

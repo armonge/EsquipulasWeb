@@ -3,6 +3,8 @@
 function __autoload($class_name) {
 	require_once "classes/{$class_name}.php";
 }
+/**********set the locale******************/
+setlocale(LC_ALL,'es_NI');
 /********start the session*****************/
 session_start();
 session_regenerate_id();
@@ -122,5 +124,22 @@ function utf8tohtml($utf8, $encodeTags=true) {
         }
     }
     return $result;
+}
+/******************last day of month****************/
+function lastday($month = '', $year = '' ,$format = 'Ymd') {
+   if (empty($month)) {
+      $month = date('m');
+   }
+   if (empty($year)) {
+      $year = date('Y');
+   }
+   
+   $result = strtotime("{$year}-{$month}-01");
+   if(!$result){
+   	return $result;
+   }
+   
+   $result = strtotime('-1 second', strtotime('+1 month', $result));
+   return date($format, $result);
 }
 ?>

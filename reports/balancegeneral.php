@@ -51,6 +51,36 @@ $catPasivo= $row_rsPasivo["categoria"];
 <script type="text/javascript" src="js/jq.ui.js"></script>
 <script type="text/javascript" src="js/jquery.ui.datepicker-es.js"></script>
 <title>Llantera Esquipulas: Reporte de Balance General</title>
+<style type="text/css" media="print">
+html{
+    border:0;
+    padding:0;
+    margin:0;
+}
+#menu, #uname, #logo{
+	display:none;
+}
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	float:left;
+	width: 750pt;
+	padding:0;
+	margin:0;
+	color:#000;
+}
+
+.gray, .error, .error2{
+	background:#fff;
+}
+#footer, #header, .ui-widget{
+    display:none;
+}
+thead {
+    display: table-header-group;
+  }
+ #wrap{position:static}
+</style>
 <style type="text/css"> 
 .float{
 	width:50%;
@@ -61,11 +91,6 @@ strong{
 	margin:10px;
 }
 </style>
-<script type="text/javascript">
-$(function(){
-
-});
-</script>
 </head>
 <body>
 <div id="wrap">
@@ -104,7 +129,7 @@ $(function(){
 	if($catPasivo!= $row_rsPasivo["categoria"]){ ?>
 		</table>
 		<strong><?php echo $row_rsPasivo["categoria"] ?></strong>
-		<table border="0" frame="border" rules="none" cellpadding="3" cellspacing="1"	summary="Activos">		
+		<table border="0" frame="void" rules="none" cellpadding="3" cellspacing="1"	summary="Activos">		
 	<?php }
 	$catPasivo = $row_rsPasivo["categoria"]; 
 ?>

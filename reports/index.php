@@ -36,6 +36,7 @@ if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole
 			<li><a href="reports/accounts.php">Historico de Cuentas</a></li>
 			<li><a href="reports/partidacontable.php">Reporte de Partida Contable</a></li>
 			<li><a href="reports/balancegeneral.php">Balance General</a></li>
+			<li><a href="reports/balancecomprobacion.php">Balance de Comprobaci&oacute;n</a></li>
 
 		<?php } if($_SESSION["user"]->hasRole("ventasrep")){ ?>
 			<li><a href="reports/articlessales.php">Ventas x producto</a></li>

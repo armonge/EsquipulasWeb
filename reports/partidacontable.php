@@ -57,10 +57,22 @@ $rsMovimientos = $dbc->query($query);
 <script type="text/javascript" src="js/jquery.ui.datepicker-es.js"></script>
 <title>Llantera Esquipulas: Reporte de Partida Contable</title>
 <style type="text/css" media="print">
-html,body{
+html{
+    border:0;
+    padding:0;
+    margin:0;
+}
+#menu, #uname, #logo{
+	display:none;
+}
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	float:left;
+	width: 750pt;
+	padding:0;
+	margin:0;
 	color:#000;
-	font-size:9pt;
-	width:auto;
 }
 
 .gray, .error, .error2{
@@ -72,7 +84,7 @@ html,body{
 thead {
     display: table-header-group;
   }
-  #wrap{position:static}
+ #wrap{position:static}
 </style>
 <style type="text/css">
 #m2 a{
@@ -80,6 +92,10 @@ thead {
 }
 #m2 span{
 	background:  #99AB63 url(img/nav-right.png) no-repeat right;
+}
+table{
+	width:100%;
+	text-align:center;
 }
 </style>
 <script type="text/javascript">
@@ -170,7 +186,7 @@ var dates = $('#from, #to').datepicker({
 		<td colspan="4"></td>
 		<?php }?>
 		<td><?php echo $row["codigocuenta"] ?></td>
-		<td><?php echo $row["descripcion"]  ?></td>
+		<td style="text-align:left;"><?php echo $row["descripcion"]  ?></td>
 		<td <?php if ($row["monto"]==0){echo 'class="error2"'; } ?>><?php echo $row["monto"] < 0 ? "" : number_format($row["monto"],4) ?></td>
 		<td <?php if ($row["monto"]==0){echo 'class="error2"'; } ?>><?php echo $row["monto"] > 0 ? "" : number_format(abs($row["monto"]),4) ?></td>
 		<?php
