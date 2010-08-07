@@ -29,20 +29,20 @@ $modules = array(
 );
 /**********document ids*******************/
 $docids = array(
-    "IDFACTURA" => 5,
-    "IDDEVOLUCION" => 10,
-    "IDND" => 11,
-    "IDCHEQUE" => 12,
-    "IDDEPOSITO" => 13,
-    "IDNC" => 14,
-    "IDRECIBO" => 18,
-    "IDRETENCION" => 19,
-    "IDENTRADALOCAL" => 21,
-	"IDARQUEO" => 23,
-    "IDAJUSTECONTABLE" => 24,
-    "IDCONCILIACION" => 25,
-    "IDERROR" => 26,
-    "IDKARDEX" => 27,
+    "FACTURA" => 5,
+    "DEVOLUCION" => 10,
+    "NOTADEBITO" => 11,
+    "CHEQUE" => 12,
+    "DEPOSITO" => 13,
+    "NOTACREDITO" => 14,
+    "RECIBO" => 18,
+    "RETENCION" => 19,
+    "ENTRADALOCAL" => 21,
+	"ARQUEO" => 23,
+    "AJUSTECONTABLE" => 24,
+    "CONCILIACION" => 25,
+    "ERROR" => 26,
+    "KARDEX" => 27,
 );
 /************person types********************/
 $persontypes = array(

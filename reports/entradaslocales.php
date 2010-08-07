@@ -20,12 +20,12 @@ SELECT
     escontado as tipopago
 FROM documentos d
 JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
-JOIN personas p ON pxd.idpersona = p.idpersona AND p.tipopersona = 2
+JOIN personas p ON pxd.idpersona = p.idpersona AND p.tipopersona = {$persontypes["PROVEEDOR"]}
 JOIN articulosxdocumento axd ON axd.iddocumento = d.iddocumento
 JOIN costosxdocumento cxd ON cxd.iddocumento = d.iddocumento
 JOIN costosagregados ca ON cxd.idcostoagregado = ca.idcostoagregado
 JOIN tiposcambio tc ON tc.idtc = d.idtipocambio
-WHERE d.idtipodoc = 21 AND d.iddocumento = $iddoc
+WHERE d.idtipodoc = {$docids["ENTRADALOCAL"]} AND d.iddocumento = $iddoc
 ");
 $row_rsDocumento = $rsDocumento->fetch_assoc();
 
@@ -41,7 +41,7 @@ FROM documentos d
 JOIN articulosxdocumento axd ON axd.iddocumento=d.iddocumento
 JOIN vw_articulosdescritos a ON axd.idarticulo = a.idarticulo
 JOIN tiposcambio tc ON tc.idtc = d.idtipocambio
-WHERE d.idtipodoc = 21 AND axd.iddocumento = $iddoc
+WHERE d.idtipodoc = {$docids["ENTRADALOCAL"]} AND axd.iddocumento = $iddoc
 ");
 
 
@@ -58,6 +58,7 @@ WHERE d.idtipodoc = 21 AND axd.iddocumento = $iddoc
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
+	width: 750pt;
 }
 
 .gray {
@@ -95,6 +96,7 @@ table {
 	text-align: center;
 	float: left;
 	clear: both;
+    width:100%;
 }
 
 .error {
@@ -117,6 +119,18 @@ thead {
 	tbody {
 	    display:table-row-group;
 	}
+@media print {
+    .gray {
+        background: #fff;
+    }
+    th {
+        background: #fff;
+        color:#000;
+    }
+    thead{
+        color:#000;
+    }
+} 
 </style>
 </head>
 <body>
@@ -125,8 +139,8 @@ thead {
 <h2>Entradas Locales</h2>
 <p><strong>Numero de Entrada:</strong> <?php echo $row_rsDocumento["ndocimpreso"] ?>
 <br />
-Fecha del documento: <?php echo $row_rsDocumento["fechacreacion"] ?> <br />
-Proveedor: <?php echo $row_rsDocumento["proveedor"] ?></p>
+<strong>Fecha del documento: </strong><?php echo $row_rsDocumento["fechacreacion"] ?> <br />
+<strong>Proveedor: </strong><?php echo $row_rsDocumento["proveedor"] ?></p>
 <table border="1" frame="border" rules="all" cellpadding="5" cellspacing="1"	summary="Reporte de partida contable">
 	<col width="400" />
 	<thead>

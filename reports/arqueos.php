@@ -18,7 +18,7 @@ FROM documentos d
 JOIN tiposcambio tc ON tc.idtc = d.idtipocambio
 JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
 JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["USUARIO"]}
-WHERE d.idtipodoc = {$docids["IDARQUEO"]}
+WHERE d.idtipodoc = {$docids["ARQUEO"]}
 AND d.iddocumento = $iddoc
 ";
 $rsDocumento = $dbc->query($query);

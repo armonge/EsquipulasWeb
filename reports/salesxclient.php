@@ -9,9 +9,14 @@ if($selection){
 	foreach($data as $d){
 		if((int)$d){
 			$query= ("
-		SELECT p.nombre , SUM(d.total) as total, UNIX_TIMESTAMP(d.fechacreacion)*1000 as stamp FROM documentos d
-		JOIN personas p ON p.idpersona = d.idpersona
-		WHERE d.idpersona = $d ".
+		SELECT 
+			p.nombre , 
+			SUM(d.total) as total, 
+			UNIX_TIMESTAMP(d.fechacreacion)*1000 as stamp 
+		FROM documentos d
+		JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
+		JOIN personas p ON p.idpersona = pxd.idpersona
+		WHERE p.idpersona = $d ".
 			( $startDate ? " AND DATE(d.fechacreacion)  >= '" . $startDate ."'": "" )
 			.( $endDate ? " AND  DATE(d.fechacreacion) <= '" . $endDate . "'": "" )
 			." GROUP BY DATE(d.fechacreacion)

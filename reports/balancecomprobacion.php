@@ -19,7 +19,7 @@ SELECT
 	FORMAT(base.saldoanterior,4) AS 'saldoanterior',
 	FORMAT(base.credito,4) AS 'credito',
 	FORMAT(base.debito,4) AS 'debito', 
-	base.saldoanterior + base.debito + base.credito AS saldomes
+	base.saldoanterior + base.debito - base.credito AS saldomes
 FROM 
 (SELECT 
 	cc.codigo, 
@@ -35,7 +35,6 @@ GROUP BY cxd.idcuenta
 ORDER BY cc.codigo 
 ) as base
  " ;
-
 $rsCuentas = $dbc->query($query);
 
 ?>

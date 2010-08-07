@@ -3,22 +3,27 @@ require_once "../functions.php";
 
 $iddoc = (int)$_GET["doc"];
 
-$rsDocumento = $dbc->query("
+if(!$iddoc){
+    die();
+}
+$query = "
 SELECT
-	d.ndocimpreso,
-	padre.ndocimpreso as factura,
-	(d.total ) as total,
-	p.nombre as cliente,
-	d.fechacreacion,
-	d.observacion
+    d.ndocimpreso,
+    padre.ndocimpreso as factura,
+    (d.total ) as total,
+    p.nombre as cliente,
+    d.fechacreacion,
+    d.observacion
 FROM documentos d
 JOIN docpadrehijos dpd ON dpd.idhijo = d.iddocumento
 JOIN documentos padre ON dpd.idpadre = padre.iddocumento
-JOIN personas p ON p.idpersona = d.idpersona
+JOIN personasxdocumento pxd ON d.iddocumento = pxd.iddocumento
+JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona != {$persontypes["USUARIO"]}
 LEFT JOIN tiposcambio tc ON tc.idtc = d.idtipocambio
-WHERE d.idtipoDoc = 10
+WHERE d.idtipoDoc = {$docids["DEVOLUCION"]}
 AND d.iddocumento = $iddoc
-");
+";
+$rsDocumento = $dbc->query($query);
 $row_rsDocumento = $rsDocumento->fetch_assoc();
 
 $rsArticulos = $dbc->query("
@@ -42,9 +47,15 @@ WHERE axd.iddocumento = $iddoc
 <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
 <title>Llantera Esquipulas: Devoluci&oacute;n No <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
 <style type="text/css">
-body {
+html{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
+	margin:0;
+	padding:0;
+	color:#000;
+}
+body{
+    width:792pt;
 }
 
 .gray {
@@ -80,8 +91,7 @@ p {
 
 table {
 	text-align: center;
-	float: left;
-	clear: both;
+    width:100%;
 }
 thead {
 	    display:table-header-group;
@@ -92,6 +102,18 @@ thead {
 tbody {
     display:table-row-group;
 }
+@media print {
+    .gray {
+        background: #fff;
+    }
+    th {
+        background: #fff;
+        color:#000;
+    }
+    thead{
+        color:#000;
+    }
+} 
 </style>
 </head>
 <body>

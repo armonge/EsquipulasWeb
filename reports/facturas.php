@@ -23,7 +23,7 @@ $rsDocumento = $dbc->query("
 	JOIN personas p ON p.idpersona=pxd.idpersona AND p.tipopersona = 1
 	LEFT JOIN costosxdocumento cd ON cd.iddocumento=d.iddocumento
 	LEFT JOIN costosagregados ca ON ca.idcostoagregado=cd.idcostoagregado
-	WHERE d.idtipodoc={$docids["IDFACTURA"]}
+	WHERE d.idtipodoc={$docids["FACTURA"]}
 	AND d.iddocumento=$iddoc
 ");
 $row_rsDocumento = $rsDocumento->fetch_assoc();

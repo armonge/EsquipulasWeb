@@ -81,8 +81,6 @@ html{
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
-	padding:0;
-	margin:0;
 	width:970pt;
 /* 	border:1px solid #000; */
 }

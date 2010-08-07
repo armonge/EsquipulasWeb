@@ -14,7 +14,7 @@ $rsDocumento = $dbc->query("
 	JOIN conceptos c ON c.idconcepto=d.idconcepto
 	JOIN personasxdocumento pd ON d.iddocumento=pd.iddocumento
 	JOIN personas p ON p.idpersona=pd.idpersona
-	WHERE d.idtipodoc= {$docids["IDCHEQUE"]} 
+	WHERE d.idtipodoc= {$docids["CHEQUE"]}
 	AND p.tipopersona = {$persontypes["PROVEEDOR"]}
 	AND d.iddocumento = $iddoc
 ");
@@ -29,7 +29,7 @@ $rsCuentasContables = $dbc->query("
 	JOIN cuentasxdocumento cd ON cd.idcuenta=c.idcuenta
 	JOIN documentos d ON d.iddocumento=cd.iddocumento
 	WHERE d.iddocumento = $iddoc 
-	AND d.idtipodoc={$docids["IDCHEQUE"]}
+	AND d.idtipodoc={$docids["CHEQUE"]}
 	ORDER BY cd.nlinea
 ");  
 

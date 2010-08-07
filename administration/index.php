@@ -81,8 +81,15 @@ if(!$_SESSION["user"]->hasRole("root")){
 				Impuestos
 			    </a>
 			</li>
+            <li>
+                <a href="administration/concepts.php" title="Conceptos">
+                <img src="img/concepts.png" alt="Conceptos" />
+                Conceptos
+                </a>
+            </li>
 		</ul>
 </div>
+
 <?php include "../footer.php" ?>
 </div>
 </body>

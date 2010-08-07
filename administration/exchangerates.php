@@ -64,9 +64,11 @@ if(isset($_GET["nav"])){
     	SELECT 
     		idtc, 
     		UNIX_TIMESTAMP(fecha)*1000 as stamp,
-    		fecha, tasa, IFNULL(tasabanco,0) as tasabanco 
+    		DATE_FORMAT(fecha, '%d/%c/%Y') as fecha,
+    		tasa, 
+    		IFNULL(tasabanco,0) as tasabanco 
     	FROM tiposcambio 
-    	ORDER BY $sidx $sord 
+    	ORDER BY tiposcambio.$sidx  $sord 
     	LIMIT $start , $limit
     ";
 	$result = $dbc->query( $SQL );
@@ -153,6 +155,7 @@ $(document).ready(function(){
 	onSelectRow: function(id){
 	    if(id && id!==lastsel){
 			$('#list').jqGrid('restoreRow',lastsel);
+			
 			if (isroweditable(id)) {
 			    $('#list').jqGrid('editRow',id,true);
 			    lastsel=id;
