@@ -159,7 +159,7 @@ $(function(){
     </select>
     <select size="5" id="concepts">
     <?php while($row_rsConcepts = $rsConcepts->fetch_array(MYSQLI_ASSOC)){ ?>
-        <option class="doc_<?php echo $row_rsConcepts["idtipodoc"] ?>"> <?php echo $row_rsConcepts["descripcion"] ?> </option>
+        <option class="doc_<?php echo utf8tohtml($row_rsConcepts["idtipodoc"]) ?>"> <?php echo $row_rsConcepts["descripcion"] ?> </option>
     <?php } ?>
     </select>
     <button id="add"><img src="img/list-add.png" alt="A&ntilde;adir concepto" /> A&ntilde;adir concepto</button >
