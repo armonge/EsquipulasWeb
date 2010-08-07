@@ -156,10 +156,11 @@ $(function(){
             <option id="doc_24" value="24"> AJUSTECONTABLE </option>
             <option id="doc_25" value="25"> CONCILIACION </option>
             <option id="doc_26" value="26"> ERROR </option>
+            <option id="doc_27" value="27"> KARDEX</option>
     </select>
     <select size="5" id="concepts">
     <?php while($row_rsConcepts = $rsConcepts->fetch_array(MYSQLI_ASSOC)){ ?>
-        <option class="doc_<?php echo utf8tohtml($row_rsConcepts["idtipodoc"]) ?>"> <?php echo $row_rsConcepts["descripcion"] ?> </option>
+        <option class="doc_<?php echo $row_rsConcepts["idtipodoc"] ?>"> <?php echo utf8tohtml($row_rsConcepts["descripcion"]) ?> </option>
     <?php } ?>
     </select>
     <button id="add"><img src="img/list-add.png" alt="A&ntilde;adir concepto" /> A&ntilde;adir concepto</button >
