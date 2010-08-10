@@ -4,15 +4,32 @@ require_once "../functions.php";
 if(!$_SESSION["user"]->hasRole("contabilidadrep")){
 	die("Usted no tiene permisos para ver este reporte");
 }
+if(isset($_GET["date"])){
+	list($month , $year, $rest) = explode(' ', $_GET["date"], 3);
+	$month = (int)$month;
+	$year = (int)$year;
+	$stamp = strtotime("{$year}-{$month}-01");
+	$date = date('Y-m-d',strtotime("{$year}-{$month}-01"));
+}else{
+	$date = date('Y-m-d');
+	$stamp = time();
+}
 $query = "
-SELECT padre.descripcion as categoria, cc.idcuenta, cc.codigo, cc.descripcion, SUM(IFNULL(cxd.monto,0)) as monto
+SELECT 
+	padre.descripcion as categoria, 
+	cc.idcuenta, 
+	cc.codigo, 
+	cc.descripcion, 
+	SUM(IFNULL(cxd.monto,0)) as monto
 FROM cuentascontables cc
 JOIN cuentascontables padre ON padre.idcuenta = cc.padre
 JOIN cuentascontables abuelo ON padre.padre = abuelo.idcuenta AND abuelo.padre = 1
 JOIN cuentascontables hijos ON hijos.codigo LIKE CONCAT(SUBSTRING_INDEX(cc.codigo,' ',2), \"%\") AND hijos.esdebe = 1
-JOIN cuentasxdocumento cxd ON cxd.idcuenta = hijos.idcuenta 
-LEFT JOIN documentos d ON d.iddocumento = cxd.iddocumento AND MONTH(NOW()) = MONTH(d.fechacreacion) AND YEAR(d.fechacreacion) = YEAR(NOW())
-WHERE cc.codigo NOT LIKE '' 
+JOIN cuentasxdocumento cxd ON cxd.idcuenta = hijos.idcuenta
+JOIN documentos d ON d.iddocumento = cxd.iddocumento "; 
+$query .= " AND " . ( $month ?  $month : " MONTH(NOW()) " ) . " = MONTH(d.fechacreacion) "; 
+$query .= " AND " . ( $year ?  $year  : " YEAR(NOW()) " ) . " = YEAR(d.fechacreacion) "; 
+$query .= " WHERE cc.codigo NOT LIKE '' 
 GROUP BY cc.idcuenta
 ORDER  BY cc.idcuenta
 ";
@@ -21,17 +38,25 @@ $row_rsActivo = $rsActivo->fetch_array(MYSQLI_ASSOC);
 $catActivo = $row_rsActivo["categoria"];
 
 $query = "
-SELECT padre.descripcion as categoria, cc.idcuenta, cc.codigo, cc.descripcion, SUM(IFNULL(cxd.monto,0)) as monto
+SELECT 
+	padre.descripcion as categoria, 
+	cc.idcuenta, 
+	cc.codigo, 
+	cc.descripcion, 
+	SUM(IFNULL(cxd.monto,0)) as monto
 FROM cuentascontables cc
 JOIN cuentascontables padre ON padre.idcuenta = cc.padre
 JOIN cuentascontables abuelo ON padre.padre = abuelo.idcuenta AND abuelo.padre = 1
 JOIN cuentascontables hijos ON hijos.codigo LIKE CONCAT(SUBSTRING_INDEX(cc.codigo,' ',2), \"%\") AND hijos.esdebe = 0
 JOIN cuentasxdocumento cxd ON cxd.idcuenta = hijos.idcuenta 
-LEFT JOIN documentos d ON d.iddocumento = cxd.iddocumento AND MONTH(NOW()) = MONTH(d.fechacreacion) AND YEAR(d.fechacreacion) = YEAR(NOW())
-WHERE cc.codigo NOT LIKE '' 
+JOIN documentos d ON d.iddocumento = cxd.iddocumento ";
+$query .= " AND " . ( $month ?  $month : " MONTH(NOW()) " ) . " = MONTH(d.fechacreacion) "; 
+$query .= " AND " . ( $year ?  $year  : " YEAR(NOW()) " ) . " = YEAR(d.fechacreacion) "; 
+$query .= " WHERE cc.codigo NOT LIKE '' 
 GROUP BY cc.idcuenta
 ORDER  BY cc.idcuenta
 ";
+
 $rsPasivo= $dbc->query($query);
 $row_rsPasivo= $rsPasivo->fetch_array(MYSQLI_ASSOC);
 $catPasivo= $row_rsPasivo["categoria"];
@@ -51,7 +76,23 @@ $catPasivo= $row_rsPasivo["categoria"];
 <script type="text/javascript" src="js/jq.ui.js"></script>
 <script type="text/javascript" src="js/jquery.ui.datepicker-es.js"></script>
 <title>Llantera Esquipulas: Reporte de Balance General</title>
-<style type="text/css" media="print">
+<style type="text/css">
+
+.float{
+	width:50%;
+	float:left;
+}
+strong{
+	border-bottom:1px solid #676766;
+	margin:10px;
+}
+table{
+	width:100%
+}
+.ui-datepicker-calendar {
+    display: none;
+    }
+@media print{
 html{
     border:0;
     padding:0;
@@ -64,7 +105,7 @@ body{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 9pt;
 	float:left;
-	width: 750pt;
+	width: 692pt;
 	padding:0;
 	margin:0;
 	color:#000;
@@ -76,21 +117,28 @@ body{
 #footer, #header, .ui-widget{
     display:none;
 }
+
 thead {
     display: table-header-group;
   }
  #wrap{position:static}
+ }
 </style>
-<style type="text/css"> 
-.float{
-	width:50%;
-	float:left;
-}
-strong{
-	border-bottom:1px solid #676766;
-	margin:10px;
-}
-</style>
+<script type="text/javascript">
+$(function(){
+	$('#date').datepicker( {
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: false,
+        dateFormat: 'mm yy',
+        onClose: function(dateText, inst) { 
+            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year, month, 1));
+        }
+    });
+});
+</script>
 </head>
 <body>
 <div id="wrap">
@@ -99,6 +147,17 @@ strong{
 
 <div id="content">
 <h1>Balance General</h1>
+<form action="reports/balancegeneral.php">
+<div class="ui-widget">
+    <label for="date">Para: <input type="text" id="date" name="date" value="<?php echo $_GET["date"] ?>" /></label>
+    <input type="submit" value="aceptar" />
+</div>
+
+</form>
+<h2>Balance de general para el mes de <?php echo strftime('%B', $stamp) ?> de <?php echo date('Y',$stamp)?></h2>
+<?php if(!$rsPasivo->num_rows){?>
+	<p>No hay activos para este mes</p>
+<?php }else{ ?>
 <div class="float">
 <h2>Activo</h2>
 <strong><?php echo $catActivo ?></strong>
@@ -119,8 +178,11 @@ strong{
 <?php }while($row_rsActivo = $rsActivo->fetch_array(MYSQLI_ASSOC)) ?>
 </table>
 </div>
+<?php } ?>
 
-
+<?php if(!$rsPasivo->num_rows){?>
+	<p>No hay pasivo para este mes</p>
+<?php }else{ ?>
 <div class="float">
 <h2>Pasivo</h2>
 <strong><?php echo $catPasivo ?></strong>
@@ -141,6 +203,7 @@ strong{
 <?php }while($row_rsPasivo= $rsPasivo->fetch_array(MYSQLI_ASSOC)) ?>
 </table>
 </div>
+<?php } ?>
 <?php include "../footer.php" ?></div>
 </div>
 

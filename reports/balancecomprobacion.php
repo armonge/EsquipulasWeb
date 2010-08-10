@@ -122,7 +122,7 @@ $(function(){
 <div id="content">
 <form action="reports/balancecomprobacion.php">
 <div class="ui-widget">
-    <label for="date">Desde: <input type="text" id="date" name="date" value="<?php echo $_GET["date"] ?>" /></label>
+    <label for="date">Para: <input type="text" id="date" name="date" value="<?php echo $_GET["date"] ?>" /></label>
     <input type="submit" value="aceptar" />
 </div>
 

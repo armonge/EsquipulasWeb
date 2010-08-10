@@ -55,6 +55,7 @@ $(function(){
                         var name = $("#dialog-form input").val();
                         $.ajax({
                             url:"<?php echo $basedir ?>administration/concepts.php",
+                            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                             dataType:'json',
                             type:'POST',
                             success:function(data){

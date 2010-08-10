@@ -8,7 +8,6 @@ import datetime
 from optparse import OptionParser
 if __name__ == "__main__":
     app = QCoreApplication( sys.argv )
-    print sys.argv
     
     parser = OptionParser()
     parser.add_option("-m", "--month", dest="month",
