@@ -61,6 +61,7 @@ $dbc = new MySQLI(DBHOST,DBUSER,DBPASS,DB);
 
 
 /*************validate user******************/
+if(!isset($nologin) or $nologin == False){
 if( ( !isset($_SESSION["user"]) ) || ( !$_SESSION["user"]->isValid() ) ){
 	if( basename($_SERVER["SCRIPT_NAME"]) != "login.php"){
 		if( isset($_GET["hash"]) ){
@@ -81,7 +82,7 @@ if( ( !isset($_SESSION["user"]) ) || ( !$_SESSION["user"]->isValid() ) ){
 
 	}
 }
-
+}
 
 /*********converts a UTF-8 string into HTML entities************/
 //  - $utf8:        the UTF8-string to convert
