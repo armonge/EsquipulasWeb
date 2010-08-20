@@ -1,13 +1,17 @@
 <?php
 require_once "../functions.php";
-$rsArticulos = $dbc->query("
+$query = "
 SELECT
-v.Descripcion
+v.Descripcion,
+SUM(a.unidades) as existencia,
+b.nombrebodega as bodega
 FROM articulosxdocumento a
+JOIN documentos d ON d.iddocumento = a.iddocumento
+JOIN bodegas b ON b.idbodega = d.idbodega
 JOIN vw_articulosdescritos v ON a.idarticulo = v.idarticulo
 GROUP BY a.idarticulo
-
-")
+";
+$rsArticulos = $dbc->query($query);
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -15,11 +19,26 @@ GROUP BY a.idarticulo
 <head>
 <base href="<?php echo $basedir ?>" />
 <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
-<meta http-equiv="Content-Type"	content="application/xhtml+xml; charset=UTF-8" />
-<title>Llantera Esquipulas</title>
+<meta http-equiv="Content-Type"
+    content="application/xhtml+xml; charset=UTF-8" />
+<title>Llantera Esquipulas: Reportes</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
+<style type="text/css">
+#m2 a{
+    background: url(img/nav-left.png) no-repeat left;
+}
+#m2 span{
+    background:  #99AB63 url(img/nav-right.png) no-repeat right;
+}
+</style>
+
 </head>
 <body>
+<div id="wrap">
+<?php include "../header.php"?>
+<div id="content">
+    <div id="left-column">
 <h1>Llantera Esquipulas</h1>
 
 <h2>Existencias de Productos por Bodega</h2>
@@ -43,5 +62,8 @@ GROUP BY a.idarticulo
 
 	</tbody>
 </table>
+</div>
+</div>
+</div>
 </body>
 </html>

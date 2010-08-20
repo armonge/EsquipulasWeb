@@ -2,7 +2,10 @@
 require_once "../functions.php";
 
 $iddoc = (int)$_GET["doc"];
-if($iddoc){
+if(!$iddoc){
+ 
+    die();
+}else{
 
 	$rsDocumento = $dbc->query("
 		SELECT
@@ -60,8 +63,6 @@ if($iddoc){
 
 
 
-}else{
-	die();
 }
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>

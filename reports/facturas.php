@@ -5,27 +5,32 @@ $iddoc = (int)$_GET["doc"];
 if(!$iddoc){
 	die();
 }
-$rsDocumento = $dbc->query("
-	SELECT
-		d.iddocumento,
-		d.ndocimpreso,
-		p.nombre as cliente,
-		d.total* (1-IF(valorcosto IS NULL,0,valorcosto)/100) as subtotal,
-		d.total*ca.valorcosto/100 as iva,
-		d.total,
-		DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
-		d.escontado
-	FROM documentos d
-	JOIN tiposdoc td ON td.idtipodoc=d.idtipodoc
-	JOIN bodegas b ON b.idbodega=d.idbodega
-	JOIN tiposcambio tc ON tc.idtc=d.idtipocambio
-	JOIN personasxdocumento pxd ON d.iddocumento = pxd.iddocumento
-	JOIN personas p ON p.idpersona=pxd.idpersona AND p.tipopersona = 1
-	LEFT JOIN costosxdocumento cd ON cd.iddocumento=d.iddocumento
-	LEFT JOIN costosagregados ca ON ca.idcostoagregado=cd.idcostoagregado
-	WHERE d.idtipodoc={$docids["FACTURA"]}
-	AND d.iddocumento=$iddoc
-");
+$query = "
+    SELECT
+        d.iddocumento,
+        d.ndocimpreso,
+        p.nombre as cliente,
+        d.total* (1-IF(valorcosto IS NULL,0,valorcosto)/100) as subtotal,
+        d.total*ca.valorcosto/100 as iva,
+        d.total,
+        DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
+        d.escontado,
+        cr.iddocumento as idcredito,
+        d.idestado
+    FROM documentos d
+    JOIN tiposdoc td ON td.idtipodoc=d.idtipodoc
+    JOIN bodegas b ON b.idbodega=d.idbodega
+    JOIN tiposcambio tc ON tc.idtc=d.idtipocambio
+    JOIN personasxdocumento pxd ON d.iddocumento = pxd.iddocumento
+    JOIN personas p ON p.idpersona=pxd.idpersona AND p.tipopersona = 1
+    LEFT JOIN costosxdocumento cd ON cd.iddocumento=d.iddocumento
+    LEFT JOIN costosagregados ca ON ca.idcostoagregado=cd.idcostoagregado
+    LEFT JOIN creditos cr ON cd.iddocumento = d.iddocumento
+    WHERE d.idtipodoc={$docids["FACTURA"]}
+    AND d.iddocumento=$iddoc
+";
+$rsDocumento = $dbc->query($query);
+
 $row_rsDocumento = $rsDocumento->fetch_assoc();
 
 $rsArticulos = $dbc->query("
@@ -42,187 +47,228 @@ $rsArticulos = $dbc->query("
 ");
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <base href="<?php echo $basedir ?>" />
-<meta http-equiv="Content-Type"
-	content="application/xhtml+xml; charset=UTF-8" />
 <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
-<title>Llantera Esquipulas: Devoluci&oacute;n No <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
+<title>Facturas</title>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+<link rel="stylesheet" type="text/css" href="css/flick/jq.ui.css" />
+<script type="text/javascript" src="js/jq.js"></script>
+<script type="text/javascript" src="js/jq.ui.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#accept, #deny').button()
+});
+</script>
 <style type="text/css">
-html{
-    border:0;
-    margin:0;
-    padding:0;
+#m2 a{
+    background: url(img/nav-left.png) no-repeat left;
 }
-body {
-	font-family: Arial;
-	font-size: 12pt;
-	width: 750pt;
-	padding:0;
-	margin:0;
-	padding-left:60pt;
-	padding-top:50pt;
-	height:960pt;
-/* 	border:1px solid #000; */
+#m2 span{
+    background:  #99AB63 url(img/nav-right.png) no-repeat right;
 }
-
-#type {
-	text-align: right;
-	padding-right:6%;
-	margin-top:0;
-	clear:both;
-}
-
 #header {
-	text-align: center;
-	height:100pt;
+    text-align: center;
 }
-
+#type {
+    text-align: right;
+    padding-right:6%;
+    margin-top:0;
+    clear:both;
+}
 #header p,#header h1 {
-	margin-bottom: 0;
-	margin-top: 0;
+    margin-bottom: 0;
+    margin-top: 0;
 }
-
 #header2 h2 {
-	display: inline-block
+    display: inline-block
 }
-
 #header2 table {
-	float: right;
+    float: right;
+    clear:both;
 }
-
 .gray {
-	background: #f4f4f4;
+    background: #f4f4f4;
 }
-
 .rigth {
-	text-align: right;
+    text-align: right;
 }
-
 .noborder {
-	border: 0;
+    border: 0;
 }
-
 th {
-	background: #4f4f4f;
-	color: #fff;
+    background: #4f4f4f;
+    color: #fff;
 }
-
 .float {
-	float: left;
-	width: 33%
+    float: left;
+    width: 33%
 }
-
 p {
-	margin: 10px;
+    margin: 10px;
 }
-
 table {
-	text-align: center;
-	border:0;
+    text-align: center;
+    border:0;
 }
-
-thead {
-	display: table-header-group;
-	height:30pt;
-}
-
 tbody {
-	display: table-row-group;
+    display: table-row-group;
 }
-
-#table {
-	height: 425pt;
-	border: 1px solid #000;
-	width: 100%;
-	margin-top:25pt;
-	float: left;
-}
-
-#authorization {
-	border: 1px solid #000;
-	padding: 20pt;
-	padding-top: 40pt;
-	width: 50%;
-	margin-top: 5pt;
-	display: inline-block;
-	text-align: center;
-}
-
-#authorization span {
-	padding-top: 10pt;
-	border-top: 1px solid #000;
-}
-
 #details {
-	width: 100%;
-	table-layout:fixed;
+    width: 100%;
+    table-layout:fixed;
 }
 #fecha{
     table-layout:fixed;
 }
+#persons table {
+    width:100%;
 }
-
-#details tbody tr td,#details tbody tr {
-	height: 15pt;
-}
-
 #totals {
-	width: 30%;
-	height:144pt;
-	float: right;
+    width: 30%;
+    float: right;
+    height:144px;
+}
+thead {
+    display: table-header-group;
 }
 #totals tr{
-    height:20pt;
-	border:1px solid #000;
-	border-top:0;
-}
-#persons{
-    margin-top:20pt;
-}
-#persons table {
-	width:100%;
+    border:1px solid #000;
+    border-top:0;
+    height:20px;
 }
 #persons .pwrap{
-	width: 46%;
-	border:1px solid #000;
-	float: right;
-	margin: 0 0 36pt 2%;
-	height:108pt;
+    width: 46%;
+    border:1px solid #000;
+    float: right;
+    margin: 0 0 36px 2%;
+    height:108px;
+}
+#table {
+    height: 425px;
+    border: 1px solid #000;
+    width: 100%;
+    margin-top:25px;
+    float: left;
+}
+
+#authorization {
+    border: 1px solid #000;
+    padding: 20px;
+    padding-top: 40px;
+    width: 50%;
+    margin-top: 5px;
+    display: inline-block;
+    text-align: center;
+}
+
+#authorization span {
+    padding-top: 10px;
+    border-top: 1px solid #000;
 }
 .square{
     display: inline-block;
-    width: 15pt;
-    height: 15pt;
+    width: 15px;
+    height: 15px;
     border: 1px solid #000;
 }
+#action{
+    clear:both;
+    text-align:center;
+    float:left;
+    width:100%;
+    margin:10px;
+}
+#action h2{
+    text-align:center;
+}
 @media print {
-	#header,thead{
-		color:#fff;
-	}
-	.gray {
-		background: #fff;
-	}
-	th {
-		background: #fff;
-	}
-	.white{
-        color:#fff;
-	}
-
-	#table,#persons .pwrap,#authorization, #authorization span, #totals tr{
-		border:0;
-	}
-	.square{
+    html{
         border:0;
-	}
+        margin:0;
+        padding:0;
+    }
+    body {
+        font-family: Arial;
+        font-size: 12pt;
+        width: 750pt;
+        padding:0;
+        margin:0;
+        padding-left:60pt;
+        padding-top:50pt;
+        height:960pt;
+        color: #000;
+    }
+    #header {
+        height:100pt;
+    }
+
+    thead {
+        height:30pt;
+    }
+    #header,thead, #header h1,.white{
+        color:#fff;
+    }
+    .gray,th {
+        background: #fff;
+    }
+    #table,#persons .pwrap,#authorization, #authorization span, #totals tr{
+        border:0;
+    }
+    .square{
+        border:0;
+    }
+    #footer, #logo, #uname, #menu, .ui-widget, #action{
+        display:none;
+    }
+    #details tbody tr td,#details tbody tr {
+        height: 15pt;
+    }
+
+    #totals {
+        height:144pt;
+    }
+    #totals tr{
+        height:20pt;
+    }
+    #persons{
+        margin-top:20pt;
+    }
+    #persons .pwrap{
+        margin: 0 0 36pt 2%;
+        height:108pt;
+    }
+    .square{
+        width: 15pt;
+        height: 15pt;
+    }
+    #table {
+        height: 425pt;
+        margin-top:25pt;
+    }
+
+    #authorization {
+        padding: 20pt;
+        padding-top: 40pt;
+        margin-top: 5pt;
+    }
+
+    #authorization span {
+        padding-top: 10pt;
+    }
 }
 </style>
+
 </head>
 <body>
+<div id="wrap">
+<?php include "../header.php"?>
+<div id="content">
 <div id="header">
+<h2><?php echo $row_rsDocumento["credito"] ? "Credito" : "Regalia" ?></h2>
 <h1>DISTRIBUIDORA DE LLANTAS ESQUIPULAS, S.A.</h1>
 <p>Semaforos del Mayoreo 100 Mts Sur mano Izquierda</p>
 <p>Tel: 2233-1542 - 2233-1226 - 2252-0933 - 2252-0944 - 2233-1642</p>
@@ -231,7 +277,6 @@ tbody {
 </div>
 <div id="header2">
 <h2><span class="white">Factura N&deg; <?php echo $row_rsDocumento["ndocimpreso"] ?></span></h2>
-                                        
 <table border="0"  rules="none" cellpadding="5"
 	cellspacing="0" id="fecha">
 	<thead>
@@ -331,5 +376,18 @@ tbody {
 		</tr>
 	</tbody>
 </table>
+<?php if($_SESSION["user"]->hasRole("gerencia")   && !$row_rsDocumento["estado"]){ ?>
+<div id="action">
+
+        <a id="accept" href="<?php echo $base ?>administration/authorizations.php?id=<?php echo $iddoc ?>" onclick="return confirm('¿Realmente desea confirmar esta factura?')" >Autorizar</a>
+        <a id="deny" href="<?php echo $base ?>administration/authorizations.php?del=<?php echo $iddoc ?>" onclick="return confirm('¿Realmente desea borrar esta factura?')">Denegar</a>
+</div>
+<?php } ?>
+
+<?php include "../footer.php" ?>
+</div>
+
+</div>
+
 </body>
 </html>

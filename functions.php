@@ -11,7 +11,7 @@ session_regenerate_id();
 
 /*********general settings ***********/
 #TODO: configure settings for when not localhost
-if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="192.168.1.10") || ($_SERVER["REMOTE_ADDR"]=="192.168.1.11")){
+if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="192.168.1.10") || ($_SERVER["REMOTE_ADDR"]=="192.168.2.200")){
 	$path = "/srv/http/EsquipulasWeb/";
 	require_once('conn.php');
 }else{
@@ -51,13 +51,19 @@ $persontypes = array(
     "VENDEDOR" => 3,
     "USUARIO" => 4
 );
+/************estados de documentos************/
+$docstates = array(
+    "PENDIENTE"=>3,
+    "ANULADO"=>2,
+    "CONFIRMADO"=>1
+);
 /*************monedas*************************/
 $moneda = array(
 	"CORDOBA" => 1,
 	"DOLAR" => 2
 );
 /*************db connection ***************/
-$dbc = new MySQLI(DBHOST,DBUSER,DBPASS,DB);
+$dbc = @new MySQLI(DBHOST,DBUSER,DBPASS,DB);
 
 
 /*************validate user******************/

@@ -69,7 +69,6 @@ if((isset($_POST["pwd"])) && ($_POST["pwd"]=="change")){
 		INSERT INTO usuarios (idusuario,username,  password, estado, tipousuario)
 		VALUES ( $insertedId, '$uname',  '$pwd', 1, 1)
 		";
-		echo $query;
 		$dbc->query($query);
 
 		$c = 0;

@@ -45,6 +45,12 @@ if(!$_SESSION["user"]->hasRole("root")){
 <div id="content">
 		<h1>Administraci&oacute;n</h1>
 		<ul>
+            <li>
+                <a href="administration/authorizations.php" title="Autorizaciones">
+                <img src="img/authorizations.png" alt="Autorizaciones" />
+                Autorizaciones
+                </a>
+            </li>
 			<li>
 			    <a href="administration/users.php" title="Administraci&oacute;n de Usuarios">
 				<img src="img/system-users.png" alt="Administraci&oacute;n de Usuarios" />

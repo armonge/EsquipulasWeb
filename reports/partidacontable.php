@@ -37,7 +37,6 @@ if(!$start && !$end){
 }
 $query .= "GROUP BY d.iddocumento, c.idcuenta ORDER BY d.iddocumento ";
 
-
 $rsMovimientos = $dbc->query($query);
 
 ?>
