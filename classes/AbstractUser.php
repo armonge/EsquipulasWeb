@@ -31,7 +31,7 @@ abstract class AbstractUser{
 		}
 		return False;
 	}
-	public function getUid($uid){
+	public function getUid(){
 		return $this->uid;
 	}
 	public function createPasswd($pwd){
