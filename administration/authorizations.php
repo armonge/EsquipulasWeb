@@ -6,7 +6,7 @@ if(!$_SESSION["user"]->hasRole("gerencia")){
 $authid = (int)$_GET["doc"];
 if($authid){
     $result = $dbc->query("
-    CALL spAutorizarFactura($authid,{$_SESSION["user"]->uid},
+    CALL spAutorizarFactura($authid,{$_SESSION["user"]->getUid()},
     173,
     14,
     22,
