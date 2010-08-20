@@ -1,6 +1,6 @@
 <?php
 define("DBHOST", "192.168.1.1");
-define("DBHOST", NULL);
+// define("DBHOST", NULL);
 define("DBPASS", "root");
 define("DBUSER", "root");
 define("DB", "esquipulasdb");

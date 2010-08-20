@@ -379,7 +379,7 @@ thead {
 <?php if($_SESSION["user"]->hasRole("gerencia")   && !$row_rsDocumento["estado"]){ ?>
 <div id="action">
 
-        <a id="accept" href="<?php echo $base ?>administration/authorizations.php?id=<?php echo $iddoc ?>" onclick="return confirm('¿Realmente desea confirmar esta factura?')" >Autorizar</a>
+        <a id="accept" href="<?php echo $base ?>administration/authorizations.php?doc=<?php echo $iddoc ?>" onclick="return confirm('¿Realmente desea confirmar esta factura?')" >Autorizar</a>
         <a id="deny" href="<?php echo $base ?>administration/authorizations.php?del=<?php echo $iddoc ?>" onclick="return confirm('¿Realmente desea borrar esta factura?')">Denegar</a>
 </div>
 <?php } ?>

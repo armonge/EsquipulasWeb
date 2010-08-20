@@ -11,7 +11,6 @@ SELECT
 	d.iddocumento,
 	DATE(d.fechacreacion) as fecha,
 	GROUP_CONCAT(p.nombre) as cliente,
-	d.anulado,
 	t.codigodoc,
 	d.ndocimpreso as ndoc,
 	c.codigo as codigocuenta,
