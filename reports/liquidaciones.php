@@ -1,6 +1,6 @@
 <?php
 require_once "../functions.php";
-$iddoc = $_POST["doc"];
+$iddoc = $_GET["doc"];
 if(!$iddoc){
  
     die();

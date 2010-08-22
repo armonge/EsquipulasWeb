@@ -57,7 +57,7 @@ $(function(){
 <!--     </ul>   -->
 //     <?php } ?>
   
-<form action = "reports/liquidaciones.php" method = "post" >
+<form action = "reports/liquidaciones.php" method = "GET" >
 
 <strong>Escriba el numero de Liquidacion a buscar:</strong>
 
