@@ -1,6 +1,6 @@
 <?php
 require_once "../functions.php";
-$iddoc = (int)$_POST["doc"];
+$iddoc = $_POST["doc"];
 echo $iddoc;
 if(!$iddoc){
  
