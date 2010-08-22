@@ -1,7 +1,7 @@
 <?php
 require_once "../functions.php";
-
-$iddoc = (int)$_GET["doc"];
+$iddoc = (int)$_POST["doc"];
+echo $iddoc;
 if(!$iddoc){
  
     die();
@@ -33,7 +33,7 @@ if(!$iddoc){
 		LEFT JOIN costosxdocumento cxd ON d.iddocumento = cxd.iddocumento
 		LEFT JOIN costosagregados ca ON cxd.idcostoagregado = ca.idcostoagregado
 		JOIN tiposcambio tc ON d.idtipocambio = tc.idtc
-		WHERE ca.idtipocosto = 6 AND d.iddocumento = $iddoc
+		WHERE ca.idtipocosto = 6 AND d.ndocimpreso = $iddoc
 		GROUP BY d.iddocumento
 	");
 	$row_rsDocumento = $rsDocumento->fetch_assoc();
@@ -55,10 +55,11 @@ if(!$iddoc){
             almacen,
             papeleria,
             transporte,
-            iddocumento
+            v.iddocumento
         FROM vw_articulosprorrateados v
         JOIN vw_articulosdescritos a ON a.idarticulo = v.idarticulo
-	WHERE iddocumento = $iddoc
+	JOIN documentos d on d.iddocumento=v.iddocumento
+	WHERE d.ndocimpreso= $iddoc
 	");
 
 

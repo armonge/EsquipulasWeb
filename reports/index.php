@@ -47,6 +47,9 @@ if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole
 		<?php } if($_SESSION["user"]->hasRole("inventariorep")){ ?>
 			<li><a href="reports/articlescosts.php">Costos x producto</a></li>
 
+		<?php } if($_SESSION["user"]->hasRole("inventariorep")){ ?>
+			<li><a href="reports/listaliquidaciones.php">Liquidacion de Costos</a></li>
+
 
 		<?php } ?>
 		</ul>
