@@ -5,36 +5,36 @@ if(!$iddoc){
  
     die();
 }else{
-
-	$rsDocumento = $dbc->query("
-		SELECT
-			d.iddocumento,
-			d.ndocimpreso,
-			DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
-			l.procedencia,
-			l.totalagencia,
-			l.totalalmacen,
-			l.fletetotal,
-			l.segurototal,
-			l.otrosgastos,
-			l.porcentajetransporte,
-			l.porcentajepapeleria,
-			l.peso,
-			p.nombre,
-			b.nombrebodega,
-			valorcosto as iso,
-			tc.tasa
-		FROM documentos d
-		JOIN liquidaciones l ON d.iddocumento = l.iddocumento
+    $query = "
+        SELECT
+            d.iddocumento,
+            d.ndocimpreso,
+            DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
+            l.procedencia,
+            l.totalagencia,
+            l.totalalmacen,
+            l.fletetotal,
+            l.segurototal,
+            l.otrosgastos,
+            l.porcentajetransporte,
+            l.porcentajepapeleria,
+            l.peso,
+            p.nombre,
+            b.nombrebodega,
+            valorcosto as iso,
+            tc.tasa
+        FROM documentos d
+        JOIN liquidaciones l ON d.iddocumento = l.iddocumento
         JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
-		JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["PROVEEDOR"]}
-		JOIN bodegas b ON b.idbodega = d.idbodega
-		LEFT JOIN costosxdocumento cxd ON d.iddocumento = cxd.iddocumento
-		LEFT JOIN costosagregados ca ON cxd.idcostoagregado = ca.idcostoagregado
-		JOIN tiposcambio tc ON d.idtipocambio = tc.idtc
-		WHERE ca.idtipocosto = 6 AND d.ndocimpreso = '$iddoc'
-		GROUP BY d.iddocumento
-	");
+        JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["PROVEEDOR"]}
+        JOIN bodegas b ON b.idbodega = d.idbodega
+        LEFT JOIN costosxdocumento cxd ON d.iddocumento = cxd.iddocumento
+        LEFT JOIN costosagregados ca ON cxd.idcostoagregado = ca.idcostoagregado
+        JOIN tiposcambio tc ON d.idtipocambio = tc.idtc
+        WHERE ca.idtipocosto = 6 AND d.ndocimpreso = '$iddoc'
+        GROUP BY d.iddocumento
+    ";
+	$rsDocumento = $dbc->query($query);
 	$row_rsDocumento = $rsDocumento->fetch_assoc();
 
 	$rsArticulos = $dbc->query("
@@ -81,8 +81,8 @@ html{
 }
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10pt;
-	width:1200pt;
+	font-size: 11pt;
+	width:1170pt;
 /* 	border:1px solid #000; */
 }
 
@@ -124,12 +124,16 @@ thead {
 tbody {
 	display: table-row-group;
 }
+table{
+    text-align:center;
+    padding:1%;
+    margin:1%;
+}
 #details{
     table-layout:fixed;
     width:98%;
-    padding:1%;
-    margin:auto;
-    text-align:center;
+    
+    
 }
 @media print {
     .gray {
@@ -170,18 +174,18 @@ tbody {
 	<tr>
 		<th  style="width:100pt">Articulo</th>
 		<th style="width:20pt">Cantidad</th>
-		<th style="width:33pt">Precio Unit</th>
-		<th style="width:35pt">FOB</th>
+		<th style="width:25pt">Precio Unit</th>
+		<th style="width:30pt">FOB</th>
 
-		<th style="width:35pt">Flete</th>
-		<th style="width:35pt">Seguro</th>
-		<th style="width:25pt">Otros Gastos</th>
-		<th style="width:35pt">CIF</th>
+		<th style="width:20pt">Flete</th>
+		<th style="width:20pt">Seguro</th>
+		<th style="width:20pt">Otros Gastos</th>
+		<th style="width:25pt">CIF</th>
 		<th style="width:25pt">Comisi&oacute;n</th>
-		<th style="width:25pt">Agencia</th>
-		<th style="width:25pt">Almacen</th>
+		<th style="width:20pt">Agencia</th>
+		<th style="width:20pt">Almacen</th>
 		<th style="width:25pt">Papeleria</th>
-		<th style="width:35pt">Impuestos</th>
+		<th style="width:25pt">Impuestos</th>
 		<th style="width:25pt">Acarreo</th>
 	</tr>
 	<?php $color = 1; 	while ( $row_rsArticulo = $rsArticulos->fetch_assoc() ){	 ?>
@@ -209,7 +213,20 @@ tbody {
 	<?php }?>
 
 </table>
-	<?php if($row_rsDocumento["observacion"]){ ?>
+<div>
+<h2>Totales</h2>
+<ul>
+    <li><strong>Total Agencia: </strong><?php echo $row_rsDocumento["totalagencia"] ?></li>
+    <li><strong>Total Almacen: </strong><?php echo $row_rsDocumento["totalalmacen"] ?></li>
+    <li><strong>Total Flete: </strong><?php echo $row_rsDocumento["fletetotal"] ?></li>
+    <li><strong>Total Seguro: </strong><?php echo $row_rsDocumento["segurototal"] ?></li>
+    <li><strong>Total Otros Gastos: </strong><?php echo $row_rsDocumento["otrosgastos"] ?></li>
+</div> 
+    
+    
+    
+</ul>
+<?php if($row_rsDocumento["observacion"]){ ?>
 <h2>Observaciones</h2>
 <div><?php echo $row_rsDocumento["observacion"] ?></div>
 	<?php } ?>
