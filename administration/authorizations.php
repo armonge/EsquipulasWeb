@@ -1,28 +1,40 @@
 <?php
 require_once "../functions.php";
 if(!$_SESSION["user"]->hasRole("gerencia")){
-    die("Usted no tiene permisos para administrar conceptos");
+    die("Usted no tiene permisos para administrar autorizaciones");
 }
 $authid = (int)$_GET["doc"];
+$del = (int)$_GET["del"];
 if($authid){
+    //autorizar una factura de credito o regalia
     $result = $dbc->query("
     CALL spAutorizarFactura($authid,{$_SESSION["user"]->getUid()},
-    173,
-    14,
-    22,
-    182,
-    133
-    )"
-    );
+    {$accounts["VENTASNETAS"]},
+    {$accounts["CXCCLIENTE"]},
+    {$accounts["INVENTARIO"]},
+    {$accounts["COSTOSVENTAS"]},
+    {$accounts["IMPUESTOSXPAGAR"]},
+    {$accounts["CXCCLIENTE"]},
+    {$accounts["INVENTARIO"]},
+    {$accounts["COSTOSVENTAS"]},
+    {$accounts["IMPUESTOSXPAGAR"]}
+    )");
+    
     if($result){
         $print = "<p>La factura se ha autorizado</p>";
     }else{
         $print = "<p class'error'>Hubo un error al autorizar la factura</p>";
     }
-}
-$delid = (int)$_GET["del"];
-if($delid){
-    //denegar la factura
+}elseif($del){
+    //denegar un credito
+    $result = $dbc->query("
+    CALL spEliminarFactura($delcred)
+    ");
+    if($result){
+        $print = "<p>La factura se ha denegado</p>";
+    }else{
+        $print = "<p class'error'>Hubo un error al denegar la factura</p>";
+    }
 }
 
 $query = "
@@ -95,7 +107,8 @@ $(function(){
     <h2>Creditos de factura</h2>
     <ul>
         <?php while($row_rsDocument = $rsCreditInvoices->fetch_array(MYSQLI_ASSOC)){ ?>
-            <li><a href="<?php echo $base ?>reports/facturas.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>"><?php echo $row_rsDocument["descripcion"] ?> para <?php echo $row_rsDocument["nombre"] ?></a></li>
+            <li><a href="<?php echo $base ?>reports/facturas.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>">
+            <?php echo $row_rsDocument["descripcion"] ?> para <?php echo $row_rsDocument["nombre"] ?></a></li>
         <?php } ?>
     </ul>
     <?php } ?>
@@ -103,7 +116,8 @@ $(function(){
     <h2>Regalias de factura</h2>
     <ul>
         <?php while($row_rsDocument = $rsInvoiceRoyalties->fetch_array(MYSQLI_ASSOC)){ ?>
-            <li><a href="<?php echo $base ?>reports/facturas.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>"><?php echo $row_rsDocument["descripcion"] ?> para <?php echo $row_rsDocument["nombre3"] ?></a></li>
+            <li><a href="<?php echo $base ?>reports/facturas.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>">
+            <?php echo $row_rsDocument["descripcion"] ?> para <?php echo $row_rsDocument["nombre"]; ?></a></li>
         <?php } ?>
     </ul>
     <?php } ?>

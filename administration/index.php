@@ -1,6 +1,6 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("root")){
+if(!$_SESSION["user"]->hasRole("gerencia")){
 	die("Usted no tiene permisos para entrar a administraci&oacute;n");
 }
 ?>
@@ -51,6 +51,13 @@ if(!$_SESSION["user"]->hasRole("root")){
                 Autorizaciones
                 </a>
             </li>
+            <li>
+                <a href="administration/exchangerates.php" title="Tipos de Cambio">
+                <img src="img/exchange-rates.png" alt="Tipos de Cambio" />
+                Tipos de Cambio
+                </a>
+            </li>
+            <?php if($_SESSION["user"]->hasRole("root")){ ?>
 			<li>
 			    <a href="administration/users.php" title="Administraci&oacute;n de Usuarios">
 				<img src="img/system-users.png" alt="Administraci&oacute;n de Usuarios" />
@@ -63,12 +70,7 @@ if(!$_SESSION["user"]->hasRole("root")){
 				Vendedores
 			    </a>
 			</li>
-			<li>
-			    <a href="administration/exchangerates.php" title="Tipos de Cambio">
-				<img src="img/exchange-rates.png" alt="Tipos de Cambio" />
-				Tipos de Cambio
-			    </a>
-			</li>
+
 			<li>
 			    <a href="administration/warehouses.php" title="Bodegas">
 				<img src="img/warehouses.png" alt="Bodegas" />
@@ -93,6 +95,7 @@ if(!$_SESSION["user"]->hasRole("root")){
                 Conceptos
                 </a>
             </li>
+            <?php } ?>
 		</ul>
 </div>
 

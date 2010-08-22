@@ -5,7 +5,7 @@ if(!$_SESSION["user"]->hasRole("root")){
 }
 $query = "
 SELECT		    d.iddocumento,	
-                    d.ndocimpreso AS 'Número de Liquidación',
+                    d.ndocimpreso AS 'ndocimpreso',
                     d.fecha AS 'Fecha',
                     d.Proveedor AS 'Proveedor',
                     d.bodega AS 'Bodega',
@@ -49,14 +49,14 @@ $(function(){
 <div id="content">
     <?php echo $print ?>
     <h1>Liquidaci&oacute;n de costos</h1>
-//     <?php if($rsLiquidaciones->num_rows){ ?>
-<!--     <ul> -->
-//         <?php while($row_rsDocument = $rsLiquidaciones ->fetch_array(MYSQLI_ASSOC)){ ?>
-<!--             <li><a href="<?php echo $base ?>reports/liquidaciones.php?doc=<?php echo $row_rsDocument["ndocimpreso"] ?>"><?php echo $row_rsDocument["Fecha"] ?> para <?php echo $row_rsDocument["Proveedor"] ?></a></li> -->
-//         <?php } ?>
-<!--     </ul>   -->
-//     <?php } ?>
-  
+     <?php if($rsLiquidaciones->num_rows){ ?>
+    <ul>
+         <?php while($row_rsDocument = $rsLiquidaciones ->fetch_array(MYSQLI_ASSOC)){ ?>
+            <li><a href="<?php echo $base ?>reports/liquidaciones.php?doc=<?php echo $row_rsDocument["ndocimpreso"] ?>"><?php echo $row_rsDocument["Fecha"] ?> para <?php echo $row_rsDocument["Proveedor"] ?></a></li>
+         <?php } ?>
+    </ul>
+     <?php } ?>
+
 <form action = "reports/liquidaciones.php" method = "GET" >
 
 <strong>Escriba el numero de Liquidacion a buscar:</strong>

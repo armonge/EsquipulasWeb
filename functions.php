@@ -62,6 +62,18 @@ $moneda = array(
 	"CORDOBA" => 1,
 	"DOLAR" => 2
 );
+/*************cuentas contables*************/
+$accounts = array(
+    "VENTASNETAS" =>173,
+    "CXCCLIENTE" => 14,
+    "INVENTARIO" =>22,
+    "COSTOSVENTAS" =>182,
+    "IMPUESTOSXPAGAR" =>133,
+    "CXCCLIENTE" => 14,
+    "INVENTARIO" => 22,
+    "COSTOSVENTAS" => 182,
+    "IMPUESTOSXPAGAR" => 133
+);
 /*************db connection ***************/
 $dbc = @new MySQLI(DBHOST,DBUSER,DBPASS,DB);
 

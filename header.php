@@ -10,7 +10,7 @@
 <ul id="menu">
 	<li id="m1"><a href="./"><span>Inicio</span></a></li>
 	<li id="m2"><a href="reports/"><span>Reportes</span></a></li>
-	<?php if(isset($_SESSION["user"]) && $_SESSION["user"]->hasRole("root")){ ?>
+	<?php if(isset($_SESSION["user"]) && $_SESSION["user"]->hasRole("gerencia")){ ?>
 	
 	<li id="m3"><a href="administration/"><span>Administraci&oacute;n</span></a></li>
 	

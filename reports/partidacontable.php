@@ -22,7 +22,7 @@ FROM documentos d
 JOIN cuentasxdocumento dx ON dx.iddocumento=d.iddocumento
 JOIN cuentascontables c ON dx.idcuenta=c.idcuenta
 LEFT JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento 
-LEFT JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona != 4
+LEFT JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona NOT IN ( 4
 JOIN tiposdoc t ON  d.idtipoDoc=t.idtipodoc
  " ;
 if(!$start && !$end){
@@ -34,7 +34,9 @@ if(!$start && !$end){
 }elseif ($end){
 	$query  .= " WHERE DATE(d.fechacreacion) <= '$end' ";
 }
-$query .= "GROUP BY d.iddocumento, c.idcuenta ORDER BY d.iddocumento ";
+$query .= "GROUP BY d.iddocumento, c.idcuenta
+ORDER BY d.fecha, iddocumento
+";
 
 $rsMovimientos = $dbc->query($query);
 

@@ -1,6 +1,6 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("root")){
+if(!$_SESSION["user"]->hasRole("gerencia")){
 	die("Usted no tiene permisos para administrar tipos de cambio");
 }
 if(isset($_GET["edit"])){
@@ -127,7 +127,7 @@ if(isset($_GET["nav"])){
 $(document).ready(function(){
     $.jgrid.no_legacy_api = true;
 
-    var lastsel
+    var lastsel;
     var isroweditable = function (id) {
 		// implement your criteria here
 		data = $("#list").getRowData(id);
