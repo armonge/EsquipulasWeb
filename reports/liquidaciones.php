@@ -82,7 +82,7 @@ html{
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
-	width:970pt;
+	width:1200pt;
 /* 	border:1px solid #000; */
 }
 
@@ -170,18 +170,18 @@ tbody {
 	<tr>
 		<th  style="width:100pt">Articulo</th>
 		<th style="width:20pt">Cantidad</th>
-		<th style="width:25pt">Precio Unit</th>
-		<th style="width:30pt">FOB</th>
+		<th style="width:33pt">Precio Unit</th>
+		<th style="width:35pt">FOB</th>
 
-		<th style="width:20pt">Flete</th>
-		<th style="width:20pt">Seguro</th>
-		<th style="width:20pt">Otros Gastos</th>
-		<th style="width:25pt">CIF</th>
+		<th style="width:35pt">Flete</th>
+		<th style="width:35pt">Seguro</th>
+		<th style="width:25pt">Otros Gastos</th>
+		<th style="width:35pt">CIF</th>
 		<th style="width:25pt">Comisi&oacute;n</th>
-		<th style="width:20pt">Agencia</th>
-		<th style="width:20pt">Almacen</th>
+		<th style="width:25pt">Agencia</th>
+		<th style="width:25pt">Almacen</th>
 		<th style="width:25pt">Papeleria</th>
-		<th style="width:25pt">Impuestos</th>
+		<th style="width:35pt">Impuestos</th>
 		<th style="width:25pt">Acarreo</th>
 	</tr>
 	<?php $color = 1; 	while ( $row_rsArticulo = $rsArticulos->fetch_assoc() ){	 ?>
