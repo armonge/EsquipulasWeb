@@ -11,20 +11,25 @@ if(!$iddoc){
             d.ndocimpreso,
             DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
             l.procedencia,
-            l.totalagencia,
-            l.totalalmacen,
+	    l.agenciatotal,
+            l.almacentotal,
             l.fletetotal,
             l.segurototal,
-            l.otrosgastos,
-            l.porcentajetransporte,
-            l.porcentajepapeleria,
-            l.peso,
+            l.otrosgastostotal,
+	    l.ciftotal,
+	    l.fobtotal,
+            l.papeleriatotal,
+            l.transportetotal,
+	    l.comisiontotal,
+	    l.unidadestotal,
+	    l.impuestototal,
+            l.pesototal,
             p.nombre,
             b.nombrebodega,
             valorcosto as iso,
             tc.tasa
         FROM documentos d
-        JOIN liquidaciones l ON d.iddocumento = l.iddocumento
+        JOIN vw_liquidacioncontotales l ON d.iddocumento = l.iddocumento
         JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
         JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["PROVEEDOR"]}
         JOIN bodegas b ON b.idbodega = d.idbodega
@@ -96,6 +101,8 @@ body {
 
 h2 {
 	border-bottom: 4px solid #000000;
+	font-size: 24pt;
+	text-align: center;
 }
 
 .noborder {
@@ -106,7 +113,10 @@ th {
 	background: #4f4f4f;
 	color: #fff;
 }
-
+h1 {
+      font-size: 24pt;
+      text-align: center;
+}
 .float {
 	float: left;
 	width: 33%
@@ -189,6 +199,7 @@ table{
 		<th style="width:25pt">Acarreo</th>
 	</tr>
 	<?php $color = 1; 	while ( $row_rsArticulo = $rsArticulos->fetch_assoc() ){	 ?>
+	<?php$impuestostotal= int(0)
 	<tr <?php if($color % 2 == 0 ){ echo "class='gray'"; } ?>>
 		<td style="text-align:left"><?php echo $row_rsArticulo["descripcion"] ?></td>
 		<td><?php echo $row_rsArticulo["unidades"] ?></td>
@@ -199,7 +210,7 @@ table{
 		<td><?php echo $row_rsArticulo["seguro"] != 0 ? number_format($row_rsArticulo["seguro"],4) : 0 ?></td>
 		<td><?php echo $row_rsArticulo["otrosgastos"] != 0 ? number_format($row_rsArticulo["otrosgastos"],4)  :0 ?></td>
 		<td><?php echo  $row_rsArticulo["cif"] != 0 ? number_format($row_rsArticulo["cif"],4) :0 ?></td>
-		<td><?php echo  $row_rsArticulo["commision"] != 0 ? number_format($row_rsArticulo["comision"],4) :0 ?></td>
+		<td><?php echo  $row_rsArticulo["comision"] != 0 ? number_format($row_rsArticulo["comision"],4) :0 ?></td>
 		<td><?php echo  $row_rsArticulo["agencia"] != 0 ? number_format($row_rsArticulo["agencia"],4) :0 ?></td>
 		<td><?php echo  $row_rsArticulo["almacen"] != 0 ? number_format($row_rsArticulo["almacen"], 4) :0 ?></td>
 		<td><?php echo  $row_rsArticulo["papeleria"] != 0 ? number_format( $row_rsArticulo["papeleria"] ,4    ):0 ?></td>
@@ -207,25 +218,37 @@ table{
 		<td><?php echo  $row_rsArticulo["impuestos"] != 0 ? number_format($row_rsArticulo["impuestos"], 4) :0 ?></td>
 
 		<td><?php echo  $row_rsArticulo["transporte"] != 0 ? number_format( $row_rsArticulo["transporte"] ,4    ) :0 ?></td>
+		<?php$impuestostotal= $impuestostotal+$row_rsArticulo["impuestos"]?>
 
 
 	</tr>
-	<?php }?>
 
-</table>
-<div>
-<h2>Totales</h2>
-<ul>
-    <li><strong>Total Agencia: </strong><?php echo $row_rsDocumento["totalagencia"] ?></li>
-    <li><strong>Total Almacen: </strong><?php echo $row_rsDocumento["totalalmacen"] ?></li>
-    <li><strong>Total Flete: </strong><?php echo $row_rsDocumento["fletetotal"] ?></li>
-    <li><strong>Total Seguro: </strong><?php echo $row_rsDocumento["segurototal"] ?></li>
-    <li><strong>Total Otros Gastos: </strong><?php echo $row_rsDocumento["otrosgastos"] ?></li>
-</div> 
+	<?php }?>
+	      <p><?php echo $impuestostotal?>
+<tr>
+    
+    <td><strong>Totales</td>
+    <td><?php echo $row_rsDocumento["unidadestotal"] ?></li>    
+    <td></td>
+    <td><?php echo $row_rsDocumento["fobtotal"] ?></li>    
+    <td><?php echo $row_rsDocumento["fletetotal"] ?></li>
+    <td><?php echo $row_rsDocumento["segurototal"] ?></li>
+    <td><?php echo $row_rsDocumento["otrosgastostotal"] ?></li>
+    <td><?php echo $row_rsDocumento["ciftotal"] ?></li>
+    <td><?php echo $row_rsDocumento["comisiontotal"] ?></li>
+     <td><?php echo $row_rsDocumento["agenciatotal"] ?></li>
+    <td><?php echo $row_rsDocumento["almacentotal"] ?></li>
+    
+    <td><strong></strong><?php echo $row_rsDocumento["papeleriatotal"] ?></li>
+<td><strong></strong><?php echo $row_rsDocumento["impuestototal"] ?></li>
+    <td><strong></strong><?php echo $row_rsDocumento["transportetotal"] ?></li>
     
     
+</tr>
+
+</table>    
     
-</ul>
+
 <?php if($row_rsDocumento["observacion"]){ ?>
 <h2>Observaciones</h2>
 <div><?php echo $row_rsDocumento["observacion"] ?></div>
