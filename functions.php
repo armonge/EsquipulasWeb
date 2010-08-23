@@ -5,6 +5,8 @@ function __autoload($class_name) {
 }
 /**********set the locale******************/
 setlocale(LC_ALL,'es_NI');
+/*********set the numeric precission********/
+bcscale(4);
 /********start the session*****************/
 session_start();
 session_regenerate_id();
@@ -20,12 +22,12 @@ if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="192.168.
 }
 /***********modules************/
 $modules = array(
-1=>"COMPRAS",
-2=>"CAJA",
-3=>"CONTABILIDAD",
-4=>"INVENTARIO",
-5=>"ADMINISTRACION",
-6=>"REPORTES",
+    1=>"COMPRAS",
+    2=>"CAJA",
+    3=>"CONTABILIDAD",
+    4=>"INVENTARIO",
+    5=>"ADMINISTRACION",
+    6=>"REPORTES",
 );
 /**********document ids*******************/
 $docids = array(
@@ -73,6 +75,10 @@ $accounts = array(
     "INVENTARIO" => 22,
     "COSTOSVENTAS" => 182,
     "IMPUESTOSXPAGAR" => 133
+);
+/*************costs ******************/
+$costs = array(
+    "ISO" => 6
 );
 /*************db connection ***************/
 $dbc = @new MySQLI(DBHOST,DBUSER,DBPASS,DB);
