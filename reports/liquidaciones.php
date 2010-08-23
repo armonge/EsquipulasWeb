@@ -5,42 +5,41 @@ if(!$iddoc){
     die();
 }else{
     $query = "
-
-SELECT
-    d.iddocumento,
-    d.ndocimpreso,
-    DATE_FORMAT(d.fecha,'%d/%m/%Y') as fechacreacion,
-    d.procedencia,
-    d.totalagencia,
-    d.totalalmacen,
-    d.fletetotal,
-    d.segurototal,
-    d.otrosgastos,
-    d.porcentajetransporte,
-    d.porcentajepapeleria,
-    d.peso,
-    d.Proveedor AS 'proveedor',
-    d.bodega,
-    ca.valorcosto as  'iso',
-    d.tasa,
-    d.estado,
-    lt.fobtotal,
-    lt.ciftotal,
-    lt.impuestototal,
-    d.totald,
-    d.totalc,
-    lt.papeleriatotal,  
-    lt.transportetotal,
-    lt.comisiontotal
-FROM esquipulasdb.vw_liquidacionesguardadas d
-JOIN vw_liquidacioncontotales lt ON lt.iddocumento = d.iddocumento
-LEFT JOIN costosxdocumento cxd ON d.iddocumento = cxd.iddocumento
-JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
-JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["PROVEEDOR"]}
-LEFT JOIN costosagregados ca ON cxd.idcostoagregado = ca.idcostoagregado AND ca.idtipocosto = {$costs["ISO"]}
-WHERE d.ndocimpreso = '$iddoc'
-GROUP BY d.iddocumento;
-
+             SELECT
+            d.iddocumento,
+            d.ndocimpreso,
+            DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
+            l.procedencia,
+             SUM(a.unidades) as unidadestotal,
+            SUM(a.fob) AS fobtotal,
+            SUM(a.flete) AS fletetotal,
+            SUM(a.seguro) AS segurototal,
+            SUM(a.otrosgastos) AS otrosgastostotal,
+            SUM(a.cif) AS ciftotal,
+            SUM(a.impuestos) as impuestototal,
+            SUM(a.comision) as comisiontotal,
+            SUM(a.agencia) as agenciatotal,
+            SUM(a.almacen) as almacentotal,
+            SUM(a.papeleria) as papeleriatotal,
+            SUM(a.transporte) as transportetotal,
+        SUM(costototal) as totalcosto,
+        SUM(costounit) AS costounittotal,
+        SUM(costounit * tc.tasa) as costounitcordobatotal,
+      --  SUM(costototal * tc.tasa) as totalcostocordoba,
+            a.iddocumento,
+            b.nombrebodega,
+            p.nombre,
+            tc.tasa
+        FROM vw_articulosprorrateados a
+    JOIN documentos d on d.iddocumento=a.iddocumento
+  JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
+  JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["PROVEEDOR"]}
+  JOIN bodegas b ON b.idbodega = d.idbodega
+  JOIN liquidaciones l ON l.iddocumento = d.iddocumento
+    JOIN tiposcambio tc ON tc.idtc = d.idtipocambio
+    WHERE d.ndocimpreso='$iddoc'
+  GROUP BY l.iddocumento
+ ;
     ";
 	$rsDocumento = $dbc->query($query);
 	$row_rsDocumento = $rsDocumento->fetch_array(MYSQLI_ASSOC);
@@ -64,7 +63,7 @@ GROUP BY d.iddocumento;
             transporte,
             costototal as totalcostod,
             costounit as costounitd,
-            costototal * tc.tasa as totalcostoc,
+          --  costototal * tc.tasa as totalcostoc,
             costounit * tc.tasa as costounitc,
         v.iddocumento
         FROM vw_articulosprorrateados v
@@ -205,7 +204,7 @@ table{
 		<th >Acarreo</th>
 		<th >Total Costo US$</th>
 		<th >Costo US$</th>
-		<th >Total Costo C$</th>
+		
 		<th >Costo C$</th>
 	</tr>
         <?php
@@ -230,7 +229,7 @@ table{
 		<td><?php  echo $row_rsArticulo["transporte"] != 0 ? number_format( $row_rsArticulo["transporte"] ,4    ) :0 ?></td>
 		<td><?php  echo $row_rsArticulo["totalcostod"] != 0 ? number_format( $row_rsArticulo["totalcostod"] ,4    ) :0 ?></td>
 		<td><?php  echo $row_rsArticulo["costounitd"] != 0 ? number_format( $row_rsArticulo["costounitd"] ,4    ) :0 ?></td>
-		<td><?php  echo $row_rsArticulo["totalcostoc"] != 0 ? number_format( $row_rsArticulo["totalcostoc"] ,4) :0 ?></td>
+	
 		<td><?php  echo $row_rsArticulo["costounitc"] != 0 ? number_format( $row_rsArticulo["costounitc"] ,4) :0 ?></td>
 	</tr>
 
@@ -238,22 +237,27 @@ table{
 	      
 <tr <?php if($color % 2 == 0 ){ echo "class='gray'"; } ?>>
     
-    <td colspan="3"><strong>Totales</strong></td>
-    <td><?php echo number_format( $row_rsDocumento["fobtotal"], 4  ) ?></td>
-    <td><?php echo number_format( $row_rsDocumento["fletetotal"],4) ?></td>
-    <td><?php echo number_format( $row_rsDocumento["segurototal"],4) ?></td>
-    <td><?php echo number_format( $row_rsDocumento["otrosgastos"],4) ?></td>
-    <td><?php echo number_format( $row_rsDocumento["ciftotal"],4) ?></td>
-    <td><?php echo number_format( $row_rsDocumento["comisiontotal"],4) ?></td>
-     <td><?php echo number_format( $row_rsDocumento["totalagencia"],4) ?></td>
-    <td><?php echo number_format( $row_rsDocumento["totalalmacen"],4) ?></td>
-    
-    <td><?php echo number_format( $row_rsDocumento["papeleriatotal"],4) ?></td>
-    <td><?php echo number_format( $row_rsDocumento["impuestototal"],4) ?></td>
-    <td><?php echo number_format( $row_rsDocumento["transportetotal"],4) ?></td>
 
-    <td colspan="2"><?php echo number_format( $row_rsDocumento["totald"],4) ?></td>
-    <td colspan="2"><?php echo number_format( $row_rsDocumento["totalc"],4) ?></td>
+    <td><strong>Totales</strong></td>
+    <td><?php echo $row_rsDocumento["unidadestotal"] ?></li>    
+    <td></td>
+    <td><?php echo $row_rsDocumento["fobtotal"] !=0 ? number_format( $row_rsDocumento["fobtotal"],4) : 0; ?></li>    
+    <td><?php echo $row_rsDocumento["fletetotal"] != 0 ? number_format( $row_rsDocumento["fletetotal"],4) : 0; ?></li>
+    <td><?php echo $row_rsDocumento["segurototal"] != 0 ? number_format( $row_rsDocumento["segurototal"],4) : 0; ?></li>
+    <td><?php echo $row_rsDocumento["otrosgastostotal"] != 0 ? number_format( $row_rsDocumento["otrosgastostotal"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["ciftotal"] != 0 ? number_format( $row_rsDocumento["ciftotal"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["comisiontotal"] != 0 ? number_format( $row_rsDocumento["comisiontotal"],4): 0;  ?></li>
+     <td><?php echo $row_rsDocumento["agenciatotal"] != 0 ? number_format( $row_rsDocumento["agenciatotal"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["almacentotal"] != 0 ? number_format( $row_rsDocumento["almacentotal"],4): 0;  ?></li>
+    
+    <td><?php echo $row_rsDocumento["papeleriatotal"] != 0 ? number_format( $row_rsDocumento["papeleriatotal"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["impuestototal"] != 0 ? number_format( $row_rsDocumento["impuestototal"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["transportetotal"] != 0 ? number_format( $row_rsDocumento["transportetotal"],4): 0;  ?></li>
+
+    <td><?php echo $row_rsDocumento["totalcosto"] != 0 ? number_format( $row_rsDocumento["totalcosto"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["costounittotal"] != 0 ? number_format( $row_rsDocumento["costounittotal"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["costounitcordobatotal"] != 0 ? number_format( $row_rsDocumento["costounitcordobatotal"],4): 0;  ?></li>
+ 
     
 </tr>
 
