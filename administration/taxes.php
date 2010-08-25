@@ -7,18 +7,18 @@ if(isset($_POST["update"])){
 	$taxtype = (int)$_POST["type"];
 	$value = (float)$_POST["value"];
 	switch( $taxtype){
-		case 1:
-		case 4:
-		case 6:
-		case 8:
-		case 10:
+		case $costs["IVA"]:
+		case $costs["SPE"]:
+		case $costs["ISO"]:
+		case $costs["RETENCIONFUENTE"]:
+		case $costs["RETENCIONSERVICIOS"]:
 			$query = "UPDATE costosagregados SET activo = 0 WHERE idtipocosto = $taxtype AND activo = 1 LIMIT 1";
 			$dbc->query($query);
 			$query = "INSERT INTO costosagregados (valorcosto, fechaestablecido, activo, idtipocosto) 
 			VALUES ($value, NOW(), 1, $taxtype)";
 			$dbc->query($query);
 		break;
-		case 5:
+		case $costs["TSIM"]:
 			$factorpeso = (float)$_POST["factorpeso"];
 			
 			$query = "UPDATE costosagregados SET activo = 0 WHERE idtipocosto = $taxtype AND activo = 1 LIMIT 1";
@@ -38,17 +38,17 @@ if(isset($_POST["update"])){
 }
 $rsTaxes = $dbc->query("
 SELECT 
-	SUM(IF(ca.idtipocosto = 1, ca.valorcosto, 0)) iva,
-	SUM(IF(ca.idtipocosto = 4, ca.valorcosto, 0)) spe,
-	SUM(IF(ca.idtipocosto = 5, ca.valorcosto, 0)) tsim,
-	SUM(IF(ca.idtipocosto = 5, ts.factorpeso, 0)) as factorpeso,
-	SUM(IF(ca.idtipocosto = 6, ca.valorcosto, 0)) iso,
-	SUM(IF(ca.idtipocosto = 8, ca.valorcosto, 0)) retencionprof,
-	SUM(IF(ca.idtipocosto = 10, ca.valorcosto, 0)) retencionf
+	SUM(IF(ca.idtipocosto = {$costs["IVA"]}, ca.valorcosto, 0)) iva,
+	SUM(IF(ca.idtipocosto = {$costs["SPE"]}, ca.valorcosto, 0)) spe,
+	SUM(IF(ca.idtipocosto = {$costs["TSIM"]}, ca.valorcosto, 0)) tsim,
+	SUM(IF(ca.idtipocosto = {$costs["TSIM"]}, ts.factorpeso, 0)) as factorpeso,
+	SUM(IF(ca.idtipocosto = {$costs["ISO"]}, ca.valorcosto, 0)) iso,
+	SUM(IF(ca.idtipocosto = {$costs["RETENCIONSERVICIOS"]}, ca.valorcosto, 0)) retencionprof,
+	SUM(IF(ca.idtipocosto = {$costs["RETENCIONFUENTE"]}, ca.valorcosto, 0)) retencionf
 FROM costosagregados ca
 JOIN tiposcosto tc ON tc.idtipocosto = ca.idtipocosto
 LEFT JOIN tsim ts ON ts.idtsim = ca.idcostoagregado
-WHERE ca.idtipocosto IN ( 1,4,5, 6, 8,10)
+WHERE ca.idtipocosto IN ( {$costs["IVA"]},{$costs["SPE"]},{$costs["TSIM"]}, {$costs["ISO"]}, {$costs["RETENCIONSERVICIOS"]},{$costs["RETENCIONFUENTE"]})
 AND activo = 1
 ");
 $row_rsTax = $rsTaxes->fetch_array(MYSQLI_ASSOC);
@@ -106,7 +106,7 @@ display:inline-block;
 				</p>
 				<p>
 					<input type="submit" value="aceptar" />
-					<input type="hidden" name="type" value="1" />
+					<input type="hidden" name="type" value="<?php echo $costs["IVA"] ?>" />
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>
@@ -119,7 +119,7 @@ display:inline-block;
 				</p>
 				<p>
 					<input type="submit" value="aceptar" />
-					<input type="hidden" name="type" value="4" />
+					<input type="hidden" name="type" value="<?php echo $costs["SPE"] ?>" />
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>
@@ -132,7 +132,7 @@ display:inline-block;
 				</p>
 				<p>
 					<input type="submit" value="aceptar" />
-					<input type="hidden" name="type" value="6" />
+					<input type="hidden" name="type" value="<?php echo $costs["ISO"] ?>" />
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>
@@ -148,7 +148,7 @@ display:inline-block;
 				</p>
 				<p>
 					<input type="submit" value="aceptar" />
-					<input type="hidden" name="type" value="5" />
+					<input type="hidden" name="type" value="<?php echo $costs["TSIM"] ?>" />
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>
@@ -161,7 +161,7 @@ display:inline-block;
 				</p>
 				<p>
 					<input type="submit" value="aceptar" />
-					<input type="hidden" name="type" value="8" />
+					<input type="hidden" name="type" value="<?php echo $costs["RETENCIONSERVICIOS"] ?>" />
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>
@@ -174,7 +174,7 @@ display:inline-block;
 				</p>
 				<p>
 					<input type="submit" value="aceptar" />
-					<input type="hidden" name="type" value="10" />
+					<input type="hidden" name="type" value="<?php echo $costs["RETENCIONFUENTE"] ?>" />
 					<input type="hidden" name="update" value="yes" />
 				</p>
 			</form>

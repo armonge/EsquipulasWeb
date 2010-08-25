@@ -1,6 +1,6 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("root")){
+if(!$_SESSION["user"]->hasRole("gerencia")){
     die("Usted no tiene permisos para este modulo");
 }
 $query = "

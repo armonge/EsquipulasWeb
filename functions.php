@@ -18,7 +18,7 @@ if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="192.168.
 	require_once('conn.php');
 }else{
 	$path = "/srv/www/htdocs/";
-	require_once("{$basedir}../onlineconn.php");
+	require_once("{$path}../onlineconn.php");
 }
 /***********modules************/
 $modules = array(
@@ -80,7 +80,15 @@ $accounts = array(
 );
 /*************costs ******************/
 $costs = array(
-    "ISO" => 6
+    "IVA" => 1,
+    "ISC" => 2,
+    "DAI" => 3,
+    "SPE" => 4,
+    "TSIM" => 5,
+    "ISO" => 6,
+    "COMISION" => 7,
+    "RETENCIONFUENTE" => 8,
+    "RETENCIONSERVICIOS" => 9
 );
 /*************db connection ***************/
 $dbc = @new MySQLI(DBHOST,DBUSER,DBPASS,DB);

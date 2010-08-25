@@ -177,11 +177,11 @@ table{
 </div>
 <div class="float">
 <p><strong>Fecha: </strong><?php echo $row_rsDocumento["fechacreacion"] ?></p>
-<p><strong>Bodega: </strong><?php echo $row_rsDocumento["bodega"] ?></p>
+<p><strong>Bodega: </strong><?php echo $row_rsDocumento["nombrebodega"] ?></p>
 </div>
 <div class="float">
 <p><strong>Tipo Cambio: </strong><?php echo $row_rsDocumento["tasa"] ?></p>
-<p><strong>Proveedor: </strong><?php echo $row_rsDocumento["proveedor"] ?></p>
+<p><strong>Proveedor: </strong><?php echo $row_rsDocumento["nombre"] ?></p>
 
 </div>
 </div>
@@ -208,6 +208,7 @@ table{
 		<th >Costo C$</th>
 	</tr>
         <?php
+        $color = 1;
         while ( $row_rsArticulo = $rsArticulos->fetch_assoc() ){
             $color++;
         ?>
@@ -239,24 +240,24 @@ table{
     
 
     <td><strong>Totales</strong></td>
-    <td><?php echo $row_rsDocumento["unidadestotal"] ?></li>    
+    <td><?php echo $row_rsDocumento["unidadestotal"] ?></td>
     <td></td>
-    <td><?php echo $row_rsDocumento["fobtotal"] !=0 ? number_format( $row_rsDocumento["fobtotal"],4) : 0; ?></li>    
-    <td><?php echo $row_rsDocumento["fletetotal"] != 0 ? number_format( $row_rsDocumento["fletetotal"],4) : 0; ?></li>
-    <td><?php echo $row_rsDocumento["segurototal"] != 0 ? number_format( $row_rsDocumento["segurototal"],4) : 0; ?></li>
-    <td><?php echo $row_rsDocumento["otrosgastostotal"] != 0 ? number_format( $row_rsDocumento["otrosgastostotal"],4): 0;  ?></li>
-    <td><?php echo $row_rsDocumento["ciftotal"] != 0 ? number_format( $row_rsDocumento["ciftotal"],4): 0;  ?></li>
-    <td><?php echo $row_rsDocumento["comisiontotal"] != 0 ? number_format( $row_rsDocumento["comisiontotal"],4): 0;  ?></li>
-     <td><?php echo $row_rsDocumento["agenciatotal"] != 0 ? number_format( $row_rsDocumento["agenciatotal"],4): 0;  ?></li>
-    <td><?php echo $row_rsDocumento["almacentotal"] != 0 ? number_format( $row_rsDocumento["almacentotal"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["fobtotal"] !=0 ? number_format( $row_rsDocumento["fobtotal"],4) : 0; ?></td>
+    <td><?php echo $row_rsDocumento["fletetotal"] != 0 ? number_format( $row_rsDocumento["fletetotal"],4) : 0; ?></td>
+    <td><?php echo $row_rsDocumento["segurototal"] != 0 ? number_format( $row_rsDocumento["segurototal"],4) : 0; ?></td>
+    <td><?php echo $row_rsDocumento["otrosgastostotal"] != 0 ? number_format( $row_rsDocumento["otrosgastostotal"],4): 0;  ?></td>
+    <td><?php echo $row_rsDocumento["ciftotal"] != 0 ? number_format( $row_rsDocumento["ciftotal"],4): 0;  ?></td>
+    <td><?php echo $row_rsDocumento["comisiontotal"] != 0 ? number_format( $row_rsDocumento["comisiontotal"],4): 0;  ?></td>
+     <td><?php echo $row_rsDocumento["agenciatotal"] != 0 ? number_format( $row_rsDocumento["agenciatotal"],4): 0;  ?></td>
+    <td><?php echo $row_rsDocumento["almacentotal"] != 0 ? number_format( $row_rsDocumento["almacentotal"],4): 0;  ?></td>
     
-    <td><?php echo $row_rsDocumento["papeleriatotal"] != 0 ? number_format( $row_rsDocumento["papeleriatotal"],4): 0;  ?></li>
-    <td><?php echo $row_rsDocumento["impuestototal"] != 0 ? number_format( $row_rsDocumento["impuestototal"],4): 0;  ?></li>
-    <td><?php echo $row_rsDocumento["transportetotal"] != 0 ? number_format( $row_rsDocumento["transportetotal"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["papeleriatotal"] != 0 ? number_format( $row_rsDocumento["papeleriatotal"],4): 0;  ?></td>
+    <td><?php echo $row_rsDocumento["impuestototal"] != 0 ? number_format( $row_rsDocumento["impuestototal"],4): 0;  ?></td>
+    <td><?php echo $row_rsDocumento["transportetotal"] != 0 ? number_format( $row_rsDocumento["transportetotal"],4): 0;  ?></td>
 
-    <td><?php echo $row_rsDocumento["totalcosto"] != 0 ? number_format( $row_rsDocumento["totalcosto"],4): 0;  ?></li>
-    <td><?php echo $row_rsDocumento["costounittotal"] != 0 ? number_format( $row_rsDocumento["costounittotal"],4): 0;  ?></li>
-    <td><?php echo $row_rsDocumento["costounitcordobatotal"] != 0 ? number_format( $row_rsDocumento["costounitcordobatotal"],4): 0;  ?></li>
+    <td><?php echo $row_rsDocumento["totalcosto"] != 0 ? number_format( $row_rsDocumento["totalcosto"],4): 0;  ?></td>
+    <td><?php echo $row_rsDocumento["costounittotal"] != 0 ? number_format( $row_rsDocumento["costounittotal"],4): 0;  ?></td>
+    <td><?php echo $row_rsDocumento["costounitcordobatotal"] != 0 ? number_format( $row_rsDocumento["costounitcordobatotal"],4): 0;  ?></td>
  
     
 </tr>

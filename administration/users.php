@@ -59,7 +59,6 @@ if((isset($_POST["pwd"])) && ($_POST["pwd"]=="change")){
 		//insertar la persona
 		$query ="INSERT INTO personas  (nombre, fechaingreso, telefono, tipopersona)
 		VALUES('$name', CURDATE(), '$phone', 4)";
-		echo $query;
 		$dbc->query($query);
 
 		$insertedId = $dbc->insert_id;
@@ -106,8 +105,14 @@ switch($task){
 		SELECT uhr.idusuario, uhr.idrol
 		FROM  usuarios_has_roles uhr
 		");
-		$users = $rsUsers->fetch_all(MYSQLI_ASSOC);
-		$userRoles = $rsUserRoles->fetch_all(MYSQLI_ASSOC);
+		$users = array();
+		while($row_rsUsers =  $rsUsers->fetch_array(MYSQLI_ASSOC)){
+            $users[] = $row_rsUsers;
+        }
+        $userRoles = array();
+        while($row_rsUsers =  $rsUserRoles->fetch_array(MYSQLI_ASSOC)){
+            $userRoles[] = $row_rsUsers;
+        }
 	case "new":
 		$rsRoles = $dbc->query("SELECT descripcion, idrol FROM roles");
 		break;
@@ -169,7 +174,10 @@ $(function(){
 	<li><a href="administration/users.php?task=new">Crear un nuevo usuario</a></li>
 </ul>
 <?php }else if($task=="list"){
-	$roles = $rsRoles->fetch_all(MYSQLI_ASSOC);
+    $roles = array();
+    while($row_rsRoles =  $rsRoles->fetch_array(MYSQLI_ASSOC)){
+        $roles[] = $row_rsRoles;
+    }
 	?>
 <h2>Lista de usuarios</h2>
 	<?php if($users){ ?>
@@ -199,9 +207,7 @@ foreach ($users as $user){
 	<form class="cforms hide" method="post"
 		id="froles<?php echo $user["idusuario"] ?>"
 		action="./administration/users.php?task=list">
-		<?php foreach($roles as $rol){
-
-			?>
+		<?php foreach($roles as $rol){	?>
 	<p><label> <span><?php  echo $rol["descripcion"] ?></span> <input
 		type="checkbox" name="roles[]" value="<?php echo $rol["idrol"] ?>"
 		<?php
