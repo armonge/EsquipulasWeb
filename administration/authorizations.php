@@ -9,11 +9,8 @@ if($authid){
     //autorizar una factura de credito o regalia
     $result = $dbc->query("
     CALL spAutorizarFactura($authid,{$_SESSION["user"]->getUid()},
+    {$persontypes["SUPERVISOR"]},
     {$accounts["VENTASNETAS"]},
-    {$accounts["CXCCLIENTE"]},
-    {$accounts["INVENTARIO"]},
-    {$accounts["COSTOSVENTAS"]},
-    {$accounts["IMPUESTOSXPAGAR"]},
     {$accounts["CXCCLIENTE"]},
     {$accounts["INVENTARIO"]},
     {$accounts["COSTOSVENTAS"]},

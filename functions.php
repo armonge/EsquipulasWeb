@@ -51,7 +51,9 @@ $persontypes = array(
     "CLIENTE" => 1,
     "PROVEEDOR" => 2,
     "VENDEDOR" => 3,
-    "USUARIO" => 4
+    "USUARIO" => 4,
+    "SUPERVISOR" => 5,
+    "CONTADOR" => 6
 );
 /************estados de documentos************/
 $docstates = array(
