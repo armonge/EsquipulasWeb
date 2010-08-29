@@ -146,6 +146,7 @@ $(function(){
 <div id="content">
     <h1>Conceptos</h1>
     <select size="5" id="docs">
+            <option id="doc_2" value="2"> ANULACION </option>
             <option id="doc_5" value="5"> FACTURA </option>
             <option id="doc_10" value="10"> DEVOLUCION </option>
             <option id="doc_11" value="11"> NOTADEBITO </option>
