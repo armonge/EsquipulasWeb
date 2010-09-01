@@ -1,6 +1,9 @@
 <?php
 //TODO: Mostar la otra columna y el estado de resultado
 require_once "../functions.php";
+if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole("gerencia"))){
+    die("Usted no tiene permisos para ver reportes");
+}
 if(!$_SESSION["user"]->hasRole("contabilidadrep")){
 	die("Usted no tiene permisos para ver este reporte");
 }
@@ -56,7 +59,6 @@ $query .= " WHERE cc.codigo NOT LIKE ''
 GROUP BY cc.idcuenta
 ORDER  BY cc.idcuenta
 ";
-
 $rsPasivo= $dbc->query($query);
 $row_rsPasivo= $rsPasivo->fetch_array(MYSQLI_ASSOC);
 $catPasivo= $row_rsPasivo["categoria"];
@@ -78,6 +80,12 @@ $catPasivo= $row_rsPasivo["categoria"];
 <title>Llantera Esquipulas: Reporte de Balance General</title>
 <style type="text/css">
 
+#m2 a{
+    background: url(img/nav-left.png) no-repeat left;
+}
+#m2 span{
+    background:  #99AB63 url(img/nav-right.png) no-repeat right;
+}
 .float{
 	width:50%;
 	float:left;
@@ -155,7 +163,7 @@ $(function(){
 
 </form>
 <h2>Balance de general para el mes de <?php echo strftime('%B', $stamp) ?> de <?php echo date('Y',$stamp)?></h2>
-<?php if(!$rsPasivo->num_rows){?>
+<?php if(!$rsActivo->num_rows){?>
 	<p>No hay activos para este mes</p>
 <?php }else{ ?>
 <div class="float">

@@ -1,5 +1,8 @@
 <?php
 require_once "../functions.php";
+if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole("gerencia"))){
+    die("Usted no tiene permisos para ver reportes");
+}
 $selection = $_GET["ac"];
 if($selection){
 $data = array_unique(explode(",",$selection));

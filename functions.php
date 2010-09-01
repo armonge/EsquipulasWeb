@@ -13,7 +13,7 @@ session_regenerate_id();
 
 /*********general settings ***********/
 #TODO: configure settings for when not localhost
-if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="192.168.1.10") || ($_SERVER["REMOTE_ADDR"]=="192.168.2.200")){
+if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="localhost") || ($_SERVER["REMOTE_ADDR"]=="192.168.2.200")){
 	$path = "/srv/http/EsquipulasWeb/";
 	require_once('conn.php');
 }else{
@@ -59,7 +59,8 @@ $persontypes = array(
 $docstates = array(
     "PENDIENTE"=>3,
     "ANULADO"=>2,
-    "CONFIRMADO"=>1
+    "CONFIRMADO"=>1,
+    "INCOMPLETO"=>4
 );
 /*************monedas*************************/
 $moneda = array(

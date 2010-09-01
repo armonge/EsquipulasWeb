@@ -1,6 +1,8 @@
 <?php
 require_once "../functions.php";
-
+if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole("gerencia")){
+    die("Usted no tiene permisos para ver reportes");
+}
 $iddoc = (int)$_GET["doc"];
 if(!$iddoc){
 	die();

@@ -134,9 +134,6 @@ $(function(){
 .cforms{
     float:left;
 }
-.ui-widget-content{
-/*     float:left; */
-}
 </style>
 
 </head>

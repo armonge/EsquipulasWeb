@@ -1,6 +1,6 @@
 <?php
 require_once "../functions.php";
-if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole("inventariorep") || $_SESSION["user"]->hasRole("ventasrep"))){
+if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole("inventariorep") || $_SESSION["user"]->hasRole("ventasrep")|| $_SESSION["user"]->hasRole("gerencia")) ){
 	die("Usted no tiene permisos para ver reportes");
 }
 ?>
@@ -32,26 +32,27 @@ if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole
 	<div id="left-column">
 		<h1>Reportes</h1>
 		<ul>
-		<?php if($_SESSION["user"]->hasRole("contabilidadrep")) {?>
+		<?php if($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole("gerencia")) {?>
 			<li><a href="reports/accounts.php">Historico de Cuentas</a></li>
 			<li><a href="reports/partidacontable.php">Reporte de Partida Contable</a></li>
 			<li><a href="reports/balancegeneral.php">Balance General</a></li>
 			<li><a href="reports/balancecomprobacion.php">Balance de Comprobaci&oacute;n</a></li>
+			<li><a href="reports/listaliquidaciones.php">Liquidacion de Costos</a></li>
 
-		<?php } if($_SESSION["user"]->hasRole("ventasrep")){ ?>
+		<?php } if($_SESSION["user"]->hasRole("ventasrep") || $_SESSION["user"]->hasRole("gerencia")){ ?>
 			<li><a href="reports/articlessales.php">Ventas x producto</a></li>
 			<li><a href="reports/salesxclient.php">Ventas x Persona</a></li>
 
-
-
-		<?php } if($_SESSION["user"]->hasRole("inventariorep")){ ?>
-			<li><a href="reports/articlescosts.php">Costos x producto</a></li>
-
-		<?php } if($_SESSION["user"]->hasRole("inventariorep")){ ?>
-			<li><a href="reports/listaliquidaciones.php">Liquidacion de Costos</a></li>
-
+		<?php } if($_SESSION["user"]->hasRole("inventariorep") || $_SESSION["user"]->hasRole("gerencia")){ ?>
+            <li><a href="reports/existenciaprod.php">Existencia de productos</a></li>
+        
+		<?php } if($_SESSION["user"]->hasRole("gerencia")){ ?>
+            <li><a href="reports/articlescosts.php">Costos x producto</a></li>
+            
 
 		<?php } ?>
+
+		
 		</ul>
 	</div>
 	<?php include "../footer.php" ?>

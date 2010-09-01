@@ -5,14 +5,15 @@ class UserFromPasswd extends AbstractUser{
 		$this->uname = @$this->dbc->real_escape_string($user);
 		$this->password = @$this->dbc->real_escape_string($password);
 
-		$result = @$this->dbc->query("
-			SELECT u.idusuario AS uid,  r.nombre as rol FROM usuarios u
+        $query = "
+            SELECT u.idusuario AS uid,  r.nombre as rol FROM usuarios u
                 JOIN usuarios_has_roles ur ON u.idusuario = ur.idusuario
                 JOIN roles r ON r.idrol = ur.idrol
                 WHERE u.estado = 1
                 AND u.username = '{$this->uname}'
                 AND u.password = SHA1('{$this->password}".self::$secret."')
-		");
+        ";
+		$result = @$this->dbc->query($query);
 		
 		if($result->num_rows > 0){
 			$this->valid = True;

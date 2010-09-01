@@ -1,5 +1,8 @@
 <?php
 require_once "../functions.php";
+if(!($_SESSION["user"]->hasRole("gerencia"))){
+    die("Usted no tiene permisos para ver reportes");
+}
 $selection = $_GET["ac"];
 if($selection){
 	$data = array_unique(explode(",",$selection));
@@ -25,7 +28,7 @@ if($selection){
 			if($data->num_rows){
 				while ($row = $data->fetch_array(MYSQLI_ASSOC)) {
 					$label = $row["nombre"];
-					$inner[] = array( (int)$row["stamp"],(int)$row["total"]);
+					$inner[] = array( (float)$row["stamp"],(float)$row["total"]);
 				}
 				$return[] = array("label"=>$label,"data"=>$inner);
 			}

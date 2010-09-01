@@ -10,7 +10,9 @@ if((isset($_POST["pwd"])) && ($_POST["pwd"]=="change")){
 	$uid = (int)$_POST["uid"];
 	if (($_POST["pwd1"] == $_POST["pwd2"]) && $uid){
 		$pwd = AbstractUser::createPasswd( $dbc->real_escape_string($_POST["pwd1"]) );
-		$dbc->query("UPDATE usuarios SET password = '$pwd' WHERE idusuario = $uid LIMIT 1" );
+		$query = "UPDATE usuarios SET password = '$pwd' WHERE idusuario = $uid LIMIT 1" ;
+		$dbc->query($query);
+		$message="Exito al cambiar la contrase&ntilde;a";
 	}else{
 		$error = "Las contrase&ntilde;as no coinciden";
 	}
@@ -168,7 +170,9 @@ $(function(){
 <div id="content">
 <div id="left-column">
 <h1>Administraci&oacute;n de Usuarios</h1>
-<?php echo "<div class='error'>$error</div>" ?> <?php if (!$task){ ?>
+<?php echo "<p class='error'>$error</p>" ?>
+<?php echo "<p>$message</p>" ?>
+<?php if (!$task){ ?>
 <ul>
 	<li><a href="administration/users.php?task=list"> Lista de Usuarios</a></li>
 	<li><a href="administration/users.php?task=new">Crear un nuevo usuario</a></li>

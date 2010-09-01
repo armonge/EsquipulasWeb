@@ -63,8 +63,8 @@ if __name__ == "__main__":
 
     except Exception as inst:
     	db.rollback()
-    	print query.lastError().databaseText()
-    	print inst
+    	print query.lastError().text()
+    	print unicode(inst)
     finally:
 	if db.isOpen():
 	    db.close()

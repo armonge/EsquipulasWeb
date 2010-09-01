@@ -1,17 +1,15 @@
 html{
-	width:1000px;
-	margin:auto;
-	font-family:Arial, Helvetica,  sans-serif;
+    
+    font-family:Arial, Helvetica,  sans-serif;
 	color:#777;
 	font-size:12px;
-	height:100%;
 	line-height:20px;
 }
 body{
 	height:100%;
-	border:0;
 	padding:0;
 	margin:0;
+    text-align:center;
 }
 strong{
 	font-weight:bold;
@@ -41,9 +39,13 @@ h1{
 }
 #wrap{
 	position:relative;
-	min-height:100%;
+    width:1000px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
 }
 #menu{
+    position:relative;
 	font-size:14px;
 	margin:0;
 	padding:0;
@@ -52,13 +54,20 @@ h1{
 	height:54px;
 }
 #menu .help{
-	float:right;	
+	float:right;
+    position:absolute;
+    right:0;
+    color:red;
+    top:0;
 }
 #menu a{
 	color:#FFFFFF;
 	display:block;
 	height:27px;
 	padding-bottom:2px;
+
+    zoom:1;
+    *display:inline;
 }
 #menu span{
 	display:block;
@@ -69,12 +78,20 @@ h1{
 	margin-left:8px;
 	padding-right:10px;
 	padding-bottom:2px;
+    
+    zoom:1;
+    *display:inline;
+    
 }
 #menu li{
 	display:inline-block;
 	margin-left:20px;
 	height:27px;
 	position:relative;
+
+    zoom:1;
+    *display:inline;
+
 }
 #uname{
 	position:absolute;

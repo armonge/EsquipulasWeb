@@ -2,14 +2,19 @@
 require_once "../functions.php";
 $query = "
 SELECT
-v.Descripcion,
-SUM(a.unidades) as existencia,
-b.nombrebodega as bodega
-FROM articulosxdocumento a
-JOIN documentos d ON d.iddocumento = a.iddocumento
-JOIN bodegas b ON b.idbodega = d.idbodega
+    v.Descripcion,
+    SUM(a.unidades) as existencia,
+    b.nombrebodega as bodega
+FROM documentos k
+LEFT JOIN docpadrehijos dpd ON dpd.idhijo = k.iddocumento
+LEFT JOIN documentos p ON p.iddocumento = dpd.idpadre
+JOIN articulosxdocumento a ON a.iddocumento = k.iddocumento OR a.iddocumento = dpd.idpadre
+JOIN bodegas b ON b.idbodega = k.idbodega
 JOIN vw_articulosdescritos v ON a.idarticulo = v.idarticulo
-GROUP BY a.idarticulo
+WHERE k.idtipodoc = {$docids["KARDEX"]}
+GROUP BY a.idarticulo, b.idbodega
+HAVING existencia != 0
+ORDER BY b.idbodega ASC, v.Descripcion
 ";
 $rsArticulos = $dbc->query($query);
 ?>
@@ -42,6 +47,9 @@ $rsArticulos = $dbc->query($query);
 <h1>Llantera Esquipulas</h1>
 
 <h2>Existencias de Productos por Bodega</h2>
+<?php if(!$rsArticulos->num_rows){ ?>
+    <p>No hay existencia en bodega</p>
+<?php } else{ ?>
 <table border="1" frame="border" rules="all" cellpadding="5" cellspacing="1"	summary="Reporte de partida contable">
 	<col width="400" />
 	<thead>
@@ -62,8 +70,11 @@ $rsArticulos = $dbc->query($query);
 
 	</tbody>
 </table>
+<?php } ?>
 </div>
+<?php include "../footer.php" ?>
 </div>
+
 </div>
 </body>
 </html>

@@ -1,18 +1,20 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("gerencia")){
+if(!($_SESSION["user"]->hasRole("gerencia") || $_SESSION["user"]->hasRole("contabilidadrep"))){
     die("Usted no tiene permisos para este modulo");
 }
 $query = "
-SELECT		    d.iddocumento,	
-                    d.ndocimpreso AS 'ndocimpreso',
-                    d.fecha AS 'Fecha',
-                    d.Proveedor AS 'Proveedor',
-                    d.bodega AS 'Bodega',
-                    d.totald AS 'Total US$',
-                    d.totalc AS 'Total C$'
-                FROM esquipulasdb.vw_liquidacionesguardadas d
-                GROUP BY d.iddocumento;";
+SELECT
+    d.iddocumento,
+    d.ndocimpreso AS 'ndocimpreso',
+    d.fecha AS 'Fecha',
+    d.Proveedor AS 'Proveedor',
+    d.bodega AS 'Bodega',
+    d.totald AS 'Total US$',
+    d.totalc AS 'Total C$'
+FROM esquipulasdb.vw_liquidacionesguardadas d
+GROUP BY d.iddocumento;
+";
 $rsLiquidaciones = $dbc->query($query);
 
 ?>
@@ -35,10 +37,10 @@ $(function(){
 });
 </script>
 <style type="text/css">
-#m3 a{
+#m2 a{
     background: url(img/nav-left.png) no-repeat left;
 }
-#m3 span{
+#m2 span{
     background:  #99AB63 url(img/nav-right.png) no-repeat right;
 }
 </style>

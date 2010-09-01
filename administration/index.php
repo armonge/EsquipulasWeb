@@ -35,9 +35,11 @@ if(!$_SESSION["user"]->hasRole("gerencia")){
     margin:10px;
     text-align:center;
     display:inline-block;
+
+    zoom:1;
+    *display:inline;
 }
 </style>
-
 </head>
 <body>
 <div id="wrap">

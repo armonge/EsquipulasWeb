@@ -45,7 +45,7 @@ JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
 JOIN creditos cr ON cr.iddocumento = d.iddocumento
 JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
 JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["CLIENTE"]}
-WHERE d.idestado = {$docstates["PENDIENTE"]}
+WHERE d.idestado = {$docstates["PENDIENTE"]} AND d.idtipodoc = {$docids["FACTURA"]}
 ORDER BY d.idtipodoc
 ";
 $rsCreditInvoices = $dbc->query($query);
@@ -61,7 +61,7 @@ JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
 LEFT JOIN creditos cr ON cr.iddocumento = d.iddocumento
 JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
 JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["CLIENTE"]}
-WHERE d.idestado = {$docstates["PENDIENTE"]} AND cr.iddocumento IS NULL
+WHERE d.idestado = {$docstates["PENDIENTE"]} AND cr.iddocumento IS NULL AND d.idtipodoc = {$docids["FACTURA"]}
 ORDER BY d.idtipodoc
 ";
 $rsInvoiceRoyalties = $dbc->query($query);
