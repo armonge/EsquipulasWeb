@@ -9,7 +9,6 @@ if($authid){
     //autorizar una factura de credito o regalia
     $result = $dbc->query("
     CALL spAutorizarFactura($authid,{$_SESSION["user"]->getUid()},
-    {$persontypes["SUPERVISOR"]},
     {$accounts["VENTASNETAS"]},
     {$accounts["CXCCLIENTE"]},
     {$accounts["INVENTARIO"]},
@@ -25,7 +24,7 @@ if($authid){
 }elseif($del){
     //denegar un credito
     $result = $dbc->query("
-    CALL spEliminarFactura($delcred)
+    CALL spEliminarFactura($del)
     ");
     if($result){
         $print = "<p>La factura se ha denegado</p>";
@@ -64,7 +63,7 @@ JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes
 WHERE d.idestado = {$docstates["PENDIENTE"]} AND cr.iddocumento IS NULL AND d.idtipodoc = {$docids["FACTURA"]}
 ORDER BY d.idtipodoc
 ";
-$rsInvoiceRoyalties = $dbc->query($query);
+$rsAnullments = $dbc->query($query);
 
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>

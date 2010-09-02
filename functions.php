@@ -92,6 +92,7 @@ $costs = array(
     "RETENCIONSERVICIOS" => 9
 );
 /*************db connection ***************/
+/* @var $dbc mysqli */
 $dbc = @new MySQLI(DBHOST,DBUSER,DBPASS,DB);
 
 

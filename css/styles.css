@@ -135,21 +135,10 @@ h1{
 .hide{
 	display:none;
 }
-.error {
-	background: #C00000;
-	color:#fff;
-	padding:2px;
-	background-image:"../flag-red.png";
-	background-repeat:no-repeat;
-	background-position:left;
-}
-.error2{
-	background: #F3FF05;
-	color:#000;
-}
 .gray {
-	background: #f4f4f4;
+    background: #f4f4f4;
 }
+
 #leftcol{
         width:200px;
         font-size:10px;
@@ -167,4 +156,16 @@ h1{
         width: 700px;
         margin-left: 30px;
         height:500px;
+}
+.error {
+    background: #C00000;
+    color:#fff;
+    padding:2px;
+    background-image:"../flag-red.png";
+    background-repeat:no-repeat;
+    background-position:left;
+}
+.error2{
+    background: #F3FF05;
+    color:#000;
 }

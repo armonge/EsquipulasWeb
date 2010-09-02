@@ -16,6 +16,7 @@ if(isset($_POST["add"])){
 	$phone = $dbc->real_escape_string(trim($_POST["phone"]));
 	$email = $dbc->real_escape_string(trim($_POST["mail"]));
 	$ruc = $dbc->real_escape_string(trim($_POST["ruc"]));
+	$address = $dbc->real_escape_string(trim($_POST["address"]));
 
 	if(!$name){
 		$error="No especifico el nombre del Vendedor";
@@ -23,10 +24,12 @@ if(isset($_POST["add"])){
 //		FIXME: Que pasa cuando $phone == 0
 		$error="No escribio el tel&eacute;fono del Vendedor";
 	}elseif(!$email){
-		$error="No escribio el e-mail del Vendedor";
-	}else{
-		$query = "INSERT INTO personas (nombre,fechaingreso, telefono, email,ruc,  activo, tipopersona)
-		VALUES('$name', CURDATE(), '$phone','$email', '$ruc', 1,3 )";
+        $error="No escribio el e-mail del Vendedor";
+    }elseif(!$address){
+        $error="No escribio la direcci&oacute;n del Vendedor";
+    }else{
+		$query = "INSERT INTO personas (nombre,fechaingreso, telefono, email,ruc, direccion, activo, tipopersona)
+		VALUES('$name', CURDATE(), '$phone','$email', '$ruc', '$direccion', 1,3 )";
 		if($dbc->query($query)){
 			$status = "success";
 		}else{
@@ -56,11 +59,11 @@ $estadoVendedores = $row_rsSalesmen["activo"];
 <script type="text/javascript" src="js/messages_es.js"></script>
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 <style type="text/css">
-#m5 a{
-	background: url(img/nav-left.png) no-repeat left;
+#m3 a{
+    background: url(img/nav-left.png) no-repeat left;
 }
-#m5 span{
-	background:  #99AB63 url(img/nav-right.png) no-repeat right;
+#m3 span{
+    background:  #99AB63 url(img/nav-right.png) no-repeat right;
 }
 #add{
 	display:none;
@@ -127,6 +130,12 @@ $(function(){
 				<input type="text" class="required number" name="phone" value="<?php echo $_POST["phone"] ?>" />
 			</label>
 		</p>
+		<p>
+            <label>
+                <span>Direcci&oacute;n</span>
+                <input type="text" class="required" name="address" value="<?php echo $_POST["address"] ?>" />
+            </label>
+        </p>
 		<p>
 			<input type="submit" value="Aceptar" />
 			<input type="hidden" value="yes" name="add" />
