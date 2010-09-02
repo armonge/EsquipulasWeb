@@ -31,6 +31,7 @@ $modules = array(
 );
 /**********document ids*******************/
 $docids = array(
+    "ANULACION" => 2,
     "FACTURA" => 5,
     "DEVOLUCION" => 10,
     "NOTADEBITO" => 11,
@@ -40,7 +41,7 @@ $docids = array(
     "RECIBO" => 18,
     "RETENCION" => 19,
     "ENTRADALOCAL" => 21,
-	"ARQUEO" => 23,
+    "ARQUEO" => 23,
     "AJUSTECONTABLE" => 24,
     "CONCILIACION" => 25,
     "ERROR" => 26,
@@ -57,10 +58,11 @@ $persontypes = array(
 );
 /************estados de documentos************/
 $docstates = array(
+    "CONFIRMADO"=>1,
     "PENDIENTE"=>3,
     "ANULADO"=>2,
-    "CONFIRMADO"=>1,
-    "INCOMPLETO"=>4
+    "INCOMPLETO"=>4,
+    "PENDIENTEANULACION" => 5
 );
 /*************monedas*************************/
 $moneda = array(

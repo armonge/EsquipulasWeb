@@ -1,36 +1,64 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("gerencia")){
+if (!$_SESSION["user"]->hasRole("gerencia")) {
     die("Usted no tiene permisos para administrar autorizaciones");
 }
-$authid = (int)$_GET["doc"];
-$del = (int)$_GET["del"];
-if($authid){
-    //autorizar una factura de credito o regalia
+$authid = (int) $_GET["doc"]; // El id de la factura de credito a autorizar
+$del = (int) $_GET["del"];// El id de la factura de credito a denegar
+
+
+$anullmentid = (int)$_GET["adoc"]; // el id de la factura a anular
+$anullmentdel = (int)$_GET["adel"]; // el id de la factura a la cual se le denega la anulación
+
+if ($authid) {
+    //autorizar una factura de credito
     $result = $dbc->query("
-    CALL spAutorizarFactura($authid,{$_SESSION["user"]->getUid()},
+    CALL spAutorizarFactura(
+    $authid,
+    {$_SESSION["user"]->getUid()},
+    {$persontypes["SUPERVISOR"]},
+    {$docstates["CONFIRMADO"]},
     {$accounts["VENTASNETAS"]},
     {$accounts["CXCCLIENTE"]},
     {$accounts["INVENTARIO"]},
     {$accounts["COSTOSVENTAS"]},
     {$accounts["IMPUESTOSXPAGAR"]}
     )");
-    
-    if($result){
+
+    if ($result) {
         $print = "<p>La factura se ha autorizado</p>";
-    }else{
+    } else {
         $print = "<p class'error'>Hubo un error al autorizar la factura</p>";
     }
-}elseif($del){
+} elseif ($del) {
     //denegar un credito
     $result = $dbc->query("
     CALL spEliminarFactura($del)
     ");
-    if($result){
+    if ($result) {
         $print = "<p>La factura se ha denegado</p>";
-    }else{
+    } else {
         $print = "<p class'error'>Hubo un error al denegar la factura</p>";
     }
+}elseif($anullmentid){
+    $result = $dbc->query("
+        CALL spAutorizarAnulacionFactura(
+        $anullmentid,
+        {$_SESSION["user"]->getUid()},
+        {$docids["ANULACION"]},
+        {$docids["FACTURA"]},
+        {$docids["RECIBO"]},
+        {$docstates["PENDIENTEANULACION"]},,
+        {$docstates["CONFIRMADO"]},
+        {$docstates["ANULADO"]},
+        {$persontypes["SUPERVISOR"]}
+        );
+        ");
+        if ($result) {
+        $print = "<p>La Anulaci&oacute;n se ha autorizado</p>";
+        } else {
+            $print = "<p class'error'>Hubo un error al autorizar la Anulaci&oacute;n </p>";
+        }
 }
 
 $query = "
@@ -51,83 +79,86 @@ $rsCreditInvoices = $dbc->query($query);
 
 $query = "
 SELECT
-    d.iddocumento,
+    fact.iddocumento,
+    fact.ndocimpreso,
+    d.iddocumento as idanulacion,
     d.idtipodoc,
     td.descripcion,
     p.nombre
 FROM documentos d
+JOIN docpadrehijos dpd ON dpd.idhijo = d.iddocumento
+JOIN documentos fact ON fact.iddocumento = dpd.idpadre AND fact.idtipodoc = {$docids["FACTURA"]}
 JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
-LEFT JOIN creditos cr ON cr.iddocumento = d.iddocumento
-JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
-JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["CLIENTE"]}
-WHERE d.idestado = {$docstates["PENDIENTE"]} AND cr.iddocumento IS NULL AND d.idtipodoc = {$docids["FACTURA"]}
-ORDER BY d.idtipodoc
+JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento AND pxd.idaccion = {$persontypes["USUARIO"]}
+JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["USUARIO"]}
+WHERE d.idtipodoc = {$docids["ANULACION"]} AND d.idestado = {$docstates["PENDIENTE"]}
 ";
 $rsAnullments = $dbc->query($query);
-
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<base href="<?php echo $basedir ?>" />
-<link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
-<meta http-equiv="Content-Type"
-    content="application/xhtml+xml; charset=UTF-8" />
-<title>Llantera Esquipulas: Administraci&oacute;n</title>
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<link type="text/css" href="css/flick/jq.ui.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="css/styles.css" />
-<script type="text/javascript" src="js/jq.js"></script>
-<script type="text/javascript" src="js/jq.ui.js"></script>
-<script type="text/javascript">
-$(function(){
-});
-</script>
-<style type="text/css">
-#m3 a{
-    background: url(img/nav-left.png) no-repeat left;
-}
-#m3 span{
-    background:  #99AB63 url(img/nav-right.png) no-repeat right;
-}
-</style>
-</head>
-<body>
-<div id="wrap">
-<?php include "../header.php"?>
-<div id="content">
-    <?php echo $print ?>
-    <h1>Documentos pendientes de autorizaci&oacute;n</h1>
-    <?php if($rsCreditInvoices->num_rows){ ?>
-    <h2>Creditos de factura</h2>
-    <ul>
-        <?php while($row_rsDocument = $rsCreditInvoices->fetch_array(MYSQLI_ASSOC)){ ?>
-            <li><a href="<?php echo $base ?>reports/facturas.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>">
-            <?php echo $row_rsDocument["descripcion"] ?> para <?php echo $row_rsDocument["nombre"] ?></a></li>
-        <?php } ?>
-    </ul>
-    <?php } ?>
-    <?php if($rsInvoiceRoyalties->num_rows){ ?>
-    <h2>Regalias de factura</h2>
-    <ul>
-        <?php while($row_rsDocument = $rsInvoiceRoyalties->fetch_array(MYSQLI_ASSOC)){ ?>
-            <li><a href="<?php echo $base ?>reports/facturas.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>">
-            <?php echo $row_rsDocument["descripcion"] ?> para <?php echo $row_rsDocument["nombre"]; ?></a></li>
-        <?php } ?>
-    </ul>
-    <?php } ?>
+    <head>
+        <base href="<?php echo $basedir ?>" />
+        <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
+        <meta http-equiv="Content-Type"
+              content="application/xhtml+xml; charset=UTF-8" />
+        <title>Llantera Esquipulas: Administraci&oacute;n</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <link type="text/css" href="css/flick/jq.ui.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <script type="text/javascript" src="js/jq.js"></script>
+        <script type="text/javascript" src="js/jq.ui.js"></script>
+        <script type="text/javascript">
+            $(function(){
+            });
+        </script>
+        <style type="text/css">
+            #m3 a{
+                background: url(img/nav-left.png) no-repeat left;
+            }
+            #m3 span{
+                background:  #99AB63 url(img/nav-right.png) no-repeat right;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+<?php include "../header.php" ?>
+            <div id="content">
+<?php echo $print ?>
+                <h1>Documentos pendientes de autorizaci&oacute;n</h1>
+<?php if ($rsCreditInvoices->num_rows) { ?>
+                <h2>Creditos de factura</h2>
+                <ul>
+<?php while ($row_rsDocument = $rsCreditInvoices->fetch_array(MYSQLI_ASSOC)) { ?>
+                    <li><a href="<?php echo $base ?>reports/facturas.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>">
+<?php echo $row_rsDocument["descripcion"] ?> para <?php echo $row_rsDocument["nombre"] ?></a></li>
+                            <?php } ?>
+                </ul>
+<?php } ?>
+                <?php if ($rsAnullments->num_rows) {
+ ?>
+                        <h2>Anulaciones de  factura</h2>
+                        <ul>
+                    <?php while ($row_rsDocument = $rsAnullments->fetch_array(MYSQLI_ASSOC)) {
+ ?>
+                            <li><a href="<?php echo $base ?>reports/facturas.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>">
+                    <?php echo $row_rsDocument["descripcion"]. "  " . $row_rsDocument["ndocimpreso"] ?>  por <?php echo $row_rsDocument["nombre"]; ?></a></li>
+<?php } ?>
+                    </ul>
+<?php } ?>
 
-    <?php if(!( $rsInvoiceRoyalties->num_rows + $rsCreditInvoices->num_rows)){ ?>
-    
-        <p>No hay documentos pendientes de autorizaci&oacute;n</p>
-    <?php } ?>
+<?php if (!( $rsAnullments->num_rows + $rsCreditInvoices->num_rows)) { ?>
 
-    
+                        <p>No hay documentos pendientes de autorizaci&oacute;n</p>
+<?php } ?>
 
 
-</div>
+
+
+                </div>
 <?php include "../footer.php" ?>
-</div>
-</body>
+        </div>
+    </body>
 </html>

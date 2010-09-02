@@ -268,7 +268,10 @@ thead {
 <?php include "../header.php"?>
 <div id="content">
 <div id="header">
-<h2><?php echo $row_rsDocumento["idcredito"] ? "Credito": "Regalia" ?></h2>
+<?php if($_SESSION["user"]->hasRole("gerencia")   && $row_rsDocumento["idestado"] != $docstates["CONFIRMADO"]){ ?>
+<h2><?php if($row_rsDocumento["idestado"] == $docstates["PENDIENTE"]){ echo  "Autorizar Credito"; } elseif($row_rsDocumento["idestado"] == $docstates["PENDIENTEANULACION"]){echo  "Autorizar Anulaci&oacute;n";} ?></h2>
+<?php } ?>
+
 <h1>DISTRIBUIDORA DE LLANTAS ESQUIPULAS, S.A.</h1>
 <p>Semaforos del Mayoreo 100 Mts Sur mano Izquierda</p>
 <p>Tel: 2233-1542 - 2233-1226 - 2252-0933 - 2252-0944 - 2233-1642</p>
@@ -357,7 +360,7 @@ thead {
 </table>
 </div>
 <div id="authorization"><span class="white">AUTORIZADO POR</span></div>
-<table border="0" frame="border" rules="lines" cellpadding="5"	cellspacing="0" summary="Totales factura" id="totals">
+<table border="0" frame="border" rules="rows" cellpadding="5"	cellspacing="0" summary="Totales factura" id="totals">
 	<tbody>
 		<tr>
 			<td class="white">
@@ -376,16 +379,23 @@ thead {
 		</tr>
 	</tbody>
 </table>
-<?php if($_SESSION["user"]->hasRole("gerencia")   && !$row_rsDocumento["estado"]){ ?>
+<?php
+if($_SESSION["user"]->hasRole("gerencia")   && $row_rsDocumento["idestado"] != $docstates["CONFIRMADO"]){
+    if($row_rsDocumento["idestado"] == $docstates["PENDIENTE"]){ ?>
 <div id="action">
-
         <a id="accept" href="<?php echo $base ?>administration/authorizations.php?doc=<?php echo $iddoc ?>"
-         onclick="return confirm('¿Realmente desea confirmar esta factura?')" >Autorizar</a>
+         onclick="return confirm('¿Realmente desea confirmar este credito?')" >Autorizar</a>
         <a id="deny" href="<?php echo $base ?>administration/authorizations.php?del=<?php echo $iddoc ?>"
-        onclick="return confirm('¿Realmente desea borrar esta factura?')">Denegar</a>
+        onclick="return confirm('¿Realmente desea denegar este credito?')">Denegar</a>
 </div>
-<?php } ?>
-
+<?php }elseif($row_rsDocumento["idestado"] == $docstates["PENDIENTEANULACION"]){ ?>
+<div id="action">
+        <a id="accept" href="<?php echo $base ?>administration/authorizations.php?adoc=<?php echo $iddoc ?>"
+         onclick="return confirm('¿Realmente desea autorizar esta anulaci&oacute;n de factura?')" >Autorizar</a>
+        <a id="deny" href="<?php echo $base ?>administration/authorizations.php?adel=<?php echo $iddoc ?>"
+        onclick="return confirm('¿Realmente desea denegar esta anulaci&oacute;n factura?')">Denegar</a>
+</div>
+<?php } }?>
 <?php include "../footer.php" ?>
 </div>
 
