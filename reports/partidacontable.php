@@ -130,6 +130,7 @@ var dates = $('#from, #to').datepicker({
 <h1>Llantera Esquipulas</h1>
 <h2>Reporte de Partida Contable</h2>
 <?php if(! ($rsMovimientos->num_rows >  0) ) { ?>
+    <p>Desde <?php echo date("01/m/Y") ?> hasta <?php echo date("d/m/Y") ?></p>
 	<p>No existen movimientos contables para el periodo seleccionado</p>
 <?php }else{?>
 <?php if ($start && $end){ ?> 

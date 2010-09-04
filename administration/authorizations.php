@@ -12,7 +12,7 @@ $anullmentdel = (int)$_GET["adel"]; // el id de la factura a la cual se le deneg
 
 if ($authid) {
     //autorizar una factura de credito
-    $result = $dbc->query("
+    $query = "
     CALL spAutorizarFactura(
     $authid,
     {$_SESSION["user"]->getUid()},
@@ -23,16 +23,18 @@ if ($authid) {
     {$accounts["INVENTARIO"]},
     {$accounts["COSTOSVENTAS"]},
     {$accounts["IMPUESTOSXPAGAR"]}
-    )");
+    )";
+    $result = $dbc->multi_query($query);
 
     if ($result) {
         $print = "<p>La factura se ha autorizado</p>";
     } else {
         $print = "<p class'error'>Hubo un error al autorizar la factura</p>";
     }
+    //$result->free_result();
 } elseif ($del) {
     //denegar un credito
-    $result = $dbc->query("
+    $result = $dbc->multi_query("
     CALL spEliminarFactura($del)
     ");
     if ($result) {
@@ -40,6 +42,7 @@ if ($authid) {
     } else {
         $print = "<p class'error'>Hubo un error al denegar la factura</p>";
     }
+    //$result->free_result();
 }elseif($anullmentid){
 	$query="
         CALL spAutorizarAnulacionFactura(
@@ -54,16 +57,21 @@ if ($authid) {
         {$persontypes["SUPERVISOR"]}
         )
         ";
-    
-    $result = $dbc->query($query);
+    $result = $dbc->multi_query($query);
     
         if ($result) {
         $print = "<p>La Anulaci&oacute;n se ha autorizado</p>";
         } else {
             $print = "<p class'error'>Hubo un error al autorizar la Anulaci&oacute;n </p>";
         }
+        
 }
 
+while($dbc->more_results())
+{
+    $dbc->next_result();
+    $discard = $dbc->store_result();
+}
 $query = "
 SELECT
     d.iddocumento,
