@@ -41,19 +41,22 @@ if ($authid) {
         $print = "<p class'error'>Hubo un error al denegar la factura</p>";
     }
 }elseif($anullmentid){
-    $result = $dbc->query("
+	$query="
         CALL spAutorizarAnulacionFactura(
         $anullmentid,
         {$_SESSION["user"]->getUid()},
         {$docids["ANULACION"]},
         {$docids["FACTURA"]},
         {$docids["RECIBO"]},
-        {$docstates["PENDIENTEANULACION"]},,
+        {$docstates["PENDIENTEANULACION"]},
         {$docstates["CONFIRMADO"]},
         {$docstates["ANULADO"]},
         {$persontypes["SUPERVISOR"]}
-        );
-        ");
+        )
+        ";
+    
+    $result = $dbc->query($query);
+    
         if ($result) {
         $print = "<p>La Anulaci&oacute;n se ha autorizado</p>";
         } else {
