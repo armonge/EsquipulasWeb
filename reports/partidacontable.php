@@ -1,6 +1,6 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("contabilidadrep")){
+if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole("gerencia")) ){
 	die("Usted no tiene permisos para ver este reporte");
 }
 $start = $dbc->real_escape_string($_GET["from"]);

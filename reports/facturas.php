@@ -10,9 +10,9 @@ $query = "
         d.iddocumento,
         d.ndocimpreso,
         p.nombre as cliente,
-        d.total* (1-IF(valorcosto IS NULL,0,valorcosto)/100) as subtotal,
-        d.total*ca.valorcosto/100 as iva,
-        d.total,
+        CONCAT('US$ ',FORMAT(ROUND(d.total / (1+ IF(valorcosto IS NULL,0,valorcosto/100)),4),4))  as subtotal,
+        CONCAT('US$ ',FORMAT(d.total- ROUND(d.total / (1+ IF(valorcosto IS NULL,0,valorcosto/100)),4),4))  as iva,
+        CONCAT('US$ ',FORMAT(d.Total,4)) as total,
         DATE_FORMAT(d.fechacreacion,'%d/%m/%Y') as fechacreacion,
         d.escontado,
         cr.iddocumento as idcredito,
@@ -367,14 +367,14 @@ thead {
                Subtotal
             </td>
             <td>
-                US$ <?php echo number_format($row_rsDocumento["subtotal"],2) ?>
+                <?php echo $row_rsDocumento["subtotal"] ?>
 			</td>
 		</tr>
 		<tr>
-			<td class="white">IVA</td><td> US$ <?php echo number_format($row_rsDocumento["iva"],2) ?></td>
+			<td class="white">IVA</td><td> <?php echo $row_rsDocumento["iva"] ?></td>
 		</tr>
 		<tr>
-			<td class="white">Total</td><td> US$ <?php echo number_format($row_rsDocumento["total"],2) ?>
+			<td class="white">Total</td><td> <?php echo $row_rsDocumento["total"] ?>
 			</td>
 		</tr>
 	</tbody>
