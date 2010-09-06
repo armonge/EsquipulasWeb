@@ -68,7 +68,23 @@ if ($authid) {
             $print = "<p class'error'>Hubo un error al autorizar la Anulaci&oacute;n </p>";
         }
         
-}elseif($devdoc){
+}elseif($anullmentdel){
+    $query="
+    CALL spDenegarAnulacion(
+    $anullmentdel,
+    {$docstates["CONFIRMADO"]},
+    {$docids["ANULACION"]}
+    );
+    ";
+    $result = $dbc->multi_query($query);
+
+    if ($result) {
+    $print = "<p>La Anulaci&oacute;n se ha autorizado</p>";
+    } else {
+        $print = "<p class'error'>Hubo un error al autorizar la Anulaci&oacute;n </p>";
+    }
+    
+}elseif($devolutionid){
     $query="
         CALL spAutorizarDevolucion(
         $devdoc,
@@ -76,7 +92,6 @@ if ($authid) {
         )
         ";
     $result = $dbc->multi_query($query);
-
         if ($result) {
         $print = "<p>La Devoluci&oacute;n se ha autorizado</p>";
         } else {
