@@ -13,7 +13,8 @@ SELECT
     (d.total ) as total,
     p.nombre as cliente,
     d.fechacreacion,
-    d.observacion
+    d.observacion,
+    d.idestado
 FROM documentos d
 JOIN docpadrehijos dpd ON dpd.idhijo = d.iddocumento
 JOIN documentos padre ON dpd.idpadre = padre.iddocumento
@@ -30,7 +31,7 @@ $rsArticulos = $dbc->query("
 SELECT
 ad.descripcion as descripcion,
 axd.unidades,
-(axd.costounit ) as costounit
+(axd.precioventa ) as costounit
 FROM articulosxdocumento axd
 JOIN vw_articulosdescritos ad ON axd.idarticulo = ad.idarticulo
 JOIN documentos d ON d.iddocumento = axd.iddocumento
@@ -46,63 +47,84 @@ WHERE axd.iddocumento = $iddoc
 <base href="<?php echo $basedir ?>" />
 <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
 <title>Llantera Esquipulas: Devoluci&oacute;n No <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+<link rel="stylesheet" type="text/css" href="css/flick/jq.ui.css" />
+<script type="text/javascript" src="js/jq.js"></script>
+<script type="text/javascript" src="js/jq.ui.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#accept, #deny').button()
+});
+</script>
 <style type="text/css">
-html{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10pt;
-	margin:0;
-	padding:0;
-	color:#000;
-}
-body{
-    width:792pt;
-}
-
 .gray {
-	background: #f4f4f4;
+    background: #f4f4f4;
 }
 
 .rigth {
-	text-align: right;
+    text-align: right;
 }
 
 h2 {
-	border-bottom: 4px solid #000000;
-	clear:both;
+    border-bottom: 4px solid #000000;
+    clear:both;
 }
 
 .noborder {
-	border: 0;
+    border: 0;
 }
 
 th {
-	background: #4f4f4f;
-	color: #fff;
+    background: #4f4f4f;
+    color: #fff;
 }
 
 .float {
-	float: left;
-	width: 33%
+    float: left;
+    width: 33%
 }
 
 p {
-	margin: 10px;
+    margin: 10px;
 }
 
 table {
-	text-align: center;
+    text-align: center;
     width:100%;
 }
 thead {
-	    display:table-header-group;
-	    border-width: 1px 0;
-	    border-color:#000;
-	    border-style:solid;
+        display:table-header-group;
+        border-width: 1px 0;
+        border-color:#000;
+        border-style:solid;
 }
 tbody {
     display:table-row-group;
 }
-@media print {
+#action{
+    clear:both;
+    text-align:center;
+    float:left;
+    width:100%;
+    margin:10px;
+}
+.state{
+    text-align:center;
+    border:0;
+}
+@media print{
+    html{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10pt;
+        margin:0;
+        padding:0;
+        color:#000;
+    }
+    body{
+        width:792pt;
+    }
+
+
     .gray {
         background: #fff;
     }
@@ -113,12 +135,21 @@ tbody {
     thead{
         color:#000;
     }
+    #footer, #logo, #uname, #menu, .ui-widget, #action, .state{
+        display:none;
+    }
 } 
 </style>
 </head>
 <body>
-<h1>Llantera Esquipulas</h1>
-<h2>Devoluciones</h2>
+<div id="wrap">
+<?php include "../header.php"?>
+<div id="content">
+<?php if($_SESSION["user"]->hasRole("gerencia")   && $row_rsDocumento["idestado"] != $docstates["CONFIRMADO"]){ ?>
+    <h2 class="state"><?php if($row_rsDocumento["idestado"] == $docstates["PENDIENTE"]){ echo  "Devoluci&oacute;n pendiente de autorizaci&oacute;n"; } ?> </h2>
+<?php } ?>
+
+<h2>Devoluci&oacute;n</h2>
 <p><strong>Numero de Devolucion:</strong> <?php echo $row_rsDocumento["ndocimpreso"] ?>
 <br />
 Factura: <?php echo $row_rsDocumento["factura"] ?><br />
@@ -138,15 +169,15 @@ Cliente: <?php echo $row_rsDocumento["cliente"] ?></p>
 	<tr <?php if($color % 2 == 0 ){ echo "class='gray'"; } ?>>
 		<td><?php echo $row_rsArticulos["descripcion"] ?></td>
 		<td><?php echo $row_rsArticulos["unidades"] ?></td>
-		<td>C$ <?php echo number_format($row_rsArticulos["costounit"],4) ?></td>
-		<td>C$ <?php echo number_format($row_rsArticulos["unidades"]*$row_rsArticulos["costounit"],4) ?>
+		<td>US$ <?php echo number_format($row_rsArticulos["costounit"],4) ?></td>
+		<td>US$ <?php echo number_format($row_rsArticulos["unidades"]*$row_rsArticulos["costounit"],4) ?>
 		</td>
 	</tr>
 	<?php } ?>
 	<tr>
 		<td colspan="2"></td>
 		<td>TOTAL</td>
-		<td>C$ <?php echo number_format($row_rsDocumento["total"],4) ?></td>
+		<td>US$ <?php echo number_format($row_rsDocumento["total"],4) ?></td>
 	</tr>
 	</tbody>
 </table>
@@ -154,5 +185,20 @@ Cliente: <?php echo $row_rsDocumento["cliente"] ?></p>
 <h2>Observaciones</h2>
 <div><?php echo $row_rsDocumento["observacion"] ?></div>
 <?php } ?>
+
+<?php
+if($_SESSION["user"]->hasRole("gerencia")   && $row_rsDocumento["idestado"] != $docstates["CONFIRMADO"]){
+    if($row_rsDocumento["idestado"] == $docstates["PENDIENTE"]){ ?>
+<div id="action">
+        <a id="accept" href="<?php echo $base ?>administration/authorizations.php?devdoc=<?php echo $iddoc ?>"
+         onclick="return confirm('¿Realmente desea confirmar esta devoluci&oacute;n?')" >Autorizar</a>
+        <a id="deny" href="<?php echo $base ?>administration/authorizations.php?devdel=<?php echo $iddoc ?>"
+        onclick="return confirm('¿Realmente desea denegar esta devoluci&oacute;n?')">Denegar</a>
+</div>
+<?php } }?>
+<?php include "../footer.php" ?>
+</div>
+
+</div>
 </body>
 </html>
