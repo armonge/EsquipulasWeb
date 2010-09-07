@@ -28,8 +28,8 @@ foreach($data as $d){
         JOIN documentos d ON axd.iddocumento = d.iddocumento
         JOIN tiposdoc td  ON td.idtipodoc = d.idtipodoc
         JOIN vw_articulosdescritos v ON v.idarticulo = axd.idarticulo
-        WHERE  v.idarticulo = $d AND d.idestado = {$docstates["CONFIRMADO"]}
-        AND d.idtipodoc IN ({$docids["ENTRADALOCAL"]},{$docids["KARDEX"]},{$docids["LIQUIDACION"]},{$docids["FACTURA"]})
+        WHERE  v.idarticulo = $d AND d.idestado IN ( {$docstates["CONFIRMADO"]}, {$docstates["ANULADO"]})
+        -- AND d.idtipodoc IN ({$docids["ENTRADALOCAL"]},{$docids["KARDEX"]},{$docids["LIQUIDACION"]},{$docids["FACTURA"]})
         GROUP BY DATE(d.fechacreacion)
         ORDER BY d.fechacreacion
         ");
