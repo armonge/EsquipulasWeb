@@ -33,6 +33,7 @@ $modules = array(
 $docids = array(
     "ANULACION" => 2,
     "FACTURA" => 5,
+    "LIQUIDACION" => 7,
     "DEVOLUCION" => 10,
     "NOTADEBITO" => 11,
     "CHEQUE" => 12,
