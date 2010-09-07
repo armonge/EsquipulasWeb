@@ -21,7 +21,7 @@ foreach($data as $d){
             WHERE idarticulo = axd.idarticulo AND  di.fechacreacion < d.fechacreacion
              ),0) as unidades,
             SUM(axd.unidades) as diferencia,
-            UNIX_TIMESTAMP(DATE(d.fechacreacion)) * 1000 as  stamp,
+            UNIX_TIMESTAMP(d.fechacreacion) * 1000 as  stamp,
             v.descripcion as nombre,
             CONCAT_WS(' ',td.descripcion,d.ndocimpreso) as ndocimpreso
         FROM articulosxdocumento axd
@@ -30,7 +30,7 @@ foreach($data as $d){
         JOIN vw_articulosdescritos v ON v.idarticulo = axd.idarticulo
         WHERE  v.idarticulo = $d AND d.idestado IN ( {$docstates["CONFIRMADO"]}, {$docstates["ANULADO"]})
         -- AND d.idtipodoc IN ({$docids["ENTRADALOCAL"]},{$docids["KARDEX"]},{$docids["LIQUIDACION"]},{$docids["FACTURA"]})
-        GROUP BY DATE(d.fechacreacion)
+        GROUP BY d.iddocumento
         ORDER BY d.fechacreacion
         ");
         $data = $dbc->query($query);
