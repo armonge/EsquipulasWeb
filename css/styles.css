@@ -152,10 +152,13 @@ h1{
         padding:0;
 }
 #canvas{
-        float:left;
-        width: 700px;
-        margin-left: 30px;
-        height:500px;
+    float:left;
+    width: 700px;
+    margin-left: 30px;
+    height:500px;
+    color:#000;
+    font-weight:bold;
+    margin-bottom:30px;
 }
 .error {
     background: #C00000;

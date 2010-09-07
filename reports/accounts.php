@@ -28,7 +28,7 @@ foreach($data as $d){
 		if($data->num_rows){
 			while ($row = $data->fetch_array(MYSQLI_ASSOC)) {
 				$label = $row["nombre"];
-				$inner[] = array( (int)$row["stamp"],(int)$row["total"]);
+				$inner[] = array($row["stamp"],$row["total"]);
 			}
 		$return[] = array("label"=>$label,"data"=>$inner);
 		}

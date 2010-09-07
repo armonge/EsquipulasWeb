@@ -41,6 +41,7 @@ if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole
 
 		<?php } if($_SESSION["user"]->hasRole("ventasrep") || $_SESSION["user"]->hasRole("gerencia")){ ?>
 			<li><a href="reports/articlessales.php">Ventas x producto</a></li>
+			<li><a href="reports/articlessalespie.php">5 Productos m&aacute;s vendidos</a></li>
 			<li><a href="reports/salesxclient.php">Ventas x Persona</a></li>
 
 		<?php } if($_SESSION["user"]->hasRole("inventariorep") || $_SESSION["user"]->hasRole("gerencia")){ ?>

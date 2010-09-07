@@ -12,11 +12,15 @@ $endDate = $dbc->real_escape_string($_GET["endDate"]);
 foreach($data as $d){
 	if((int)$d){
 		$query= ("
-			SELECT v.idarticulo, SUM(precioventa*unidades)*-1 as total ,UNIX_TIMESTAMP(DATE(fechacreacion))*1000 as stamp, v.descripcion as nombre
+			SELECT
+                v.idarticulo,
+                SUM(precioventa*unidades)*-1 as total ,
+                UNIX_TIMESTAMP(DATE(fechacreacion))*1000 as stamp,
+                v.descripcion as nombre
 			FROM articulosxdocumento axd
 			JOIN documentos d ON axd.iddocumento = d.iddocumento
 			JOIN vw_articulosdescritos v ON v.idarticulo = axd.idarticulo
-			WHERE axd.precioventa IS NOT NULL
+			WHERE d.idtipodoc = {$docids["FACTURA"]}
 			AND v.idarticulo = $d ".
 				( $startDate ? " AND DATE(fechacreacion)  >= '" . $startDate ."'": "" )
 				.( $endDate ? " AND  DATE(fechacreacion) <= '" . $endDate . "'": "" )
@@ -30,7 +34,7 @@ foreach($data as $d){
 		if($data->num_rows){
 			while ($row = $data->fetch_array(MYSQLI_ASSOC)) {
 				$label = $row["nombre"];
-				$inner[] = array( (int)$row["stamp"],(int)$row["total"]);
+				$inner[] = array( $row["stamp"],$row["total"]);
 			}
 		$return[] = array("label"=>$label,"data"=>$inner);
 		}
