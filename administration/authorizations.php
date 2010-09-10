@@ -54,6 +54,7 @@ if ($authid) {
         {$docids["ANULACION"]},
         {$docids["FACTURA"]},
         {$docids["RECIBO"]},
+        {$docids["KARDEX"]},
         {$docstates["PENDIENTEANULACION"]},
         {$docstates["CONFIRMADO"]},
         {$docstates["ANULADO"]},
@@ -87,10 +88,24 @@ if ($authid) {
 }elseif($devolutionid){
     $query="
         CALL spAutorizarDevolucion(
-        $devdoc,
+        $devolutionid,
         {$_SESSION["user"]->getUid()},
+        {$persontypes["SUPERVISOR"]},
+        {$docids["NOTACREDITO"]},
+        {$docids["FACTURA"]},
+        {$docids["CIERRE"]},
+        {$docids["RECIBO"]},
+        {$docstates["CONFIRMADO"]},
+        {$docstates["PENDIENTE"]},
+        {$accounts["VENTASNETAS"]},
+        {$accounts["COSTOSVENTAS"]},
+        {$accounts["IMPUESTOSXPAGAR"]},
+        {$accounts["RETENCIONPAGADA"]},
+        {$accounts["CAJA"]},
+        {$accounts["INVENTARIO"]}
         )
         ";
+    echo $query;
     $result = $dbc->multi_query($query);
         if ($result) {
         $print = "<p>La Devoluci&oacute;n se ha autorizado</p>";
@@ -116,7 +131,7 @@ JOIN creditos cr ON cr.iddocumento = d.iddocumento
 JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
 JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["CLIENTE"]}
 WHERE d.idestado = {$docstates["PENDIENTE"]} AND d.idtipodoc = {$docids["FACTURA"]}
-ORDER BY d.idtipodoc
+ORDER BY d.iddocumento
 ";
 $rsCreditInvoices = $dbc->query($query);
 
@@ -135,6 +150,7 @@ JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
 JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento AND pxd.idaccion = {$persontypes["USUARIO"]}
 JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["USUARIO"]}
 WHERE d.idtipodoc = {$docids["ANULACION"]} AND d.idestado = {$docstates["PENDIENTE"]}
+ORDER BY d.iddocumento
 ";
 $rsAnullments = $dbc->query($query);
 
@@ -152,7 +168,8 @@ $query = "
     JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
     JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento AND pxd.idaccion = {$persontypes["USUARIO"]}
     JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["USUARIO"]}
-    WHERE d.idtipodoc = {$docids["DEVOLUCION"]} AND d.idestado = {$docstates["PENDIENTE"]}
+    WHERE d.idtipodoc = {$docids["NOTACREDITO"]} AND d.idestado = {$docstates["PENDIENTE"]}
+    ORDER BY d.iddocumento
  ";
  $rsDevolutions = $dbc->query($query);
 ?>

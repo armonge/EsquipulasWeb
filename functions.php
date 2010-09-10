@@ -31,14 +31,14 @@ $modules = array(
 );
 /**********document ids*******************/
 $docids = array(
+    "CIERRE" => 1, 
     "ANULACION" => 2,
     "FACTURA" => 5,
     "LIQUIDACION" => 7,
-    "DEVOLUCION" => 10,
+    "NOTACREDITO" => 10,
     "NOTADEBITO" => 11,
     "CHEQUE" => 12,
     "DEPOSITO" => 13,
-    "NOTACREDITO" => 14,
     "RECIBO" => 18,
     "RETENCION" => 19,
     "ENTRADALOCAL" => 21,
@@ -77,10 +77,11 @@ $accounts = array(
     "INVENTARIO" =>22,
     "COSTOSVENTAS" =>182,
     "IMPUESTOSXPAGAR" =>133,
-    "CXCCLIENTE" => 14,
+    "RETENCIONPAGADA" => 35,
     "INVENTARIO" => 22,
     "COSTOSVENTAS" => 182,
-    "IMPUESTOSXPAGAR" => 133
+    "IMPUESTOSXPAGAR" => 133,
+    "CAJA" => 5
 );
 /*************costs ******************/
 $costs = array(

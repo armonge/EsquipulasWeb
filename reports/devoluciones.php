@@ -21,7 +21,7 @@ JOIN documentos padre ON dpd.idpadre = padre.iddocumento
 JOIN personasxdocumento pxd ON d.iddocumento = pxd.iddocumento
 JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona != {$persontypes["USUARIO"]}
 LEFT JOIN tiposcambio tc ON tc.idtc = d.idtipocambio
-WHERE d.idtipoDoc = {$docids["DEVOLUCION"]}
+WHERE d.idtipoDoc = {$docids["NOTACREDITO"]}
 AND d.iddocumento = $iddoc
 ";
 $rsDocumento = $dbc->query($query);
