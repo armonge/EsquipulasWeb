@@ -31,7 +31,7 @@ $modules = array(
 );
 /**********document ids*******************/
 $docids = array(
-    "CIERRE" => 1, 
+     
     "ANULACION" => 2,
     "FACTURA" => 5,
     "LIQUIDACION" => 7,
@@ -47,6 +47,9 @@ $docids = array(
     "CONCILIACION" => 25,
     "ERROR" => 26,
     "KARDEX" => 27,
+    "CIERREMENSUAL" => 28,
+    "CIERREANUAL" => 29,
+    "PAGO" => 30
 );
 /************person types********************/
 $persontypes = array(
