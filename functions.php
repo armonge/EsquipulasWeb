@@ -289,7 +289,7 @@ function num2letras($num, $fem = true, $dec = true) {
 	}
 	$ent = '     ' . $ent;
 	if ($dec and $fra and ! $zeros) {
-		$fin = ' coma';
+		$fin = ' punto';
 		for ($n = 0; $n < strlen($fra); $n++) {
 			if (($s = $fra[$n]) == '0')
 			$fin .= ' cero';

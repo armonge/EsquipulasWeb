@@ -36,6 +36,9 @@ $(function(){
 		$(".addwarehouse").toggle()
 		return false;
 	});
+	$("input:checkbox").click(function(){
+        $("tr").not($(this).parent().parent()).fadeOut()
+    });
 
 });
 </script>
@@ -56,12 +59,19 @@ $(function(){
 	<div id="left-column">
 		<h1>Bodegas</h1>
 		<?php echo $status ?>
-		<ul>
+		<table>
+<!-- 		<ul> -->
 			<?php while($row_rsWarehouse = $rsWarehouses->fetch_array(MYSQLI_ASSOC)){ ?>
-				  <li><?php echo $row_rsWarehouse["nombrebodega"]?>
-				  </li>
+			<tr>
+                
+				  <td>
+				  <input id="instance_selected0" name="instance_selected0" value="" type="checkbox">
+				  <?php echo $row_rsWarehouse["nombrebodega"]?>
+				  </td>
+          </tr>
 			<?php } ?>
-		</ul>
+<!-- 		</ul> -->
+		</table>
 		<a href="#" id="add">A&ntilde;adir Bodega</a>
 		<div class="hide addwarehouse">
 			<form class="cform" method="post" action="administration/warehouses.php">

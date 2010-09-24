@@ -36,18 +36,24 @@ var options = {
 	    yaxis: {
 		    tickFormatter: function(val, axis){
 				return moneysimbol+val.moneyfmt(0);
-			}
+			},
+            labelWidth: 80,
+            backgroundColor:"#000",
+            color:"#000",
+            tickColor: "#000"
 		},
 	   	minTickSize: [1, "day"],
 	   	grid: {
-		    hoverable: true
+		    hoverable: true,
+		    canvasText: {show: true, font:"sans 8px" },
+            backgroundColor:"#fff"
 		}
 
 };
 var legend = {
 		show: true,
 		position: "ne",
-		backgroundOpacity: 0
+		backgroundOpacity: 0,
 };
 var data= [];
 var placeholder = $("#canvas");
@@ -91,7 +97,8 @@ $("input:checkbox").click(function(){
 		"endDate": enddate
 	    },
 	    success:function(data){
-		$.plot(placeholder, data, options)
+		plot = $.plot(placeholder, data, options)
+
 	    }
 	});
 	var previousPoint = null;

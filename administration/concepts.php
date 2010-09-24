@@ -156,6 +156,7 @@ $(function(){
             <option id="doc_25" value="25"> CONCILIACION </option>
             <option id="doc_26" value="26"> ERROR </option>
             <option id="doc_27" value="27"> KARDEX</option>
+            <option id="doc_30" value="30"> AJUSTE DE BODEGA</option>
     </select>
     <select size="5" id="concepts">
     <?php while($row_rsConcepts = $rsConcepts->fetch_array(MYSQLI_ASSOC)){ ?>

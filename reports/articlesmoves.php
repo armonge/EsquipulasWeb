@@ -67,6 +67,11 @@ $rsArticles= $dbc->query("SELECT idarticulo, descripcion FROM vw_articulosdescri
 <script type="text/javascript" src="js/jq.flot.js"></script>
 <script type="text/javascript" src="js/jq.ui.js"></script>
 <script type="text/javascript" src="js/jquery.ui.datepicker-es.js"></script>
+
+<!-- Descargar la imagen -->
+<script type="text/javascript" src="js/jq.flot.text.js"></script>
+<script type="text/javascript" src="js/base64.js"></script>
+<script type="text/javascript" src="js/canvas2image.js"></script>
 <script type="text/javascript">
 var jsonaddress = "<?php echo $basedir ?>reports/articlesmoves.php";
 var moneysimbol = "US$";
@@ -84,7 +89,7 @@ $(function(){
       return dt.getDate()+ "-"+ mm+ "-" +dt.getFullYear();
     }
     
-    var options = {
+var options = {
         lines:{show:true},
         points:{show:true},
         xaxis: {
@@ -98,15 +103,20 @@ $(function(){
         yaxis: {
             tickFormatter: function(val, axis){
                 return val;
-            }
+            },
+            labelWidth: 80,
+            backgroundColor:"#000",
+            color:"#000",
+            tickColor: "#000"
         },
         minTickSize: [1, "day"],
         grid: {
-            hoverable: true
+            hoverable: true,
+            canvasText: {show: true, font:"sans 8px" },
+            backgroundColor:"#fff"
         }
 
-    };
-
+};
     function showTooltip(x, y, contents) {
         /*<![CDATA[*/
         $('<div id="tooltip">' + contents + '<\/div>').css( {

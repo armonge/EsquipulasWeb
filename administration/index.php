@@ -72,6 +72,12 @@ if(!$_SESSION["user"]->hasRole("gerencia")){
 				Vendedores
 			    </a>
 			</li>
+			<li>
+                <a href="administration/bankaccounts.php" title="Administraci&oacute;n de Cuentas Bancarias">
+                <img src="img/view-bank-account-savings.png" alt="Administraci&oacute;n de Cuentas Bancarias" />
+                Cuentas Bancarias
+                </a>
+            </li>
 
 			<li>
 			    <a href="administration/warehouses.php" title="Bodegas">

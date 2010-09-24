@@ -80,9 +80,9 @@ if ($authid) {
     $result = $dbc->multi_query($query);
 
     if ($result) {
-    $print = "<p>La Anulaci&oacute;n se ha autorizado</p>";
+    $print = "<p>Se ha denegado la anulaci&oacute;</p>";
     } else {
-        $print = "<p class'error'>Hubo un error al autorizar la Anulaci&oacute;n </p>";
+        $print = "<p class'error'>Hubo un error al denegar la Anulaci&oacute;n </p>";
     }
     
 }elseif($devolutionid){

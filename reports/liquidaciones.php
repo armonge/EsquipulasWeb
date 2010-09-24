@@ -1,6 +1,6 @@
 <?php
 require_once "../functions.php";
-$iddoc = $dbc->real_escape_string($_GET["doc"]);
+$iddoc = (int)$_GET["doc"];
 if(!$iddoc){
     die();
 }else{
@@ -37,7 +37,7 @@ if(!$iddoc){
   JOIN bodegas b ON b.idbodega = d.idbodega
   JOIN liquidaciones l ON l.iddocumento = d.iddocumento
     JOIN tiposcambio tc ON tc.idtc = d.idtipocambio
-    WHERE d.ndocimpreso='$iddoc'
+    WHERE d.iddocumento='$iddoc'
   GROUP BY l.iddocumento
  ;
     ";
@@ -78,13 +78,14 @@ if(!$iddoc){
 }
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type"
 	content="application/xhtml+xml; charset=UTF-8" />
 <link rel="shortcut icon" href="<?php echo $basedir ?>favicon.ico" />
-<title>Llantera Esquipulas: Liquidaci&oacute;n <?php echo $row_rsDocumento["ndocimpreso"] ?></title>
+<title>Llantera Esquipulas: Liquidaci&oacute;n <?php echo utf8tohtml($row_rsDocumento["ndocimpreso"]) ?></title>
 <style type="text/css">
 html{
     border:0;
@@ -172,16 +173,16 @@ table{
 <div style="width:100%">
 <h2>Liquidaci&oacute;n de costos</h2>
 <div class="float">
-<p><strong>Poliza: </strong><?php echo $row_rsDocumento["ndocimpreso"] ?></p>
-<p><strong>Procedencia: </strong><?php echo $row_rsDocumento["procedencia"] ?></p>
+<p><strong>Poliza: </strong><?php echo utf8tohtml($row_rsDocumento["ndocimpreso"]) ?></p>
+<p><strong>Procedencia: </strong><?php echo utf8tohtml($row_rsDocumento["procedencia"]) ?></p>
 </div>
 <div class="float">
 <p><strong>Fecha: </strong><?php echo $row_rsDocumento["fechacreacion"] ?></p>
-<p><strong>Bodega: </strong><?php echo $row_rsDocumento["nombrebodega"] ?></p>
+<p><strong>Bodega: </strong><?php echo utf8tohtml($row_rsDocumento["nombrebodega"]) ?></p>
 </div>
 <div class="float">
 <p><strong>Tipo Cambio: </strong><?php echo $row_rsDocumento["tasa"] ?></p>
-<p><strong>Proveedor: </strong><?php echo $row_rsDocumento["nombre"] ?></p>
+<p><strong>Proveedor: </strong><?php echo utf8tohtml($row_rsDocumento["nombre"]) ?></p>
 
 </div>
 </div>

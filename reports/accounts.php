@@ -50,10 +50,18 @@ $rsAccounts = $dbc->query("SELECT idcuenta, codigo, descripcion FROM cuentascont
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <link type="text/css" href="css/flick/jq.ui.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
 <script type="text/javascript" src="js/jq.js"></script>
 <script type="text/javascript" src="js/jq.flot.js"></script>
+
 <script type="text/javascript" src="js/jq.ui.js"></script>
 <script type="text/javascript" src="js/jquery.ui.datepicker-es.js"></script>
+
+<!-- Descargar la imagen -->
+<script type="text/javascript" src="js/jq.flot.text.js"></script>
+<script type="text/javascript" src="js/base64.js"></script>
+<script type="text/javascript" src="js/canvas2image.js"></script>
+
 <script type="text/javascript">
 var jsonaddress = "<?php echo $basedir ?>reports/accounts.php";
 var moneysimbol = "C$";
@@ -68,6 +76,21 @@ $(function(){
 	}
     });
     $.getScript("js/linegraph.js");
+    $("#download-image").click(function(){
+        var canvas = document.getElementsByTagName("canvas")[0]
+        if(canvas.getContext){
+//             var context = canvas.getContext("2d");
+//             context.fillStyle = "green";r
+//             context.fillRect(50, 50, 100, 100);
+//             // no argument defaults to image/png; image/jpeg, etc also work on some
+//             // implementations -- image/png is the only one that must be supported per spec.
+//             window.location = canvas.toDataURL("image/png");
+                Canvas2Image.saveAsPNG(canvas);
+        }else{
+            alert("Se necesita otro navegador para esta función")
+        }
+          return false;
+    });
 });
 </script>
 <style type="text/css">
@@ -96,6 +119,7 @@ $(function(){
 	type="text" id="to" name="to" />
 	<label>Descripci&oacute;n<input type="radio" value="1"  name="view" checked="checked"/></label>
     <label>Codigo: <input type="radio" value="2"  name="view" /></label>
+    <a href="#" id="download-image">Descargar imagen</a>
 </div>
 
 <div id="leftcol">

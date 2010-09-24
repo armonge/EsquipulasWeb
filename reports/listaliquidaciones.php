@@ -54,7 +54,7 @@ $(function(){
      <?php if($rsLiquidaciones->num_rows){ ?>
     <ul>
          <?php while($row_rsDocument = $rsLiquidaciones ->fetch_array(MYSQLI_ASSOC)){ ?>
-            <li><a href="<?php echo $base ?>reports/liquidaciones.php?doc=<?php echo $row_rsDocument["ndocimpreso"] ?>"><?php echo $row_rsDocument["Fecha"] ?> para <?php echo $row_rsDocument["Proveedor"] ?></a></li>
+            <li><a href="<?php echo $base ?>reports/liquidaciones.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>"><?php echo $row_rsDocument["Fecha"] ?> para <?php echo $row_rsDocument["Proveedor"] ?></a></li>
          <?php } ?>
     </ul>
      <?php } ?>

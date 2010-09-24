@@ -15,7 +15,7 @@ SELECT
     p.nombre as 'cliente',
     padre.total as 'total',
     c.descripcion as 'concepto',
-    padre.total - IFNULL(hijo.total,0) as 'Total Pagado', 
+    ROUND(padre.total - IFNULL(hijo.total,0),2) as 'total',
     padre.observacion ,
 	IF(hijo.iddocumento IS NULL, 0,1) as 'Con Retencion'
 FROM documentos padre
@@ -95,7 +95,7 @@ h1 {
 <p><strong>C$</strong> <span class="under"><?php echo $row_rsRecibo["montoc"]?></span></p>
 </div>
 <p>Recibi de: <span><?php echo $row_rsRecibo["cliente"]?></span></p>
-<p>La cantidad de: <span></span></p>
+<p>La cantidad de: <span><?php echo num2letras($row_rsRecibo["total"]) ?> dolares</span></p>
 <p>En concepto de:</p>
 <ul>
 <?php while($row_rsDetails = $rsDetails->fetch_array(MYSQLI_ASSOC)){ ?>

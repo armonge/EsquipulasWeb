@@ -62,6 +62,11 @@ $rsArticles= $dbc->query("SELECT idarticulo, descripcion FROM vw_articulosdescri
 <script type="text/javascript" src="js/jq.flot.js"></script>
 <script type="text/javascript" src="js/jq.ui.js"></script>
 <script type="text/javascript" src="js/jquery.ui.datepicker-es.js"></script>
+
+<!-- Descargar la imagen -->
+<script type="text/javascript" src="js/jq.flot.text.js"></script>
+<script type="text/javascript" src="js/base64.js"></script>
+<script type="text/javascript" src="js/canvas2image.js"></script>
 <script type="text/javascript">
 var jsonaddress = "<?php echo $basedir ?>reports/articlessales.php";
 var moneysimbol = "US$";
