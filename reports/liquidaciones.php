@@ -70,7 +70,7 @@ if(!$iddoc){
         JOIN vw_articulosdescritos a ON a.idarticulo = v.idarticulo
 	JOIN documentos d on d.iddocumento=v.iddocumento
 	JOIN tiposcambio tc ON tc.idtc = d.idtipocambio
-	WHERE d.ndocimpreso= '$iddoc'
+	WHERE d.iddocumento= '$iddoc'
 	");
 
 

@@ -5,20 +5,31 @@ if(!$id){
     die();
 }
 $query = "
-SELECT p.idpersona, p.nombre, p.telefono, p.email, p.ruc,p.activo, SUM(d.total) as total
+SELECT
+    p.idpersona,
+    p.nombre,
+    p.telefono,
+    p.email,
+    p.ruc,
+    p.activo,
+    SUM(d.total) as total
 FROM personas p
 JOIN personasxdocumento pxd ON pxd.idpersona = p.idpersona
-JOIN documentos d ON d.iddocumento = pxd.iddocumento AND d.idtipodoc = 5
-WHERE p.idpersona = $id AND p.tipopersona = 1
+JOIN documentos d ON d.iddocumento = pxd.iddocumento AND d.idtipodoc = {$docids["FACTURA"]}
+WHERE p.idpersona = $id AND p.tipopersona = {$persontypes["CLIENTE"]}
 ";
 $rsDetails = $dbc->query($query);
 $row_rsDetails = $rsDetails->fetch_array(MYSQLI_ASSOC);
 
 $query="
 SELECT
-d.iddocumento, d.ndocimpreso, UNIX_TIMESTAMP(d.fechacreacion)*1000 as stamp, d.total
+    d.iddocumento,
+    d.ndocimpreso,
+    UNIX_TIMESTAMP(d.fechacreacion)*1000 as stamp,
+    d.total
 FROM documentos d
-WHERE d.idpersona = $id AND d.idtipodoc = 5
+JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
+WHERE pxd.idpersona = $id AND d.idtipodoc = {$docids["FACTURA"]}
 ORDER BY DATE(d.fechacreacion)
 ";
 $rsTransactions = $dbc->query($query);
@@ -73,7 +84,7 @@ $(function(){
     {
       var dt = new Date(timestamp);
       var mm = mmToMonth[dt.getMonth()];
-      return dt.getDate()+ "-"+ mm+ "-" +dt.getFullYear();
+      return dt.getDate()+ "-"+ mm+ "-" +dt.getFullYear() + " " +dt.getHours() + ":"+dt.getMinutes();
     }
     var placeholder = $("#canvas");
     
@@ -83,13 +94,14 @@ $(function(){
 	    xaxis: {
 		mode:'time',
 		timeformat: "%d-%m-%y",
-		ticks:5
+// 		ticks:5
 		},
 	    yaxis: {
 		    tickFormatter: function(val, axis){
 				return moneysimbol+val.moneyfmt(0);
 			}
 		},
+		tickSize:1,
 	   	minTickSize: [1, "day"],
 	   	grid: {
 		    hoverable: true,
@@ -159,7 +171,7 @@ $(function(){
 	<p>
 		<a href="clients/edit.php?id=<?php echo $id ?>">Editar</a> /
 		<?php if($row_rsDetails["activo"] == 1){ ?>
-		<a href="clients/?del=<?php echo $id ?>" onclick="return confirm('Realmente desea establecer este cliente como inactivo?')" title="Esto solo borrar al cliente de la lista de clientes pero no eliminara los registros de sus transacciones">Desactivar cliente</a>
+		<a href="clients/?del=<?php echo $id ?>" onclick="return confirm('Realmente desea establecer este cliente como inactivo?')" title="Esto solo borrar al cliente de la lista de clientes pero no eliminara los registros de sus transacciones">Borrar cliente</a>
 		<?php }else{ ?>
 		<a href="clients/?del=<?php echo $id ?>" onclick="return confirm('Realmente desea establecer este cliente como activo?')" >Activar cliente</a>
 		<?php } ?>
