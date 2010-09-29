@@ -29,9 +29,8 @@ var options = {
 		mode:'time',
 		timeformat: "%d-%m-%y",
 		monthNames : mmToMonth,
-		ticks:5
-		    
-
+		ticks:5,
+        autoscaleMargin:0.1
 		},
 	    yaxis: {
 		    tickFormatter: function(val, axis){
@@ -40,7 +39,8 @@ var options = {
             labelWidth: 80,
             backgroundColor:"#000",
             color:"#000",
-            tickColor: "#000"
+            tickColor: "#000",
+             autoscaleMargin:0.1
 		},
 	   	minTickSize: [1, "day"],
 	   	grid: {

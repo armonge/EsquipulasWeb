@@ -84,7 +84,7 @@ $(function(){
     {
       var dt = new Date(timestamp);
       var mm = mmToMonth[dt.getMonth()];
-      return dt.getDate()+ "-"+ mm+ "-" +dt.getFullYear() + " " +dt.getHours() + ":"+dt.getMinutes();
+      return dt.getDate()+ "-"+ mm+ "-" +dt.getFullYear();
     }
     var placeholder = $("#canvas");
     
@@ -94,12 +94,14 @@ $(function(){
 	    xaxis: {
 		mode:'time',
 		timeformat: "%d-%m-%y",
-// 		ticks:5
+ 		ticks:5,
+        autoscaleMargin:0.1
 		},
 	    yaxis: {
 		    tickFormatter: function(val, axis){
 				return moneysimbol+val.moneyfmt(0);
-			}
+			},
+			 autoscaleMargin:0.1
 		},
 		tickSize:1,
 	   	minTickSize: [1, "day"],
@@ -115,7 +117,7 @@ $(function(){
 		    backgroundOpacity: 0
     };
     data = [{"label":"Ultimas Compras","data":[
-    <?php while($row_rsTransaction = $rsTransactions->fetch_array(MYSQLI_ASSOC)){
+    <?php while($row_rsTransaction = $rsTransactions->fetch_assoc()){
 	echo "[".$row_rsTransaction["stamp"].",".$row_rsTransaction["total"].",".$row_rsTransaction["iddocumento"]."],";
     }
     ?>]}];
@@ -175,6 +177,7 @@ $(function(){
 		<?php }else{ ?>
 		<a href="clients/?del=<?php echo $id ?>" onclick="return confirm('Realmente desea establecer este cliente como activo?')" >Activar cliente</a>
 		<?php } ?>
+    </p>
     <p>
 	<span><strong>Telef&oacute;no:</strong> <?php echo $row_rsDetails["telefono"] ?></span>
 	<span><strong>e-mail:</strong> <?php echo $row_rsDetails["email"] ?></span>

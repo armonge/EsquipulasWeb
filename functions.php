@@ -100,7 +100,7 @@ $costs = array(
 );
 /*************db connection ***************/
 /* @var $dbc mysqli */
-$dbc = @new MySQLI(DBHOST,DBUSER,DBPASS,DB);
+$dbc = new MySQLIEsquipulas(DBHOST,DBUSER,DBPASS,DB);
 
 
 /*************validate user******************/

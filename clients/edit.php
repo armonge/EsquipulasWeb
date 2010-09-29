@@ -4,6 +4,24 @@ if(!$_SESSION["user"]->hasRole("root")){
 	die("Usted no tiene permisos para editar clientes");
 }
 $status = "edit";
+if(isset($_POST["edit"])){
+    $id = (int)$_POST["id"];
+    if( $id){
+        $name = $dbc->real_escape_string($_POST["name"]);
+        $ruc = $dbc->real_escape_string($_POST["ruc"]);
+        $mail = $dbc->real_escape_string($_POST["mail"]);
+        $phone = $dbc->real_escape_string($_POST["phone"]);
+
+        $query = "
+        UPDATE personas 
+        SET   nombre = '$name', telefono = '$phone',  email = '$mail', ruc ='$ruc'
+        WHERE idpersona = $id
+        LIMIT 1
+        ";
+        $dbc->query($query);
+        $status = "success";
+    }
+}
 $id = (int)$_GET["id"];
 if(!$id){
 	header("Location: 404.php");
@@ -57,38 +75,38 @@ $(function(){
 		<?php echo $error ?>
 		<?php if($status == "success"){?>
 			<p>El Cliente se edito exitosamente</p>
-		<?php }elseif($status == "edit"){ ?>
+		<?php } ?>
 		<form class="cforms" method="post" action="clients/edit.php?id=<?php echo $id ?>">
 		<p>
 			<label>
 				<span>Nombre</span>
-				<input type="text" class="required" name="name" value="<?php echo $row_rsDetails["nombre"]?>" />
+				<input type="text" class="required" name="name" value="<?php echo utf8tohtml($row_rsDetails["nombre"]) ?>" />
 			</label>
 		</p>
 		<p>
 			<label>
 				<span>RUC / Identificacci&oacute;n</span>
-				<input type="text" class="required" name="ruc" value="<?php echo $row_rsDetails["ruc"] ?>" />
+				<input type="text" class="required" name="ruc" value="<?php echo utf8tohtml($row_rsDetails["ruc"]) ?>" />
 			</label>
 		</p>
 		<p>
 			<label>
 				<span>E-mail</span>
-				<input type="text" class="required email" name="mail" value="<?php echo $row_rsDetails["email"] ?>" />
+				<input type="text" class="required email" name="mail" value="<?php echo utf8tohtml($row_rsDetails["email"]) ?>" />
 			</label>
 		</p>
 		<p>
 			<label>
 				<span>Tel&eacute;fono</span>
-				<input type="text" class="required number" name="phone" value="<?php echo $row_rsDetails["telefono"] ?>" />
+				<input type="text" class="required number" name="phone" value="<?php echo utf8tohtml($row_rsDetails["telefono"]) ?>" />
 			</label>
 		</p>
 		<p>
 			<input type="submit" value="Aceptar" />
 			<input type="hidden" value="yes" name="edit" />
+			<input type="hidden" value="<?php echo $row_rsDetails["idpersona"] ?>" name="id" />
 		</p>
 		</form>
-		<?php } ?>
 	</div>
 </div>
 <?php include "../footer.php" ?>
