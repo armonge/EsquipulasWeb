@@ -1,177 +1,187 @@
 <?php
 require_once "../functions.php";
-if (!$_SESSION["user"]->hasRole("gerencia")) {
-    die("Usted no tiene permisos para administrar autorizaciones");
-}
-$authid = (int) $_GET["doc"]; // El id de la factura de credito a autorizar
-$del = (int) $_GET["del"];// El id de la factura de credito a denegar
-
-
-$anullmentid = (int)$_GET["adoc"]; // el id de la factura a anular
-$anullmentdel = (int)$_GET["adel"]; // el id de la factura a la cual se le denega la anulación
-
-$devolutionid = (int)$_GET["devdoc"]; // el id de la devolucion a autorizar
-$devolutiondel = (int)$_GET["devdel"]; // el id de la devolución a denegar
-
-if ($authid) {
-    //autorizar una factura de credito
-    $query = "
-    CALL spAutorizarFactura(
-    $authid,
-    {$_SESSION["user"]->getUid()},
-    {$persontypes["SUPERVISOR"]},
-    {$docstates["CONFIRMADO"]},
-    {$accounts["VENTASNETAS"]},
-    {$accounts["CXCCLIENTE"]},
-    {$accounts["INVENTARIO"]},
-    {$accounts["COSTOSVENTAS"]},
-    {$accounts["IMPUESTOSXPAGAR"]}
-    )";
-    $result = $dbc->multi_query($query);
-
-    if ($result) {
-        $print = "<p>La factura se ha autorizado</p>";
-    } else {
-        $print = "<p class'error'>Hubo un error al autorizar la factura</p>";
+try{
+    if (!$_SESSION["user"]->hasRole("gerencia")) {
+        die("Usted no tiene permisos para administrar autorizaciones");
     }
-    //$result->free_result();
-} elseif ($del) {
-    //denegar un credito
-    $result = $dbc->multi_query("
-    CALL spEliminarFactura($del)
-    ");
-    if ($result) {
-        $print = "<p>La factura se ha denegado</p>";
-    } else {
-        $print = "<p class'error'>Hubo un error al denegar la factura</p>";
-    }
-    //$result->free_result();
-}elseif($anullmentid){
-	$query="
-        CALL spAutorizarAnulacionFactura(
-        $anullmentid,
-        {$_SESSION["user"]->getUid()},
-        {$docids["ANULACION"]},
-        {$docids["FACTURA"]},
-        {$docids["RECIBO"]},
-        {$docids["KARDEX"]},
-        {$docstates["PENDIENTEANULACION"]},
-        {$docstates["CONFIRMADO"]},
-        {$docstates["ANULADO"]},
-        {$persontypes["SUPERVISOR"]}
-        )
-        ";
-    $result = $dbc->multi_query($query);
-    
-        if ($result) {
-        $print = "<p>La Anulaci&oacute;n se ha autorizado</p>";
-        } else {
-            $print = "<p class'error'>Hubo un error al autorizar la Anulaci&oacute;n </p>";
-        }
-        
-}elseif($anullmentdel){
-    $query="
-    CALL spDenegarAnulacion(
-    $anullmentdel,
-    {$docstates["CONFIRMADO"]},
-    {$docids["ANULACION"]}
-    );
-    ";
-    $result = $dbc->multi_query($query);
+    $authid = (int) $_GET["doc"]; // El id de la factura de credito a autorizar
+    $del = (int) $_GET["del"];// El id de la factura de credito a denegar
 
-    if ($result) {
-    $print = "<p>Se ha denegado la anulaci&oacute;</p>";
-    } else {
-        $print = "<p class'error'>Hubo un error al denegar la Anulaci&oacute;n </p>";
-    }
-    
-}elseif($devolutionid){
-    $query="
-        CALL spAutorizarDevolucion(
-        $devolutionid,
+
+    $anullmentid = (int)$_GET["adoc"]; // el id de la factura a anular
+    $anullmentdel = (int)$_GET["adel"]; // el id de la factura a la cual se le denega la anulación
+
+    $devolutionid = (int)$_GET["devdoc"]; // el id de la devolucion a autorizar
+    $devolutiondel = (int)$_GET["devdel"]; // el id de la devolución a denegar
+
+    if ($authid) {
+        //autorizar una factura de credito
+        $query = "
+        CALL spAutorizarFactura(
+        $authid,
         {$_SESSION["user"]->getUid()},
         {$persontypes["SUPERVISOR"]},
-        {$docids["NOTACREDITO"]},
-        {$docids["FACTURA"]},
-        {$docids["CIERRE"]},
-        {$docids["RECIBO"]},
         {$docstates["CONFIRMADO"]},
-        {$docstates["PENDIENTE"]},
         {$accounts["VENTASNETAS"]},
+        {$accounts["CXCCLIENTE"]},
+        {$accounts["INVENTARIO"]},
         {$accounts["COSTOSVENTAS"]},
-        {$accounts["IMPUESTOSXPAGAR"]},
-        {$accounts["RETENCIONPAGADA"]},
-        {$accounts["CAJA"]},
-        {$accounts["INVENTARIO"]}
-        )
-        ";
-    echo $query;
-    $result = $dbc->multi_query($query);
+        {$accounts["IMPUESTOSXPAGAR"]}
+        )";
+        $result = $dbc->multi_query($query);
+
         if ($result) {
-        $print = "<p>La Devoluci&oacute;n se ha autorizado</p>";
+            $print = "<p>La factura se ha autorizado</p>";
         } else {
-            $print = "<p class'error'>Hubo un error al autorizar la Devoluci&oacute;n </p>";
+            $print = "<p class'error'>Hubo un error al autorizar la factura</p>";
         }
-}
+        //$result->free_result();
+    } elseif ($del) {
+        //denegar un credito
+        $result = $dbc->multi_query("
+        CALL spEliminarFactura($del)
+        ");
+        if ($result) {
+            $print = "<p>La factura se ha denegado</p>";
+        } else {
+            $print = "<p class'error'>Hubo un error al denegar la factura</p>";
+        }
+        //$result->free_result();
+    }elseif($anullmentid){
+        $query="
+            CALL spAutorizarAnulacionFactura(
+            $anullmentid,
+            {$_SESSION["user"]->getUid()},
+            {$docids["ANULACION"]},
+            {$docids["FACTURA"]},
+            {$docids["RECIBO"]},
+            {$docids["KARDEX"]},
+            {$docstates["PENDIENTEANULACION"]},
+            {$docstates["CONFIRMADO"]},
+            {$docstates["ANULADO"]},
+            {$persontypes["SUPERVISOR"]}
+            )
+            ";
+        $result = $dbc->multi_query($query);
 
-while($dbc->more_results())
-{
-    $dbc->next_result();
-    $discard = $dbc->store_result();
-}
-$query = "
-SELECT
-    d.iddocumento,
-    d.idtipodoc,
-    td.descripcion,
-    p.nombre
-FROM documentos d
-JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
-JOIN creditos cr ON cr.iddocumento = d.iddocumento
-JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
-JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["CLIENTE"]}
-WHERE d.idestado = {$docstates["PENDIENTE"]} AND d.idtipodoc = {$docids["FACTURA"]}
-ORDER BY d.iddocumento
-";
-$rsCreditInvoices = $dbc->query($query);
+            if ($result) {
+            $print = "<p>La Anulaci&oacute;n se ha autorizado</p>";
+            } else {
+                $print = "<p class'error'>Hubo un error al autorizar la Anulaci&oacute;n </p>";
+            }
 
-$query = "
-SELECT
-    fact.iddocumento,
-    fact.ndocimpreso,
-    d.iddocumento as idanulacion,
-    d.idtipodoc,
-    td.descripcion,
-    p.nombre
-FROM documentos d
-JOIN docpadrehijos dpd ON dpd.idhijo = d.iddocumento
-JOIN documentos fact ON fact.iddocumento = dpd.idpadre AND fact.idtipodoc = {$docids["FACTURA"]}
-JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
-JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento AND pxd.idaccion = {$persontypes["USUARIO"]}
-JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["USUARIO"]}
-WHERE d.idtipodoc = {$docids["ANULACION"]} AND d.idestado = {$docstates["PENDIENTE"]}
-ORDER BY d.iddocumento
-";
-$rsAnullments = $dbc->query($query);
+    }elseif($anullmentdel){
+        $query="
+        CALL spDenegarAnulacion(
+        $anullmentdel,
+        {$docstates["CONFIRMADO"]},
+        {$docids["ANULACION"]}
+        );
+        ";
+        $result = $dbc->multi_query($query);
 
-$query = "
-        SELECT
+        if ($result) {
+        $print = "<p>Se ha denegado la anulaci&oacute;</p>";
+        } else {
+            $print = "<p class'error'>Hubo un error al denegar la Anulaci&oacute;n </p>";
+        }
+
+    }elseif($devolutionid){
+        $query="
+            CALL spAutorizarDevolucion(
+            $devolutionid,
+            {$_SESSION["user"]->getUid()},
+            {$persontypes["SUPERVISOR"]},
+            {$docids["NOTACREDITO"]},
+            {$docids["FACTURA"]},
+            {$docids["CIERRE"]},
+            {$docids["RECIBO"]},
+            {$docstates["CONFIRMADO"]},
+            {$docstates["PENDIENTE"]},
+            {$accounts["VENTASNETAS"]},
+            {$accounts["COSTOSVENTAS"]},
+            {$accounts["IMPUESTOSXPAGAR"]},
+            {$accounts["RETENCIONPAGADA"]},
+            {$accounts["CAJA"]},
+            {$accounts["INVENTARIO"]}
+            )
+            ";
+        echo $query;
+        $result = $dbc->multi_query($query);
+            if ($result) {
+            $print = "<p>La Devoluci&oacute;n se ha autorizado</p>";
+            } else {
+                $print = "<p class'error'>Hubo un error al autorizar la Devoluci&oacute;n </p>";
+            }
+    }
+
+    while($dbc->more_results())
+    {
+        $dbc->next_result();
+        $discard = $dbc->store_result();
+    }
+    $query = "
+    SELECT
         d.iddocumento,
-        d.ndocimpreso,
-        fact.ndocimpreso as nfactura,
+        d.idtipodoc,
+        td.descripcion,
+        p.nombre
+    FROM documentos d
+    JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
+    JOIN creditos cr ON cr.iddocumento = d.iddocumento
+    JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
+    JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["CLIENTE"]}
+    WHERE d.idestado = {$docstates["PENDIENTE"]} AND d.idtipodoc = {$docids["FACTURA"]}
+    ORDER BY d.iddocumento
+    ";
+    $rsCreditInvoices = $dbc->query($query);
+
+    $query = "
+    SELECT
+        fact.iddocumento,
+        fact.ndocimpreso,
+        d.iddocumento as idanulacion,
         d.idtipodoc,
         td.descripcion,
         p.nombre
     FROM documentos d
     JOIN docpadrehijos dpd ON dpd.idhijo = d.iddocumento
-    JOIN documentos fact ON dpd.idpadre = fact.iddocumento AND fact.idtipodoc = {$docids["FACTURA"]}
+    JOIN documentos fact ON fact.iddocumento = dpd.idpadre AND fact.idtipodoc = {$docids["FACTURA"]}
     JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
     JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento AND pxd.idaccion = {$persontypes["USUARIO"]}
     JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["USUARIO"]}
-    WHERE d.idtipodoc = {$docids["NOTACREDITO"]} AND d.idestado = {$docstates["PENDIENTE"]}
+    WHERE d.idtipodoc = {$docids["ANULACION"]} AND d.idestado = {$docstates["PENDIENTE"]}
     ORDER BY d.iddocumento
- ";
- $rsDevolutions = $dbc->query($query);
+    ";
+    $rsAnullments = $dbc->query($query);
+
+    $query = "
+            SELECT
+            d.iddocumento,
+            d.ndocimpreso,
+            fact.ndocimpreso as nfactura,
+            d.idtipodoc,
+            td.descripcion,
+            p.nombre
+        FROM documentos d
+        JOIN docpadrehijos dpd ON dpd.idhijo = d.iddocumento
+        JOIN documentos fact ON dpd.idpadre = fact.iddocumento AND fact.idtipodoc = {$docids["FACTURA"]}
+        JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
+        JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento AND pxd.idaccion = {$persontypes["USUARIO"]}
+        JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["USUARIO"]}
+        WHERE d.idtipodoc = {$docids["NOTACREDITO"]} AND d.idestado = {$docstates["PENDIENTE"]}
+        ORDER BY d.iddocumento
+     ";
+     $rsDevolutions = $dbc->query($query);
+ }catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
+}
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

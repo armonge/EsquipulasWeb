@@ -1,99 +1,109 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("gerencia")){
-	die("Usted no tiene permisos para administrar tipos de cambio");
-}
-if(isset($_GET["edit"])){
-	$idtc = (int)$_POST["id"];
-	$banco = (double)$_POST["Banco"];
+try{
+    if(!$_SESSION["user"]->hasRole("gerencia")){
+        die("Usted no tiene permisos para administrar tipos de cambio");
+    }
+    if(isset($_GET["edit"])){
+        $idtc = (int)$_POST["id"];
+        $banco = (double)$_POST["Banco"];
 
-	if($idtc){
-		$query ="UPDATE tiposcambio SET tasabanco = $banco  WHERE idtc = $idtc AND fecha > CURDATE() LIMIT 1";
-		if($dbc->query($query) && $dbc->affected_rows){
-			$status = array("result"=>true);
+        if($idtc){
+            $query ="UPDATE tiposcambio SET tasabanco = $banco  WHERE idtc = $idtc AND fecha > CURDATE() LIMIT 1";
+            if($dbc->query($query) && $dbc->affected_rows){
+                $status = array("result"=>true);
 
-		}else{
-			$status = array("result"=>false);
-		}
-		echo json_encode($status);
-	}
-	die();
-}
+            }else{
+                $status = array("result"=>false);
+            }
+            echo json_encode($status);
+        }
+        die();
+    }
 
-if(isset($_GET["nav"])){
-	$page = $_GET['page'];
+    if(isset($_GET["nav"])){
+        $page = $_GET['page'];
 
-	// get how many rows we want to have into the grid - rowNum parameter in the grid
-	$limit = $_GET['rows'];
+        // get how many rows we want to have into the grid - rowNum parameter in the grid
+        $limit = $_GET['rows'];
 
-	// get index row - i.e. user click to sort. At first time sortname parameter -
-	// after that the index from colModel
-	$sidx = $_GET['sidx'];
+        // get index row - i.e. user click to sort. At first time sortname parameter -
+        // after that the index from colModel
+        $sidx = $_GET['sidx'];
 
-	// sorting order - at first time sortorder
-	$sord = $_GET['sord'];
+        // sorting order - at first time sortorder
+        $sord = $_GET['sord'];
 
-	// if we not pass at first time index use the first column for the index or what you want
-	if(!$sidx) $sidx =1;
+        // if we not pass at first time index use the first column for the index or what you want
+        if(!$sidx) $sidx =1;
 
-	// calculate the number of rows for the query. We need this for paging the result
-	$result = $dbc->query("SELECT COUNT(idtc) AS count FROM tiposcambio");
-	$row = $result->fetch_array(MYSQLI_ASSOC);
-	$count = $row['count'];
+        // calculate the number of rows for the query. We need this for paging the result
+        $result = $dbc->query("SELECT COUNT(idtc) AS count FROM tiposcambio");
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        $count = $row['count'];
 
-	// calculate the total pages for the query
-	if( $count > 0 && $limit > 0) {
-		$total_pages = ceil($count/$limit);
-	} else {
-		$total_pages = 0;
-	}
+        // calculate the total pages for the query
+        if( $count > 0 && $limit > 0) {
+            $total_pages = ceil($count/$limit);
+        } else {
+            $total_pages = 0;
+        }
 
-	// if for some reasons the requested page is greater than the total
-	// set the requested page to total page
-	if ($page > $total_pages) $page=$total_pages;
+        // if for some reasons the requested page is greater than the total
+        // set the requested page to total page
+        if ($page > $total_pages) $page=$total_pages;
 
-	// calculate the starting position of the rows
-	$start = $limit*$page - $limit;
+        // calculate the starting position of the rows
+        $start = $limit*$page - $limit;
 
-	// if for some reasons start position is negative set it to 0
-	// typical case is that the user type 0 for the requested page
-	if($start <0) $start = 0;
+        // if for some reasons start position is negative set it to 0
+        // typical case is that the user type 0 for the requested page
+        if($start <0) $start = 0;
 
-	// the actual query for the grid data
-	$SQL = "
-    	SELECT 
-    		idtc, 
-    		UNIX_TIMESTAMP(fecha)*1000 as stamp,
-    		DATE_FORMAT(fecha, '%d/%c/%Y') as fecha,
-    		tasa, 
-    		IFNULL(tasabanco,0) as tasabanco 
-    	FROM tiposcambio 
-    	ORDER BY tiposcambio.$sidx  $sord 
-    	LIMIT $start , $limit
-    ";
-	$result = $dbc->query( $SQL );
-	$responce->page = $page;
-	$responce->records = $count;
-	$responce->total = $total_pages;
-	// be sure to put text data in CDATA
-	$i=0;
-	while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-		$responce->rows[$i]['id']=$row["idtc"];
-		$responce->rows[$i]['cell'] = array(
-		$row["idtc"],
-		$row["stamp"],
-		$row["fecha"],
-		$row["tasa"],
-		$row["tasabanco"]
-		);
-		$i++;
-	}
-	 
-	header('Content-type: application/json');
-	echo json_encode($responce);
+        // the actual query for the grid data
+        $SQL = "
+            SELECT
+                idtc,
+                UNIX_TIMESTAMP(fecha)*1000 as stamp,
+                DATE_FORMAT(fecha, '%d/%c/%Y') as fecha,
+                tasa,
+                IFNULL(tasabanco,0) as tasabanco
+            FROM tiposcambio
+            ORDER BY tiposcambio.$sidx  $sord
+            LIMIT $start , $limit
+        ";
+        $result = $dbc->query( $SQL );
+        $responce->page = $page;
+        $responce->records = $count;
+        $responce->total = $total_pages;
+        // be sure to put text data in CDATA
+        $i=0;
+        while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $responce->rows[$i]['id']=$row["idtc"];
+            $responce->rows[$i]['cell'] = array(
+            $row["idtc"],
+            $row["stamp"],
+            $row["fecha"],
+            $row["tasa"],
+            $row["tasabanco"]
+            );
+            $i++;
+        }
 
-	die();
+        header('Content-type: application/json');
+        echo json_encode($responce);
 
+        die();
+
+    }
+}catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
 }
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>

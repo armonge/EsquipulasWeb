@@ -1,125 +1,135 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("root")){
-	die("Usted no tiene permisos para administrar usuarios");
-}
-$task = "";
+try{
+    if(!$_SESSION["user"]->hasRole("root")){
+        die("Usted no tiene permisos para administrar usuarios");
+    }
+    $task = "";
 
-if((isset($_POST["pwd"])) && ($_POST["pwd"]=="change")){
-	//cambiar la contraseña
-	$uid = (int)$_POST["uid"];
-	if (($_POST["pwd1"] == $_POST["pwd2"]) && $uid){
-		$pwd = AbstractUser::createPasswd( $dbc->real_escape_string($_POST["pwd1"]) );
-		$query = "UPDATE usuarios SET password = '$pwd' WHERE idusuario = $uid LIMIT 1" ;
-		$dbc->query($query);
-		$message="Exito al cambiar la contrase&ntilde;a";
-	}else{
-		$error = "Las contrase&ntilde;as no coinciden";
-	}
-
-}else if( isset($_POST["rolchange"])  ){
-	//cambiar los roles de un usuario
-	if( count($_POST["roles"]) > 0){
-		$uid = (int)$_POST["uid"];
-		if($uid){
-			$dbc->query("DELETE FROM usuarios_has_roles WHERE idusuario = $uid ");
-			foreach($_POST["roles"] as $rol){
-				if((int)$rol){
-					$dbc->query("INSERT INTO usuarios_has_roles VALUES ( $uid, $rol )");
-				}
-			}
-		}
-	}else{
-		$error = "No se pudo realizar el cambio por que: 'Un usuario deberia de tener por lo menos un permiso asignado'";
-	}
-
-}else if( isset( $_POST["add"] ) && ( $_POST["add"]="yes" ) ){
-	//añadir un usuario
-	$name = $_POST["nombre"] != ""  ? trim($dbc->real_escape_string($_POST["nombre"]))  : false ;
-	$phone = $_POST["phone"] != ""  ? trim($dbc->real_escape_string($_POST["phone"]))  : false ;
-	$uname = $_POST["uname"] != "" ? trim($dbc->real_escape_string($_POST["uname"])) : false;
-	$pwd = $_POST["pwd1"] == $_POST["pwd2"] ? $dbc->real_escape_string($_POST["pwd1"]) : false;
-	$roles = count($_POST["roles"]) > 0 ? $_POST["roles"] : false;
-
-	if(!$name){
-		$error =" No introdujo un nombre";
-		$task = "new";
-	}elseif(!$phone){
-		$error = "No introdujo el telef&oacute;no del usuario";
-		$task="new";
-	}elseif(!$uname){
-		$error = "No introdujo un nombre de usuario";
-		$task = "new";
-	}elseif(!$pwd){
-		$error = "Existe un error con sus contrase&ntilde;as";
-		$task = "new";
-	}elseif(!$roles){
-		$error = "No selecciono ning&uacute;n permiso para el usuario";
-		$task = "new";
-	}else{
-		$pwd = AbstractUser::createPasswd($pwd);
-		//insertar la persona
-		$query ="INSERT INTO personas  (nombre, fechaingreso, telefono, tipopersona)
-		VALUES('$name', CURDATE(), '$phone', 4)";
-		$dbc->query($query);
-
-		$insertedId = $dbc->insert_id;
-
-		//insertar el usuario
-		$query = "
-		INSERT INTO usuarios (idusuario,username,  password, estado, tipousuario)
-		VALUES ( $insertedId, '$uname',  '$pwd', 1, 1)
-		";
-		$dbc->query($query);
-
-		$c = 0;
-		foreach ($roles as $role){
-			$rolId = (int)$role;
-			if($rolId){
-				$rs = $dbc->query("INSERT INTO usuarios_has_roles (idusuario, idrol) VALUES ($insertedId, $rolId)");
-				if($rs){
-					$c +=1;
-				}
-			}
-		}
-		if(!$c){
-			$dbc->query("DELETE FROM usuarios WHERE idusuario = $insertedId LIMIT 1");
-		}
-	}
-}
-//lo que se va a mostrar en la vista
-if(isset($_GET["task"])){
-	$task = $task == "" ? $_GET["task"] : $task;
-}
-
-switch($task){
-	case "del":
-		$uid = (int)$_GET["uid"];
-		$dbc->query("UPDATE usuarios SET estado=0 WHERE idusuario = $uid LIMIT 1");
-	case "list":
-		$rsUsers = $dbc->query("
-		SELECT u.idusuario, p.nombre, u.username
-		FROM usuarios u
-		JOIN personas p ON p.idpersona = u.idusuario
-		WHERE u.estado = 1
-		");
-		$rsUserRoles = $dbc->query("
-		SELECT uhr.idusuario, uhr.idrol
-		FROM  usuarios_has_roles uhr
-		");
-		$users = array();
-		while($row_rsUsers =  $rsUsers->fetch_array(MYSQLI_ASSOC)){
-            $users[] = $row_rsUsers;
+    if((isset($_POST["pwd"])) && ($_POST["pwd"]=="change")){
+        //cambiar la contraseña
+        $uid = (int)$_POST["uid"];
+        if (($_POST["pwd1"] == $_POST["pwd2"]) && $uid){
+            $pwd = AbstractUser::createPasswd( $dbc->real_escape_string($_POST["pwd1"]) );
+            $query = "UPDATE usuarios SET password = '$pwd' WHERE idusuario = $uid LIMIT 1" ;
+            $dbc->query($query);
+            $message="Exito al cambiar la contrase&ntilde;a";
+        }else{
+            $error = "Las contrase&ntilde;as no coinciden";
         }
-        $userRoles = array();
-        while($row_rsUsers =  $rsUserRoles->fetch_array(MYSQLI_ASSOC)){
-            $userRoles[] = $row_rsUsers;
+
+    }else if( isset($_POST["rolchange"])  ){
+        //cambiar los roles de un usuario
+        if( count($_POST["roles"]) > 0){
+            $uid = (int)$_POST["uid"];
+            if($uid){
+                $dbc->query("DELETE FROM usuarios_has_roles WHERE idusuario = $uid ");
+                foreach($_POST["roles"] as $rol){
+                    if((int)$rol){
+                        $dbc->query("INSERT INTO usuarios_has_roles VALUES ( $uid, $rol )");
+                    }
+                }
+            }
+        }else{
+            $error = "No se pudo realizar el cambio por que: 'Un usuario deberia de tener por lo menos un permiso asignado'";
         }
-	case "new":
-		$rsRoles = $dbc->query("SELECT descripcion, idrol FROM roles");
-		break;
-	default:
-		break;
+
+    }else if( isset( $_POST["add"] ) && ( $_POST["add"]="yes" ) ){
+        //añadir un usuario
+        $name = $_POST["nombre"] != ""  ? trim($dbc->real_escape_string($_POST["nombre"]))  : false ;
+        $phone = $_POST["phone"] != ""  ? trim($dbc->real_escape_string($_POST["phone"]))  : false ;
+        $uname = $_POST["uname"] != "" ? trim($dbc->real_escape_string($_POST["uname"])) : false;
+        $pwd = $_POST["pwd1"] == $_POST["pwd2"] ? $dbc->real_escape_string($_POST["pwd1"]) : false;
+        $roles = count($_POST["roles"]) > 0 ? $_POST["roles"] : false;
+
+        if(!$name){
+            $error =" No introdujo un nombre";
+            $task = "new";
+        }elseif(!$phone){
+            $error = "No introdujo el telef&oacute;no del usuario";
+            $task="new";
+        }elseif(!$uname){
+            $error = "No introdujo un nombre de usuario";
+            $task = "new";
+        }elseif(!$pwd){
+            $error = "Existe un error con sus contrase&ntilde;as";
+            $task = "new";
+        }elseif(!$roles){
+            $error = "No selecciono ning&uacute;n permiso para el usuario";
+            $task = "new";
+        }else{
+            $pwd = AbstractUser::createPasswd($pwd);
+            //insertar la persona
+            $query ="INSERT INTO personas  (nombre, fechaingreso, telefono, tipopersona)
+            VALUES('$name', CURDATE(), '$phone', 4)";
+            $dbc->query($query);
+
+            $insertedId = $dbc->insert_id;
+
+            //insertar el usuario
+            $query = "
+            INSERT INTO usuarios (idusuario,username,  password, estado, tipousuario)
+            VALUES ( $insertedId, '$uname',  '$pwd', 1, 1)
+            ";
+            $dbc->query($query);
+
+            $c = 0;
+            foreach ($roles as $role){
+                $rolId = (int)$role;
+                if($rolId){
+                    $rs = $dbc->query("INSERT INTO usuarios_has_roles (idusuario, idrol) VALUES ($insertedId, $rolId)");
+                    if($rs){
+                        $c +=1;
+                    }
+                }
+            }
+            if(!$c){
+                $dbc->query("DELETE FROM usuarios WHERE idusuario = $insertedId LIMIT 1");
+            }
+        }
+    }
+    //lo que se va a mostrar en la vista
+    if(isset($_GET["task"])){
+        $task = $task == "" ? $_GET["task"] : $task;
+    }
+
+    switch($task){
+        case "del":
+            $uid = (int)$_GET["uid"];
+            $dbc->query("UPDATE usuarios SET estado=0 WHERE idusuario = $uid LIMIT 1");
+        case "list":
+            $rsUsers = $dbc->query("
+            SELECT u.idusuario, p.nombre, u.username
+            FROM usuarios u
+            JOIN personas p ON p.idpersona = u.idusuario
+            WHERE u.estado = 1
+            ");
+            $rsUserRoles = $dbc->query("
+            SELECT uhr.idusuario, uhr.idrol
+            FROM  usuarios_has_roles uhr
+            ");
+            $users = array();
+            while($row_rsUsers =  $rsUsers->fetch_array(MYSQLI_ASSOC)){
+                $users[] = $row_rsUsers;
+            }
+            $userRoles = array();
+            while($row_rsUsers =  $rsUserRoles->fetch_array(MYSQLI_ASSOC)){
+                $userRoles[] = $row_rsUsers;
+            }
+        case "new":
+            $rsRoles = $dbc->query("SELECT descripcion, idrol FROM roles");
+            break;
+        default:
+            break;
+    }
+}catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
 }
 
 ?>

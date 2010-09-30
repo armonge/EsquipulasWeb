@@ -1,27 +1,37 @@
 <?php
 require_once "../functions.php";
-$id = (int)$_GET["id"];
-if(!$id){
-    die();
-}
-$query = "
-SELECT p.idpersona, p.nombre, p.telefono, p.email, p.ruc,p.activo, SUM(d.total) as total
-FROM personas p
-JOIN personasxdocumento pxd ON pxd.idpersona = p.idpersona
-JOIN documentos d ON d.iddocumento = pxd.iddocumento
-WHERE p.idpersona = $id AND p.tipopersona = 3	
-";
-$rsDetails = $dbc->query($query);
-$row_rsDetails = $rsDetails->fetch_array(MYSQLI_ASSOC);
+try{
+    $id = (int)$_GET["id"];
+    if(!$id){
+        die();
+    }
+    $query = "
+    SELECT p.idpersona, p.nombre, p.telefono, p.email, p.ruc,p.activo, SUM(d.total) as total
+    FROM personas p
+    JOIN personasxdocumento pxd ON pxd.idpersona = p.idpersona
+    JOIN documentos d ON d.iddocumento = pxd.iddocumento
+    WHERE p.idpersona = $id AND p.tipopersona = 3
+    ";
+    $rsDetails = $dbc->query($query);
+    $row_rsDetails = $rsDetails->fetch_array(MYSQLI_ASSOC);
 
-$query="
-SELECT
-d.iddocumento, d.ndocimpreso, UNIX_TIMESTAMP(d.fechacreacion)*1000 as stamp, d.total
-FROM documentos d
-WHERE d.idpersona = $id AND d.idtipodoc = 5
-ORDER BY DATE(d.fechacreacion)
-";
-$rsTransactions = $dbc->query($query);
+    $query="
+    SELECT
+    d.iddocumento, d.ndocimpreso, UNIX_TIMESTAMP(d.fechacreacion)*1000 as stamp, d.total
+    FROM documentos d
+    WHERE d.idpersona = $id AND d.idtipodoc = 5
+    ORDER BY DATE(d.fechacreacion)
+    ";
+    $rsTransactions = $dbc->query($query);
+}catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
+}
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

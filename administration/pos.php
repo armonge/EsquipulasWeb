@@ -1,33 +1,42 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("root")){
-	die("Usted no tiene permisos para administrar puntos de venta");
-}
-if(isset($_GET["del"])){
-	$delid = (int)$_GET["del"];
-	if($delid){
-		$query="UPDATE cajas SET activo = 0 WHERE idcaja = $delid LIMIT 1";
-		$dbc->query($query);
-		if($dbc->affected_rows == 1){
-			$status = "La caja se ha borrado con exito";
-		}
-	}	
-}
-if(isset($_POST["add"])){
-	$name = $dbc->real_escape_string(trim($_POST["posname"]));
-	if($name){
-		$query = "INSERT INTO cajas (descripcion) VALUES ('$name')";
-		$dbc->query($query);
-		$status = "<p>Se a&ntilde;adio una Caja</p>";
-	}
-}
+try{
+    if(!$_SESSION["user"]->hasRole("root")){
+        die("Usted no tiene permisos para administrar puntos de venta");
+    }
+    if(isset($_GET["del"])){
+        $delid = (int)$_GET["del"];
+        if($delid){
+            $query="UPDATE cajas SET activo = 0 WHERE idcaja = $delid LIMIT 1";
+            $dbc->query($query);
+            if($dbc->affected_rows == 1){
+                $status = "La caja se ha borrado con exito";
+            }
+        }
+    }
+    if(isset($_POST["add"])){
+        $name = $dbc->real_escape_string(trim($_POST["posname"]));
+        if($name){
+            $query = "INSERT INTO cajas (descripcion) VALUES ('$name')";
+            $dbc->query($query);
+            $status = "<p>Se a&ntilde;adio una Caja</p>";
+        }
+    }
 
-$rsPos = $dbc->query("
-		SELECT idcaja, descripcion
-		FROM cajas
-		WHERE activo = 1
-")
-
+    $rsPos = $dbc->query("
+            SELECT idcaja, descripcion
+            FROM cajas
+            WHERE activo = 1
+    ")
+}catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
+}
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

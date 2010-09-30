@@ -1,21 +1,32 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("root")){
-	die("Usted no tiene permisos para administrar bodegas");
-}
-if(isset($_POST["add"])){
-	$wname = $dbc->real_escape_string(trim($_POST["wname"]));
-	if($wname){
-		$query = "INSERT INTO bodegas (nombrebodega) VALUES ('$wname')";
-		$dbc->query($query);
-		$status = "<p>Se a&ntilde;adio una bodega</p>";
-	}
-}
+try{
+    if(!$_SESSION["user"]->hasRole("root")){
+        die("Usted no tiene permisos para administrar bodegas");
+    }
+    if(isset($_POST["add"])){
+        $wname = $dbc->real_escape_string($_POST["wname"]);
+        if($wname){
+            $query = "INSERT INTO bodegas (nombrebodega) VALUES ('$wname')";
+            $dbc->query($query);
+            $status = "<p>Se a&ntilde;adio una bodega</p>";
+        }
+    }
 
-$rsWarehouses = $dbc->query("
-SELECT b.idbodega, b.nombrebodega
-FROM bodegas b
-")
+    $rsWarehouses = $dbc->query("
+    SELECT b.idbodega, b.nombrebodega
+    FROM bodegas b
+    ORDER BY b.idbodega
+    ")
+}catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
+}
 
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
@@ -36,9 +47,7 @@ $(function(){
 		$(".addwarehouse").toggle()
 		return false;
 	});
-	$("input:checkbox").click(function(){
-        $("tr").not($(this).parent().parent()).fadeOut()
-    });
+
 
 });
 </script>
@@ -59,19 +68,11 @@ $(function(){
 	<div id="left-column">
 		<h1>Bodegas</h1>
 		<?php echo $status ?>
-		<table>
-<!-- 		<ul> -->
+		<ul>
 			<?php while($row_rsWarehouse = $rsWarehouses->fetch_array(MYSQLI_ASSOC)){ ?>
-			<tr>
-                
-				  <td>
-				  <input id="instance_selected0" name="instance_selected0" value="" type="checkbox">
-				  <?php echo $row_rsWarehouse["nombrebodega"]?>
-				  </td>
-          </tr>
+				  <li><?php echo $row_rsWarehouse["nombrebodega"]?></li>
 			<?php } ?>
-<!-- 		</ul> -->
-		</table>
+		</ul>
 		<a href="#" id="add">A&ntilde;adir Bodega</a>
 		<div class="hide addwarehouse">
 			<form class="cform" method="post" action="administration/warehouses.php">

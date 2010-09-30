@@ -92,10 +92,10 @@ $(function(){
 	    lines:{show:true},
 	    points:{show:true},
 	    xaxis: {
-		mode:'time',
-		timeformat: "%d-%m-%y",
- 		ticks:5,
-        autoscaleMargin:0.1
+            mode:'time',
+            timeformat: "%d-%m-%y %h:%M %P",
+            ticks:5,
+            autoscaleMargin:0.1
 		},
 	    yaxis: {
 		    tickFormatter: function(val, axis){

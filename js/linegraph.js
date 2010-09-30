@@ -23,14 +23,18 @@ function showLocalDate(timestamp)
 }
 $(function(){
 var options = {
-	    lines:{show:true},
-	    points:{show:true},
+	    lines:{
+            show:true
+        },
+	    points:{
+            show:true
+        },
 	    xaxis: {
-		mode:'time',
-		timeformat: "%d-%m-%y",
-		monthNames : mmToMonth,
-		ticks:5,
-        autoscaleMargin:0.1
+            mode:'time',
+            timeformat: "%d-%m-%y",
+            monthNames : mmToMonth,
+            ticks:5,
+            autoscaleMargin:0.1
 		},
 	    yaxis: {
 		    tickFormatter: function(val, axis){
@@ -45,7 +49,10 @@ var options = {
 	   	minTickSize: [1, "day"],
 	   	grid: {
 		    hoverable: true,
-		    canvasText: {show: true, font:"sans 8px" },
+		    canvasText: {
+                show: true,
+                font:"sans 8px"
+            },
             backgroundColor:"#fff"
 		}
 

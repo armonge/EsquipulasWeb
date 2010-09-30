@@ -16,9 +16,11 @@ session_regenerate_id();
 if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="localhost") || ($_SERVER["REMOTE_ADDR"]=="192.168.2.200")){
 	$path = "/srv/http/EsquipulasWeb/";
 	require_once('conn.php');
+	$local = True;
 }else{
 	$path = "/srv/www/htdocs/";
 	require_once("{$path}../onlineconn.php");
+	$local = False;
 }
 /***********modules************/
 $modules = array(
@@ -84,7 +86,9 @@ $accounts = array(
     "INVENTARIO" => 22,
     "COSTOSVENTAS" => 182,
     "IMPUESTOSXPAGAR" => 133,
-    "CAJA" => 5
+    "CAJA" => 5,
+    "BMN" => 7,
+    "BME" => 10
 );
 /*************costs ******************/
 $costs = array(

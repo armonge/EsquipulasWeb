@@ -1,57 +1,67 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("root")){
-	die("Usted no tiene permisos para administrar Impuestos");
+try{
+    if(!$_SESSION["user"]->hasRole("root")){
+        die("Usted no tiene permisos para administrar Impuestos");
+    }
+    if(isset($_POST["update"])){
+        $taxtype = (int)$_POST["type"];
+        $value = (float)$_POST["value"];
+        switch( $taxtype){
+            case $costs["IVA"]:
+            case $costs["SPE"]:
+            case $costs["ISO"]:
+            case $costs["RETENCIONFUENTE"]:
+            case $costs["RETENCIONSERVICIOS"]:
+                $query = "UPDATE costosagregados SET activo = 0 WHERE idtipocosto = $taxtype AND activo = 1 LIMIT 1";
+                $dbc->query($query);
+                $query = "INSERT INTO costosagregados (valorcosto, fechaestablecido, activo, idtipocosto)
+                VALUES ($value, NOW(), 1, $taxtype)";
+                $dbc->query($query);
+            break;
+            case $costs["TSIM"]:
+                $factorpeso = (float)$_POST["factorpeso"];
+
+                $query = "UPDATE costosagregados SET activo = 0 WHERE idtipocosto = $taxtype AND activo = 1 LIMIT 1";
+                $dbc->query($query);
+                $query = "INSERT INTO costosagregados (valorcosto, fechaestablecido, activo, idtipocosto)
+                VALUES ($value, NOW(), 1, $taxtype)";
+                $dbc->query($query);
+                $insertedId = $dbc->insert_id;
+
+                $query = "INSERT INTO tsim (idtsim, factorpeso )
+                VALUES ($insertedId, $factorpeso)";
+                $dbc->query($query);
+
+            break;
+
+        }
+    }
+    $rsTaxes = $dbc->query("
+    SELECT
+        SUM(IF(ca.idtipocosto = {$costs["IVA"]}, ca.valorcosto, 0)) iva,
+        SUM(IF(ca.idtipocosto = {$costs["SPE"]}, ca.valorcosto, 0)) spe,
+        SUM(IF(ca.idtipocosto = {$costs["TSIM"]}, ca.valorcosto, 0)) tsim,
+        SUM(IF(ca.idtipocosto = {$costs["TSIM"]}, ts.factorpeso, 0)) as factorpeso,
+        SUM(IF(ca.idtipocosto = {$costs["ISO"]}, ca.valorcosto, 0)) iso,
+        SUM(IF(ca.idtipocosto = {$costs["RETENCIONSERVICIOS"]}, ca.valorcosto, 0)) retencionprof,
+        SUM(IF(ca.idtipocosto = {$costs["RETENCIONFUENTE"]}, ca.valorcosto, 0)) retencionf
+    FROM costosagregados ca
+    JOIN tiposcosto tc ON tc.idtipocosto = ca.idtipocosto
+    LEFT JOIN tsim ts ON ts.idtsim = ca.idcostoagregado
+    WHERE ca.idtipocosto IN ( {$costs["IVA"]},{$costs["SPE"]},{$costs["TSIM"]}, {$costs["ISO"]}, {$costs["RETENCIONSERVICIOS"]},{$costs["RETENCIONFUENTE"]})
+    AND activo = 1
+    ");
+    $row_rsTax = $rsTaxes->fetch_array(MYSQLI_ASSOC);
+}catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
 }
-if(isset($_POST["update"])){
-	$taxtype = (int)$_POST["type"];
-	$value = (float)$_POST["value"];
-	switch( $taxtype){
-		case $costs["IVA"]:
-		case $costs["SPE"]:
-		case $costs["ISO"]:
-		case $costs["RETENCIONFUENTE"]:
-		case $costs["RETENCIONSERVICIOS"]:
-			$query = "UPDATE costosagregados SET activo = 0 WHERE idtipocosto = $taxtype AND activo = 1 LIMIT 1";
-			$dbc->query($query);
-			$query = "INSERT INTO costosagregados (valorcosto, fechaestablecido, activo, idtipocosto) 
-			VALUES ($value, NOW(), 1, $taxtype)";
-			$dbc->query($query);
-		break;
-		case $costs["TSIM"]:
-			$factorpeso = (float)$_POST["factorpeso"];
-			
-			$query = "UPDATE costosagregados SET activo = 0 WHERE idtipocosto = $taxtype AND activo = 1 LIMIT 1";
-			$dbc->query($query);
-			$query = "INSERT INTO costosagregados (valorcosto, fechaestablecido, activo, idtipocosto) 
-			VALUES ($value, NOW(), 1, $taxtype)";
-			$dbc->query($query);
-			$insertedId = $dbc->insert_id;			
-			
-			$query = "INSERT INTO tsim (idtsim, factorpeso ) 
-			VALUES ($insertedId, $factorpeso)";
-			$dbc->query($query);
-			
-		break;
-		
-	}
-}
-$rsTaxes = $dbc->query("
-SELECT 
-	SUM(IF(ca.idtipocosto = {$costs["IVA"]}, ca.valorcosto, 0)) iva,
-	SUM(IF(ca.idtipocosto = {$costs["SPE"]}, ca.valorcosto, 0)) spe,
-	SUM(IF(ca.idtipocosto = {$costs["TSIM"]}, ca.valorcosto, 0)) tsim,
-	SUM(IF(ca.idtipocosto = {$costs["TSIM"]}, ts.factorpeso, 0)) as factorpeso,
-	SUM(IF(ca.idtipocosto = {$costs["ISO"]}, ca.valorcosto, 0)) iso,
-	SUM(IF(ca.idtipocosto = {$costs["RETENCIONSERVICIOS"]}, ca.valorcosto, 0)) retencionprof,
-	SUM(IF(ca.idtipocosto = {$costs["RETENCIONFUENTE"]}, ca.valorcosto, 0)) retencionf
-FROM costosagregados ca
-JOIN tiposcosto tc ON tc.idtipocosto = ca.idtipocosto
-LEFT JOIN tsim ts ON ts.idtsim = ca.idcostoagregado
-WHERE ca.idtipocosto IN ( {$costs["IVA"]},{$costs["SPE"]},{$costs["TSIM"]}, {$costs["ISO"]}, {$costs["RETENCIONSERVICIOS"]},{$costs["RETENCIONFUENTE"]})
-AND activo = 1
-");
-$row_rsTax = $rsTaxes->fetch_array(MYSQLI_ASSOC);
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

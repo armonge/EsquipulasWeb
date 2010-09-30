@@ -1,7 +1,17 @@
 <?php
 require_once "../functions.php";
+try{
 if(!$_SESSION["user"]->hasRole("gerencia")){
 	die("Usted no tiene permisos para entrar a administraci&oacute;n");
+}
+}catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
 }
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>

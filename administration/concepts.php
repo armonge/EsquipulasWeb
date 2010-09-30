@@ -1,25 +1,34 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("root")){
-	die("Usted no tiene permisos para administrar conceptos");
+try{
+    if(!$_SESSION["user"]->hasRole("root")){
+        die("Usted no tiene permisos para administrar conceptos");
+    }
+    if(isset($_POST["add"]) && $_POST["add"] == 1 ){
+        $type = (int)$_POST["doctype"];
+        $name = $dbc->real_escape_string($_POST["name"]);
+        $result = $dbc->query("INSERT INTO conceptos (descripcion, idtipodoc) VALUES ('$name', $type);");
+        echo json_encode(array(
+            "result" => $result,
+            "data" => $name
+        ));
+        die();
+    }
+
+
+    $query = "
+    SELECT descripcion, idtipodoc FROM conceptos
+    ";
+    $rsConcepts = $dbc->query($query);
+}catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
 }
-if(isset($_POST["add"]) && $_POST["add"] == 1 ){
-    $type = (int)$_POST["doctype"];
-    $name = $dbc->real_escape_string($_POST["name"]);
-    $result = $dbc->query("INSERT INTO conceptos (descripcion, idtipodoc) VALUES ('$name', $type);");
-    echo json_encode(array(
-        "result" => $result,
-        "data" => $name
-    ));
-    die();
-}
-
-
-$query = "
-SELECT descripcion, idtipodoc FROM conceptos
-";
-$rsConcepts = $dbc->query($query);
-
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

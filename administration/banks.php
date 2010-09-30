@@ -1,21 +1,31 @@
 <?php
 require_once "../functions.php";
-if(!$_SESSION["user"]->hasRole("root")){
-	die("Usted no tiene permisos para administrar Bancos");
-}
-if(isset($_POST["add"])){
-	$bname = $dbc->real_escape_string(trim($_POST["bname"]));
-	if($bname){
-		$query = "INSERT INTO bancos (descripcion) VALUES ('$bname')";
-		$dbc->query($query);
-		$status = "<p>Se a&ntilde;adio un banco</p>";
-	}
-}
+try{
+    if(!$_SESSION["user"]->hasRole("root")){
+        die("Usted no tiene permisos para administrar Bancos");
+    }
+    if(isset($_POST["add"])){
+        $bname = $dbc->real_escape_string(trim($_POST["bname"]));
+        if($bname){
+            $query = "INSERT INTO bancos (descripcion) VALUES ('$bname')";
+            $dbc->query($query);
+            $status = "<p>Se a&ntilde;adio un banco</p>";
+        }
+    }
 
-$rsBanks = $dbc->query("
-SELECT b.idbanco, b.descripcion
-FROM bancos b
-")
+    $rsBanks = $dbc->query("
+    SELECT b.idbanco, b.descripcion
+    FROM bancos b
+    ")
+}catch(EsquipulasException $ex){
+    if($local){
+        die($ex);
+    }else{
+        $ex->mail(ADMINMAIL);
+        header("Location: {$basedir}error.php ");
+        die();
+    }
+}
 
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
