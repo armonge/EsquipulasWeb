@@ -1,4 +1,7 @@
 <?php
+/**
+* @package administration
+*/
 require_once "../functions.php";
 try{
     if(!$_SESSION["user"]->hasRole("root")){

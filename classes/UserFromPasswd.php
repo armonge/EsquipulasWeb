@@ -1,4 +1,9 @@
 <?php
+/**
+* class UserFromPasswd
+* @package users
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/
 class UserFromPasswd extends AbstractUser{
 	public function __construct($user, $password, $database){
 		$this->dbc = $database;

@@ -12,13 +12,14 @@ if(isset($_POST["edit"])){
         $mail = $dbc->real_escape_string($_POST["mail"]);
         $phone = $dbc->real_escape_string($_POST["phone"]);
 
-        $query = "
-        UPDATE personas 
-        SET   nombre = '$name', telefono = '$phone',  email = '$mail', ruc ='$ruc'
-        WHERE idpersona = $id
-        LIMIT 1
-        ";
-        $dbc->query($query);
+        $dbc->simple_update("personas", array(
+            "nombre" => $_POST["name"],
+            "telefono" => $_POST["phone"],
+            "email" => $_POST["mail"],
+            "ruc" => $_POST["ruc"]
+        ), array(
+            "idpersona" => $id
+        ));
         $status = "success";
     }
 }

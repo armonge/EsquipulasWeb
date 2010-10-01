@@ -1,4 +1,7 @@
 <?php
+/**
+* @package administration
+*/
 require_once "../functions.php";
 try{
     $id = (int)$_GET["id"];

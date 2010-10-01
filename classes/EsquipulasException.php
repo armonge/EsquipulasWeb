@@ -1,8 +1,13 @@
 <?php
+/**
+* class EsquipulasException
+* @package exceptions
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/
 class EsquipulasException extends Exception{
     protected $details;
-    public function __construct($message) {
-       parent::__construct($message);
+    public function __construct($message = null, $code = 0, Exception $previous = null){
+       parent::__construct($message , $code , $previous );
        $this->details = "
 	=============== DETAILS ================
 
@@ -16,6 +21,9 @@ class EsquipulasException extends Exception{
 	HTTP Language: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "
 	Referer: " . $_SERVER['HTTP_REFERER'] . "
 	URI: $basedir" . $_SERVER['REQUEST_URI'] .	"
+        ============= GET  VARIABLES =============
+
+        ". print_r($_GET, true) . "
 
 	    ============= POST VARIABLES ==============
 
@@ -27,15 +35,15 @@ class EsquipulasException extends Exception{
     }
     
     public function __toString(){
-        return nl2br(
+        return 
             __CLASS__ . ":
             Message: {$this->message}
             {$this->details}
             "
-        );
+        ;
     }
     public function mail($mail){
-	mail($mail, "Error", $this, "From:Esquipulas AutoMail<automail@esquipulas.com>");
+        mail($mail, "Error", $this, "From:Esquipulas AutoMail<automail@esquipulas.com>");
     }
 }
 ?>

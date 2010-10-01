@@ -85,7 +85,7 @@ $(function(){
                         <?php echo $row_rsClient["nombre"] ?>
                     </a> <br />
                     <?php
-                    $saldo = $row_rsClient["totalfacturas"] - $row_rsClient["totalrecibos"];
+                    $saldo = bcsub($row_rsClient["totalfacturas"],$row_rsClient["totalrecibos"]);
                     if($saldo > 0){ ?>
                         Este cliente tiene  un saldo de US$<?php echo $saldo ?>
                     <?php } ?>

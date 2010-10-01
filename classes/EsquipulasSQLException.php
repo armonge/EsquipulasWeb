@@ -1,4 +1,8 @@
 <?php
+/**
+* class EsquipulasSQLException
+* @package exceptions
+*/
 class EsquipulasSQLException extends EsquipulasException{
     public function __construct($message, $query){
 	parent::__construct($message);
@@ -6,13 +10,12 @@ class EsquipulasSQLException extends EsquipulasException{
 	
     }
     public function __toString(){
-        return nl2br(
-            __CLASS__ . ":
-            Message: {$this->message}
-            {$this->details}
-            ======================QUERY==========================
-            {$this->query}"
-        );
+        return __CLASS__ . ":
+Message: {$this->message}
+{$this->details}
+======================QUERY==========================
+{$this->query}"
+        ;
     }
 }
 ?>

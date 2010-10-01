@@ -1,4 +1,9 @@
 <?php
+/**
+* class UserFromHash
+* @package users
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/
 class UserFromHash extends AbstractUser{
 	public function __construct($user, $hash, $database){
 		$this->dbc = $database;

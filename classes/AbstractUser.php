@@ -1,4 +1,9 @@
 <?php
+/**
+* class AbstractUser
+* @package users
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/
 abstract class AbstractUser{
 	protected $uid;
 	protected $roles = array();
