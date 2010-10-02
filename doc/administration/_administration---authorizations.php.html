@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page authorizations.php</title>
+			<link rel="stylesheet" href="styles/phpdoc.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name"><img src="images/Page_logo.png" alt="File" style="vertical-align: middle">/administration/authorizations.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+									<a href="#sec-includes">Includes</a>
+												</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+		
+			</div>
+</div>
+		
+
+	<a name="sec-includes"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Includes</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Includes</span>
+														</div>
+		<div class="info-box-body">	
+			<a name="___/header_php?>
+<div id=content>
+<?php echo$print?>
+<h1>Documentos pendientes de autorizaci&oacute;n</h1>
+
+<?php if($rsCreditInvoices->num_rows){?>
+    <h2>Creditos de factura</h2>
+    <ul>
+        <?php while($row_rsDocument=$rsCreditInvoices->fetch_array(MYSQLI_ASSOC)){?>
+            <li>
+                <a href=<?php echo$base?>reports/facturas_php?doc=<?php echo$row_rsDocument[iddocumento]?>>
+                    <?php echo$row_rsDocument[descripcion]?> para <?php echo$row_rsDocument[nombre]?>
+                </a>
+            </li>
+        <?php }?>
+    </ul>
+<?php }?>
+
+
+<?php if($rsAnullments->num_rows){?>
+    <h2>Anulaciones de  factura</h2>
+    <ul>
+        <?php while($row_rsDocument=$rsAnullments->fetch_array(MYSQLI_ASSOC)){?>
+            <li>
+                <a href=<?php echo$base?>reports/facturas_php?doc=<?php echo$row_rsDocument[iddocumento]?>>
+                    <?php echo$row_rsDocument[descripcion]_  _$row_rsDocument[ndocimpreso]?>  por <?php echo$row_rsDocument[nombre]"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<img src="images/Page.png" alt=" " />
+		<span class="include-title">
+			<span class="include-type">include</span>
+			(<span class="include-name"><a href="default/_header.php.html">"../header.php"?>
+<div id="content">
+<?php echo$print?>
+<h1>Documentos pendientes de autorizaci&oacute;n</h1>
+
+<?php if($rsCreditInvoices->num_rows){?>
+    <h2>Creditos de factura</h2>
+    <ul>
+        <?php while($row_rsDocument=$rsCreditInvoices->fetch_array(MYSQLI_ASSOC)){?>
+            <li>
+                <a href="<?php echo$base?>reports/facturas.php?doc=<?php echo$row_rsDocument["iddocumento"]?>">
+                    <?php echo$row_rsDocument["descripcion"]?> para <?php echo$row_rsDocument["nombre"]?>
+                </a>
+            </li>
+        <?php }?>
+    </ul>
+<?php }?>
+
+
+<?php if($rsAnullments->num_rows){?>
+    <h2>Anulaciones de  factura</h2>
+    <ul>
+        <?php while($row_rsDocument=$rsAnullments->fetch_array(MYSQLI_ASSOC)){?>
+            <li>
+                <a href="<?php echo$base?>reports/facturas.php?doc=<?php echo$row_rsDocument["iddocumento"]?>">
+                    <?php echo$row_rsDocument["descripcion"]."  ".$row_rsDocument["ndocimpreso"]?>  por <?php echo$row_rsDocument["nombre"]</a></span>)
+			(line <span class="line-number">218</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+</div>
+<a name="___/functions_php"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<img src="images/Page.png" alt=" " />
+		<span class="include-title">
+			<span class="include-type">require_once</span>
+			(<span class="include-name"><a href="default/_functions.php.html">"../functions.php"</a></span>)
+			(line <span class="line-number">5</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 02 Oct 2010 01:45:32 -0600 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

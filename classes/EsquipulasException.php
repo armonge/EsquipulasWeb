@@ -10,7 +10,7 @@ class EsquipulasException extends Exception{
        parent::__construct($message , $code , $previous );
        $this->details = "
 	=============== DETAILS ================
-
+    Line : " . $this->line . "
 	Time: " . date("r") . "
 	IP: " . $_SERVER['REMOTE_ADDR'] . "
 	Browser: " . $_SERVER['HTTP_USER_AGENT'] . "

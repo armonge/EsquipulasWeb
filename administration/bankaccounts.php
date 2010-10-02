@@ -37,22 +37,30 @@ try{
 
             $description = ( $currency == 1 ? "BMN" : "BME") . " " . $bankname . " " . $name ;
 
+            try{
+                $dbc->autocommit(False);
 
-            $dbc->simple_insert("cuentascontables", array(
-                "padre"=>$padre,
-                "codigo"=>$code,
-                "descripcion"=>$description,
-                "esdebe"=>1
-            ));
+                $dbc->simple_insert("cuentascontables", array(
+                    "padre"=>$padre,
+                    "codigo"=>$code,
+                    "descripcion"=>$description,
+                    "esdebe"=>1
+                ));
 
-            $dbc->simple_insert("cuentasbancarias",array(
-                "idcuentacontable"=>$dbc->insert_id,
-                "idbanco"=>$bankid,
-                "idtipomoneda"=>$currency,
-                "ctabancaria"=>$name,
-                "fechaapertura" => "CURDATE()",
-                "seriedoc"=>1
-            ));
+                $dbc->simple_insert("cuentasbancarias",array(
+                    "idcuentacontable"=>$dbc->insert_id,
+                    "idbanco"=>$bankid,
+                    "idtipomoneda"=>$currency,
+                    "ctabancaria"=>$name,
+                    "fechaapertura" => "CURDATE()",
+                    "seriedoc"=>1
+                ));
+
+                $dbc->commit();
+            }catch(EsquipulasSQLException $ex){
+                $dbc->rollback();
+                 $error = "<p class='error'>No se pudo añadir la cuenta bancaria</p>";
+            }
         }
     }
     $query = "
@@ -134,6 +142,7 @@ $(function(){
 <?php include "../header.php"?>
 <div id="content">
 <h1>Cuentas Bancarias</h1>
+<?php echo $error ?>
 <?php if(!$rsAccounts->num_rows){ ?>
     <h2>No hay cuentas bancarias</h2>
 <?php } else{ ?>
