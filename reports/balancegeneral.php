@@ -1,4 +1,9 @@
 <?php
+/**
+* class UserFromPasswd
+* @package reporting
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/
 //TODO: Mostar la otra columna y el estado de resultado
 require_once "../functions.php";
 if(!($_SESSION["user"]->hasRole("contabilidadrep") || $_SESSION["user"]->hasRole("gerencia"))){

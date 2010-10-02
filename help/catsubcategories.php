@@ -1,4 +1,9 @@
 <?php
+/**
+* class UserFromPasswd
+* @package help
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/
 require_once "../functions.php";
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>

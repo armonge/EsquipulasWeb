@@ -1,4 +1,9 @@
 <?php
+/**
+* class UserFromPasswd
+* @package crm
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/
 require_once "../functions.php";
 try{
     $del = (int)$_GET["del"];

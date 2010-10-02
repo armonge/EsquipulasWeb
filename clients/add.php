@@ -1,4 +1,10 @@
 <?php
+/**
+* class UserFromPasswd
+* @package crm
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/
+
 require_once "../functions.php";
 if(!$_SESSION["user"]->hasRole("root")){
 	die("Usted no tiene permisos para a&ntilde;adir proveedores");

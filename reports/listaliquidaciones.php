@@ -1,5 +1,9 @@
 <?php
-require_once "../functions.php";
+/**
+* class UserFromPasswd
+* @package reporting
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/require_once "../functions.php";
 if(!($_SESSION["user"]->hasRole("gerencia") || $_SESSION["user"]->hasRole("contabilidadrep"))){
     die("Usted no tiene permisos para este modulo");
 }

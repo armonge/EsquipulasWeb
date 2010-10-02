@@ -1,4 +1,10 @@
 <?php
+/**
+* class UserFromPasswd
+* @package help
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/
+
 $nologin = True;
 require_once "../functions.php";
 ?>

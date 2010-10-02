@@ -1,5 +1,9 @@
 <?php
-require_once "../functions.php";
+/**
+* class UserFromPasswd
+* @package reporting
+* @author Andrés Reyes Monge <armonge@gmail.com>
+*/require_once "../functions.php";
 $iddoc = (int)$_GET["doc"];
 if(!$iddoc){
     die();

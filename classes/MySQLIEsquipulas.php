@@ -7,7 +7,7 @@
 class MySQLIEsquipulas extends MySQLI{
     /**
     * 
-    /
+    */
     public function real_escape_string( $escapestr ){
 
         if (get_magic_quotes_gpc()) {
