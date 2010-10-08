@@ -30,7 +30,7 @@ try{
             SELECT idcaja, descripcion
             FROM cajas
             WHERE activo = 1
-    ")
+    ");
 }catch(EsquipulasException $ex){
     if($local){
         die($ex);

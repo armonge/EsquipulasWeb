@@ -21,6 +21,8 @@
 			</div>
 	<div class="info-box-body">	
 		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Este es el archivo de configuración general del sitio, en el se definen</p>
+<p class="description"><p>constantes asi como funciones que seran usadas en otros sitios</p></p>
 		
 			</div>
 </div>
@@ -43,12 +45,13 @@
 		<span class="include-title">
 			<span class="include-type">require_once</span>
 			(<span class="include-name"><a href="default/_conn.php.html">'conn.php'</a></span>)
-			(line <span class="line-number">18</span>)
+			(line <span class="line-number">25</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">*******general settings **********</p>
+<p class="short-description">Aca se determina si se esta trabajando en modo producción o desarrollo</p>
+<p class="description"><p>los parametros de conexión a la base de datos, la ubicación en el servidor  y la dirección base cambian</p></p>
 	
 </div>
 <a name="_{$path}__/onlineconn_php"><!-- --></a>
@@ -59,7 +62,7 @@
 		<span class="include-title">
 			<span class="include-type">require_once</span>
 			(<span class="include-name">"{$path}../onlineconn.php"</span>)
-			(line <span class="line-number">22</span>)
+			(line <span class="line-number">29</span>)
 		</span>
 	</div>
 
@@ -85,28 +88,31 @@
 	
 	<div>
 		<img src="images/Function.png" />
-		<span class="method-title">lastday</span> (line <span class="line-number">177</span>)
+		<span class="method-title">lastday</span> (line <span class="line-number">203</span>)
 	</div> 
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">****************last day of month***************</p>
+<p class="short-description">Calcula el ultimo dia del mes</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the last day of the month</li>
+			</ul>
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">string</span>
 		<span class="method-name">
 			lastday
 		</span>
-					([<span class="var-type"></span>&nbsp;<span class="var-name">$month</span> = <span class="var-default">&#039;&#039;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$year</span> = <span class="var-default">&#039;&#039;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$format</span> = <span class="var-default">&#039;Ymd&#039;</span>])
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$month</span> = <span class="var-default">&#039;&#039;</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$year</span> = <span class="var-default">&#039;&#039;</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$format</span> = <span class="var-default">&#039;Ymd&#039;</span>])
 			</div>
 
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
+				<span class="var-type">int</span>
 				<span class="var-name">$month</span>			</li>
 					<li>
-				<span class="var-type"></span>
+				<span class="var-type">int</span>
 				<span class="var-name">$year</span>			</li>
 					<li>
-				<span class="var-type"></span>
+				<span class="var-type">string</span>
 				<span class="var-name">$format</span>			</li>
 				</ul>
 		
@@ -117,29 +123,29 @@
 	
 	<div>
 		<img src="images/Function.png" />
-		<span class="method-title">num2letras</span> (line <span class="line-number">204</span>)
+		<span class="method-title">num2letras</span> (line <span class="line-number">226</span>)
 	</div> 
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">**************numbers to letters*********</p>
+<p class="short-description">Dado un número lo devuelve escrito.</p>
 	<div class="method-signature">
 		<span class="method-result">void</span>
 		<span class="method-name">
 			num2letras
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$num</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$fem</span> = <span class="var-default">true</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$dec</span> = <span class="var-default">true</span>])
+					(<span class="var-type">$num</span>&nbsp;<span class="var-name">$num</span>, [<span class="var-type">$fem</span>&nbsp;<span class="var-name">$fem</span> = <span class="var-default">true</span>], [<span class="var-type">$dec</span>&nbsp;<span class="var-name">$dec</span> = <span class="var-default">true</span>])
 			</div>
 
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$num</span>			</li>
+				<span class="var-type">$num</span>
+				<span class="var-name">$num</span><span class="var-description">: number - Número a convertir.</span>			</li>
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$fem</span>			</li>
+				<span class="var-type">$fem</span>
+				<span class="var-name">$fem</span><span class="var-description">: bool - Forma femenina (true) o no (false).</span>			</li>
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$dec</span>			</li>
+				<span class="var-type">$dec</span>
+				<span class="var-name">$dec</span><span class="var-description">: bool - Con decimales (true) o no (false).</span>			</li>
 				</ul>
 		
 	
@@ -149,26 +155,29 @@
 	
 	<div>
 		<img src="images/Function.png" />
-		<span class="method-title">utf8tohtml</span> (line <span class="line-number">138</span>)
+		<span class="method-title">utf8tohtml</span> (line <span class="line-number">158</span>)
 	</div> 
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">*******converts a UTF-8 string into HTML entities***********</p>
+<p class="short-description">converts a UTF-8 string into HTML entities</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> returns the converted HTML-string</li>
+			</ul>
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">string</span>
 		<span class="method-name">
 			utf8tohtml
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$utf8</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$encodeTags</span> = <span class="var-default">true</span>])
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$utf8</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$encodeTags</span> = <span class="var-default">true</span>])
 			</div>
 
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$utf8</span>			</li>
+				<span class="var-type">string</span>
+				<span class="var-name">$utf8</span><span class="var-description">: the UTF8-string to convert</span>			</li>
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$encodeTags</span>			</li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$encodeTags</span><span class="var-description">: TRUE will convert &quot;&lt;&quot; to &quot;&amp;lt;&quot;</span>			</li>
 				</ul>
 		
 	
@@ -178,7 +187,7 @@
 	
 	<div>
 		<img src="images/Function.png" />
-		<span class="method-title">__autoload</span> (line <span class="line-number">3</span>)
+		<span class="method-title">__autoload</span> (line <span class="line-number">7</span>)
 	</div> 
 
 	<!-- ========== Info from phpDoc block ========= -->
@@ -203,7 +212,7 @@
 	</div>
 	
 	<p class="notes" id="credit">
-		Documentation generated on Sat, 02 Oct 2010 01:45:33 -0600 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Wed, 06 Oct 2010 10:50:26 -0600 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

@@ -1,8 +1,9 @@
 <?php
 /**
-* class UserFromPasswd
-* @package reporting
-* @author Andrés Reyes Monge <armonge@gmail.com>
+ * Este archivo muestra un grafico con el total de las compras que ha hecho un cliente
+ * ordenadas por fecha, se puede definir un rango de fechas personalizado
+ * @package reporting
+ * @author Andrés Reyes Monge <armonge@gmail.com>
 */
 require_once "../functions.php";
 if(!($_SESSION["user"]->hasRole("ventasrep") || $_SESSION["user"]->hasRole("gerencia"))){

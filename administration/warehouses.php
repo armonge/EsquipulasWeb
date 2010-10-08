@@ -20,7 +20,7 @@ try{
     SELECT b.idbodega, b.nombrebodega
     FROM bodegas b
     ORDER BY b.idbodega
-    ")
+    ");
 }catch(EsquipulasException $ex){
     if($local){
         die($ex);

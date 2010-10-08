@@ -1,4 +1,8 @@
 <?php
+/**
+ * Este es el archivo de configuración general del sitio, en el se definen 
+ * constantes asi como funciones que seran usadas en otros sitios 
+ */
 /********auto load classes on call***********/
 function __autoload($class_name) {
 	require_once "classes/{$class_name}.php";
@@ -11,8 +15,11 @@ bcscale(4);
 session_start();
 session_regenerate_id();
 
-/*********general settings ***********/
-#TODO: configure settings for when not localhost
+/**
+ * Aca se determina si se esta trabajando en modo producción o desarrollo
+ * los parametros de conexión a la base de datos, la ubicación en el servidor
+ * y la dirección base cambian 
+ */
 if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="localhost") || ($_SERVER["REMOTE_ADDR"]=="192.168.2.200")){
 	$path = "/srv/http/EsquipulasWeb/";
 	require_once('conn.php');
@@ -22,7 +29,9 @@ if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="localhos
 	require_once("{$path}../onlineconn.php");
 	$local = False;
 }
-/***********modules************/
+/**
+ * @var array La lista de modulos que componene el sistema
+ */
 $modules = array(
     1=>"COMPRAS",
     2=>"CAJA",
@@ -31,7 +40,10 @@ $modules = array(
     5=>"ADMINISTRACION",
     6=>"REPORTES",
 );
-/**********document ids*******************/
+
+/**
+ * Los ids de los tipos de documento
+*/
 $docids = array(
      
     "ANULACION" => 2,
@@ -53,7 +65,10 @@ $docids = array(
     "CIERREANUAL" => 29,
     "PAGO" => 30
 );
-/************person types********************/
+/**
+ * Los tipos de persona, tambien simbolizan las acciones que se realizan en una 
+ * relación personasxdocumento
+*/
 $persontypes = array(
     "CLIENTE" => 1,
     "PROVEEDOR" => 2,
@@ -62,7 +77,9 @@ $persontypes = array(
     "SUPERVISOR" => 5,
     "CONTADOR" => 6
 );
-/************estados de documentos************/
+/**
+ * Los estados que puede tener un documento
+*/
 $docstates = array(
     "CONFIRMADO"=>1,
     "PENDIENTE"=>3,
@@ -131,10 +148,13 @@ if( ( !isset($_SESSION["user"]) ) || ( !$_SESSION["user"]->isValid() ) ){
 }
 }
 
-/*********converts a UTF-8 string into HTML entities************/
-//  - $utf8:        the UTF8-string to convert
-//  - $encodeTags:  booloean. TRUE will convert "<" to "&lt;"
-//  - return:       returns the converted HTML-string
+/**
+ * converts a UTF-8 string into HTML entities
+ * @param  string $utf8 the UTF8-string to convert
+ * @param bool $encodeTags TRUE will convert "<" to "&lt;"
+ * @return string returns the converted HTML-string
+*/
+
 function utf8tohtml($utf8, $encodeTags=true) {
 	$result = '';
 	for ($i = 0; $i < strlen($utf8); $i++) {
@@ -173,7 +193,13 @@ function utf8tohtml($utf8, $encodeTags=true) {
 	}
 	return $result;
 }
-/******************last day of month****************/
+/**
+ * Calcula el ultimo dia del mes
+ * @param int $month
+ * @param int $year
+ * @param string $format
+ * @return string the last day of the month
+ * */
 function lastday($month = '', $year = '' ,$format = 'Ymd') {
 	if (empty($month)) {
 		$month = date('m');
@@ -190,17 +216,13 @@ function lastday($month = '', $year = '' ,$format = 'Ymd') {
 	$result = strtotime('-1 second', strtotime('+1 month', $result));
 	return date($format, $result);
 }
-/****************numbers to letters**********/
-/*!
- @function num2letras ()
- @abstract Dado un número lo devuelve escrito.
- @param $num number - Número a convertir.
- @param $fem bool - Forma femenina (true) o no (false).
- @param $dec bool - Con decimales (true) o no (false).
- @result string - Devuelve el número escrito en letra.
-
+/**
+ * Dado un número lo devuelve escrito.
+ * @param $num number - Número a convertir.
+ * @param $fem bool - Forma femenina (true) o no (false).
+ * @param $dec bool - Con decimales (true) o no (false).
+ * @result string - Devuelve el número escrito en letra.
  */
-
 function num2letras($num, $fem = true, $dec = true) {
 	//if (strlen($num) > 14) die("El n&uacute;mero introducido es demasiado grande");
 	$matuni[2]  = "dos";

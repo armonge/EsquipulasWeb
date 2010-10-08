@@ -19,7 +19,7 @@ try{
     $rsBanks = $dbc->query("
     SELECT b.idbanco, b.descripcion
     FROM bancos b
-    ")
+    ");
 }catch(EsquipulasException $ex){
     if($local){
         die($ex);

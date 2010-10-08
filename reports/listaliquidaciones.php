@@ -1,6 +1,5 @@
 <?php
 /**
-* class UserFromPasswd
 * @package reporting
 * @author Andrés Reyes Monge <armonge@gmail.com>
 */require_once "../functions.php";
@@ -63,14 +62,14 @@ $(function(){
     </ul>
      <?php } ?>
 
-<form action = "reports/liquidaciones.php" method = "GET" >
-
+<form action="reports/liquidaciones.php" method="get" >
+<p>
 <strong>Escriba el numero de Liquidacion a buscar:</strong>
 
-<input type="text" name="doc" size="20"><br><br>
+<input type="text" name="doc" size="20" /><br /><br />
 
-<input type="submit" value="Buscar">
-
+<input type="submit" value="Buscar" />
+</p>
 </form>
 </div>
 <?php include "../footer.php" ?>
