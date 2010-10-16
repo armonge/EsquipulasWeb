@@ -91,6 +91,12 @@ if(!$_SESSION["user"]->hasRole("gerencia")){
                 Cuentas Bancarias
                 </a>
             </li>
+            <li>
+                <a href="administration/banks.php" title="Administraci&oacute;n de Bancos">
+                <img src="img/institution.png" alt="Administraci&oacute;n de Bancos" />
+                Bancos
+                </a>
+            </li>
 
 			<li>
 			    <a href="administration/warehouses.php" title="Bodegas">

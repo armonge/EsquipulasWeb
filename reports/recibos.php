@@ -2,7 +2,8 @@
 /**
 * @package reporting
 * @author Andrés Reyes Monge <armonge@gmail.com>
-*/require_once "../functions.php";
+*/
+require_once "../functions.php";
 
 $iddoc = (int)$_GET["doc"];
 if(!$iddoc){
@@ -17,16 +18,13 @@ SELECT
     padre.ndocimpreso,
     p.nombre as 'cliente',
     padre.total as 'total',
-    c.descripcion as 'concepto',
+
     ROUND(padre.total - IFNULL(hijo.total,0),2) as 'total',
     padre.observacion ,
 	IF(hijo.iddocumento IS NULL, 0,1) as 'Con Retencion'
 FROM documentos padre
 JOIN personasxdocumento pxd ON pxd.iddocumento = padre.iddocumento
 JOIN personas p ON p.idpersona = pxd.idpersona
-JOIN conceptos c ON  c.idconcepto=padre.idconcepto
-LEFT JOIN costosxdocumento cd ON cd.iddocumento=padre.iddocumento
-LEFT JOIN  costosagregados ca ON ca.idcostoagregado=cd.idcostoagregado
 LEFT JOIN docpadrehijos ph ON  padre.iddocumento=ph.idpadre
 LEFT JOIN documentos hijo ON hijo.iddocumento=ph.idhijo
 WHERE padre.idtipodoc={$docids["RECIBO"]}
@@ -36,6 +34,32 @@ ORDER BY padre.iddocumento
 ";
 $rsRecibo = $dbc->query($query);
 $row_rsRecibo = $rsRecibo->fetch_array(MYSQLI_ASSOC);
+
+$query = "
+SELECT 
+	CONCAT_WS(' ',tim.simbolo, FORMAT(m.monto,2)) as monto, 
+	m.refexterna, 
+	tm.descripcion,
+	b.descripcion as banco
+FROM movimientoscaja m
+JOIN tiposmoneda tim ON tim.idtipomoneda = m.idtipomoneda 
+JOIN tiposmovimientocaja tm ON tm.idtipomovimiento = m.idtipomovimiento 
+LEFT JOIN bancos b ON b.idbanco = m.idbanco
+WHERE m.iddocumento = $iddoc 
+ORDER by m.nlinea 
+";
+$rsMovements = $dbc->query($query);
+
+$query = "
+SELECT 
+	CONCAT_WS(' ',td.descripcion, ndocimpreso ) as descripcion
+FROM documentos d 
+JOIN docpadrehijos dph ON d.iddocumento = dph.idpadre 
+JOIN tiposdoc td ON d.idtipodoc = td.idtipodoc
+WHERE d.idtipodoc = {$docids["FACTURA"]}
+AND dph.idhijo = $iddoc 
+";
+$rsDetails = $dbc->query($query);
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -93,17 +117,24 @@ h1 {
 		</tr>
 	</tbody>
 </table>
-<div id="monto">
-<p><strong>U$</strong> <span class="under"><?php echo $row_rsRecibo["montod"]?></span></p>
-<p><strong>C$</strong> <span class="under"><?php echo $row_rsRecibo["montoc"]?></span></p>
-</div>
 <p>Recibi de: <span><?php echo $row_rsRecibo["cliente"]?></span></p>
 <p>La cantidad de: <span><?php echo num2letras($row_rsRecibo["total"]) ?> dolares</span></p>
 <p>En concepto de:</p>
 <ul>
 <?php while($row_rsDetails = $rsDetails->fetch_array(MYSQLI_ASSOC)){ ?>
-<li><?php echo $row_rsDetails["concepto"]?></li>
+	<li>Pago a <?php echo $row_rsDetails["descripcion"]?></li>
 <?php }?>
+</ul>
+<p>Detalle: </p>
+<ul>
+<?php while($row_rsMovement = $rsMovements->fetch_array(MYSQLI_ASSOC)){ ?>
+	<li>
+		<?php echo $row_rsMovement["monto"]?> <?php echo $row_rsMovement["descripcion"]?>
+		<?php if($row_rsMovement["refexterna"]){ ?>
+			<?php echo  $row_rsMovement["refexterna"] . " en " . $row_rsMovement["banco"] ?>
+		<?php } ?>
+	</li>
+<?php } ?>
 </ul>
 </div>
 </body>

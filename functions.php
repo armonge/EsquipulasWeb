@@ -21,7 +21,7 @@ session_regenerate_id();
  * y la dirección base cambian 
  */
 if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="localhost") || ($_SERVER["REMOTE_ADDR"]=="192.168.2.200")){
-	$path = "/srv/http/EsquipulasWeb/";
+	$path = "/srv/www/htdocs/EsquipulasWeb/";
 	require_once('conn.php');
 	$local = True;
 }else{
@@ -100,7 +100,6 @@ $accounts = array(
     "COSTOSVENTAS" =>182,
     "IMPUESTOSXPAGAR" =>133,
     "RETENCIONPAGADA" => 35,
-    "INVENTARIO" => 22,
     "COSTOSVENTAS" => 182,
     "IMPUESTOSXPAGAR" => 133,
     "CAJA" => 5,

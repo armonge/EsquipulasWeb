@@ -3,10 +3,11 @@
 * @package administration
 */
 require_once "../functions.php";
+if(!$_SESSION["user"]->hasRole("root")){
+    die("Usted no tiene permisos para administrar conceptos");
+}
 try{
-    if(!$_SESSION["user"]->hasRole("root")){
-        die("Usted no tiene permisos para administrar conceptos");
-    }
+    
     if(isset($_POST["add"]) && $_POST["add"] == 1 ){
         $type = (int)$_POST["doctype"];
         $name = $dbc->real_escape_string($_POST["name"]);

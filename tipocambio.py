@@ -31,43 +31,42 @@ if __name__ == "__main__":
         year = int(options.year if not options.year is None else datetime.date.today().year)
         month = int(options.month if not options.month is None else datetime.date.today().month)
         url = "http://www.elpueblopresidente.com/servicios/wsmoneda.php?formato=jsonvalido&ano=%d&mes=%d" % ( year, month )
-
-    	file = urllib.urlopen( url )
-    	data = json.loads( file.read() )
+        print url
+        file = urllib.urlopen( url )
+        data = json.loads( file.read() )
     
-    	if not db.open():
-    	    raise Exception( u"No se pudo abrir la conexión a la base de datos" )
+        if not db.open():
+            raise Exception( u"No se pudo abrir la conexión a la base de datos" )
     
-    	if not db.transaction():
-    	    raise Exception( u"No se pudo iniciar la transacción" )
+        if not db.transaction():
+            raise Exception( u"No se pudo iniciar la transacción" )
     
     
     
-    	for record in data['tipodecambioni']:
-    
-    	    if not query.prepare( """
+        for record in data['tipodecambioni']:
+            if not query.prepare( """
     	    INSERT INTO tiposcambio (tasa, fecha) VALUES ( :tasa, :fecha)
     	    """ ):
-    		raise Exception( "No se pudo preparar la consulta" )
-    	    query.bindValue( ":tasa", record['cambio']['valor'] )
-    	    query.bindValue( ":fecha", record['cambio']['fecha'] )
-    	    print "*************************"
-    	    print record['cambio']['valor']
-    	    print record['cambio']['fecha']
-    	    print "*************************"
-    	    if not query.exec_():
-    		raise Exception( "No se pudo ejecutar la consulta" )
+                raise Exception( "No se pudo preparar la consulta" )
+            query.bindValue( ":tasa", record['cambio']['valor'] )
+            query.bindValue( ":fecha", record['cambio']['fecha'] )
+            print "*************************"
+            print record['cambio']['valor']
+            print record['cambio']['fecha']
+            print "*************************"
+            if not query.exec_():
+                raise Exception( "No se pudo ejecutar la consulta" )
     
-    	if not db.commit():
-    	    raise Exception( "No se pudo completar la transaccion" )
+        if not db.commit():
+            raise Exception( "No se pudo completar la transaccion" )
 
     except Exception as inst:
-    	db.rollback()
-    	print query.lastError().text()
-    	print unicode(inst)
+        db.rollback()
+        print query.lastError().text()
+        print unicode(inst)
     finally:
-	if db.isOpen():
-	    db.close()
+        if db.isOpen():
+            db.close()
 
     app.exit()
 

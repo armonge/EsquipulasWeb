@@ -74,9 +74,13 @@ $(function(){
 				  <li><?php echo $row_rsBank["descripcion"]?>
 				  <?php
 				  $rsAccounts = $dbc->query("
-				  SELECT cb.idcuentabancaria, cb.ctabancaria, m.moneda
-				  FROM cuentasbancarias
+				  SELECT 
+					  cb.idcuentacontable,
+					  cb.ctabancaria,
+					   m.moneda
+				  FROM cuentasbancarias cb
 				  JOIN tiposmoneda m ON m.idtipomoneda = cb.idtipomoneda
+				  WHERE cb.idbanco = {$row_rsBank["idbanco"]}
 				  ");
 				  if($rsAccounts->num_rows){ ?>
 				  	<ul>
