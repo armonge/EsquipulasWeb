@@ -31,6 +31,7 @@ try{
         {$accounts["COSTOSVENTAS"]},
         {$accounts["IMPUESTOSXPAGAR"]}
         )";
+       
         $result = $dbc->multi_query($query);
 
         if ($result) {
@@ -97,7 +98,7 @@ try{
             {$persontypes["SUPERVISOR"]},
             {$docids["NOTACREDITO"]},
             {$docids["FACTURA"]},
-            {$docids["CIERRE"]},
+            {$docids["CIERREMENSUAL"]},
             {$docids["RECIBO"]},
             {$docstates["CONFIRMADO"]},
             {$docstates["PENDIENTE"]},
