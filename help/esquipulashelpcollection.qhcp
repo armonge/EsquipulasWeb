@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<QHelpCollectionProject version="1.0">
+    <assistant>
+        <title>Ayuda MIS Esquipulas</title>
+        <currentFilter>misesquipulas</currentFilter>
+        <applicationIcon>logo.png</applicationIcon>
+    </assistant>
+    <docFiles>
+        <generate>
+             <file>
+                 <input>doc.qhp</input>
+                 <output>doc.qch</output>
+             </file>
+         </generate>
+         <register>
+             <file>doc.qch</file>
+         </register>
+     </docFiles>
+</QHelpCollectionProject>

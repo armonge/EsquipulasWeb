@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+    <namespace>grupoeltriunfo.com.misesquipulas.1_0</namespace>
+    <virtualFolder>doc</virtualFolder>
+    <customFilter name="MIS Esquipulas 1.0">
+        <filterAttribute>misesquipulas</filterAttribute>
+        <filterAttribute>1.0</filterAttribute>
+    </customFilter>
+    <filterSection>
+        <filterAttribute>misesquipulas</filterAttribute>
+        <filterAttribute>1.0</filterAttribute>
+        <toc>
+        <section title="MIS Esquipulas" ref="index.html">
+			<section title="Barras de tareas" ref="toolbars.html" />
+            <section title="Inventario" ref="inventario/index.html">
+                <section title="Catalogo de Articulos" ref="inventario/catarticles.html"/>
+                <section title="Catalogo de Proveedores" ref="inventario/catproviders.html"/>
+                <section title="Catalogo de Categorias" ref="inventario/catcategories.html"/>
+                <section title="Devoluciones" ref="inventario/devolutions.html"/>
+                <section title="Liquidaciones" ref="inventario/liquidations.html"/>
+                <section title="Entradas Locales" ref="inventario/localentries.html"/>
+            </section>
+	    </section>
+        </toc>
+        <keywords>
+            <keyword name="Inventario" id="misesquipulas::inventario" ref="inventario/index.html" />
+            
+            <keyword name="Liquidación" id="misesquipulas::inventario::liquidacion" ref="inventario/liquidations.html" />
+            <keyword name="Nueva Liquidación" id="misesquipulas::inventario::liquidacion" ref="inventario/liquidations.html#new" />
+
+            <keyword name="Entrada Local" id="misesquipulas::inventario::entradalocal" ref="inventario/localentries.html" />
+            <keyword name="Nueva Entrada Local" id="misesquipulas::inventario::entradalocal" ref="inventario/localentries.html#new" />
+
+            <keyword name="Catalogo de articulos" id="misesquipulas::inventario::articulos" ref="inventario/catarticles.html" />
+            <keyword name="Añadir articulo" id="misesquipulas::inventario::articulos" ref="inventario/catarticles.html#new" />
+        </keywords>
+        <files>
+            <file>styles.css</file>
+            <file>logo.png</file>
+
+            <file>img/document-new.png</file>
+            <file>img/document-save.png</file>
+            <file>img/document-preview.png</file>
+            <file>img/document-print.png</file>
+            <file>img/document-edit.png</file>
+            <file>img/dialog-cancel.png</file>
+            <file>img/format-add-node.png</file>
+			<file>img/list-add.png</file>
+
+            
+            <file>img/toolbar-nav.png</file>
+            <file>img/toolbar-edit.png</file>
+            
+            <file>img/go-first.png</file>
+            <file>img/go-previous.png</file>
+            <file>img/go-next.png</file>
+            <file>img/go-last.png</file>
+            
+            <file>index.html</file>
+            <file>toolbars.html</file>
+            <file>print-preview.html</file>
+            <file>img/succesfull-save.png</file>
+            
+            <file>inventario/index.html</file>
+            <file>inventario/catarticles.html</file>
+            <file>inventario/catproviders.html</file>
+            <file>inventario/catcategories.html</file>
+            <file>inventario/devolutions.html</file>            
+            <file>inventario/liquidations.html</file>
+            <file>inventario/localentries.html</file>
+            <file>img/liquidacion.png</file>
+            <file>img/liquidacion-edit.png</file>
+            <file>img/entradacompra.png</file>
+            <file>img/entradacompra-edit.png</file>
+            <file>img/catarticles-add.png</file>
+            <file>img/catarticles.png</file>
+            <file>img/catproviders.png</file>
+            <file>img/catproviders-add.png</file>
+            <file>img/categories-add.png</file>
+            <file>img/catcategories.png</file>
+            
+            
+        </files>
+    </filterSection>
+</QtHelpProject>
