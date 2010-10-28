@@ -3,7 +3,6 @@
 * @package administration
 */
 require_once "../functions.php";
-require_once "../functions.php";
 if(!$_SESSION["user"]->hasRole("root")){
 	die("Usted no tiene permisos para administrar vendedores");
 }

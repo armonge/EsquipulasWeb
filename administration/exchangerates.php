@@ -12,7 +12,17 @@ try{
         $banco = (double)$_POST["Banco"];
 
         if($idtc){
-            $query ="UPDATE tiposcambio SET tasabanco = $banco  WHERE idtc = $idtc AND fecha > CURDATE() LIMIT 1";
+            $query ="
+            UPDATE tiposcambio  tc
+			SET tc.tasabanco = $banco
+			WHERE tc.idtc = $idtc
+			AND (
+				SELECT d.iddocumento 
+				FROM documentos d 
+				WHERE d.idtipocambio = $idtc
+			) IS NULL
+			LIMIT 1
+            	";
             if($dbc->query($query) && $dbc->affected_rows){
                 $status = array("result"=>true);
 
@@ -41,7 +51,10 @@ try{
         if(!$sidx) $sidx =1;
 
         // calculate the number of rows for the query. We need this for paging the result
-        $result = $dbc->query("SELECT COUNT(idtc) AS count FROM tiposcambio");
+        $result = $dbc->query("
+        SELECT COUNT(idtc) AS count 
+        FROM tiposcambio
+        ");
         $row = $result->fetch_array(MYSQLI_ASSOC);
         $count = $row['count'];
 
@@ -66,13 +79,15 @@ try{
         // the actual query for the grid data
         $SQL = "
             SELECT
-                idtc,
-                UNIX_TIMESTAMP(fecha)*1000 as stamp,
-                DATE_FORMAT(fecha, '%d/%c/%Y') as fecha,
-                tasa,
-                IFNULL(tasabanco,0) as tasabanco
-            FROM tiposcambio
-            ORDER BY tiposcambio.$sidx  $sord
+                tc.idtc,
+				tc.fecha >= CURDATE() AND d.iddocumento IS NULL AS 'editable',
+                UNIX_TIMESTAMP(tc.fecha)*1000 AS 'stamp',
+                DATE_FORMAT(tc.fecha, '%d/%c/%Y') AS 'fecha',
+                tc.tasa,
+                IFNULL(tc.tasabanco,0) as 'tasabanco'
+            FROM tiposcambio tc
+			LEFT JOIN documentos d ON tc.idtc = d.idtipocambio
+            ORDER BY tc.$sidx  $sord
             LIMIT $start , $limit
         ";
         $result = $dbc->query( $SQL );
@@ -85,7 +100,7 @@ try{
             $responce->rows[$i]['id']=$row["idtc"];
             $responce->rows[$i]['cell'] = array(
             $row["idtc"],
-            $row["stamp"],
+            $row["editable"],
             $row["fecha"],
             $row["tasa"],
             $row["tasabanco"]
@@ -144,23 +159,18 @@ $(document).ready(function(){
     var isroweditable = function (id) {
 		// implement your criteria here
 		data = $("#list").getRowData(id);
-		rowdate = new Date(parseInt(data.stamp));
-		curdate = new Date();
-		if(rowdate < curdate){
-		    return false;
-		}else{
-		    return true;
-		}
+		
+		return data.editable == 1; 
     };
     $("#list").jqGrid({
 	url:'<?php echo $basedir ?>administration/exchangerates.php?nav=yes',
 	editurl:'<?php echo $basedir ?>administration/exchangerates.php?edit=yes',
 	datatype: 'json',
-	colNames:['Id','stamp','Fecha', 'Oficial','Banco'],
+	colNames:['Id','editable','Fecha', 'Oficial','Banco'],
 	altRows:true,
 	colModel :[
 	    {name:'Id', index:'idtc', width:55, hidden:true},
-	    {name:'stamp', index:'stamp', hidden:true},
+	    {name:'editable', index:'editable', hidden:true},
 	    {name:'Fecha', index:'fecha', width:100},
 	    {name:'Oficial', index:'tasa', width:100, align:'right'},
 	    {name:'Banco', index:'tasabanco', width:100, align:'right',editable:true,editrules:{number:true}}
@@ -172,7 +182,6 @@ $(document).ready(function(){
 			if (isroweditable(id)) {
 			    $('#list').jqGrid('editRow',id,true);
 			    lastsel=id;
-			   
 			}
 
 	    }
@@ -181,7 +190,7 @@ $(document).ready(function(){
 	width:550,
 	pager: '#pager',
 	rowNum:10,
-	rowList:[10,20,50],
+	rowList:[20,50],
 	sortname: 'fecha',
 	sortorder: 'desc',
 	viewrecords: true,

@@ -11,7 +11,10 @@ try{
     if(isset($_POST["add"]) && $_POST["add"] == 1 ){
         $type = (int)$_POST["doctype"];
         $name = $dbc->real_escape_string($_POST["name"]);
-        $result = $dbc->query("INSERT INTO conceptos (descripcion, idtipodoc) VALUES ('$name', $type);");
+        $result = $dbc->query("
+        	INSERT INTO conceptos (descripcion, idtipodoc) 
+        	VALUES ('$name', $type);
+        ");
         echo json_encode(array(
             "result" => $result,
             "data" => $name
@@ -21,7 +24,8 @@ try{
 
 
     $query = "
-    SELECT descripcion, idtipodoc FROM conceptos
+    SELECT descripcion, idtipodoc 
+    FROM conceptos
     ";
     $rsConcepts = $dbc->query($query);
 }catch(EsquipulasException $ex){

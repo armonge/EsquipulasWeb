@@ -110,7 +110,6 @@ try{
             {$accounts["INVENTARIO"]}
             )
             ";
-        echo $query;
         $result = $dbc->multi_query($query);
             if ($result) {
             $print = "<p>La Devoluci&oacute;n se ha autorizado</p>";
@@ -160,7 +159,7 @@ try{
     $rsAnullments = $dbc->query($query);
 
     $query = "
-            SELECT
+        SELECT
             d.iddocumento,
             d.ndocimpreso,
             fact.ndocimpreso as nfactura,
@@ -177,6 +176,22 @@ try{
         ORDER BY d.iddocumento
      ";
      $rsDevolutions = $dbc->query($query);
+     
+     $query =" 
+     	SELECT
+     		d.iddocumento,
+     		d.ndocimpreso,
+     		d.idtipodoc,
+     		td.descripcion,
+     		p.nombre
+     	FROM documentos d
+     	JOIN tiposdoc td ON td.idtipodoc = d.idtipodoc
+     	JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento AND pxd.idaccion = {$persontypes["USUARIO"]}
+     	JOIN personas p ON p.idpersona = pxd.idpersona AND p.tipopersona = {$persontypes["USUARIO"]}
+     	WHERE d.idtipodoc = {$docids["CHEQUE"]} AND d.idestado = {$docstates["PENDIENTE"]}
+     	ORDER BY d.iddocumento
+     ";
+     $rsChecks = $dbc->query($query);
  }catch(EsquipulasException $ex){
     if($local){
         die($ex);
@@ -262,9 +277,23 @@ try{
     </ul>
 <?php } ?>
 
+<?php if ($rsChecks->num_rows) {
+?>
+    <h2>Cheques</h2>
+    <ul>
+    <?php while ($row_rsDocument = $rsChecks->fetch_array(MYSQLI_ASSOC)) { ?>
+        <li>
+            <a href="<?php echo $base ?>reports/cheques.php?doc=<?php echo $row_rsDocument["iddocumento"] ?>">
+                Cheque  por <?php echo $row_rsDocument["nombre"]; ?>
+            </a>
+        </li>
+    <?php } ?>
+    </ul>
+<?php } ?>
 
 
-<?php if (!( $rsAnullments->num_rows + $rsCreditInvoices->num_rows + $rsDevolutions->num_rows)) { ?>
+
+<?php if (!( $rsAnullments->num_rows + $rsCreditInvoices->num_rows + $rsDevolutions->num_rows + $rsChecks->num_rows)) { ?>
     <p>No hay documentos pendientes de autorizaci&oacute;n</p>
 <?php } ?>
 

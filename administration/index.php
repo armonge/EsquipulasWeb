@@ -52,6 +52,10 @@ if(!$_SESSION["user"]->hasRole("gerencia")){
     zoom:1;
     *display:inline;
 }
+#content li img{
+	display:block;
+	margin:auto;
+}
 </style>
 </head>
 <body>
