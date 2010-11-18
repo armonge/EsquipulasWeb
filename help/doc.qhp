@@ -19,6 +19,8 @@
                 <section title="Devoluciones" ref="inventario/devolutions.html"/>
                 <section title="Liquidaciones" ref="inventario/liquidations.html"/>
                 <section title="Entradas Locales" ref="inventario/localentries.html"/>
+				<section title="Entradas Locales" ref="inventario/kardexsalida.html"/>
+				<section title="Entradas Locales" ref="inventario/kardexotros.html"/>
             </section>
 	    </section>
         </toc>
@@ -33,6 +35,9 @@
 
             <keyword name="Catalogo de articulos" id="misesquipulas::inventario::articulos" ref="inventario/catarticles.html" />
             <keyword name="Añadir articulo" id="misesquipulas::inventario::articulos" ref="inventario/catarticles.html#new" />
+			<keyword name="Devoluciones" id="misesquipulas::inventario::kardexentrada" ref="inventario/devolutions.html#new" />
+			<keyword name="Kardex por otros conceptos" id="misesquipulas::inventario::kardexotros" ref="inventario/kardexotros.html" />
+			<keyword name="Kardex de Salida" id="misesquipulas::inventario::kardexsalida" ref="inventario/kardexsalida.html" />
         </keywords>
         <files>
             <file>styles.css</file>
