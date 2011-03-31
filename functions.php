@@ -20,15 +20,15 @@ session_regenerate_id();
  * los parametros de conexión a la base de datos, la ubicación en el servidor
  * y la dirección base cambian 
  */
-if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="localhost") || ($_SERVER["REMOTE_ADDR"]=="192.168.2.200")){
+// if(($_SERVER["REMOTE_ADDR"]=="127.0.0.1") || ($_SERVER["REMOTE_ADDR"]=="localhost") || ($_SERVER["REMOTE_ADDR"]=="192.168.2.200")){
 	$path = "/srv/www/htdocs/EsquipulasWeb/";
 	require_once('conn.php');
 	$local = True;
-}else{
-	$path = "/srv/www/htdocs/";
-	require_once("{$path}../onlineconn.php");
-	$local = False;
-}
+// }else{
+// 	$path = "/srv/www/htdocs/";
+// 	require_once("{$path}../onlineconn.php");
+// 	$local = False;
+// }
 /**
  * @var array La lista de modulos que componene el sistema
  */
