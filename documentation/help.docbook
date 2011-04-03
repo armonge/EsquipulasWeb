@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<book version="5.0" xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      xmlns:xi="http://www.w3.org/2001/XInclude"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml"
-      xmlns:db="http://docbook.org/ns/docbook">
+<!DOCTYPE book SYSTEM "/usr/share/xml/docbook/schema/dtd/5.0/docbook.dtd">
+<book version="5.0" xml:lang="es" xmlns="http://docbook.org/ns/docbook">
   <info>
-    <title>Manual de Usuario MIS Esquipulas</title>
+    <title>3Manual de Usuario MIS Esquipulas</title>
 
-    <author>
-      <personname><firstname>Andrés</firstname><surname>Reyes
-      Monge</surname><firstname>Luis Carlos</firstname><surname>Mejía
-      García</surname><firstname>Marcos Antonio</firstname><surname>Moreno
-      Gonzales</surname></personname>
+    <authorgroup>
+      <author>
+        <personname><firstname>Andrés</firstname><surname>Reyes
+        Monge</surname></personname>
 
-      <affiliation>
+        <email>armonge@gmail.com</email>
+      </author>
+
+      <author>
+        <personname><firstname>Luis</firstname><othername>Carlos</othername><surname>Mejia
+        Garcia</surname></personname>
+
+        <email>lcmejia19@hotmail.com</email>
+      </author>
+
+      <author>
+        <personname><firstname>Marcos</firstname><othername>Antonio</othername><surname>Moreno
+        Garcia</surname></personname>
+
+        <email>marcosmamg@hotmail.com</email>
+      </author>
+
+      <author>
         <orgname>Cusuco Soft</orgname>
-      </affiliation>
-    </author>
+      </author>
+    </authorgroup>
+
+    <abstract>
+      <para>El manual de usuario de para todo el sistema <application>MIS
+      Esquipulas</application></para>
+    </abstract>
   </info>
 
   <chapter>
@@ -256,11 +272,15 @@
 
         <orderedlist>
           <listitem>
-            <para>Catalogo de cuentas contables</para>
+            <para>Catalogo de cuentas contablesB</para>
           </listitem>
         </orderedlist>
       </listitem>
     </orderedlist>
+
+    <section>
+      <title>Balance General</title>
+    </section>
   </chapter>
 
   <chapter>
