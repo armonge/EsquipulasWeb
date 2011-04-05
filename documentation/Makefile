@@ -15,7 +15,7 @@ qch:
 	xsltproc \
 	--stringparam html.stylesheet  styles.css  \
 	--output  manual.html \
-	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/webhelp/xsl/webhelp.xsl \
+	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/xhtml-1_1/chunk.xsl \
 	help.dbk
 
 

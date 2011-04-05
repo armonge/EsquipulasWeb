@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE book SYSTEM "/usr/share/xml/docbook/schema/dtd/5.0/docbook.dtd">
 <book version="5.0" xml:lang="es" xmlns="http://docbook.org/ns/docbook">
   <info>
     <title>Manual de Usuario MIS Esquipulas</title>
@@ -44,7 +43,7 @@
       la barra de herramientas del sistema.</para>
 
       <table>
-        <title>Iconos Estandar usados en MIS Esquipulas</title>
+        <title>Iconos estandar usados en MIS Esquipulas</title>
 
         <tgroup cols="4">
           <thead>

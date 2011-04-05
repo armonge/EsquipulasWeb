@@ -1,0 +1,9 @@
+Para generar la ayuda en un sistema openSUSE 11.4 es necesario tener instaldo
+- libxslt
+- docbook5-xsl-stylesheets
+- python
+- python-beautifulsoup
+- libqt4-devel
+
+Posteriormente se ejecutan el comando
+make qch
