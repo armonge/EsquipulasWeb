@@ -32,10 +32,10 @@ class QHPWriter(object):
 	files = []
 	toc = []
 	app_name = ''
-
+	doc_title = ''
 	def _generate_toc(self):
 		toc = ''
-		toc += '<section title="MIS Esquipulas" ref="index.html">'
+		toc += '<section title="' + self.doc_title + '" ref="index.html">'
 		for chapter in self.toc:
 			toc += '\t\t<section title="' + chapter['title'] + '" ref="' + chapter['link'] + '" >\n'
 
@@ -130,6 +130,7 @@ if __name__ == '__main__':
 	qhp_writer.files = get_files(sys.argv[2], sys.argv[3], sys.argv[4:])
 	qhp_writer.namespace = 'mis.esquipulas.grupoeltriunfo.com.ni'
 	qhp_writer.app_name = 'MIS Esquipulas'
+	qhp_writer.doc_title = 'Manual de usuario de MIS Esquipulas'
 	
 	f = open('manual.qhp','w')
 	f.write( qhp_writer.write())

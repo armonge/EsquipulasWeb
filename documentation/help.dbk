@@ -1,94 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<book version="5.0" xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      xmlns:xi="http://www.w3.org/2001/XInclude"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:m="http://www.w3.org/1998/Math/MathML"
-      xmlns:html="http://www.w3.org/1999/xhtml"
-      xmlns:db="http://docbook.org/ns/docbook">
+<!DOCTYPE book SYSTEM "/usr/share/xml/docbook/schema/dtd/5.0/docbook.dtd">
+<book version="5.0" xml:lang="es" xmlns="http://docbook.org/ns/docbook">
   <info>
     <title>Manual de Usuario MIS Esquipulas</title>
 
-    <author>
-      <personname><firstname>Andrés</firstname><surname>Reyes
-      Monge</surname><firstname>Luis Carlos</firstname><surname>Mejía
-      García</surname><firstname>Marcos Antonio</firstname><surname>Moreno
-      González</surname></personname>
+    <authorgroup>
+      <author>
+        <personname><firstname>Andrés</firstname> <surname>Reyes
+        Monge</surname></personname>
 
-      <affiliation>
-        <orgname>Cusuco Soft</orgname>
-      </affiliation>
-    </author>
+        <email>armonge@gmail.com</email>
+      </author>
+
+      <author>
+        <personname><firstname>Luis</firstname> <othername>Carlos</othername>
+        <surname>Mejia Garcia</surname></personname>
+
+        <email>lcmejia19@hotmail.com</email>
+      </author>
+
+      <author>
+        <personname><firstname>Marcos</firstname>
+        <othername>Antonio</othername> <surname>Moreno
+        Garcia</surname></personname>
+
+        <email>marcosmamg@hotmail.com</email>
+      </author>
+    </authorgroup>
+
+    <abstract>
+      <para>El manual de usuario de para todo el sistema <application>MIS
+      Esquipulas</application></para>
+    </abstract>
   </info>
 
   <chapter>
     <title>Detalles Generales</title>
 
     <section>
-      <title>Detalles Generales</title>
+      <title>Iconos estandar utilizados por el sistema</title>
 
-      <para>Este apartado explica el menú opciones y las barras que aparecen
-      en todos los módulos del sistema</para>
+      <para>A continuación se explicaran las acciones estandar utilizadas en
+      la barra de herramientas del sistema.</para>
 
-      <para>La barra contiene los siguientes iconos, no todos se encuentran
-      disponibles siempre pero en el caso de estarlo realizan siempre la misma
-      acción</para>
+      <table>
+        <title>Iconos Estandar usados en MIS Esquipulas</title>
 
-      <itemizedlist>
-        <listitem>
-          <para><inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="img/document-new.png"></imagedata>
-              </imageobject>
-            </inlinemediaobject><emphasis role="bold">Nuevo:</emphasis>
-          Permite la creación de un nuevo documento</para>
-        </listitem>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Nombre</entry>
 
-        <listitem>
-          <para><inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="img/toolbar-edit.png"></imagedata>
-              </imageobject>
-            </inlinemediaobject> Permite guardar el documento o
-          cancelar</para>
-        </listitem>
+              <entry>Imagen</entry>
 
-        <listitem>
-          <para><inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="img/toolbar-nav.png"></imagedata>
-              </imageobject>
-            </inlinemediaobject><emphasis role="bold"> Navegar</emphasis>
-          Permite moverse entre los diferentes registros</para>
-        </listitem>
+              <entry>Descripción</entry>
 
-        <listitem>
-          <para><inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="img/catclientes.png"></imagedata>
-              </imageobject>
-            </inlinemediaobject><emphasis role="bold">Catalogo de
-          clientes</emphasis> Abre el catalogo de clientes</para>
-        </listitem>
+              <entry>Combinación de acceso rapido</entry>
+            </row>
+          </thead>
 
-        <listitem>
-          <para><inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="img/okteta.png"></imagedata>
-              </imageobject>
-            </inlinemediaobject><emphasis role="bold">Mostrar
-          recibos</emphasis> Muestra los recibos de la factura actual</para>
-        </listitem>
+          <tbody>
+            <row>
+              <entry>Nuevo</entry>
 
-        <listitem>
-          <para><inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="img/view-refresh.png"></imagedata>
-              </imageobject>
-            </inlinemediaobject><emphasis role="bold">Refrescar</emphasis>
-          Refresca los datos del formulario actual</para>
-        </listitem>
-      </itemizedlist>
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/document-new.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Crear un nuevo documento</entry>
+
+              <entry><accel>Ctrl+N</accel></entry>
+            </row>
+
+            <row>
+              <entry>Previsualizar</entry>
+
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/document-preview.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Previsualizar el documento para impresión</entry>
+
+              <entry><accel>Ctrl+P</accel></entry>
+            </row>
+
+            <row>
+              <entry>Imprimir</entry>
+
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/document-print.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Imprimir el documento</entry>
+            </row>
+
+            <row>
+              <entry>Guardar</entry>
+
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/document-save.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Guardar el documento</entry>
+
+              <entry><accel>Ctrl+g</accel></entry>
+            </row>
+
+            <row>
+              <entry>Cancelar</entry>
+
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/dialog-cancel.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Cancelar la creación de un nuevo documento</entry>
+
+              <entry><accel>Esc</accel></entry>
+            </row>
+
+            <row>
+              <entry>Primero documento</entry>
+
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/go-first.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Ir al primer documento</entry>
+            </row>
+
+            <row>
+              <entry>Documento anterior</entry>
+
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/go-previous.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Ir al documento anterior</entry>
+            </row>
+
+            <row>
+              <entry>Documento siguiente</entry>
+
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/go-next.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Ir al documento siguiente</entry>
+            </row>
+
+            <row>
+              <entry>Ultimo documento</entry>
+
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/go-last.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Ir al ultimo documento</entry>
+            </row>
+
+            <row>
+              <entry>Borrar la fila</entry>
+
+              <entry><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/edit-delete.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject></entry>
+
+              <entry>Borrar la fila actualmente seleccionada en la tabla de
+              edición de un nuevo documento</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
 
       <para>En el menú de opciones tenemos los siguientes botones</para>
 
@@ -261,8 +363,7 @@
         </orderedlist>
       </listitem>
     </orderedlist>
-	
-	
+
     <section>
       <title>Ajustes Contables</title>
 
@@ -280,16 +381,16 @@
         </mediaobject>
       </screenshot>
     </section>
-	
-	<section>
+
+    <section>
       <title>Cheques</title>
 
-      <para>
-			Un cheque es un documento por medio del cual una persona llamada "girador", ordena a un banco llamado "girado" que pague una determinada suma de dinero
-			a la orden de un tercero llamado "beneficiario".
-			En este documento al igual que en un recibo si el monto es mayor a un mil córdobas, se aplica porcentaje de retenci&oacuten al subtotal segun valor
-			elegido en formulario.
-	  </para>
+      <para>Un cheque es un documento por medio del cual una persona llamada
+      "girador", ordena a un banco llamado "girado" que pague una determinada
+      suma de dinero a la orden de un tercero llamado "beneficiario". En este
+      documento al igual que en un recibo si el monto es mayor a un mil
+      córdobas, se aplica porcentaje de retención al subtotal segun valor
+      elegido en formulario.</para>
 
       <screenshot>
         <info>
@@ -303,7 +404,6 @@
         </mediaobject>
       </screenshot>
     </section>
-	
   </chapter>
 
   <chapter>
@@ -318,64 +418,6 @@
     de inventarios y reportes fueron creados según las especificaciones
     solicitadas por la organización. Los reportes de este sistema son
     accesibles vía Web desde internet.</para>
-
-    <para>En este modulo podrá encontrar lo siguiente:</para>
-
-    <orderedlist>
-      <listitem>
-        <para>Movimientos</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Liquidaciones</para>
-          </listitem>
-
-          <listitem>
-            <para>Entradas locales</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-
-      <listitem>
-        <para>Kardex</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Entradas locales, importaciones y devoluciones</para>
-          </listitem>
-
-          <listitem>
-            <para>Salidas por factura</para>
-          </listitem>
-
-          <listitem>
-            <para>Kardex por otros conceptos</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-
-      <listitem>
-        <para>Catálogos</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Catalogo de artículos</para>
-          </listitem>
-
-          <listitem>
-            <para>Catalogo de categorías</para>
-          </listitem>
-
-          <listitem>
-            <para>Catalogo de marcas</para>
-          </listitem>
-
-          <listitem>
-            <para>Catalogo de proveedores</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-    </orderedlist>
 
     <section>
       <title>Liquidaciones</title>
@@ -717,7 +759,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../EsquipulasWeb/help/img/catcategories.png"></imagedata>
+            <imagedata fileref="img/catcategories.png"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -959,11 +1001,12 @@
     <section>
       <title>Pagos en efectivo</title>
 
-      <para>
-			Este proceso se lleva a cabo cuando se necesitan realizar pagos inmediatos y urgentes. El encargado realiza un documento bajo algun concepto,
-			para constatar la salida y entrega del dinero, sin embargo este proceso requiere de una previa autorización por uno de 
-			los siguientes: gerente, contador, financiero o presidente. Esta autorización es el documento que soporta la transacción. 
-	  </para>
+      <para>Este proceso se lleva a cabo cuando se necesitan realizar pagos
+      inmediatos y urgentes. El encargado realiza un documento bajo algun
+      concepto, para constatar la salida y entrega del dinero, sin embargo
+      este proceso requiere de una previa autorización por uno de los
+      siguientes: gerente, contador, financiero o presidente. Esta
+      autorización es el documento que soporta la transacción.</para>
 
       <screenshot>
         <info>
@@ -981,17 +1024,20 @@
     <section>
       <title>Devoluciones</title>
 
-      <para>Este proceso es realizado por el cajero, se lleva a cabo cuando los clientes hacen devoluciones totales o parciales de las mercancías,
-			para su contabilización se utiliza un comprobante llamado nota crédito, documento que es creado en este formulario.
-			Este comprobante se prepara en original y dos copias; el original para el cliente, una copia para el archivo consecutivo y otra para anexar 
-			al comprobante diario de contabilidad.
-	  </para>
-	  
-	  <para>
-	  Este proceso esta directamente vinculado con el modulo devoluciones en Inventario, en el inventario se actualiza la existencia de productos y en 
-	  caja, se realiza el documento correspondiente para contabilizar la devolución de mercadería, debiendo ser realizada primeramente
-	  la nota de credito en caja para poder actualizar las existencias.
-	  </para>
+      <para>Este proceso es realizado por el cajero, se lleva a cabo cuando
+      los clientes hacen devoluciones totales o parciales de las mercancías,
+      para su contabilización se utiliza un comprobante llamado nota crédito,
+      documento que es creado en este formulario. Este comprobante se prepara
+      en original y dos copias; el original para el cliente, una copia para el
+      archivo consecutivo y otra para anexar al comprobante diario de
+      contabilidad.</para>
+
+      <para>Este proceso esta directamente vinculado con el modulo
+      devoluciones en Inventario, en el inventario se actualiza la existencia
+      de productos y en caja, se realiza el documento correspondiente para
+      contabilizar la devolución de mercadería, debiendo ser realizada
+      primeramente la nota de credito en caja para poder actualizar las
+      existencias.</para>
 
       <screenshot>
         <info>
