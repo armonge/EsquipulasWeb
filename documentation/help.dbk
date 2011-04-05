@@ -4,18 +4,10 @@
   <info>
     <title>Manual de Usuario MIS Esquipulas</title>
 
-<<<<<<< .mine
-    <author>
-      <personname><firstname>Andrés</firstname><surname>Reyes
-      Monge</surname><firstname>, Luis Carlos</firstname><surname>Mejía
-      García</surname><firstname>, Marcos Antonio</firstname><surname>Moreno
-      González</surname></personname>
-=======
     <authorgroup>
       <author>
         <personname><firstname>Andrés</firstname> <surname>Reyes
         Monge</surname></personname>
->>>>>>> .r479
 
         <email>armonge@gmail.com</email>
       </author>
@@ -393,21 +385,12 @@
     <section>
       <title>Cheques</title>
 
-<<<<<<< .mine
       <para>Un cheque es un documento por medio del cual una persona llamada
       "girador", ordena a un banco llamado "girado" que pague una determinada
       suma de dinero a la orden de un tercero llamado "beneficiario". En este
       documento al igual que en un recibo si el monto es mayor a un mil
       córdobas, se aplica porcentaje de retención; al subtotal segun valor
       elegido en formulario.</para>
-=======
-      <para>Un cheque es un documento por medio del cual una persona llamada
-      "girador", ordena a un banco llamado "girado" que pague una determinada
-      suma de dinero a la orden de un tercero llamado "beneficiario". En este
-      documento al igual que en un recibo si el monto es mayor a un mil
-      córdobas, se aplica porcentaje de retención al subtotal segun valor
-      elegido en formulario.</para>
->>>>>>> .r479
 
       <screenshot>
         <info>
