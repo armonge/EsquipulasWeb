@@ -35,7 +35,7 @@ class QHPWriter(object):
 
 	def _generate_toc(self):
 		toc = ''
-
+		toc += '<section title="MIS Esquipulas" ref="index.html">'
 		for chapter in self.toc:
 			toc += '\t\t<section title="' + chapter['title'] + '" ref="' + chapter['link'] + '" >\n'
 
@@ -43,6 +43,7 @@ class QHPWriter(object):
 				toc += '\t\t\t<section title="' + section['title'] + '" ref="' + section['link'] + '" />\n'
 
 			toc += '\t\t</section>\n'
+		toc += '</section>'
 		return toc
 
 	def _generate_file_list(self):

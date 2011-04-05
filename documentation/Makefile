@@ -21,3 +21,4 @@ qch:
 
 	python qhpgen.py index.html . img styles.css
 	qhelpgenerator manual.qhp
+

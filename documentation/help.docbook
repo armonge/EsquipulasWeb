@@ -2,32 +2,33 @@
 <!DOCTYPE book SYSTEM "/usr/share/xml/docbook/schema/dtd/5.0/docbook.dtd">
 <book version="5.0" xml:lang="es" xmlns="http://docbook.org/ns/docbook">
   <info>
-    <title>3Manual de Usuario MIS Esquipulas</title>
+    <title>Manual de Usuario MIS Esquipulas</title>
 
     <authorgroup>
       <author>
-        <personname><firstname>Andrés</firstname><surname>Reyes
-        Monge</surname></personname>
-
+        <personname>
+			<firstname>Andrés</firstname>
+			<surname>Reyes Monge</surname>
+		</personname>
         <email>armonge@gmail.com</email>
       </author>
 
       <author>
-        <personname><firstname>Luis</firstname><othername>Carlos</othername><surname>Mejia
-        Garcia</surname></personname>
-
+        <personname>
+			<firstname>Luis</firstname>
+			<othername>Carlos</othername>
+			<surname>Mejia Garcia</surname>
+		</personname>
         <email>lcmejia19@hotmail.com</email>
       </author>
 
       <author>
-        <personname><firstname>Marcos</firstname><othername>Antonio</othername><surname>Moreno
-        Garcia</surname></personname>
-
+        <personname>
+			<firstname>Marcos</firstname>
+			<othername>Antonio</othername>
+			<surname>Moreno Garcia</surname>
+		</personname>
         <email>marcosmamg@hotmail.com</email>
-      </author>
-
-      <author>
-        <orgname>Cusuco Soft</orgname>
       </author>
     </authorgroup>
 
@@ -228,58 +229,72 @@
 
     <para>En este modulo podrá encontrar lo siguiente:</para>
 
-    <orderedlist>
-      <listitem>
-        <para>Operaciones</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Balance general</para>
-          </listitem>
-
-          <listitem>
-            <para>Cheques</para>
-          </listitem>
-
-          <listitem>
-            <para>Estado de resultados</para>
-          </listitem>
-
-          <listitem>
-            <para>Ajustes contables</para>
-          </listitem>
-
-          <listitem>
-            <para>Conciliación bancaria</para>
-          </listitem>
-
-          <listitem>
-            <para>Movimientos bancarios</para>
-          </listitem>
-
-          <listitem>
-            <para>Cierre Mensual</para>
-          </listitem>
-
-          <listitem>
-            <para>Cierre Anual</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-
-      <listitem>
-        <para>Catálogos</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Catalogo de cuentas contablesB</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-    </orderedlist>
-
     <section>
       <title>Balance General</title>
+
+      <para>El balance general</para>
+    </section>
+
+    <section>
+      <title>Cheques</title>
+
+      <para>El balance general</para>
+    </section>
+
+    <section>
+      <title>Estado de resultados</title>
+
+      <para>El balance general</para>
+    </section>
+
+    <section>
+      <title>Ajustes contables</title>
+
+      <para>El balance general</para>
+    </section>
+
+    <section>
+      <title>Conciliación bancaria</title>
+
+      <para>El balance general</para>
+    </section>
+
+    <section>
+      <title>Movimientos bancarios</title>
+
+      <para>El balance general</para>
+    </section>
+
+    <section>
+      <title>Cierre mensual</title>
+
+      <para>El balance general</para>
+    </section>
+
+    <section>
+      <title>Cierre anual</title>
+
+      <para>El balance general</para>
+    </section>
+
+    <section>
+      <title>Catalogo de cuentas contables</title>
+
+      <para>El catalogo de cuentas contables es un arbol en el que se muestran
+      todas la cuentas contables del sistema ordenadas de manera jerarquica y
+      con la posibilidad de buscar por nombre o codigo de cuenta</para>
+
+      <screenshot>
+        <info>
+          <title>Catalogo de cuentas contables</title>
+        </info>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/account-list.png"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
     </section>
   </chapter>
 

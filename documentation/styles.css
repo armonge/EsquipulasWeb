@@ -1,1 +1,50 @@
- 
+html, body{
+	margin:0;
+	padding:0;
+	font-family:arial, helvetica, sans-serif;
+	background:#dfdfdf;
+}
+hr{
+	margin:0;
+	padding:0;
+}
+a:link{
+	color:#046BCA;
+}
+.book, .chapter, .section{
+	padding:10px
+}
+.navfooter table, .navheader table{
+	background:#000;
+	color:#fff;
+	padding:10px;
+	
+}
+.navfooter a, .navheader a{
+	color:#fff;
+}
+.screenshot{
+	text-align:center;
+}
+
+h2.title{
+	background:url(img/logo.png) left center no-repeat;
+	padding-left:40px;
+	line-height:40px;
+	border-bottom:1px solid #000;
+}
+.book .toc{
+	float:none;
+	border:0;
+	padding:0;
+	width:auto;
+	background:none;
+}
+.toc{
+	float:right;
+    background: none repeat scroll 0 0 #F4F4F4;
+    border: 1px solid #000000;
+    float: right;
+    padding: 10px;
+    width: 200px;
+}
