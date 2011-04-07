@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<book version="5.0" xml:lang="es" xmlns="http://docbook.org/ns/docbook">
+<book version="5.0" xml:lang="es" xmlns="http://docbook.org/ns/docbook"
+      xmlns:ns6="http://www.w3.org/1999/xlink"
+      xmlns:ns5="http://www.w3.org/1999/xhtml"
+      xmlns:ns4="http://www.w3.org/1998/Math/MathML"
+      xmlns:ns3="http://www.w3.org/2000/svg"
+      xmlns:ns="http://docbook.org/ns/docbook">
   <info>
     <title>Manual de Usuario MIS Esquipulas</title>
 
@@ -21,7 +26,7 @@
       <author>
         <personname><firstname>Marcos</firstname>
         <othername>Antonio</othername> <surname>Moreno
-        Garcia</surname></personname>
+        González</surname></personname>
 
         <email>marcosmamg@hotmail.com</email>
       </author>
@@ -313,55 +318,18 @@
 
     <para>En este modulo podrá encontrar lo siguiente:</para>
 
-    <orderedlist>
-      <listitem>
-        <para>Operaciones</para>
+    <section>
+      <title>Balance General</title>
 
-        <orderedlist>
-          <listitem>
-            <para>Balance general</para>
-          </listitem>
-
-          <listitem>
-            <para>Cheques</para>
-          </listitem>
-
-          <listitem>
-            <para>Estado de resultados</para>
-          </listitem>
-
-          <listitem>
-            <para>Ajustes contables</para>
-          </listitem>
-
-          <listitem>
-            <para>Conciliación bancaria</para>
-          </listitem>
-
-          <listitem>
-            <para>Movimientos bancarios</para>
-          </listitem>
-
-          <listitem>
-            <para>Cierre Mensual</para>
-          </listitem>
-
-          <listitem>
-            <para>Cierre Anual</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-
-      <listitem>
-        <para>Catálogos</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Catalogo de cuentas contables</para>
-          </listitem>
-        </orderedlist>
-      </listitem>
-    </orderedlist>
+      <para>Este proceso es llevado a cabo por el contador de la empresa, con
+      la finalidad de obtener un resumen de todo lo que tiene la empresa o la
+      situación financiera de la empresa, es decir lograr determinar lo que la
+      empresa debe,lo que le deben y de lo que realmente le pertenece a su
+      propietario, a una fecha determinada. Al elaborar el balance general el
+      empresario obtiene la información valiosa sobre su negocio, como el
+      estado de sus deudas, lo que debe cobrar o la disponibilidad de dinero
+      en el momento o en un futuro próximo.</para>
+    </section>
 
     <section>
       <title>Ajustes Contables</title>
@@ -402,6 +370,42 @@
           </imageobject>
         </mediaobject>
       </screenshot>
+    </section>
+
+    <section>
+      <title>Estado de Resultados</title>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>Conciliacion Bancaria</title>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>Movimientos Bancarios</title>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>Cierre Mensual</title>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>Cierre Anual</title>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>Catalogo de cuentas contables</title>
+
+      <para></para>
     </section>
   </chapter>
 
@@ -845,32 +849,6 @@
 
     <para>En este modulo las transacciones se llevan a cabo a partir de los
     siguientes movimientos:</para>
-
-    <orderedlist>
-      <listitem>
-        <para>Apertura de caja</para>
-      </listitem>
-
-      <listitem>
-        <para>Facturas</para>
-      </listitem>
-
-      <listitem>
-        <para>Recibos</para>
-      </listitem>
-
-      <listitem>
-        <para>Pagos en efectivo</para>
-      </listitem>
-
-      <listitem>
-        <para>Devoluciones</para>
-      </listitem>
-
-      <listitem>
-        <para>Arqueo</para>
-      </listitem>
-    </orderedlist>
 
     <section>
       <title>Apertura</title>
