@@ -24,6 +24,9 @@ from BeautifulSoup import BeautifulSoup
 
 
 class QHPWriter(object):
+	'''
+	Esta clase genera un archivo qhp
+	'''
 	header = '<?xml version="1.0" encoding="UTF-8"?>\n'
 	header += '<QtHelpProject version="1.0">\n'
 
@@ -33,8 +36,9 @@ class QHPWriter(object):
 	toc = []
 	app_name = ''
 	doc_title = ''
+	
 	def _generate_toc(self):
-		toc = ''
+		toc = u''
 		toc += '<section title="' + self.doc_title + '" ref="index.html">'
 		for chapter in self.toc:
 			toc += '\t\t<section title="' + chapter['title'] + '" ref="' + chapter['link'] + '" >\n'
@@ -55,7 +59,7 @@ class QHPWriter(object):
 			
 
 	def write(self, dest = None):
-		document = ''
+		document = u''
 		document += self.header
 		document += '<namespace>' + self.namespace + '</namespace>\n'
 		document += '<virtualFolder>\n' + self.virtual_folder + '</virtualFolder>\n'
@@ -124,13 +128,24 @@ def get_files(html_directory, image_directory, other = None):
 
 
 if __name__ == '__main__':
+	import argparse
+
+	parser = argparse.ArgumentParser(description='Generar un archivo qhp')
+	parser.add_argument('--html', help='El directorio en donde se encuentran los archivos html')
+	parser.add_argument('--img', help='El directorio en donde se encuentran los archivos png')
+	parser.add_argument('--other', help='Una lista de otros archivos que se deban de incluir', nargs='+')
+	parser.add_argument('--namespace', help ='El namespace del documento')
+	parser.add_argument('--appname', help=u'El nombre de la aplicación', type=unicode)
+	parser.add_argument('--title', help='El nombre del documento', type=unicode)
+	parser.add_argument('--toc', help='El nombre del archivo html en donde se encuentra la TOC')
+
+	args = parser.parse_args()
 
 	qhp_writer = QHPWriter()
-	qhp_writer.toc = get_chapters(sys.argv[1])
-	qhp_writer.files = get_files(sys.argv[2], sys.argv[3], sys.argv[4:])
-	qhp_writer.namespace = 'mis.esquipulas.grupoeltriunfo.com.ni'
-	qhp_writer.app_name = 'MIS Esquipulas'
-	qhp_writer.doc_title = 'Manual de usuario de MIS Esquipulas'
-	
-	f = open('manual.qhp','w')
-	f.write( qhp_writer.write())
+	qhp_writer.toc = get_chapters(args.toc)
+	qhp_writer.files = get_files(args.html, args.img, args.other)
+	qhp_writer.namespace = args.namespace
+	qhp_writer.app_name = args.appname
+
+	qhp_writer.doc_title = args.title 
+	print qhp_writer.write()

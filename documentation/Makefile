@@ -1,24 +1,42 @@
 chunk:
 	xsltproc \
-	--output  manual.html \
 	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/xhtml-1_1/chunk.xsl \
-	help.dbk
+	user.dbk
+
+	xsltproc \
+	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/xhtml-1_1/chunk.xsl \
+	installation.dbk
 
 
 pdf:
-	xsltproc --output manual.fo \
+	xsltproc --output user.fo \
 	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/fo/docbook.xsl \
-	help.dbk
-	fop  -fo  manual.fo  -pdf  manual.pdf
+	user.dbk
+	fop  -fo  user.fo  -pdf  user.pdf
+
+	xsltproc --output installation.fo \
+	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/fo/docbook.xsl \
+	installation.dbk
+	fop  -fo  installation.fo  -pdf  installation.pdf
 
 qch:
 	xsltproc \
 	--stringparam html.stylesheet  styles.css  \
-	--output  manual.html \
 	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/xhtml-1_1/chunk.xsl \
-	help.dbk
+	user.dbk
 
 
-	python qhpgen.py index.html . img styles.css
-	qhelpgenerator manual.qhp
+	python qhpgen.py --html . --img img --namespace user.mis.esquipulas.grupoeltriunfo.com.ni --appname 'MIS Esquipulas' --title 'Manual de usuario de MIS Esquipulas' --toc index.html --other styles.css  > user.qhp
+	qhelpgenerator user.qhp
+
+
+
+	xsltproc \
+	--stringparam html.stylesheet  styles.css  \
+	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/xhtml-1_1/chunk.xsl \
+	installation.dbk
+
+
+	python qhpgen.py --html . --img img --namespace installation.mis.esquipulas.grupoeltriunfo.com.ni --appname 'MIS Esquipulas' --title 'Manual de instalacion de MIS Esquipulas' --toc index.html --other styles.css > installation.qhp
+	qhelpgenerator installation.qhp
 
