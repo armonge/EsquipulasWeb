@@ -50,7 +50,63 @@
   <chapter>
     <title>Requerimientos</title>
 
-    <para></para>
+    <section>
+      <title>Windows</title>
+
+      <para>En algunos equipos en Windows XP, se necesitan algunas librerias
+      para poder correr la aplicación por lo que se debe descargar un paquete
+      de microsoft llamado: "Microsoft Visual C++ 2008 Redistributable Setup",
+      desde la paginas web de Microsoft.</para>
+
+      <para>Para poder generar el executable del instalador en Windows es
+      necesario contar con las siguientes aplicaciones:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Py2exe</para>
+        </listitem>
+      </itemizedlist>
+
+      <itemizedlist>
+        <listitem>
+          <para>Python 2.7</para>
+        </listitem>
+      </itemizedlist>
+
+      <itemizedlist>
+        <listitem>
+          <para>PyQt para Python 2.7</para>
+        </listitem>
+      </itemizedlist>
+
+      <itemizedlist>
+        <listitem>
+          <para>Nsis</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Linux</title>
+
+      <para></para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Compilar Instalador</title>
+
+    <section>
+      <title>Windows</title>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>Linux</title>
+
+      <para></para>
+    </section>
   </chapter>
 
   <chapter>
@@ -79,8 +135,6 @@
     aplicación a instalar, se recomienda instalar siempre la ayuda, por
     cualquier duda o pregunta que resulte en un futuro del manejo del
     sistema.</para>
-
-    <para></para>
 
     <screenshot>
       <info>
@@ -183,6 +237,18 @@
       </mediaobject>
     </screenshot>
 
+    <screenshot>
+      <info>
+        <title>Configuración de Base de Datos</title>
+      </info>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="db-config.png"></imagedata>
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+
     <para><emphasis role="bold"><emphasis>Luego se debe configurar la base de
     datos que utilizará el sistema se deben rellenar los campos
     correspondientes:</emphasis></emphasis></para>
@@ -198,23 +264,6 @@
 
     <para><emphasis role="bold">Contraseña:</emphasis> la contraseña del
     usuario mysql</para>
-
-    <para><emphasis role="bold">Servidor de reportes: </emphasis>este
-    parámetro es opcional pero sin el no funcionaran los reportes del sistema,
-    es la dirección en la cual se encuentra alojado el sistema de
-    reportes</para>
-
-    <screenshot>
-      <info>
-        <title>Configuración de Base de Datos</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="db-config.png"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
   </chapter>
 
   <chapter>
