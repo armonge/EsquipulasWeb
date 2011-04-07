@@ -123,7 +123,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="1.png"></imagedata>
+          <imagedata fileref="img/1.png"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -143,7 +143,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="2.png"></imagedata>
+          <imagedata fileref="img/2.png"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -160,7 +160,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="3.png"></imagedata>
+          <imagedata fileref="img/3.png"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -177,7 +177,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="4.png"></imagedata>
+          <imagedata fileref="img/4.png"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -188,7 +188,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata fileref="5.png"></imagedata>
+        <imagedata fileref="img/5.png"></imagedata>
       </imageobject>
     </mediaobject>
 
@@ -199,7 +199,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="6.png"></imagedata>
+          <imagedata fileref="img/6.png"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -232,7 +232,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="config-module.png"></imagedata>
+          <imagedata fileref="img/config-module.png"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -244,7 +244,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="db-config.png"></imagedata>
+          <imagedata fileref="img/db-config.png"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
