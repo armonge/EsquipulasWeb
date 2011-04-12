@@ -41,10 +41,234 @@
   <chapter>
     <title>Introducción</title>
 
-    <para>El objetivo de este manual es explicar paso a paso la instalación
-    del sistema MIS ESQUIPULAS en equipos Windows y Linux, ademas dar a
-    conocer los requerimientos para poder correr el sistema en ambas
-    plataformas, sin ningun inconveniente.</para>
+    <para>El objetivo de este manual es explicar la instalación de las
+    aplicaciones cliente de MIS Esquipulas en equipos Windows y Linux asi como
+    la instalación de un servidor usando como sistema base un sistema openSUSE
+    11.4.</para>
+  </chapter>
+
+  <chapter>
+    <title>Configuración del servidor openSUSE</title>
+
+    <section>
+      <title>Instalación del servidor</title>
+
+      <para>En esta sección configuraremos un sistema openSUSE con la
+      selección minima de paquetes para luego configurar los servicios que
+      sean necesarios. El primer paso es iniciar el sistema de instalación
+      desde un DVD con la versión 11.4 del sistema</para>
+
+      <screenshot>
+        <info>
+          <title>Instalando un sistema openSUSE 11.4</title>
+        </info>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/install.png" scalefit="1" width="100%"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+
+      <para>Despues de seleccionar instalar el sistema de instalación
+      realizara una serie de preguntas que se deberan de contestar a como se
+      indica a continuación</para>
+
+      <table>
+        <title>Información estandar para instalación de un servidor openSUSE
+        11.4 apto para MIS Esquipulas</title>
+
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Parametro</entry>
+
+              <entry>Valor</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>Modo de instalación</entry>
+
+              <entry>Instalación nueva</entry>
+            </row>
+
+            <row>
+              <entry>Utilizar configuración automatica</entry>
+
+              <entry>No</entry>
+            </row>
+
+            <row>
+              <entry>Región</entry>
+
+              <entry>Managua/Nicaragua</entry>
+            </row>
+
+            <row>
+              <entry>Reloj establecido en UTC</entry>
+
+              <entry>Si</entry>
+            </row>
+
+            <row>
+              <entry>Selección de escritorio</entry>
+
+              <entry>Selección minima servidor (modo texto)</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <para>Cuando el sistema llega a la opción para particionar se deberán
+      crear particiones para los siguientes puntos de montaje</para>
+
+      <table>
+        <title>Especificación de las particiones para el sistema</title>
+
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Punto de montaje</entry>
+
+              <entry>Tamaño</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>swap</entry>
+
+              <entry>El tamaño del area de intercambio debera ser de
+              aproximadamente el doble de la memoria RAM del sistema hasta un
+              maximo de 1Gb</entry>
+            </row>
+
+            <row>
+              <entry>/</entry>
+
+              <entry>La raiz del sistema contendra todo el software que el
+              sistema utilizara, en una instalación de servidor no deberia de
+              tener más que 10Gb</entry>
+            </row>
+
+            <row>
+              <entry>/srv</entry>
+
+              <entry>Aca se alojara la interfaz web del sistema, 2Gb de disco
+              duro son suficientes</entry>
+            </row>
+
+            <row>
+              <entry>/var/lib</entry>
+
+              <entry>En esta partición se almacenara la información de las
+              bases de datos MySql, deberia de ser la más grande del sistema y
+              tomar todo el espacio que aun no halla sido asignado</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <para>Todas las particiones menos la dedicada para espacio de
+      intercambio deberán crearse con un formato ext4.</para>
+
+      <para>Despues de especificar las particiones el sistema de instalación
+      pedira información para la creación de un usuario, en este paso
+      recomendamos usar como nombre de la cuenta 'administrator' y para la
+      contraseña una serie de caracteres sin ningun sentido generados a partir
+      de un generador de contraseñas. Especifique que no quiere utilizar esta
+      contraseña para el administrador del sistema, que no desea activar el
+      inicio de sesión automatico y que desea recibir el correo del
+      sistema.</para>
+
+      <para>El ultimo paso del proceso de instalación es revisar todas las
+      opciones y reiniciar, una vez que el sistema termina de instalar es
+      momento de configurarlo.</para>
+
+      <section>
+        <title>Configuración del sistema</title>
+
+        <para>El primer parametro que se debe configurar es el nombre de host
+        y de dominio, en este caso hemos elegido mis como nombre de host y
+        esquipulas.grupoeltriunfo.com.ni como nombre de dominio, sus
+        parametros pueden ser distintos.</para>
+
+        <screenshot>
+          <info>
+            <title>Configuración del nombre de host y dominio</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/install1.png" scalefit="1" width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>Una vez que se configuro el nombre del host el sistema tratara
+        de configurar automaticamente la interfaz de red, el metodo de control
+        de la red, el proxy y el control VNC, en este momento utilice los
+        parametros por defecto. Posteriormente el sistema intentara configurar
+        los repositorios y descargar las actualizaciones del sistema</para>
+
+        <screenshot>
+          <info>
+            <title>Configurando los repositorios</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/install2.png" scalefit="1" width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>Una vez que el sistema termina de actualizarse continua con la
+        configuración del hardware, cuando esto termina el sistema esta listo
+        para usarse y solo falta instalar MIS Esquipulas en el.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Instalación de paquetes necesarios</title>
+
+      <para>Para configurar el sistema es necesario instalar ciertos paquetes,
+      esto se hace ejecutando el siguiente comando</para>
+
+      <para><command>zypper install mysql-community-server man vim apache2
+      apache2-mod_php5 php5-bcmath php5-mysql php5-json</command></para>
+    </section>
+
+    <section>
+      <title>Configuración de MySql</title>
+
+      <para>Una vez que se ha instalado los paquetes es necesario configurar
+      MySql para que arranque al encender el sistema, esto se hace con el
+      comando</para>
+
+      <para><command>chkconfig -a mysql</command></para>
+
+      <para>Luego es necesario iniciar el servidor mysql</para>
+
+      <para><command>rcmysql start</command></para>
+
+      <para>Eliminar configuraciones inseguras de MySql</para>
+
+      <para><command>mysql_secure_installation</command></para>
+
+      <para>Este comando permite especificar la contraseña del usuario root de
+      MySql, borrar las tablas de prueba, usuarios anonimos y recargar las
+      tablas de privilegios</para>
+
+      <para>Una vez hecho esto se tiene que crear la base de datos en el
+      sistema, asumiendo que el script de creacion de la base de datos se
+      llame esquipulas.sql entonces para crearlo se debe ejecutar el
+      comando</para>
+
+      <para>mysql -u root -p &lt; esquipulas.sql</para>
+    </section>
   </chapter>
 
   <chapter>
@@ -123,7 +347,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/1.png"></imagedata>
+          <imagedata fileref="img/1.png" width="80%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -143,7 +367,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/2.png"></imagedata>
+          <imagedata fileref="img/2.png" width="80%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -160,7 +384,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/3.png"></imagedata>
+          <imagedata fileref="img/3.png" width="80%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -177,7 +401,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/4.png"></imagedata>
+          <imagedata fileref="img/4.png" width="80%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -188,7 +412,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata fileref="img/5.png"></imagedata>
+        <imagedata fileref="img/5.png" width="80%"></imagedata>
       </imageobject>
     </mediaobject>
 
@@ -199,7 +423,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/6.png"></imagedata>
+          <imagedata fileref="img/6.png" width="80%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -232,7 +456,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/config-module.png"></imagedata>
+          <imagedata fileref="img/config-module.png" width="80%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -244,7 +468,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/db-config.png"></imagedata>
+          <imagedata fileref="img/db-config.png" width="50%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>

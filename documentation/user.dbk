@@ -69,7 +69,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-new.png"></imagedata>
+                    <imagedata fileref="img/document-new.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -83,7 +83,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-preview.png"></imagedata>
+                    <imagedata fileref="img/document-preview.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -97,7 +97,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-print.png"></imagedata>
+                    <imagedata fileref="img/document-print.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -109,7 +109,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-save.png"></imagedata>
+                    <imagedata fileref="img/document-save.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -123,7 +123,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/dialog-cancel.png"></imagedata>
+                    <imagedata fileref="img/dialog-cancel.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -137,7 +137,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/go-first.png"></imagedata>
+                    <imagedata fileref="img/go-first.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -149,7 +149,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/go-previous.png"></imagedata>
+                    <imagedata fileref="img/go-previous.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -161,7 +161,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/go-next.png"></imagedata>
+                    <imagedata fileref="img/go-next.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -173,7 +173,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/go-last.png"></imagedata>
+                    <imagedata fileref="img/go-last.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -185,7 +185,7 @@
 
               <entry><inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/edit-delete.png"></imagedata>
+                    <imagedata fileref="img/edit-delete.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject></entry>
 
@@ -248,7 +248,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/db-config.png"></imagedata>
+            <imagedata fileref="img/db-config.png" scalefit="0" width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -286,10 +286,11 @@
     <section>
       <title>Cambiar Contraseña</title>
 
-      <para>Para cambiar su contraseña debe rellenar los datos que puede
-      observar en la imagen, es muy importante tomar en cuenta el porcentaje
-      de fortaleza de su contraseña para evitar inclusiones no autorizadas al
-      sistema.</para>
+      <para>Si un usuario necesita cambiar la contraseña el sistema brinda una
+      utilidad relativamente sencilla para hacerlo, solamente es necesario
+      introducir la contraseña anterior y la contraseña nueva dos veces. El
+      sistema verficara que tan complicada es la contraseña y de ser lo
+      suficiente entonces el usuario podra cambiarla.</para>
 
       <screenshot>
         <info>
@@ -298,7 +299,8 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/cambiarcontrasena.png"></imagedata>
+            <imagedata fileref="img/cambiarcontrasena.png" scalefit="1"
+                       width="80%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -315,8 +317,6 @@
     completa de administración contable especialmente formulada para trabajar
     en conjunto con los sistemas de facturación e inventario de MIS
     Esquipulas.</para>
-
-    <para>En este modulo podrá encontrar lo siguiente:</para>
 
     <section>
       <title>Balance General</title>
@@ -343,7 +343,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/ajustes.png"></imagedata>
+            <imagedata fileref="img/ajustes.png" scalefit="1" width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -366,7 +366,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/cheques.png"></imagedata>
+            <imagedata fileref="img/cheques.png" scalefit="1" width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -445,7 +445,8 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/liquidacion.png"></imagedata>
+              <imagedata fileref="img/liquidacion.png" scalefit="1"
+                         width="100%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
@@ -514,7 +515,8 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/liquidacion-edit.png"></imagedata>
+              <imagedata fileref="img/liquidacion-edit.png" scalefit="1"
+                         width="100%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
@@ -535,7 +537,8 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/entradacompra.png"></imagedata>
+            <imagedata fileref="img/entradacompra.png" scalefit="1"
+                       width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -559,7 +562,8 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/entradacompra-edit.png"></imagedata>
+              <imagedata fileref="img/entradacompra-edit.png" scalefit="1"
+                         width="100%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
@@ -602,7 +606,8 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/nuevokardexentrada.png"></imagedata>
+            <imagedata fileref="img/nuevokardexentrada.png" scalefit="1"
+                       width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -619,7 +624,8 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/kardexentrada.png"></imagedata>
+            <imagedata fileref="img/kardexentrada.png" scalefit="1"
+                       width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -639,7 +645,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/docskardex.png"></imagedata>
+            <imagedata fileref="img/docskardex.png" scalefit="1" width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -655,7 +661,8 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/kardexsalida.png"></imagedata>
+            <imagedata fileref="img/kardexsalida.png" scalefit="1"
+                       width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -689,7 +696,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/kardexotros.png"></imagedata>
+            <imagedata fileref="img/kardexotros.png" scalefit="1" width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -710,7 +717,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/catarticles.png"></imagedata>
+            <imagedata fileref="img/catarticles.png" scalefit="1" width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -726,7 +733,7 @@
 
         <para>El Botón ( <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="img/list-add.png"></imagedata>
+              <imagedata fileref="img/list-add.png" width="32"></imagedata>
             </imageobject>
           </inlinemediaobject>) le permite agregar una marca cuando esta no se
         encuentre en la lista. Para poder agregar un Articulo debe tener
@@ -742,7 +749,8 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/catarticles-add.png"></imagedata>
+              <imagedata fileref="img/catarticles-add.png" scalefit="1"
+                         width="80%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
@@ -762,7 +770,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/catcategories.png"></imagedata>
+            <imagedata fileref="img/catcategories.png" width="80%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -773,12 +781,12 @@
         <para>Para añadir una nueva categoría se da click el icono
         <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="img/list-add.png"></imagedata>
+              <imagedata fileref="img/list-add.png" width="32"></imagedata>
             </imageobject>
           </inlinemediaobject> y si quiere añadir una subcategoría en el icono
         <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="img/format-add-node.png"></imagedata>
+              <imagedata fileref="img/format-add-node.png" width="32"></imagedata>
             </imageobject>
           </inlinemediaobject></para>
 
@@ -789,7 +797,8 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/categories-add.png"></imagedata>
+              <imagedata fileref="img/categories-add.png" scalefit="0"
+                         width="100%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
@@ -809,7 +818,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/catproviders.png"></imagedata>
+            <imagedata fileref="img/catproviders.png" width="80%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -828,7 +837,7 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/catproviders-add.png"></imagedata>
+              <imagedata fileref="img/catproviders-add.png" width="80%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
@@ -846,9 +855,6 @@
     transacciones de ingresos y egresos a diario, para iniciar el proceso se
     debe cargar la caja con un monto inicial X para poder realizar egresos en
     cualquier momento a pagos en efectivo requeridos.</para>
-
-    <para>En este modulo las transacciones se llevan a cabo a partir de los
-    siguientes movimientos:</para>
 
     <section>
       <title>Apertura</title>
@@ -872,7 +878,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/apertura.png"></imagedata>
+            <imagedata fileref="img/apertura.png" width="80%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -898,7 +904,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/factura.png"></imagedata>
+            <imagedata fileref="img/factura.png" scalefit="1" width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -906,7 +912,7 @@
       <para>Para anular una factura debe dar click en el icono(
       <inlinemediaobject>
           <imageobject>
-            <imagedata fileref="img/edit-delete.png"></imagedata>
+            <imagedata fileref="img/edit-delete.png" width="32"></imagedata>
           </imageobject>
         </inlinemediaobject> ), únicamente se pueden anular facturas del día
       actual, al crédito y sin abonos, sino deberá elaborar un documentos
@@ -922,7 +928,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/recibocontado.png"></imagedata>
+            <imagedata fileref="img/recibocontado.png" width="80%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -969,7 +975,8 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/recibocredito.png"></imagedata>
+            <imagedata fileref="img/recibocredito.png" scalefit="1"
+                       width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -992,7 +999,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/pagosefectivo.png"></imagedata>
+            <imagedata fileref="img/pagosefectivo.png" width="80%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1023,7 +1030,8 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/devoluciones.png"></imagedata>
+            <imagedata fileref="img/devoluciones.png" scalefit="1"
+                       width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1056,7 +1064,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/arqueo.png"></imagedata>
+            <imagedata fileref="img/arqueo.png" width="80%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1064,8 +1072,119 @@
   </chapter>
 
   <chapter>
-    <title>Reportes</title>
+    <title>Interfaz de administración y reportes web</title>
 
-    <para></para>
+    <para>La interfaz de administración y reportes web esta disponible para
+    los usuarios de MIS Esquipulas, es el punto de partida para todas las
+    tareas de administración asi como el punto de acceso a los reporte.</para>
+
+    <screenshot>
+      <info>
+        <title>Pantalla de inicio del sistema web</title>
+      </info>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/webhome.png" scalefit="1" width="100%"></imagedata>
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+
+    <section>
+      <title>Reportes</title>
+
+      <para>El modulo de reportes es el punto de acceso a toda la información
+      que MIS Esquipulas es capaz de proporcionar, incluso los reportes de
+      facturas y recibos que se utilizan en las distintas aplicaciones de
+      escritorio que se utilizan en el sistema vienen de este modulo.</para>
+
+      <screenshot>
+        <info>
+          <title>El modulo de reportes</title>
+        </info>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/webreports.png" scalefit="1" width="100%"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+
+      <section>
+        <title>Historico de cuentas</title>
+
+        <para>El reporte de historico de cuentas es un grafico de lineas
+        dinamico que muestra los movimientos que han tenido las cuentas
+        contables durante la operación del sistema, es una manera más amena de
+        inspeccionar información muy similar a la que se encuentra en el
+        reporte de partida contable, teniendo ademas la posibilidad de
+        especificar cuales cuentas se quieren visualizar asi como en que
+        periodo.</para>
+
+        <screenshot>
+          <info>
+            <title>Historico de cuentas</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/web-historico-de-cuentas.png"
+                         scalefit="1" width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>Tenga en cuenta que si una cuenta no ha tenido movimientos en el
+        periodo seleccionado no se mostrara en el grafico aun cuando este
+        seleccionada.</para>
+      </section>
+
+      <section>
+        <title>Reporte de partida contable</title>
+
+        <para>El reporte de partida contable muestra en detalle cuales
+        movimientos se han hecho para cada uno de los asientos de un periodo
+        seleccionado,</para>
+
+        <screenshot>
+          <info>
+            <title>Reporte de partida contable</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/web-partida-contable.png" scalefit="1"
+                         width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </section>
+    </section>
   </chapter>
+
+  <glossary>
+    <title>Glosario</title>
+
+    <glosslist>
+      <glossentry>
+        <glossterm>FOB</glossterm>
+
+        <glossdef>
+          <para>Se refieren a un incoterm que se utiliza para operaciones de
+          compraventa en que el transporte de la mercancía se realiza por
+          barco (mar o vías de navegación interior)</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Incoterm</glossterm>
+
+        <glossdef>
+          <para>Los incoterms (acrónimo del inglés international commercial
+          terms, ‘términos internacionales de comercio’) son normas acerca de
+          las condiciones de entrega de las mercancías.</para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
+  </glossary>
 </book>
