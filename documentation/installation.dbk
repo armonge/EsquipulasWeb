@@ -6,7 +6,7 @@
       xmlns:ns3="http://www.w3.org/1998/Math/MathML"
       xmlns:ns="http://docbook.org/ns/docbook">
   <info>
-    <title>esquiManual de Instalacion MIS Esquipulas en clientes</title>
+    <title>Manual de Instalacion MIS Esquipulas</title>
 
     <authorgroup>
       <author>
@@ -241,6 +241,11 @@
       <para><command>zypper install mysql-community-server man vim apache2
       apache2-mod_php5 php5-bcmath php5-mysql php5-json
       subversion</command></para>
+
+      <para>Tambien es necesario actualizar el sistema para obtener las
+      ultimas correcciones de seguridad</para>
+
+      <para><command>zypper up</command></para>
     </section>
 
     <section>
@@ -365,10 +370,11 @@
 
       <para>Despues de haber descargado el sistema es necesario decirle al
       servidor Apache que sirva el contenido de esta carpeta, esto se hace
-      copiando el archivo /srv/www/EsquipulasWeb/esquipulas.conf a la carpeta
-      /etc/apache2/conf.d/, tambien es necesario asegurarse de que los
-      archivos tienen los permisos correctos ejecutando el siguiente
-      comando</para>
+      copiando el archivo <emphasis
+      role="bold">/srv/www/EsquipulasWeb/esquipulas.conf</emphasis> a la
+      carpeta <emphasis role="bold">/etc/apache2/conf.d/</emphasis>, tambien
+      es necesario asegurarse de que los archivos tienen los permisos
+      correctos ejecutando el siguiente comando</para>
 
       <para><command>chown -R wwwrun:www
       /srv/www/EsquipulasWeb</command></para>
@@ -378,10 +384,82 @@
 
       <para><command>chkconfig -a apache2</command></para>
     </section>
+
+    <section>
+      <title>Configuración de EsquipulasWeb</title>
+
+      <para>EsquipulasWeb necesita configurarse para poder acceder a la base
+      de datos y saber desde que dirección responde a las peticiones, esto se
+      hace editando el archivo conn.php ubicado en la raiz del sistema, los
+      valores de configuración son los siguientes:</para>
+
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry align="center">Parametro</entry>
+
+              <entry align="center">Valor</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>DBHOST</entry>
+
+              <entry>El host en donde esta instalado el servidor MySql</entry>
+            </row>
+
+            <row>
+              <entry>DBPASS</entry>
+
+              <entry>La contraseña del usuario MySql con el que el sistema se
+              conecta a MySql</entry>
+            </row>
+
+            <row>
+              <entry>DBUSER</entry>
+
+              <entry>El nombre del usuario con el que el sistema se conecta a
+              MySql</entry>
+            </row>
+
+            <row>
+              <entry>DB</entry>
+
+              <entry>El nombre de la base de datos MySql que usa el
+              sistema</entry>
+            </row>
+
+            <row>
+              <entry>basedir</entry>
+
+              <entry>La URL base del sistema, a menos que haya configurado un
+              servidor DNS esta dirección es la IP de este servidor, para
+              propositos practicos entonces se debera configurar una IP
+              estatica a como se indica en la siguiente sección</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </section>
+
+    <section>
+      <title>Configurando una IP estatica para el servidor</title>
+
+      <para>Para configurar una IP estatica se ejecuta el comando </para>
+
+      <para><command>yast2 network</command></para>
+
+      <para>Posteriormente se sigue un asistente con una interfaz sencilla en
+      la que se indica la dirección IP de la maquina, la puerta de enlace, el
+      DNS y la mascara de red.</para>
+    </section>
   </chapter>
 
   <chapter>
-    <title>Requerimientos</title>
+    <title>Creando un instalador para las aplicaciones de escritorio en
+    Windows</title>
 
     <section>
       <title>Windows</title>
