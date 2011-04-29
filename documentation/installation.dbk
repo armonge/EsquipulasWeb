@@ -6,7 +6,7 @@
       xmlns:ns3="http://www.w3.org/1998/Math/MathML"
       xmlns:ns="http://docbook.org/ns/docbook">
   <info>
-    <title>Manual de Instalacion MIS Esquipulas en clientes</title>
+    <title>esquiManual de Instalacion MIS Esquipulas en clientes</title>
 
     <authorgroup>
       <author>
@@ -33,18 +33,19 @@
     </authorgroup>
 
     <abstract>
-      <para>El manual de instalacion<application> del sistema MIS Esquipulas
-      para sistemas Windows y Linux y su configuración </application></para>
+      <para>El siguiente manual tiene como proposito explicar paso a paso como
+      instalar las aplicaciones cliente de MIS Esquipulas asi como un servidor
+      apto para manejar una base de datos para el sistema y servir la interfaz
+      de administración y reportes web.</para>
     </abstract>
   </info>
 
   <chapter>
     <title>Introducción</title>
 
-    <para>El objetivo de este manual es explicar la instalación de las
-    aplicaciones cliente de MIS Esquipulas en equipos Windows y Linux asi como
-    la instalación de un servidor usando como sistema base un sistema openSUSE
-    11.4.</para>
+    <para>Aca se explicara como obtener las fuentes del sistema para
+    posteriormente compilarlas en una archivo de instalación que se utilizara
+    en los sistemas Windows cliente.</para>
   </chapter>
 
   <chapter>
@@ -238,7 +239,21 @@
       esto se hace ejecutando el siguiente comando</para>
 
       <para><command>zypper install mysql-community-server man vim apache2
-      apache2-mod_php5 php5-bcmath php5-mysql php5-json</command></para>
+      apache2-mod_php5 php5-bcmath php5-mysql php5-json
+      subversion</command></para>
+    </section>
+
+    <section>
+      <title>Configuración del firewall</title>
+
+      <para>Para poder acceder a MySql y Apache es necesario primero que todo
+      abrir esos puertos en el firewall</para>
+
+      <para><command>yast2 firewall services add service=service:mysql
+      zone=EXT</command></para>
+
+      <para><command>yast2 firewall services add service=service:apache2
+      zone=EXT</command></para>
     </section>
 
     <section>
@@ -263,11 +278,105 @@
       tablas de privilegios</para>
 
       <para>Una vez hecho esto se tiene que crear la base de datos en el
-      sistema, asumiendo que el script de creacion de la base de datos se
-      llame esquipulas.sql entonces para crearlo se debe ejecutar el
+      sistema, para esto es necesario descargar el script de creación de la
+      base de datos desde el repositior SVN del sistema ejecutando el
       comando</para>
 
-      <para>mysql -u root -p &lt; esquipulas.sql</para>
+      <para><command>svn export
+      https://misesquipulas.svn.sourceforge.net/svnroot/misesquipulas/EsquipulasPy/trunk/esquipulasdb.sql
+      /home/root/esquipulasdb.sql</command></para>
+
+      <para>Una vez obtenido este archivo se ejecutan los siguientes
+      comandos</para>
+
+      <para><command>mysql -u root -p</command></para>
+
+      <para><command>CREATE DATABASE esquipulasdb;</command></para>
+
+      <para><command>exit;</command></para>
+
+      <para><command>mysql -u root -p -D esquipulasdb &lt;
+      /home/root/esquipulasdb.sql</command></para>
+
+      <para>Si la secuencia anterior de comandos no muestra ningun error
+      entonces la base de datos ya esta instalada en el sistema y solo falta
+      crear usuarios MySql para que los diferentes clientes se conecten</para>
+
+      <section>
+        <title>Creando usuarios MySql</title>
+
+        <para>Idealmente el sistema MIS Esquipulas tendra por lo menos 4
+        usuarios en su base de datos, uno para cada una de las aplicaciones de
+        escritorio y uno para la aplicación web. Para crear estas cuentas se
+        ejecutan los siguientes comandos:</para>
+
+        <para><command>CREATE USER 'web'@'localhost' IDENTIFIED BY
+        'CONTRASEÑA';</command></para>
+
+        <para><command>GRANT INSERT, UPDATE, DELETE, SELECT, EXECUTE ON
+        esquipulasdb.* TO 'web'@'localhost';</command></para>
+
+        <para><command>CREATE USER 'inventario'@'SEGMENTO DE RED' IDENTIFIED
+        BY 'CONTRASEÑA';</command></para>
+
+        <para><command>GRANT INSERT, UPDATE, DELETE, SELECT, EXECUTE ON
+        'esquipulasdb.* TO 'inventario'@'SEGMENTO DE RED';</command></para>
+
+        <para><command>CREATE USER 'contabilidad'@'SEGMENTO DE RED' IDENTIFIED
+        BY 'CONTRASEÑA';</command></para>
+
+        <para><command>GRANT INSERT, UPDATE, DELETE, SELECT, EXECUTE ON
+        'esquipulasdb.* TO 'contabilidada'@'SEGMENTO DE RED';</command></para>
+
+        <para><command>CREATE USER 'caja'@'SEGMENTO DE RED' IDENTIFIED BY
+        'CONTRASEÑA';</command></para>
+
+        <para><command>GRANT INSERT, UPDATE, DELETE, SELECT, EXECUTE ON
+        'esquipulasdb.* TO 'caja'@'SEGMENTO DE RED';</command></para>
+
+        <para>Donde <emphasis role="bold">SEGMENTO DE RED</emphasis> es la
+        dirección del segmento de red desde el cual ese usuario puede acceder
+        a la base de datos y <emphasis role="bold">CONTRASEÑA</emphasis> es
+        una contraseña generada de manera aleatoria y con una combinación de
+        caracteres alfanumericos y especiales.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Obtención de las fuentes PHP de EsquipulasWeb</title>
+
+      <para>La manera más sencilla de obtener el codigo PHP necesario para
+      ejecutar EsquipulasWeb es descargarlo directamente desde el repositorio
+      SVN de sourceforge, para hacer esto es necesario instalar el cliente
+      subversion de linux con el siguiente comando:</para>
+
+      <para><command>zypper install subversion</command></para>
+
+      <para>Posteriormente se tiene entonces que descargar el sistema usando
+      el siguiente comando:</para>
+
+      <para><command>svn export
+      https://misesquipulas.svn.sourceforge.net/svnroot/misesquipulas/EsquipulasWeb/trunk
+      /srv/www/EsquipulasWeb</command></para>
+    </section>
+
+    <section>
+      <title>Configuración del servidor Apache</title>
+
+      <para>Despues de haber descargado el sistema es necesario decirle al
+      servidor Apache que sirva el contenido de esta carpeta, esto se hace
+      copiando el archivo /srv/www/EsquipulasWeb/esquipulas.conf a la carpeta
+      /etc/apache2/conf.d/, tambien es necesario asegurarse de que los
+      archivos tienen los permisos correctos ejecutando el siguiente
+      comando</para>
+
+      <para><command>chown -R wwwrun:www
+      /srv/www/EsquipulasWeb</command></para>
+
+      <para>Tambien es necesario configurar al servidor para que inicie al
+      cargar el sistema</para>
+
+      <para><command>chkconfig -a apache2</command></para>
     </section>
   </chapter>
 
