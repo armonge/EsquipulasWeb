@@ -299,7 +299,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/cambiarcontrasena.png" scalefit="1"
+            <imagedata fileref="img/cambiarcontrasena.png" scalefit="0"
                        width="80%"></imagedata>
           </imageobject>
         </mediaobject>
