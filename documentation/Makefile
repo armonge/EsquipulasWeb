@@ -1,28 +1,28 @@
 chunk:
 	xsltproc \
-	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/xhtml-1_1/chunk.xsl \
+	stylesheets/xhtml-1_1/chunk.xsl \
 	user.dbk
 
 	xsltproc \
-	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/xhtml-1_1/chunk.xsl \
+	stylesheets/xhtml-1_1/chunk.xsl \
 	installation.dbk
 
 
 pdf:
 	xsltproc --output user.fo \
-	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/fo/docbook.xsl \
+	stylesheets/fo/docbook.xsl \
 	user.dbk
 	fop  -fo  user.fo  -pdf  user.pdf
 
 	xsltproc --output installation.fo \
-	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/fo/docbook.xsl \
+	stylesheets/fo/docbook.xsl \
 	installation.dbk
 	fop  -fo  installation.fo  -pdf  installation.pdf
 
 qch:
 	xsltproc \
 	--stringparam html.stylesheet  styles.css  \
-	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/xhtml-1_1/chunk.xsl \
+	stylesheets/xhtml-1_1/chunk.xsl \
 	user.dbk
 
 
@@ -33,7 +33,7 @@ qch:
 
 	xsltproc \
 	--stringparam html.stylesheet  styles.css  \
-	/usr/share/xml/docbook/stylesheet/nwalsh5/1.76.1/xhtml-1_1/chunk.xsl \
+	stylesheets/xhtml-1_1/chunk.xsl \
 	installation.dbk
 
 

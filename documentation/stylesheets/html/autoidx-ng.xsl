@@ -1,0 +1,1 @@
+../fo/autoidx-ng.xsl

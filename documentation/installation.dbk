@@ -352,13 +352,9 @@
 
       <para>La manera más sencilla de obtener el codigo PHP necesario para
       ejecutar EsquipulasWeb es descargarlo directamente desde el repositorio
-      SVN de sourceforge, para hacer esto es necesario instalar el cliente
-      subversion de linux con el siguiente comando:</para>
+      SVN de sourceforge</para>
 
-      <para><command>zypper install subversion</command></para>
-
-      <para>Posteriormente se tiene entonces que descargar el sistema usando
-      el siguiente comando:</para>
+      <para> usando el siguiente comando:</para>
 
       <para><command>svn export
       https://misesquipulas.svn.sourceforge.net/svnroot/misesquipulas/EsquipulasWeb/trunk
@@ -447,7 +443,7 @@
     <section>
       <title>Configurando una IP estatica para el servidor</title>
 
-      <para>Para configurar una IP estatica se ejecuta el comando </para>
+      <para>Para configurar una IP estatica se ejecuta el comando</para>
 
       <para><command>yast2 network</command></para>
 
@@ -494,29 +490,11 @@
         <listitem>
           <para>Nsis</para>
         </listitem>
+
+        <listitem>
+          <para>Tortoise SVN</para>
+        </listitem>
       </itemizedlist>
-    </section>
-
-    <section>
-      <title>Linux</title>
-
-      <para></para>
-    </section>
-  </chapter>
-
-  <chapter>
-    <title>Compilar Instalador</title>
-
-    <section>
-      <title>Windows</title>
-
-      <para></para>
-    </section>
-
-    <section>
-      <title>Linux</title>
-
-      <para></para>
     </section>
   </chapter>
 
