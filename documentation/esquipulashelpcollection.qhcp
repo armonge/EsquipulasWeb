@@ -6,21 +6,11 @@
         <applicationIcon>img/logo.png</applicationIcon>
     </assistant>
     <docFiles>
-        <generate>
-            <file>
-                <input>user.qhp</input>
-                <output>user.qch</output>
-            </file>
-			<file>
-                <input>installation.qhp</input>
-                <output>installation.qch</output>
-            </file>
-        </generate>
-	        <register>
-	            <file>user.qch</file>
-	        </register>
-			<register>
-	            <file>installation.qch</file>
-	        </register>
+		<register>
+			<file>user.qch</file>
+		</register>
+		<register>
+			<file>installation.qch</file>
+		</register>
     </docFiles>
 </QHelpCollectionProject>
