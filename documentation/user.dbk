@@ -314,9 +314,17 @@
     MIS Esquipulas</para>
 
     <para>El sistema de contabilidad de MIS Esquipulas es una herramienta
-    completa de administración contable especialmente formulada para trabajar
-    en conjunto con los sistemas de facturación e inventario de MIS
-    Esquipulas.</para>
+    completa de administración contable especialmente diseñada para el
+    contador de la empresa, la cual trabaja en conjunto con los sistemas de
+    facturación e inventario de MIS Esquipulas.</para>
+
+    <para></para>
+
+    <section>
+      <title>Inicio de Sesión</title>
+
+      <para>Al iniciar el módulo de contabilidad del sistema es </para>
+    </section>
 
     <section>
       <title>Balance General</title>
@@ -870,6 +878,122 @@
       operación el usuario autorizado, ya sea contador, gerente debe autorizar
       que realmente se inicia con el monto que se esta introduciendo, para
       evitar errores o problemas futuros.</para>
+
+      <para>Al iniciar el módulo de caja, todas las operaciones están
+      desactivadas. Para activar las operaciones usted deberá Aperturar caja.
+      A continuación encontará una guía paso a paso para realizar este proceso
+      de una forma correcta:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presionar el botón aperturar caja: </para>
+
+          <orderedlist>
+            <listitem>
+              <para>Si el usuario en el módulo no tiene abierta ninguna sesión
+              de caja aparecerá una ventana que le solicitará seleccione la
+              fecha de la apertura , la caja que desea aperturar, el monto
+              inicial en córdobas y el monto inicial en dólares de la caja,
+              así como las credenciales que validen que los montos digitados
+              corresponden con la realidad. Por favor tome en consideración lo
+              siguiente:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Seleccione la fecha: La fecha de la apertura es por
+                  defecto la fecha actual, en caso que se deseen registrar
+                  operaciones con fechas anteriores, se debe seleccionar la
+                  fecha deseada</para>
+                </listitem>
+
+                <listitem>
+                  <para>Seleccione la caja que desea aperturar ( si usted no
+                  ha seleccionado ninguna caja, la apertura no podrá ser
+                  efectuada y emergerá un mensaje de error) </para>
+                </listitem>
+
+                <listitem>
+                  <para>Ingrese los montos iniciales en córdobas y en
+                  dólares</para>
+                </listitem>
+
+                <listitem>
+                  <para>Introduzca las credenciales de verificación: Si usted
+                  tienen autorización para validar los montos digitados, debe
+                  introducir sus credenciales pero Si usted no tiene
+                  autorización para validad los montos digitados, debe
+                  solicitarle al personal autorizado ( gerente, o contador)
+                  que introduzca las credenciales que validen que la
+                  información es correcta.</para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para>Si las credenciales son correctas, la apertura
+                      será exitosa</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>Si las credenciales no son correctas, emergerá un
+                      mensaje de error que le indicará que las credenciales no
+                      han sido autenticadas.</para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+
+                <listitem>
+                  <para>Presione Aceptar: Si la información introducida es
+                  correcta se validará si existen en la base de datos, tasas
+                  de cambios (de córdoba a dólar) para la fecha seleccionada
+                  </para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para>Si existen tasas de cambios, la apertura será
+                      exitosa y se activarán todas las funciones del
+                      módulo</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>Si no existen tasas de cambios en la base de
+                      datos, emergerá un mensaje de error y usted se debe
+                      poner en contacto con el administrador del sistema para
+                      que ingrese las tasas de cambio en la base de
+                      datos.</para>
+
+                      <para>Una vez que las tasas de cambios estén en la base
+                      de datos, presione nuevamente el botón Aceptar</para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Si el usuario en el módulo tiene abierta una sesión de
+              caja, emergerá un mensaje que indica que el usuario tiene una
+              sesión de caja abierta y se le preguntará si desea continuar con
+              ella</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Si selecciona el botón SI, se activarán las todas las
+                  funciones del módulo y se continuará trabajando con la
+                  sesión que está abierta. </para>
+
+                  <para>Si no desea continuar trabajando con la sesión
+                  abierta, debe proceder a realizar un cierre de caja, para
+                  finalizar la sesión de caja actual.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Si selecciona el botón NO, no se activarán las
+                  funciones del módulo. </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </orderedlist>
+        </listitem>
+      </orderedlist>
 
       <screenshot>
         <info>
