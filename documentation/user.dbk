@@ -375,12 +375,24 @@
     contador de la empresa, la cual trabaja en conjunto con los sistemas de
     facturación e inventario de MIS Esquipulas.</para>
 
-    <para></para>
-
     <section>
       <title>Inicio de Sesión</title>
 
-      <para>Al iniciar el módulo de contabilidad del sistema es </para>
+      <para>Al iniciar el módulo de contabilidad usted deberá introducir las
+      credenciales ( usuario y contraseña) que le autorizan utilizar este
+      módulo. </para>
+
+      <screenshot>
+        <info>
+          <title>Inicio de Sesión en módulo contable</title>
+        </info>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/contabilidad.jpeg"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
     </section>
 
     <section>
