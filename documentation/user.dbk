@@ -528,8 +528,8 @@
     <section>
       <title>Liquidaciones</title>
 
-      <para>El modulo de liquidaciones es probablemente el más complejo de la
-      aplicación de inventario, calcula las liquidaciones de costo, permite
+      <para>El formulario de liquidaciones es probablemente el más complejo de
+      la aplicación de inventario, calcula las liquidaciones de costo, permite
       definir los movimientos contables que se realizan en la liquidación,
       genera reportes y todo esto manteniendo una vital separación de las
       responsabilidades de cada usuario.</para>

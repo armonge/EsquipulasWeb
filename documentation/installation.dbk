@@ -728,13 +728,90 @@
     <section>
       <title>Parametros de linea de comandos</title>
 
-      <para></para>
+      <para>El archivo ejecutable de MIS Esquipulas,
+      <filename>esquipulas.exe</filename>, acepta los siguientes parametros de
+      linea de comandos</para>
+
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry align="center">Parametro</entry>
+
+              <entry align="center">Descripcion</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>--inventario</entry>
+
+              <entry>Inicia la aplicación de inventario</entry>
+            </row>
+
+            <row>
+              <entry>--contabilidad</entry>
+
+              <entry>Inicia la aplicación de contabilidad</entry>
+            </row>
+
+            <row>
+              <entry>--caja</entry>
+
+              <entry>Inicia la aplicación de caja</entry>
+            </row>
+
+            <row>
+              <entry>--dbconfig</entry>
+
+              <entry>Inicia la aplicación seleccionada pero permite configurar
+              los parametros de conexión</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
     </section>
   </chapter>
 
-  <chapter>
-    <title>Instalacion y configuración en Linux</title>
+  <glossary>
+    <title>Glosario</title>
 
-    <para></para>
-  </chapter>
+    <glosslist>
+      <glossentry>
+        <glossterm>swap</glossterm>
+
+        <glossdef>
+          <para>El espacio swap o espacio de paginación es una sección del
+          disco duro designada para funcionar como memoria virtual.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Punto de montaje</glossterm>
+
+        <glossdef>
+          <para>El punto de montaje es la ruta dentro del sistema de archivos
+          en la que sera accesible determinada unidad de disco.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>UTC</glossterm>
+
+        <glossdef>
+          <para>Coordinated Universal Time es el estandar por el que se
+          regulan los relojes en el mundo, esta basado en el estandar
+          TAI.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm></glossterm>
+
+        <glossdef>
+          <para></para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
+  </glossary>
 </book>
