@@ -270,6 +270,63 @@
       sistema, es la dirección en la cual se encuentra alojado el sistema de
       reportes</para>
 
+      <para>A continuación se detalla paso a paso como iniciar sesíon en
+      cualquiera de los módulos del sistema ( Inventario, Facturación y
+      Contabilidad):</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Iniciar el módulo: Al iniciar el módulo aparecerá una ventana
+          que solicita las credenciales de acceso así como el nombre de la
+          base de datos. 1. a) b) 2. I. a) b) </para>
+
+          <orderedlist>
+            <listitem>
+              <para>Introducir credenciales (nombre de usuario y contraseña)
+              de un usuario que tenga acceso al módulo</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Si las credenciales son correctas ingresará al
+                  módulo</para>
+                </listitem>
+
+                <listitem>
+                  <para>Si las credenciales son incorrectas o el usuario no
+                  tiene acceso al módulo Se mostrará un mensaje de error, y se
+                  permitirá que lo intente nuevamente (hasta un máximo de 3
+                  intentos). Si al tercer intento falla, el modulo se cerrará.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Introducir Nombre de la base de datos: </para>
+            </listitem>
+
+            <listitem>
+              <para>PresionesAceptar: </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Si la base de datos está configurada, se validará si
+                  las credenciales introducidas tienen acceso al módulo</para>
+                </listitem>
+
+                <listitem>
+                  <para>Si la base de datos no está configurada, emergerá una
+                  ventana que le solicitará introduzca la información del
+                  servidor de base de datos( Si aparece esta ventana se debe
+                  contactar al administrador del sistema para que introduzca
+                  los datos solicitado</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </orderedlist>
+        </listitem>
+      </orderedlist>
+
       <screenshot>
         <info>
           <title>Iniciar Sesión</title>
