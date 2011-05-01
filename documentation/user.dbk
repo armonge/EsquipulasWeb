@@ -1068,15 +1068,84 @@
     <section>
       <title>Facturas</title>
 
-      <para>Este modulo registra las facturas de venta al crédito o contado
-      que se realizan diariamente, en este documento se deben de especificar,
-      el cliente, el vendedor, la bodega para controlar la existencia de los
-      artículos en cada bodega, la lista de artículos y el tipo de pago de
-      dicho documento.</para>
+      <para>Este formulario registra las facturas de venta al crédito o
+      contado que se realizan diariamente, en este documento se debe
+      especificar si la factura será al crédito o al contado, el nombre del
+      cliente y del vendedor involucrados en el proceso así como la bodega en
+      las que se encuentran almacenados los productos comprados para que de
+      esa manera se pueda controlar la existencia de los artículos en cada
+      bodega. Una vez selecionada la bodega se debe especificar la lista de
+      artículos que se están comprando</para>
 
       <para>Si eligió una factura al crédito esta debe ser autorizada por un
       usuario con los permisos necesarios, de lo contrario esta queda con
       estado pendiente y no puede ser impresa.</para>
+
+      <para>Una vez que halla iniciado sesión en el módulo de caja y despues
+      de haber aperturado caja se habilitará el botón Facturas. A continuación
+      encontrará una guía paso a paso para la correcta utilización del
+      formulario de facturación:</para>
+
+      <para></para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presionar el botón Facturas en el módulo de caja: Al presionar
+          el botón FACTURAS, se emergerá una ventana que contiene dos pestañas
+          en la esquina superior izquierda:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Pestaña Navegación: En la pestaña de navegación usted
+              puede:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Mostrar el detalle de una factura: En la pestaña de
+                  navegación usted podrá mostrar el detalle de cada factura
+                  dando doble clic en la factura deseada. Esta acción le
+                  trasladará de inmediato a la pestaña detalle donde usted
+                  podrá observar toda la información de la factura.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Navegar entre facturas: Al iniciar el formulario serán
+                  cargadas todas las facturas que han sido elaboradas y
+                  guardadas en el sistema. Usted podrá navegar a través de la
+                  lista de facturas Utilizando los botones de la barra de
+                  herramientas o bien Utilizando la barra de desplazamiento
+                  ubicada al lado derecho de la lista de facturas. De igual
+                  manera usted podrá navergar Utilizando las flechas de
+                  desplazamiento del teclado (para desplazarse utilizando este
+                  método primero debe seleccionar cualquiera de las celdas de
+                  la tabla) </para>
+                </listitem>
+
+                <listitem>
+                  <para>Buscar: Escriba información relacionada a la
+                  factura(s) que busca, en el campo de búsqueda. A medida que
+                  usted digite la información, se mostrará automáticamente el
+                  resultado de la búsqueda</para>
+                </listitem>
+
+                <listitem>
+                  <para>Filtrar de acuerdo al estado de la factura guardada:
+                  Usted puede elegir que facturas se mostrarán en la tabla de
+                  resultado, filtrando las facturas guardadas según su estado
+                  actual. </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Pestaña Detalle: En esta pestaña usted podrá observar toda
+              la información de la factura y le permitirá ingresar o modificar
+              los datos necesarios si usted se encuentra registrando o
+              editando una factura.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </orderedlist>
 
       <screenshot>
         <info>
