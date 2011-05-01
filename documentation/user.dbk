@@ -396,6 +396,32 @@
     </section>
 
     <section>
+      <title>Balance Inicial</title>
+
+      <para>Cuando se inicia por primera vez el módulo contable la única
+      opción que se encuentra disponible es BALANCE INICIAL, este se debe a
+      que antes que se pueda inicar a registrar los movimientos contables que
+      generan los procesos de la empresa, se debe registrar los saldos
+      iniciales en las cuentas contables.</para>
+
+      <para></para>
+
+      <screenshot>
+        <info>
+          <title>Primer inicio de sesión en el módulo contable.</title>
+        </info>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/balance-inicial.jpeg"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+
+      <para></para>
+    </section>
+
+    <section>
       <title>Balance General</title>
 
       <para>Este proceso es llevado a cabo por el contador de la empresa, con
@@ -405,7 +431,7 @@
       propietario, a una fecha determinada. Al elaborar el balance general el
       empresario obtiene la información valiosa sobre su negocio, como el
       estado de sus deudas, lo que debe cobrar o la disponibilidad de dinero
-      en el momento o en un futuro próximo.</para>
+      en el momento o en un futuro próximo</para>
     </section>
 
     <section>
@@ -1428,6 +1454,17 @@
     <title>Glosario</title>
 
     <glosslist>
+      <glossentry>
+        <glossterm><glossterm>Balance Inicial</glossterm></glossterm>
+
+        <glossdef>
+          <para>El balance inicial es aquel balance que se hace al momento de
+          iniciar una empresa o un negocio, en el cual se registran los
+          activos, pasivos y patrimonio con que se constituye e inician
+          operaciones.</para>
+        </glossdef>
+      </glossentry>
+
       <glossentry>
         <glossterm>FOB</glossterm>
 
