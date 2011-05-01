@@ -354,7 +354,7 @@
       ejecutar EsquipulasWeb es descargarlo directamente desde el repositorio
       SVN de sourceforge</para>
 
-      <para> usando el siguiente comando:</para>
+      <para>usando el siguiente comando:</para>
 
       <para><command>svn export
       https://misesquipulas.svn.sourceforge.net/svnroot/misesquipulas/EsquipulasWeb/trunk
@@ -454,177 +454,214 @@
   </chapter>
 
   <chapter>
-    <title>Creando un instalador para las aplicaciones de escritorio en
+    <title>Creación de un instalador para las aplicaciones de escritorio en
     Windows</title>
 
+    <para>Para generar el instalador de las aplicaciones de escritorio de MIS
+    Esquipulas es necesario instalar el software detallado a
+    continuación</para>
+
+    <informaltable>
+      <tgroup cols="3">
+        <thead>
+          <row>
+            <entry align="center">Software</entry>
+
+            <entry align="center">Descripción</entry>
+
+            <entry>Dirección de descarga</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>Python</entry>
+
+            <entry>Python es el lenguaje de programación utilizado en MIS
+            Esquipulas, actualmente existen 2 versiones del lenguaje en uso,
+            esquipulas utiliza la de la rama 2.x</entry>
+
+            <entry>http://python.org/download/</entry>
+          </row>
+
+          <row>
+            <entry>PyQt4</entry>
+
+            <entry>Libreria para creación de aplicaciones graficas con
+            Python</entry>
+
+            <entry>http://www.riverbankcomputing.co.uk/software/pyqt/download</entry>
+          </row>
+
+          <row>
+            <entry>Py2exe</entry>
+
+            <entry>Utilidad para crear archivos ejecutables a partir de
+            fuentes de Python</entry>
+
+            <entry>http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/</entry>
+          </row>
+
+          <row>
+            <entry>BeautifulSoup</entry>
+
+            <entry>Libreria de Python para analizar HTML, esto se usa en el
+            momento de generar los indices de los manuales de usuarios</entry>
+
+            <entry>http://www.crummy.com/software/BeautifulSoup/#Download</entry>
+          </row>
+
+          <row>
+            <entry>GNU Make</entry>
+
+            <entry>Herramienta para la automatización de procesos</entry>
+
+            <entry>http://sourceforge.net/projects/gnuwin32/files/make/3.81/</entry>
+          </row>
+
+          <row>
+            <entry>FOP</entry>
+
+            <entry>Opcional: Herramienta para dar formato a objetos FO se usa
+            para generar la ayuda de la aplicaciones en formato PDF</entry>
+
+            <entry>http://xmlgraphics.apache.org/fop/download.html</entry>
+          </row>
+
+          <row>
+            <entry>NSIS</entry>
+
+            <entry>Esta es una herramienta para generar instaladores de
+            Windows</entry>
+
+            <entry>http://nsis.sourceforge.net/Download</entry>
+          </row>
+
+          <row>
+            <entry>Java</entry>
+
+            <entry>Opcional: es necesaria si se quiere usar FOP</entry>
+
+            <entry>http://www.java.com/es/download/</entry>
+          </row>
+
+          <row>
+            <entry>xsltproc</entry>
+
+            <entry>Se utiliza para transformar los archivos de ayuda en
+            docbook a otro formato</entry>
+
+            <entry>http://www.zlatkovic.com/libxml.en.html</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <para>La mayoria de estos programas vienen con un sistema de instalación,
+    pero hay algunos como FOP, BeautifulSoup o xsltproc que no y es por ello
+    que a continuación documentaremos su proceso de instalación.</para>
+
     <section>
-      <title>Windows</title>
+      <title>Instalación de FOP</title>
 
-      <para>En algunos equipos en Windows XP, se necesitan algunas librerias
-      para poder correr la aplicación por lo que se debe descargar un paquete
-      de microsoft llamado: "Microsoft Visual C++ 2008 Redistributable Setup",
-      desde la paginas web de Microsoft.</para>
+      <para>Para instalar FOP se descarga una de las distribuciones binarias
+      que estan disponibles en su sitio web, despues de descomprimir el
+      archivo se tiene que añadir la ruta de este a la variable PATH del
+      sistema.</para>
 
-      <para>Para poder generar el executable del instalador en Windows es
-      necesario contar con las siguientes aplicaciones:</para>
+      <screenshot>
+        <info>
+          <title>Editando la variable PATH del sistema</title>
+        </info>
 
-      <itemizedlist>
-        <listitem>
-          <para>Py2exe</para>
-        </listitem>
-      </itemizedlist>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/install3.png" scalefit="1" width="100%"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </section>
 
-      <itemizedlist>
-        <listitem>
-          <para>Python 2.7</para>
-        </listitem>
-      </itemizedlist>
+    <section>
+      <title>Instalación de xsltproc</title>
 
-      <itemizedlist>
-        <listitem>
-          <para>PyQt para Python 2.7</para>
-        </listitem>
-      </itemizedlist>
+      <para>Para instalar xsltproc es necesario descargar los paquetes libxml,
+      libxslt, zlib, and iconv desde http://www.zlatkovic.com/libxml.en.html,
+      estos paquetes vienen como archivos .zip que pueden descomprimirse con
+      cualquiera de las utilidades zip de windows. Una vez que se hayan
+      descomprimido es necesario copiar los achivos
+      <filename>libxslt.dll</filename>, <filename>iconv.dll</filename>,
+      <filename>xmllint.exe</filename>, <filename>libxml2.dll</filename>,
+      <filename>zlib.dll</filename>, <filename>libexslt.dll</filename> y
+      <filename>xsltproc.exe</filename> a una carpeta en el sistema de
+      archivos que se encuentre en el PATH del sistema.</para>
 
-      <itemizedlist>
-        <listitem>
-          <para>Nsis</para>
-        </listitem>
+      <para>Para comprobar si ha instalado xsltproc bien ejecute el siguiente
+      comando</para>
 
-        <listitem>
-          <para>Tortoise SVN</para>
-        </listitem>
-      </itemizedlist>
+      <para><command>xsltproc -version</command></para>
+    </section>
+
+    <section>
+      <title>Instalación BeautifulSoup</title>
+
+      <para>Para instalar BeautifulSout es necesario que la ruta al ejecutable
+      de Python se encuentre en el PATH del sistema, una vez que se halla
+      hecho esto entonces solamente hay que entrar en la carpeta del paquete y
+      ejecutar el siguiente comando:</para>
+
+      <para><command>python setup.py install</command></para>
+    </section>
+
+    <section>
+      <title>Configurando la ruta del sistema</title>
+
+      <para>Ademas de instalar los paquetes anteriormente mencionados es
+      necesario añadir las rutas de NSIS y GNU Make a la variable PATH del
+      sistema.</para>
+    </section>
+
+    <section>
+      <title>Compilando el instalador</title>
+
+      <para>Para compilar el instalador se debe ejecutar el siguiente
+      comando:</para>
+
+      <para><command>make exe</command></para>
+
+      <para>Si la salida de este comando no muestra ningún error entonces la
+      compilación ha sido exitosa y se ha creado un archivo de instalación en
+      la carpeta installer</para>
     </section>
   </chapter>
 
   <chapter>
-    <title>Instalacion y configuración en Windows</title>
+    <title>Instalación y configuración de las aplicaciones cliente en
+    Windows</title>
 
-    <para>Debes abrir el ejecutable de Windows llamado esquipulas.exe e
-    iniciar el asistente de instalación, luego presionar siguiente para
-    continuar.</para>
+    <para>Una vez que se ha compilado el archivo de instalación se puede usar
+    en todas las maquinas con sistema Windows en las que el sistema se quiera
+    instalar. El asistente de instalación utiliza una interfaz sencilla y
+    moderna en la que solamente es necesario definir unos pocos parametros
+    realmente sencillos</para>
 
     <screenshot>
       <info>
-        <title>Asistente de Instalación</title>
+        <title>Asistente de instalación</title>
       </info>
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/1.png" width="80%"></imagedata>
+          <imagedata fileref="img/2.png" scalefit="1" width="80%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
 
-    <para>En la siguiente pantalla aparece los terminos y condiciones de
-    licenciamiento de esta aplicación, por lo que se le recomienda leerlos
-    para aplicarlos fielmente y no infringir esta licencia. A continuación se
-    puede observar la pantalla, donde debe seleccionar los modulos de la
-    aplicación a instalar, se recomienda instalar siempre la ayuda, por
-    cualquier duda o pregunta que resulte en un futuro del manejo del
-    sistema.</para>
-
-    <screenshot>
-      <info>
-        <title>Modulos a instalar</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/2.png" width="80%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>En la siguiente pantalla, debe decidir si la instalación sera solo
-    para el usuario actual, o todos los usuarios del equipo tienen acceso al
-    sistema. La ultima opción creara accesos directos para cada
-    usuario.</para>
-
-    <screenshot>
-      <info>
-        <title>Usuarios para la instalacion</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/3.png" width="80%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>En esta pantalla, debe elegir la ubicacion de los archivos de
-    instalacion y verficar si hay espacio disponible para realizar la
-    instalacion. En la parte inferior izquierda de la imagen podra observar si
-    se cumple con este requisito.</para>
-
-    <screenshot>
-      <info>
-        <title>Ruta de Instalación</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/4.png" width="80%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>Finalmente debe elegir la ubicación de los accesos directos para
-    abrir la aplicación, luego de esto se iniciara la copia e instalación del
-    sistema.</para>
-
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="img/5.png" width="80%"></imagedata>
-      </imageobject>
-    </mediaobject>
-
-    <screenshot>
-      <info>
-        <title>Copia de archivos del sistema</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/6.png" width="80%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>Hasta este punto, la instalación ha terminado, ahora se debe
-    configurar los accesos directos de la aplicación para poder acceder a los
-    modulos correspondientes y a su vez configurar la Base de datos que se
-    utilizará. En la siguiente captura se puede observar como al final en
-    Destino, se agrega el nombre del modulo en la parte sombreada, siendo las
-    posibilidades:</para>
-
-    <orderedlist>
-      <listitem>
-        <para>-- inventario</para>
-      </listitem>
-
-      <listitem>
-        <para>-- caja</para>
-      </listitem>
-
-      <listitem>
-        <para>-- contabilidad</para>
-      </listitem>
-    </orderedlist>
-
-    <screenshot>
-      <info>
-        <title>Configuración de modulo</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/config-module.png" width="80%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
+    <para>Despues de instalar las aplicaciones el siguiente paso es
+    configurarlas, para hacerlo no es necesario hacer otra cosa más que
+    ejecutarlas y la primera vez que se quiera iniciar sesión el sistema
+    pedira todos los parametros que necesita para su correcto
+    funcionamiento</para>
 
     <screenshot>
       <info>
@@ -633,26 +670,66 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/db-config.png" width="50%"></imagedata>
+          <imagedata fileref="img/db-config.png" scalefit="1" width="50%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
 
-    <para><emphasis role="bold"><emphasis>Luego se debe configurar la base de
-    datos que utilizará el sistema se deben rellenar los campos
-    correspondientes:</emphasis></emphasis></para>
+    <informaltable>
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry align="center">Parametro</entry>
 
-    <para><emphasis role="bold">Servidor:</emphasis> dirección IP de la
-    maquina en la que el servidor de bases de datos esta alojado</para>
+            <entry align="center">Valor</entry>
+          </row>
+        </thead>
 
-    <para><emphasis role="bold">Base de datos:</emphasis> nombre de la base de
-    datos a la que se conectara el sistema</para>
+        <tbody>
+          <row>
+            <entry>Servidor</entry>
 
-    <para><emphasis role="bold">Usuario:</emphasis> nombre del usuario mysql
-    usado para la conexión</para>
+            <entry>Dirección IP de la maquina en la que el servidor de bases
+            de datos esta alojado</entry>
+          </row>
 
-    <para><emphasis role="bold">Contraseña:</emphasis> la contraseña del
-    usuario mysql</para>
+          <row>
+            <entry>Base de Datos</entry>
+
+            <entry>Nombre de la base de datos a la que se conectara el
+            sistema</entry>
+          </row>
+
+          <row>
+            <entry>Usuario</entry>
+
+            <entry>Nombre del usuario mysql usado para la conexión</entry>
+          </row>
+
+          <row>
+            <entry>Contraseña</entry>
+
+            <entry>La contraseña del usuario mysql</entry>
+          </row>
+
+          <row>
+            <entry>Servidor de reportes</entry>
+
+            <entry>El servidor de reportes se refiere a la ruta en la cual
+            están alojados los reportes en el modulo web. Ej: si el modulo web
+            se encuentra en http://mis.grupoeltriunfo.com.ni entonces el
+            servidor de reportes se encuentra en
+            http://mis.grupoeltriunfo.com.ni/reports/</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <section>
+      <title>Parametros de linea de comandos</title>
+
+      <para></para>
+    </section>
   </chapter>
 
   <chapter>
