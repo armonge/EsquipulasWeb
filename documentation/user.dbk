@@ -278,7 +278,7 @@
         <listitem>
           <para>Iniciar el módulo: Al iniciar el módulo aparecerá una ventana
           que solicita las credenciales de acceso así como el nombre de la
-          base de datos. 1. a) b) 2. I. a) b) </para>
+          base de datos. 1. a) b) 2. I. a) b)</para>
 
           <orderedlist>
             <listitem>
@@ -295,18 +295,18 @@
                   <para>Si las credenciales son incorrectas o el usuario no
                   tiene acceso al módulo Se mostrará un mensaje de error, y se
                   permitirá que lo intente nuevamente (hasta un máximo de 3
-                  intentos). Si al tercer intento falla, el modulo se cerrará.
-                  </para>
+                  intentos). Si al tercer intento falla, el modulo se
+                  cerrará.</para>
                 </listitem>
               </itemizedlist>
             </listitem>
 
             <listitem>
-              <para>Introducir Nombre de la base de datos: </para>
+              <para>Introducir Nombre de la base de datos:</para>
             </listitem>
 
             <listitem>
-              <para>PresionesAceptar: </para>
+              <para>PresionesAceptar:</para>
 
               <itemizedlist>
                 <listitem>
@@ -380,7 +380,7 @@
 
       <para>Al iniciar el módulo de contabilidad usted deberá introducir las
       credenciales ( usuario y contraseña) que le autorizan utilizar este
-      módulo. </para>
+      módulo.</para>
 
       <screenshot>
         <info>
@@ -396,15 +396,22 @@
     </section>
 
     <section>
+      <title>Catalogo de cuentas contables</title>
+
+      <para></para>
+    </section>
+
+    <section>
       <title>Balance Inicial</title>
 
       <para>Cuando se inicia por primera vez el módulo contable la única
-      opción que se encuentra disponible es BALANCE INICIAL, este se debe a
-      que antes que se pueda inicar a registrar los movimientos contables que
-      generan los procesos de la empresa, se debe registrar los saldos
-      iniciales en las cuentas contables.</para>
-
-      <para></para>
+      operación que se encuentra disponible es BALANCE INICIAL, esto se debe a
+      que antes que se puedan registrar los movimientos contables que generan
+      los procesos de la empresa, se debe registrar los saldos iniciales en
+      las cuentas contables. Se encontrará tambien disponible el botón Cuentas
+      Contables, ubicado en la parte superior en la barra de herramientas, el
+      cual le permitirá crear cuentas contables en caso de ser
+      necesario.</para>
 
       <screenshot>
         <info>
@@ -413,43 +420,134 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/balance-inicial.jpeg"></imagedata>
+            <imagedata fileref="img/primer-inicio.jpeg"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
 
-      <para></para>
+      <para>Por favor sigua los siguientes pasos:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presione el botón Balance Inicial: Se abrirá el formulario
+          para registrar los montos iniciales con los que se iniciarán las
+          operaciones de la empresa</para>
+
+          <screenshot>
+            <info>
+              <title>Formulario para el Balance Inicial</title>
+            </info>
+
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="img/balance-inicial.jpeg"></imagedata>
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Seleccione la fecha para el balance inicial</para>
+        </listitem>
+
+        <listitem>
+          <para>Seleccione las cuentas contables que formarán parte del
+          balance inicial de la empresa. Usted podrá seleccionar la cuenta
+          contable ya sea por código de cuenta o por el nombre de la misma. Si
+          usted desea agregar o remover cuentas contables puede acerlo
+          agregando o quitando lineas a la tabla mediante los botones
+          <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/botones.jpeg"></imagedata>
+              </imageobject>
+            </inlinemediaobject>. La cuenta CAPITAL está seleccionada por
+          defecto y no se puede remover ya que es parte integral del balance
+          inicial.</para>
+        </listitem>
+
+        <listitem>
+          <para>En la columna Monto C$, escriba el monto inicial
+          correspondiente a cada cuenta. Al momento de registrar los montos de
+          cada cuenta debe tomar en cuenta que las cantidades positivas
+          corresponden al DEBE y las cantidades negativas corresponden al
+          HABER de las cuentas T. El monto inicial de la cuenta capital será
+          calculado automáticamente.</para>
+        </listitem>
+
+        <listitem>
+          <para>Presione Guardar: Al presionar el boton guardar se le
+          preguntará si está seguro si desea guardar el Balance inicial,
+          presione SI para guardar o NO para cancelar la operación de guardar.
+          Si no desea crear el balance inicial puede cerrar el formulario
+          presionando el botón Cancelar.</para>
+        </listitem>
+      </orderedlist>
     </section>
 
     <section>
-      <title>Balance General</title>
-
-      <para>Este proceso es llevado a cabo por el contador de la empresa, con
-      la finalidad de obtener un resumen de todo lo que tiene la empresa o la
-      situación financiera de la empresa, es decir lograr determinar lo que la
-      empresa debe,lo que le deben y de lo que realmente le pertenece a su
-      propietario, a una fecha determinada. Al elaborar el balance general el
-      empresario obtiene la información valiosa sobre su negocio, como el
-      estado de sus deudas, lo que debe cobrar o la disponibilidad de dinero
-      en el momento o en un futuro próximo</para>
-    </section>
-
-    <section>
-      <title>Ajustes Contables</title>
-
-      <para>Los ajustes contables</para>
+      <title>Ajuste Contable</title>
 
       <screenshot>
         <info>
-          <title>Ajustes contables</title>
+          <title>Formulario de Ajustes Contables</title>
         </info>
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/ajustes.png" scalefit="1" width="100%"></imagedata>
+            <imagedata fileref="img/ajuste-contable.jpeg"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
+
+      <para>Al presionar el botón Ajustes Contables se mostrará un formulario
+      que le permitirá registar en el sistema cualquier movimientos en la
+      cuentas contables que se estime necesario. De igual manera este
+      formulario le permitirá navegar a través de todos los ajustes que se
+      hayan registrados. Para registar un ajuste contable se le solicitará
+      selecionar el concepto de ajuste, las cuentas que serán afectadas y el
+      monto correspondiente para cada cuenta. Sin importar las cantidades
+      registradas el movimiento contable siempre estará cuadrado. Si desea
+      detallar un nuevo ajuste contable se debe realizar lo siguiente:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presione el botón Nuevo (<inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/document-new.png"></imagedata>
+              </imageobject>
+            </inlinemediaobject>): al presionar este botón se validará si ya
+          han sido ingresado en la base de datos los conceptos que detallen
+          los diferentes ajustes contables, en caso que no existan ningún
+          concepto se mostrará un mensaje de error ( <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/error-concepto.jpeg"></imagedata>
+              </imageobject>
+            </inlinemediaobject> ) y usted deberá ponerse en contacto con el
+          administrador del sistema.</para>
+        </listitem>
+
+        <listitem>
+          <para>Seleccione la fecha y el concepto del ajuste contable</para>
+        </listitem>
+
+        <listitem>
+          <para>Seleccione las cuentas contables e ingrese el monto en el que
+          fue afectada dicha cuenta en este movimiento. </para>
+        </listitem>
+
+        <listitem>
+          <para>Si desea guardar el ajuste presione el boton guardar, de lo
+          contario presione el boton cancelar: Si presiona el botón guardar se
+          le preguntará si desea guardar el ajuste, Presione SI para guardar o
+          No para cancelar dicha acción.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+
+    <section>
+      <title>Depositos</title>
+
+      <para></para>
     </section>
 
     <section>
@@ -476,19 +574,7 @@
     </section>
 
     <section>
-      <title>Estado de Resultados</title>
-
-      <para></para>
-    </section>
-
-    <section>
       <title>Conciliacion Bancaria</title>
-
-      <para></para>
-    </section>
-
-    <section>
-      <title>Movimientos Bancarios</title>
 
       <para></para>
     </section>
@@ -501,12 +587,6 @@
 
     <section>
       <title>Cierre Anual</title>
-
-      <para></para>
-    </section>
-
-    <section>
-      <title>Catalogo de cuentas contables</title>
 
       <para></para>
     </section>
@@ -981,7 +1061,7 @@
 
       <orderedlist>
         <listitem>
-          <para>Presionar el botón aperturar caja: </para>
+          <para>Presionar el botón aperturar caja:</para>
 
           <orderedlist>
             <listitem>
@@ -1004,7 +1084,7 @@
                 <listitem>
                   <para>Seleccione la caja que desea aperturar ( si usted no
                   ha seleccionado ninguna caja, la apertura no podrá ser
-                  efectuada y emergerá un mensaje de error) </para>
+                  efectuada y emergerá un mensaje de error)</para>
                 </listitem>
 
                 <listitem>
@@ -1038,8 +1118,8 @@
                 <listitem>
                   <para>Presione Aceptar: Si la información introducida es
                   correcta se validará si existen en la base de datos, tasas
-                  de cambios (de córdoba a dólar) para la fecha seleccionada
-                  </para>
+                  de cambios (de córdoba a dólar) para la fecha
+                  seleccionada</para>
 
                   <itemizedlist>
                     <listitem>
@@ -1073,7 +1153,7 @@
                 <listitem>
                   <para>Si selecciona el botón SI, se activarán las todas las
                   funciones del módulo y se continuará trabajando con la
-                  sesión que está abierta. </para>
+                  sesión que está abierta.</para>
 
                   <para>Si no desea continuar trabajando con la sesión
                   abierta, debe proceder a realizar un cierre de caja, para
@@ -1082,7 +1162,7 @@
 
                 <listitem>
                   <para>Si selecciona el botón NO, no se activarán las
-                  funciones del módulo. </para>
+                  funciones del módulo.</para>
                 </listitem>
               </itemizedlist>
             </listitem>
@@ -1156,7 +1236,7 @@
                   manera usted podrá navergar Utilizando las flechas de
                   desplazamiento del teclado (para desplazarse utilizando este
                   método primero debe seleccionar cualquiera de las celdas de
-                  la tabla) </para>
+                  la tabla)</para>
                 </listitem>
 
                 <listitem>
@@ -1170,7 +1250,7 @@
                   <para>Filtrar de acuerdo al estado de la factura guardada:
                   Usted puede elegir que facturas se mostrarán en la tabla de
                   resultado, filtrando las facturas guardadas según su estado
-                  actual. </para>
+                  actual.</para>
                 </listitem>
               </itemizedlist>
             </listitem>
@@ -1462,6 +1542,30 @@
           iniciar una empresa o un negocio, en el cual se registran los
           activos, pasivos y patrimonio con que se constituye e inician
           operaciones.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>DEBE</glossterm>
+
+        <glossdef>
+          <para></para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>HABER</glossterm>
+
+        <glossdef>
+          <para></para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Cuenta T</glossterm>
+
+        <glossdef>
+          <para></para>
         </glossdef>
       </glossentry>
 
