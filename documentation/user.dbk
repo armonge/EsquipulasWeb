@@ -398,7 +398,54 @@
     <section>
       <title>Catalogo de cuentas contables</title>
 
-      <para></para>
+      <screenshot>
+        <info>
+          <title>Formulario de cuentas contables</title>
+        </info>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/cuentascontables.jpeg"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+
+      <para>El catálogo de cuentas contables le permite agregar cuentas y
+      subcuentas contables así como observar el monto actual de cada subcuenta
+      y el acumulado de las cuentas generales.</para>
+
+      <para>Para agregar una nueva cuenta contable deberá seguir los
+      siguientes pasos:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/catalogocuentas.jpeg"></imagedata>
+              </imageobject>
+            </inlinemediaobject> el cual abrirá una pestaña que mostrará todas
+          las cuentas y subcuentas contables con sus respectivos montos y
+          acumulados ( el acumulado es la suma del monto de la cuenta más el
+          monto de todas las subcuentas que posee)</para>
+        </listitem>
+
+        <listitem>
+          <para>Presione el botón Añadir, Se le solicitará que ingrese el
+          código contable que le asignará a la cuenta ( conformado por 5
+          grupos de 3 digitos) , el nombre de la cuenta contable y si la
+          naturaleza de la cuenta es debe ( cuentas Activo ) o haber ( cuentas
+          pasivo y capital).</para>
+        </listitem>
+
+        <listitem>
+          <para>Ingrese la información solicitada.</para>
+        </listitem>
+
+        <listitem>
+          <para>Si desea guardar la cuenta creada presione el boton guardar,
+          de lo contrario presione cancelar</para>
+        </listitem>
+      </orderedlist>
     </section>
 
     <section>
@@ -547,7 +594,107 @@
     <section>
       <title>Depositos</title>
 
-      <para></para>
+      <para>El formulario depósito le permite registar los depósitos en las
+      cuentas bancarias del efectivo que existe en caja.</para>
+
+      <para>Si usted desea registar un deposito efectuado debe realizar lo
+      siguiente:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/btndepositos.jpeg"></imagedata>
+              </imageobject>
+            </inlinemediaobject> : Se abrirá el formulario depositos el cual
+          contiene dos pestañas ubicadas en la esquina superior derecha (
+          Detalle y Navegación). </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>La pestaña navegación muestra todos los depositos
+              registrados en el sistemas y le permite navegar entre ellos o
+              buscar un en específico</para>
+            </listitem>
+
+            <listitem>
+              <para>La pestaña Detalle le permititrá observar toda la
+              información correspondiente a un depósito en específico y
+              agregar o editar información de los depositos al momento en que
+              se está registrando un nuevo deposito</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/document-new.png"></imagedata>
+              </imageobject>
+            </inlinemediaobject> ( Ctrl+n) ubicado en la barra de
+          herramientas: Esta acción le ubicará en la pestaña detalle y
+          habilitará todos los campos donde usted deberá ingresar la
+          información del deposito.</para>
+
+          <para>NOTA: Al momento de presionar el botón se validará si existen
+          conceptos para los depósitos en la base de datos y de no ser así ,
+          se le mostrará un mensaje de error. En este caso usted deberá
+          contactarse con el administrador del sistema.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Seleccione la cuenta bancaria en la que se realizó el
+              depósito</para>
+            </listitem>
+
+            <listitem>
+              <para>Seleccione la fecha del deposito</para>
+            </listitem>
+
+            <listitem>
+              <para>Seleccione el concepto del deposito</para>
+            </listitem>
+
+            <listitem>
+              <para>Detalle los movimientos contables generados por el
+              depósito</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Especifique el monto depositado en la cuenta bancaria,
+                  el cual será debitada en la cuenta contable
+                  correspondiente</para>
+                </listitem>
+
+                <listitem>
+                  <para>Elija la cuenta contable de la caja de la que se
+                  sustrajo el efectivo depositado</para>
+
+                  <para>Nota: En caso de ser afectada mas de una cuenta de
+                  caja, por favor detalle la cantidad correspondiente a cada
+                  cuenta</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Presione el botón <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/document-save.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject> (Ctrl + g) si desea guardarf el documento
+              o <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/dialog-cancel.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject> si desea cancelar la operación. Se le
+              solicitará que confirme que está seguro que desea guardar el
+              depósito , presione Si para guardar o No para Cancelar la
+              operación.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </orderedlist>
     </section>
 
     <section>
