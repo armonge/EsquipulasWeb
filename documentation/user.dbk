@@ -614,14 +614,14 @@
             <listitem>
               <para>La pestaña navegación muestra todos los depositos
               registrados en el sistemas y le permite navegar entre ellos o
-              buscar un en específico</para>
+              buscar uno en específico</para>
             </listitem>
 
             <listitem>
               <para>La pestaña Detalle le permititrá observar toda la
               información correspondiente a un depósito en específico y
-              agregar o editar información de los depositos al momento en que
-              se está registrando un nuevo deposito</para>
+              agregar información de los depositos al momento en que se está
+              registrando uno nuevo.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -700,13 +700,6 @@
     <section>
       <title>Cheques</title>
 
-      <para>Un cheque es un documento por medio del cual una persona llamada
-      "girador", ordena a un banco llamado "girado" que pague una determinada
-      suma de dinero a la orden de un tercero llamado "beneficiario". En este
-      documento al igual que en un recibo si el monto es mayor a un mil
-      córdobas, se aplica porcentaje de retención; al subtotal segun valor
-      elegido en formulario.</para>
-
       <screenshot>
         <info>
           <title>Cheques</title>
@@ -718,6 +711,108 @@
           </imageobject>
         </mediaobject>
       </screenshot>
+
+      <para>El formulario Cheques le permite registrar en el sistema los
+      cheques que ha emitido la empresa</para>
+
+      <para>Si usted desea registar un cheque debe realizar lo
+      siguiente:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/btncheques.jpeg"></imagedata>
+              </imageobject>
+            </inlinemediaobject> : Se abrirá el formulario Cheques el cual
+          contiene dos pestañas ubicadas en la esquina superior derecha (
+          Detalle y Navegación).</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>La pestaña navegación muestra todos los cheques
+              registrados en el sistemas y le permite navegar entre ellos o
+              buscar uno en específico</para>
+            </listitem>
+
+            <listitem>
+              <para>La pestaña Detalle le permititrá observar toda la
+              información correspondiente a un cheque en específico y agregar
+              información de los cheques al momento en que se está registrando
+              uno nuevo</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/document-new.png"></imagedata>
+              </imageobject>
+            </inlinemediaobject> ( Ctrl+n) ubicado en la barra de
+          herramientas: Esta acción le ubicará en la pestaña detalle y
+          habilitará todos los campos donde usted deberá ingresar la
+          información del cheque.</para>
+
+          <para>NOTA: Al momento de presionar el botón se validará si existen
+          conceptos para cheques en la base de datos y de no ser así , se le
+          mostrará un mensaje de error. En este caso usted deberá contactarse
+          con el administrador del sistema.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Seleccione la cuenta bancaria en la que se realizó el
+              depósito</para>
+            </listitem>
+
+            <listitem>
+              <para>Seleccione la fecha del deposito</para>
+            </listitem>
+
+            <listitem>
+              <para>Seleccione el concepto del deposito</para>
+            </listitem>
+
+            <listitem>
+              <para>Detalle los movimientos contables generados por el
+              depósito</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Especifique el monto depositado en la cuenta bancaria,
+                  el cual será debitada en la cuenta contable
+                  correspondiente</para>
+                </listitem>
+
+                <listitem>
+                  <para>Elija la cuenta contable de la caja de la que se
+                  sustrajo el efectivo depositado</para>
+
+                  <para>Nota: En caso de ser afectada mas de una cuenta de
+                  caja, por favor detalle la cantidad correspondiente a cada
+                  cuenta</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Presione el botón <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/document-save.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject> (Ctrl + g) si desea guardarf el documento
+              o <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/dialog-cancel.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject> si desea cancelar la operación. Se le
+              solicitará que confirme que está seguro que desea guardar el
+              depósito , presione Si para guardar o No para Cancelar la
+              operación.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </orderedlist>
     </section>
 
     <section>
@@ -1579,7 +1674,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/arqueo.png" scalefit="1" width="80%"></imagedata>
+            <imagedata fileref="img/arqueo.png" width="80%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1601,186 +1696,6 @@
       <mediaobject>
         <imageobject>
           <imagedata fileref="img/webhome.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>La sección de administración del modulo web le permite autorizar o
-    anular cualquier documento que necesite autorizacion por ej: "Facturas de
-    credito"; además le permite ingresar los tipos de cambio, usuarios del
-    sistema y modificar los permisos asignados, ingresar vendedores, cuentas
-    bancarias, bancos, bodegas, puntos de caja, modificar los impuestos y
-    conceptos de los documentos.</para>
-
-    <screenshot>
-      <info>
-        <title>Administración desde modulo web</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/administracionweb.png" scalefit="1"
-                     width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>En el modulo de usuarios se pueden observar dos opciones: Lista de
-    usuarios y crear un nuevo usuario. Desde la lista puede borrar, cambiar
-    contraseña y modificar los permisos del usuario o los modulos al que
-    tendra acceso.</para>
-
-    <para>En la siguiente captura de pantalla, puede observar el formulario
-    para crear un usuario, donde se escribe la informacion personal y los
-    permisos del usuario.</para>
-
-    <screenshot>
-      <info>
-        <title>Modulo de usuarios</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/usuarios.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>La siguiente imagen muestra la lista de vendedores que pueden
-    utilizar en el sistema, por ejemplo, para facturar. Tambien se puede
-    observar el formulario y los campos que debe llenar con la información
-    correspondiente para crear un nuevo vendedor.</para>
-
-    <screenshot>
-      <info>
-        <title>Vendedores</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/vendedores.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>A continuación se muestran las cuentas bancarias de la empresa que
-    utiliza el sistema, además se observa el formulario que se debe rellenar
-    para ingresar una nueva cuenta bancaria.</para>
-
-    <screenshot>
-      <info>
-        <title>Cuentas bancarias</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/cuentasbancarias.png" scalefit="1"
-                     width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>Los bancos disponibles para la creación de cuentas bancarias se
-    crean desde un modulo diferente, se pueden observar los bancos y las
-    cuentas que tienen relacionadas estos. Para crear un nuevo banco solo debe
-    presionar el boton "Añadir Banco" y luego escribir el nombre en el campo
-    de texto que aparece en la parte inferior.</para>
-
-    <screenshot>
-      <info>
-        <title>Bancos</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/bancos.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>En el modulo de Bodegas, se agregan todas las bodegas que se
-    utilizaran en el sistema para dar ingreso a la existencia de productos. Se
-    ingresa una nueva presionando el boton "Añadir bodegas" y luego escribir
-    el nombre correspondiente. En la siguiente imagen se muestra una lista de
-    las bodegas disponibles en el sistema.</para>
-
-    <screenshot>
-      <info>
-        <title>Bodegas de articulos</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/bodegas.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>Los puntos de caja, son las cajas disponibles para facturar en el
-    sistema, la siguiente imagen muestra una lista de los puntos disponibles y
-    el como ingresar uno nuevo en el cuadro de texto situado debajo de
-    lista.</para>
-
-    <screenshot>
-      <info>
-        <title>Puntos de caja</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/puntoscaja.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>El siguiente formulario muestra los valores de los impuestos que
-    utiliza el sistema, si desea modificarlo debe editar el cuadro de texto
-    con el valor correspondiente y presionar aceptar. Estos valores estan
-    guardados por defecto, pero dado el caso exista una modificación, en este
-    modulo es donde puede cambiar el valor de las constantes.</para>
-
-    <screenshot>
-      <info>
-        <title>Impuestos</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/impuestos.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>Existen documentos que se crean con conceptos especificos, por
-    ejemplo: "Recibo de caja con concepto: Cancelacion de factura" entre
-    otros. Este modulo le permite crear los conceptos correspondientes a cada
-    documento.</para>
-
-    <screenshot>
-      <info>
-        <title>Conceptos para documentos</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/conceptos.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>El modulo de clientes, le permite insertar, editar, borrar clientes
-    y ver el total el total de compras en dolares que ha realizado a la
-    empresa, en la siguiente imagen puede observar la información
-    correspondiente al cliente Marcos Moreno.</para>
-
-    <screenshot>
-      <info>
-        <title>Clientes</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/clientes.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1849,144 +1764,6 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="img/web-partida-contable.png" scalefit="1"
-                         width="100%"></imagedata>
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-
-        <para>El balance general es el proceso llevado a cabo por el contador
-        de la empresa, con la finalidad de obtener un resumen de todo lo que
-        tiene la empresa o la situación financiera de la empresa, es decir
-        lograr determinar lo que la empresa debe, lo que le deben y de lo que
-        realmente le pertenece a su propietario, a una fecha determinada. En
-        la siguiente imagen se puede apreciar el balance general para el mes
-        de mayo.</para>
-
-        <screenshot>
-          <info>
-            <title>Balance General</title>
-          </info>
-
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="img/balancegeneral.PNG"></imagedata>
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-
-        <para>El reporte de balanza de comprobacion es una lista de todos los
-        saldos deudores y acreedores de todas las cuentas del mayor para
-        comprobar la igualdad, sumándolos en columnas separadas; esto así a
-        consecuencia de que la contabilidad a base de partida doble deriva su
-        nombre del hecho de que el registro de toda operación requiere el
-        asiento de débitos y créditos de una operación que suman igual un
-        valor, por lo tanto resulta obvio que el total de débitos de todas las
-        cuentas debe ser igual al total de los créditos. Este reporte sirve
-        para localizar errores dentro de un período de tiempo y facilitar
-        encontrarlos en detalle y corregirlos.</para>
-
-        <screenshot>
-          <info>
-            <title>Balanza de comprobación</title>
-          </info>
-
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="img/balanza.PNG" scalefit="1" width="100%"></imagedata>
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-
-        <para>La liquidación de costos, tiene como objetivo determinar cuáles
-        son los costos reales de los productos después de pagar todos los
-        costos de importación. Se toman en cuenta los impuestos de aduana, el
-        transporte, el seguro de los productos, los costos de papelería y
-        todos los otros gastos en los que se pueda haber incurrido. En el
-        modulo Web se pueden observar las liquidaciones realizadas en el
-        sistema transaccional de inventario. A continuación se muestra una
-        imagen de ejemplo.</para>
-
-        <screenshot>
-          <info>
-            <title>Liquidación de costos</title>
-          </info>
-
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="img/liquidacioncostos.PNG"></imagedata>
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-
-        <para>La siguiente imagen muestra el reporte de ventas realizadas por
-        productos, como puede observar en la parte izquierda de la imagen
-        aparecen la lista de productos, al seleccionarlos, el reporte mostrara
-        las ventas realizadas de los productos y la cantidad vendida en la
-        fecha correspondiente.</para>
-
-        <screenshot>
-          <info>
-            <title>Ventas por Articulo</title>
-          </info>
-
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="img/ventasxproductos.PNG"></imagedata>
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-
-        <para>Este reporte muestra los 5 productos mas vendidos del mes, se
-        puede apreciar un grafico de pastel con los productos mas vendidos, en
-        este caso solo existen 2 productos en la base de datos, por lo que
-        aparecen solo 2 productos; Sin embargo el grafico muestra cinco
-        productos.</para>
-
-        <screenshot>
-          <info>
-            <title>Cinco productos mas vendidos</title>
-          </info>
-
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="img/5masvendidos.png" scalefit="1"
-                         width="100%"></imagedata>
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-
-        <para>El siguiente reporte muestra la existencia en bodegas de cada
-        articulo del sistema. Este reporte muestra la descripcion, la bodega
-        correspondiente al articulo y las unidades disponibles para
-        venta.</para>
-
-        <screenshot>
-          <info>
-            <title>Existencia en Bodega</title>
-          </info>
-
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="img/existencia.png" scalefit="1"
-                         width="100%"></imagedata>
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-
-        <para>El siguiente reporte muestra los movimientos de los productos
-        seleccionados, por ejemplo el kardex de entrada, las salidas en cada
-        factura, es decir muestra todos los movimientos en inventario que se
-        han llevado para un producto en particular en su fecha
-        correspondiente.</para>
-
-        <screenshot>
-          <info>
-            <title>Movimientos por producto</title>
-          </info>
-
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="img/movimientosxproducto.png" scalefit="1"
                          width="100%"></imagedata>
             </imageobject>
           </mediaobject>
