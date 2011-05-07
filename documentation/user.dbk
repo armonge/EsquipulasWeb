@@ -1432,7 +1432,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/arqueo.png" width="80%"></imagedata>
+            <imagedata fileref="img/arqueo.png" scalefit="1" width="80%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1472,7 +1472,8 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/administracionweb.png"></imagedata>
+          <imagedata fileref="img/administracionweb.png" scalefit="1"
+                     width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1493,7 +1494,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/usuarios.png"></imagedata>
+          <imagedata fileref="img/usuarios.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1510,7 +1511,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/vendedores.png"></imagedata>
+          <imagedata fileref="img/vendedores.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1526,7 +1527,8 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/cuentasbancarias.png"></imagedata>
+          <imagedata fileref="img/cuentasbancarias.png" scalefit="1"
+                     width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1544,7 +1546,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/bancos.png"></imagedata>
+          <imagedata fileref="img/bancos.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1562,7 +1564,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/bodegas.png"></imagedata>
+          <imagedata fileref="img/bodegas.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1579,7 +1581,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/puntoscaja.png"></imagedata>
+          <imagedata fileref="img/puntoscaja.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1597,7 +1599,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/impuestos.png"></imagedata>
+          <imagedata fileref="img/impuestos.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1614,7 +1616,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/conceptos.png"></imagedata>
+          <imagedata fileref="img/conceptos.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1631,7 +1633,7 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/clientes.png"></imagedata>
+          <imagedata fileref="img/clientes.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -1743,7 +1745,7 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/balanza.PNG"></imagedata>
+              <imagedata fileref="img/balanza.PNG" scalefit="1" width="100%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
@@ -1800,7 +1802,8 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/5masvendidos.png"></imagedata>
+              <imagedata fileref="img/5masvendidos.png" scalefit="1"
+                         width="100%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
@@ -1817,7 +1820,8 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/existencia.png"></imagedata>
+              <imagedata fileref="img/existencia.png" scalefit="1"
+                         width="100%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
@@ -1835,7 +1839,8 @@
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="img/movimientosxproducto.png"></imagedata>
+              <imagedata fileref="img/movimientosxproducto.png" scalefit="1"
+                         width="100%"></imagedata>
             </imageobject>
           </mediaobject>
         </screenshot>
