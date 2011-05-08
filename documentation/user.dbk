@@ -514,8 +514,8 @@
 
         <listitem>
           <para>En la columna Monto C$, escriba el monto inicial
-          correspondiente a cada cuenta. Al momento de registrar los montos de
-          cada cuenta debe tomar en cuenta que las cantidades positivas
+          correspondiente a cada cuenta. Al m omento de registrar los montos
+          de cada cuenta debe tomar en cuenta que las cantidades positivas
           corresponden al DEBE y las cantidades negativas corresponden al
           HABER de las cuentas T. El monto inicial de la cuenta capital será
           calculado automáticamente.</para>
@@ -541,7 +541,8 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/ajuste-contable.jpeg"></imagedata>
+            <imagedata fileref="img/ajuste-contable.jpeg" scalefit="1"
+                       width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
