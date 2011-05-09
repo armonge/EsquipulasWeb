@@ -1685,6 +1685,18 @@
   <chapter>
     <title>Interfaz de administración y reportes web</title>
 
+    <screenshot>
+      <info>
+        <title>Pantalla de inicio del sistema web</title>
+      </info>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/webhome.png" scalefit="1" width="100%"></imagedata>
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+
     <para>La interfaz de administración y reportes web esta disponible para
     los usuarios de MIS Esquipulas, es el punto de partida para todas las
     tareas de administración asi como el punto de acceso a los reporte.</para>
@@ -2021,7 +2033,7 @@
         <imageobject>
           <imagedata fileref="img/concepto.png"></imagedata>
         </imageobject>
-      </inlinemediaobject> </para>
+      </inlinemediaobject></para>
 
     <para><inlinemediaobject>
         <imageobject>
@@ -2054,158 +2066,6 @@
       <mediaobject>
         <imageobject>
           <imagedata fileref="img/clientes.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>El balance general es el proceso llevado a cabo por el contador de
-    la empresa, con la finalidad de obtener un resumen de todo lo que tiene la
-    empresa o la situación financiera de la empresa, es decir lograr
-    determinar lo que la empresa debe, lo que le deben y de lo que realmente
-    le pertenece a su propietario, a una fecha determinada. En la siguiente
-    imagen se puede apreciar el balance general para el mes de mayo.</para>
-
-    <screenshot>
-      <info>
-        <title>Balance General</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/balancegeneral.png" scalefit="1"
-                     width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>El reporte de balanza de comprobacion es una lista de todos los
-    saldos deudores y acreedores de todas las cuentas del mayor para comprobar
-    la igualdad, sumándolos en columnas separadas; esto así a consecuencia de
-    que la contabilidad a base de partida doble deriva su nombre del hecho de
-    que el registro de toda operación requiere el asiento de débitos y
-    créditos de una operación que suman igual un valor, por lo tanto resulta
-    obvio que el total de débitos de todas las cuentas debe ser igual al total
-    de los créditos. Este reporte sirve para localizar errores dentro de un
-    período de tiempo y facilitar encontrarlos en detalle y
-    corregirlos.</para>
-
-    <screenshot>
-      <info>
-        <title>Balanza de comprobación</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/balanza.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>La liquidación de costos, tiene como objetivo determinar cuáles son
-    los costos reales de los productos después de pagar todos los costos de
-    importación. Se toman en cuenta los impuestos de aduana, el transporte, el
-    seguro de los productos, los costos de papelería y todos los otros gastos
-    en los que se pueda haber incurrido. En el modulo Web se pueden observar
-    las liquidaciones realizadas en el sistema transaccional de inventario. A
-    continuación se muestra una imagen de ejemplo.</para>
-
-    <screenshot>
-      <info>
-        <title>Liquidación de costos</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/liquidacioncostos.png" scalefit="1"
-                     width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>La siguiente imagen muestra el reporte de ventas realizadas por
-    productos, como puede observar en la parte izquierda de la imagen aparecen
-    la lista de productos, los que al seleccionarlos dando click en el
-    checkbox mostrara las ventas realizadas de los productos y la cantidad
-    vendida en la fecha correspondiente, que se selecciona dando click en el
-    campo de texto, lo que mostrara el calendario para elegir la fecha
-    deseada.</para>
-
-    <screenshot>
-      <info>
-        <title>uVentas por Articulo</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/ventasxproductos.png" scalefit="1"
-                     width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>Este reporte muestra los 5 productos mas vendidos del mes, se puede
-    apreciar un grafico de pastel con los productos mas vendidos, en este caso
-    solo existen 2 productos en la base de datos, por lo que aparecen solo 2
-    productos; Sin embargo el grafico muestra cinco productos.</para>
-
-    <screenshot>
-      <info>
-        <title>Cinco productos mas vendidos</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/5masvendidos.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>El siguiente reporte muestra la existencia en bodegas de cada
-    articulo del sistema. Este reporte muestra la descripcion, la bodega
-    correspondiente al articulo y las unidades disponibles para venta.</para>
-
-    <screenshot>
-      <info>
-        <title>Existencia en Bodega</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/existencia.png" scalefit="1" width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <para>El siguiente reporte muestra los movimientos de los productos
-    seleccionados, por ejemplo el kardex de entrada, las salidas en cada
-    factura, es decir muestra todos los movimientos en inventario que se han
-    llevado para un producto en particular en su fecha correspondiente.</para>
-
-    <para>Para ver el reporte, debe seleccionar el producto dando click en el
-    checkbox y el rango de fechas, dando click y en el campo de texto
-    aparecera un calendario, donde podara elegir la fecha deseada.</para>
-
-    <screenshot>
-      <info>
-        <title>Movimientos por producto</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/movimientosxproducto.png" scalefit="1"
-                     width="100%"></imagedata>
-        </imageobject>
-      </mediaobject>
-    </screenshot>
-
-    <screenshot>
-      <info>
-        <title>Pantalla de inicio del sistema web</title>
-      </info>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="img/webhome.png" scalefit="1" width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>
@@ -2280,6 +2140,153 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="img/web-partida-contable.png" scalefit="1"
+                         width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>El balance general es el proceso llevado a cabo por el contador
+        de la empresa, con la finalidad de obtener un resumen de todo lo que
+        tiene la empresa o la situación financiera de la empresa, es decir
+        lograr determinar lo que la empresa debe, lo que le deben y de lo que
+        realmente le pertenece a su propietario, a una fecha determinada. En
+        la siguiente imagen se puede apreciar el balance general para el mes
+        de mayo.</para>
+
+        <screenshot>
+          <info>
+            <title>Balance General</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/balancegeneral.png" scalefit="1"
+                         width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>El reporte de balanza de comprobacion es una lista de todos los
+        saldos deudores y acreedores de todas las cuentas del mayor para
+        comprobar la igualdad, sumándolos en columnas separadas; esto así a
+        consecuencia de que la contabilidad a base de partida doble deriva su
+        nombre del hecho de que el registro de toda operación requiere el
+        asiento de débitos y créditos de una operación que suman igual un
+        valor, por lo tanto resulta obvio que el total de débitos de todas las
+        cuentas debe ser igual al total de los créditos. Este reporte sirve
+        para localizar errores dentro de un período de tiempo y facilitar
+        encontrarlos en detalle y corregirlos.</para>
+
+        <screenshot>
+          <info>
+            <title>Balanza de comprobación</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/balanza.png" scalefit="1" width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>La liquidación de costos, tiene como objetivo determinar cuáles
+        son los costos reales de los productos después de pagar todos los
+        costos de importación. Se toman en cuenta los impuestos de aduana, el
+        transporte, el seguro de los productos, los costos de papelería y
+        todos los otros gastos en los que se pueda haber incurrido. En el
+        modulo Web se pueden observar las liquidaciones realizadas en el
+        sistema transaccional de inventario. A continuación se muestra una
+        imagen de ejemplo.</para>
+
+        <screenshot>
+          <info>
+            <title>Liquidación de costos</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/liquidacioncostos.png" scalefit="1"
+                         width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>La siguiente imagen muestra el reporte de ventas realizadas por
+        productos, como puede observar en la parte izquierda de la imagen
+        aparecen la lista de productos, los que al seleccionarlos dando click
+        en el checkbox mostrara las ventas realizadas de los productos y la
+        cantidad vendida en la fecha correspondiente, que se selecciona dando
+        click en el campo de texto, lo que mostrara el calendario para elegir
+        la fecha deseada.</para>
+
+        <screenshot>
+          <info>
+            <title>Ventas por Articulo</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/ventasxproductos.png" scalefit="1"
+                         width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>Este reporte muestra los 5 productos mas vendidos del mes, se
+        puede apreciar un grafico de pastel con los productos mas vendidos, en
+        este caso solo existen 2 productos en la base de datos, por lo que
+        aparecen solo 2 productos; Sin embargo el grafico muestra cinco
+        productos.</para>
+
+        <screenshot>
+          <info>
+            <title>Cinco productos mas vendidos</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/5masvendidos.png" scalefit="1"
+                         width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>El siguiente reporte muestra la existencia en bodegas de cada
+        articulo del sistema. Este reporte muestra la descripcion, la bodega
+        correspondiente al articulo y las unidades disponibles para
+        venta.</para>
+
+        <screenshot>
+          <info>
+            <title>Existencia en Bodega</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/existencia.png" scalefit="1"
+                         width="100%"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+
+        <para>El siguiente reporte muestra los movimientos de los productos
+        seleccionados, por ejemplo el kardex de entrada, las salidas en cada
+        factura, es decir muestra todos los movimientos en inventario que se
+        han llevado para un producto en particular en su fecha
+        correspondiente.</para>
+
+        <para>Para ver el reporte, debe seleccionar el producto dando click en
+        el checkbox y el rango de fechas, dando click y en el campo de texto
+        aparecera un calendario, donde podara elegir la fecha deseada.</para>
+
+        <screenshot>
+          <info>
+            <title>Movimientos por producto</title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="img/movimientosxproducto.png" scalefit="1"
                          width="100%"></imagedata>
             </imageobject>
           </mediaobject>
