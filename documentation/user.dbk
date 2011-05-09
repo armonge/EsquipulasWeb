@@ -630,7 +630,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-new.png"></imagedata>
+                <imagedata fileref="img/document-new.png" width="32"></imagedata>
               </imageobject>
             </inlinemediaobject> ( Ctrl+n) ubicado en la barra de
           herramientas: Esta acción le ubicará en la pestaña detalle y
@@ -681,12 +681,12 @@
             <listitem>
               <para>Presione el botón <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-save.png"></imagedata>
+                    <imagedata fileref="img/document-save.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject> (Ctrl + g) si desea guardarf el documento
               o <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/dialog-cancel.png"></imagedata>
+                    <imagedata fileref="img/dialog-cancel.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject> si desea cancelar la operación. Se le
               solicitará que confirme que está seguro que desea guardar el
@@ -723,7 +723,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/btncheques.jpeg"></imagedata>
+                <imagedata fileref="img/btncheques.jpeg" width="204"></imagedata>
               </imageobject>
             </inlinemediaobject> : Se abrirá el formulario Cheques el cual
           contiene dos pestañas ubicadas en la esquina superior derecha (
@@ -748,7 +748,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-new.png"></imagedata>
+                <imagedata fileref="img/document-new.png" width="32"></imagedata>
               </imageobject>
             </inlinemediaobject> ( Ctrl+n) ubicado en la barra de
           herramientas: Esta acción le ubicará en la pestaña detalle y
@@ -799,12 +799,12 @@
             <listitem>
               <para>Presione el botón <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-save.png"></imagedata>
+                    <imagedata fileref="img/document-save.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject> (Ctrl + g) si desea guardarf el documento
               o <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/dialog-cancel.png"></imagedata>
+                    <imagedata fileref="img/dialog-cancel.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject> si desea cancelar la operación. Se le
               solicitará que confirme que está seguro que desea guardar el
@@ -1946,7 +1946,8 @@
 
       <mediaobject>
         <imageobject>
-          <imagedata fileref="img/ventasxproductos.png"></imagedata>
+          <imagedata fileref="img/ventasxproductos.png" scalefit="1"
+                     width="100%"></imagedata>
         </imageobject>
       </mediaobject>
     </screenshot>

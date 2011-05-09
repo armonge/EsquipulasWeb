@@ -22,7 +22,9 @@ try{
     SELECT
     d.iddocumento, d.ndocimpreso, UNIX_TIMESTAMP(d.fechacreacion)*1000 as stamp, d.total
     FROM documentos d
-    WHERE d.idpersona = $id AND d.idtipodoc = 5
+    JOIN personasxdocumento pxd ON pxd.iddocumento = d.iddocumento
+    JOIN personas p ON p.idpersona = pxd.idpersona 
+    WHERE p.idpersona = $id AND d.idtipodoc = 5
     ORDER BY DATE(d.fechacreacion)
     ";
     $rsTransactions = $dbc->query($query);
