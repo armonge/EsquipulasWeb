@@ -1711,12 +1711,92 @@
 
     <para>En el modulo de usuarios se pueden observar dos opciones: Lista de
     usuarios y crear un nuevo usuario. Desde la lista puede borrar, cambiar
-    contraseña y modificar los permisos del usuario o los modulos al que
-    tendra acceso.</para>
+    contraseña y modificar los permisos del usuario o los modulos a los que
+    tiene acceso.</para>
 
     <para>En la siguiente captura de pantalla, puede observar el formulario
-    para crear un usuario, donde se escribe la informacion personal y los
-    permisos del usuario.</para>
+    para crear un usuario, donde se escribe la informacion personal en los
+    campos de texto y debe elegir los permisos que se le asignaran a ese
+    usuario dando click en cada Checkbox. Para agregar el usuario debe
+    presionar el boton <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="img/aceptar.png"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Entre los campos tenemos los siguientes:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Nombre completo del usuario.</para>
+      </listitem>
+
+      <listitem>
+        <para>Telefono, para contactar al usuario.</para>
+      </listitem>
+
+      <listitem>
+        <para>Usuario: el nombre con el que usuario iniciara sesion en el
+        sistema.</para>
+      </listitem>
+
+      <listitem>
+        <para>Contraseña, para iniciar sesion en el sistema, debe repetir la
+        contraseña para asegurar que se escribio correctamente.</para>
+      </listitem>
+
+      <listitem>
+        <para>Permisos de acceso del usuario:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Administador del sistema: Permiso para acceder a todas las
+            opciones del sistema.</para>
+          </listitem>
+
+          <listitem>
+            <para>Gerencia de Esquipulas: Permisos para autorizar Cheques,
+            Facturas de Credito, Notas de debito, Arqueos y aperturas de caja,
+            puede ver todos los reportes del modulo web.</para>
+          </listitem>
+
+          <listitem>
+            <para>Usuario de caja: Permiso para iniciar sesion en el modulo de
+            caja.</para>
+          </listitem>
+
+          <listitem>
+            <para>Usuario de inventario: Permiso para iniciar en el modulo de
+            inventario</para>
+          </listitem>
+
+          <listitem>
+            <para>Usuario de contabilidad: Permiso para iniciar en el modulo
+            de contabilidad</para>
+          </listitem>
+
+          <listitem>
+            <para>Reportes de contabilidad: Permiso para acceder a reportes:
+            Historico de cuentas, Partida contable, Balance General, Balanza
+            de comprobacion, Liquidacion de costos. El usuario de contabilidad
+            debe tener estos permisos asignados para poder ver los reportes
+            correspondientes.</para>
+          </listitem>
+
+          <listitem>
+            <para>Reporte de Ventas: Permiso para acceder a los reportes:
+            Ventas x Persona, 5 productos mas vendidos, ventas x personas. El
+            usuario de caja debe tener estos permisos asignados si desea ver
+            los reportes, sino no podra tener acceso.</para>
+          </listitem>
+
+          <listitem>
+            <para>Usuario de bodega: Permiso para poder crear Kardex en modulo
+            de inventario.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
 
     <screenshot>
       <info>
@@ -1731,9 +1811,41 @@
     </screenshot>
 
     <para>La siguiente imagen muestra la lista de vendedores que pueden
-    utilizar en el sistema, por ejemplo, para facturar. Tambien se puede
+    utilizarse en el sistema, por ejemplo, para facturar. Tambien se puede
     observar el formulario y los campos que debe llenar con la información
-    correspondiente para crear un nuevo vendedor.</para>
+    correspondiente para crear un nuevo vendedor. Para agregar el vendedor
+    debe presionar el boton <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="img/aceptar.png"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Entre los campos tenemos:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Nombre: Campo en el que debe escribir el nombre completo del
+        Vendedor</para>
+      </listitem>
+
+      <listitem>
+        <para>identificación: Número del documento de identificación del
+        Vendedor</para>
+      </listitem>
+
+      <listitem>
+        <para>E-mail: Correo electronico del vendedor.</para>
+      </listitem>
+
+      <listitem>
+        <para>Telefono: Número de contacto.</para>
+      </listitem>
+
+      <listitem>
+        <para>Dirección: Debe escribir la dirección exacta del vendedor, para
+        contacto.</para>
+      </listitem>
+    </itemizedlist>
 
     <screenshot>
       <info>
@@ -1750,6 +1862,26 @@
     <para>A continuación se muestran las cuentas bancarias de la empresa que
     utiliza el sistema, además se observa el formulario que se debe rellenar
     para ingresar una nueva cuenta bancaria.</para>
+
+    <para>Los campos deben contener la siguiente información:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Nombre de la cuenta: Debe escribir un nombre que indentifique la
+        cuenta, por ejemplo el numero y el banco correspondiente: 241-200-825
+        - BANCENTRO.</para>
+      </listitem>
+
+      <listitem>
+        <para>Moneda: Debe elegir la moneda de la cuenta (Cordobas, Dolares),
+        debe dar click en el circulo para elegir.</para>
+      </listitem>
+
+      <listitem>
+        <para>Banco: Nombre de la entidad bancaria, de no existir debe
+        ingresar la cuenta bancaria en el modulo de Bancos.</para>
+      </listitem>
+    </itemizedlist>
 
     <screenshot>
       <info>
@@ -1768,7 +1900,12 @@
     crean desde un modulo diferente, se pueden observar los bancos y las
     cuentas que tienen relacionadas estos. Para crear un nuevo banco solo debe
     presionar el boton "Añadir Banco" y luego escribir el nombre en el campo
-    de texto que aparece en la parte inferior.</para>
+    de texto que aparece en la parte inferior y presionar el boton.
+    <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="img/aceptar.png"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
 
     <screenshot>
       <info>
@@ -1784,9 +1921,14 @@
 
     <para>En el modulo de Bodegas, se agregan todas las bodegas que se
     utilizaran en el sistema para dar ingreso a la existencia de productos. Se
-    ingresa una nueva presionando el boton "Añadir bodegas" y luego escribir
-    el nombre correspondiente. En la siguiente imagen se muestra una lista de
-    las bodegas disponibles en el sistema.</para>
+    ingresa una nueva presionando el boton "Añadir bodegas", luego escribir el
+    nombre correspondiente y presionar aceptar para guardar la
+    bodega<inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="img/aceptar.png"></imagedata>
+        </imageobject>
+      </inlinemediaobject>. En la siguiente imagen se muestra una lista de las
+    bodegas disponibles en el sistema.</para>
 
     <screenshot>
       <info>
@@ -1802,8 +1944,12 @@
 
     <para>Los puntos de caja, son las cajas disponibles para facturar en el
     sistema, la siguiente imagen muestra una lista de los puntos disponibles y
-    el como ingresar uno nuevo en el cuadro de texto situado debajo de
-    lista.</para>
+    el como ingresar uno nuevo en el cuadro de texto situado debajo de lista y
+    para guardar presionar el boton <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="img/aceptar.png"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
 
     <screenshot>
       <info>
@@ -1823,6 +1969,38 @@
     guardados por defecto, pero dado el caso exista una modificación, en este
     modulo es donde puede cambiar el valor de las constantes.</para>
 
+    <itemizedlist>
+      <listitem>
+        <para>IVA: Porcentaje del 15%, Impuesto del valor agregado</para>
+      </listitem>
+
+      <listitem>
+        <para>SPE: Valor neto 5 dolares, se aplica por cada liquidacion de
+        costos.</para>
+      </listitem>
+
+      <listitem>
+        <para>ISO: Impuesto especial que se cobra en cada liquidacion de
+        costos si la mercaderia proviene del pais de colombia.</para>
+      </listitem>
+
+      <listitem>
+        <para>TSIM: Este impuesto se aplica en cada liquidacion de costos. Se
+        cobra 0.50 dolares por cada 1000 kilos de la mercaderia
+        importada.</para>
+      </listitem>
+
+      <listitem>
+        <para>Constante de retencion en la fuente, este valor es un porcentaje
+        que se aplica a Recibos de caja.</para>
+      </listitem>
+
+      <listitem>
+        <para>Constante de retencion por servicios profesionales, este es un
+        porcentaje que se aplica a los pagos por servicios contratados.</para>
+      </listitem>
+    </itemizedlist>
+
     <screenshot>
       <info>
         <title>Impuestos</title>
@@ -1838,7 +2016,18 @@
     <para>Existen documentos que se crean con conceptos especificos, por
     ejemplo: "Recibo de caja con concepto: Cancelacion de factura" entre
     otros. Este modulo le permite crear los conceptos correspondientes a cada
-    documento.</para>
+    documento, debe seleccionar el modulo y presionar el boton añadir
+    concepto. <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="img/concepto.png"></imagedata>
+        </imageobject>
+      </inlinemediaobject> </para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="img/modulos.png"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
 
     <screenshot>
       <info>
@@ -1935,13 +2124,15 @@
 
     <para>La siguiente imagen muestra el reporte de ventas realizadas por
     productos, como puede observar en la parte izquierda de la imagen aparecen
-    la lista de productos, al seleccionarlos, el reporte mostrara las ventas
-    realizadas de los productos y la cantidad vendida en la fecha
-    correspondiente.</para>
+    la lista de productos, los que al seleccionarlos dando click en el
+    checkbox mostrara las ventas realizadas de los productos y la cantidad
+    vendida en la fecha correspondiente, que se selecciona dando click en el
+    campo de texto, lo que mostrara el calendario para elegir la fecha
+    deseada.</para>
 
     <screenshot>
       <info>
-        <title>Ventas por Articulo</title>
+        <title>uVentas por Articulo</title>
       </info>
 
       <mediaobject>
@@ -1989,6 +2180,10 @@
     seleccionados, por ejemplo el kardex de entrada, las salidas en cada
     factura, es decir muestra todos los movimientos en inventario que se han
     llevado para un producto en particular en su fecha correspondiente.</para>
+
+    <para>Para ver el reporte, debe seleccionar el producto dando click en el
+    checkbox y el rango de fechas, dando click y en el campo de texto
+    aparecera un calendario, donde podara elegir la fecha deseada.</para>
 
     <screenshot>
       <info>
@@ -2046,6 +2241,10 @@
         especificar cuales cuentas se quieren visualizar asi como en que
         periodo.</para>
 
+        <para>Debe seleccionar la cuenta contable dando click en el chechbox y
+        el rango de fechas, dando click en el campo de texto y seleccionando
+        la fecha deseada del calendario.</para>
+
         <screenshot>
           <info>
             <title>Historico de cuentas</title>
@@ -2069,7 +2268,9 @@
 
         <para>El reporte de partida contable muestra en detalle cuales
         movimientos se han hecho para cada uno de los asientos de un periodo
-        seleccionado,</para>
+        seleccionado, en la siguiente imagen puede apreciar el calendario que
+        aparece al seleccionar el campo de texto y escoger el rango de fechas
+        que se mostrara en el reporte.</para>
 
         <screenshot>
           <info>
