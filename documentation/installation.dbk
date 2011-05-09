@@ -481,7 +481,7 @@
             Esquipulas, actualmente existen 2 versiones del lenguaje en uso,
             esquipulas utiliza la de la rama 2.x</entry>
 
-            <entry>http://python.org/download/</entry>
+            <entry><uri>http://python.org/download/</uri></entry>
           </row>
 
           <row>
@@ -490,7 +490,7 @@
             <entry>Libreria para creación de aplicaciones graficas con
             Python</entry>
 
-            <entry>http://www.riverbankcomputing.co.uk/software/pyqt/download</entry>
+            <entry><uri>http://www.riverbankcomputing.co.uk/software/pyqt/download</uri></entry>
           </row>
 
           <row>
@@ -499,7 +499,7 @@
             <entry>Utilidad para crear archivos ejecutables a partir de
             fuentes de Python</entry>
 
-            <entry>http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/</entry>
+            <entry><uri>http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/</uri></entry>
           </row>
 
           <row>
@@ -508,7 +508,7 @@
             <entry>Libreria de Python para analizar HTML, esto se usa en el
             momento de generar los indices de los manuales de usuarios</entry>
 
-            <entry>http://www.crummy.com/software/BeautifulSoup/#Download</entry>
+            <entry><uri>http://www.crummy.com/software/BeautifulSoup/#Download</uri></entry>
           </row>
 
           <row>
@@ -516,7 +516,7 @@
 
             <entry>Herramienta para la automatización de procesos</entry>
 
-            <entry>http://sourceforge.net/projects/gnuwin32/files/make/3.81/</entry>
+            <entry><uri>http://sourceforge.net/projects/gnuwin32/files/make/3.81/</uri></entry>
           </row>
 
           <row>
@@ -525,7 +525,7 @@
             <entry>Opcional: Herramienta para dar formato a objetos FO se usa
             para generar la ayuda de la aplicaciones en formato PDF</entry>
 
-            <entry>http://xmlgraphics.apache.org/fop/download.html</entry>
+            <entry><uri>http://xmlgraphics.apache.org/fop/download.html</uri></entry>
           </row>
 
           <row>
@@ -534,7 +534,7 @@
             <entry>Esta es una herramienta para generar instaladores de
             Windows</entry>
 
-            <entry>http://nsis.sourceforge.net/Download</entry>
+            <entry><uri>http://nsis.sourceforge.net/Download</uri></entry>
           </row>
 
           <row>
@@ -542,7 +542,7 @@
 
             <entry>Opcional: es necesaria si se quiere usar FOP</entry>
 
-            <entry>http://www.java.com/es/download/</entry>
+            <entry><uri>http://www.java.com/es/download/</uri></entry>
           </row>
 
           <row>
@@ -551,7 +551,16 @@
             <entry>Se utiliza para transformar los archivos de ayuda en
             docbook a otro formato</entry>
 
-            <entry>http://www.zlatkovic.com/libxml.en.html</entry>
+            <entry><uri>http://www.zlatkovic.com/libxml.en.html</uri></entry>
+          </row>
+
+          <row>
+            <entry>TortoiseSVN</entry>
+
+            <entry>Cliente SVN para Windows, usado para descargar el codigo
+            fuente de las aplicaciones</entry>
+
+            <entry><uri>http://tortoisesvn.net/downloads.html</uri></entry>
           </row>
         </tbody>
       </tgroup>
@@ -589,12 +598,65 @@
       libxslt, zlib, and iconv desde http://www.zlatkovic.com/libxml.en.html,
       estos paquetes vienen como archivos .zip que pueden descomprimirse con
       cualquiera de las utilidades zip de windows. Una vez que se hayan
-      descomprimido es necesario copiar los achivos
-      <filename>libxslt.dll</filename>, <filename>iconv.dll</filename>,
-      <filename>xmllint.exe</filename>, <filename>libxml2.dll</filename>,
-      <filename>zlib.dll</filename>, <filename>libexslt.dll</filename> y
-      <filename>xsltproc.exe</filename> a una carpeta en el sistema de
+      descomprimido es necesario copiar los achivos <filename>l</filename>que
+      se muestran en la tabla a continuación a una carpeta en el sistema de
       archivos que se encuentre en el PATH del sistema.</para>
+
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry align="center">Archivo</entry>
+
+              <entry align="center">Paquete</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>libsxlt.dll</entry>
+
+              <entry>libxslt</entry>
+            </row>
+
+            <row>
+              <entry>iconv.dll</entry>
+
+              <entry>iconv</entry>
+            </row>
+
+            <row>
+              <entry>xmllint.exe</entry>
+
+              <entry>libxml</entry>
+            </row>
+
+            <row>
+              <entry>libxml2.dll</entry>
+
+              <entry>libxml</entry>
+            </row>
+
+            <row>
+              <entry>zlib.dll</entry>
+
+              <entry>zlib</entry>
+            </row>
+
+            <row>
+              <entry>libexslt.dll</entry>
+
+              <entry>libxslt</entry>
+            </row>
+
+            <row>
+              <entry>xsltproc.exe</entry>
+
+              <entry>libxslt</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
 
       <para>Para comprobar si ha instalado xsltproc bien ejecute el siguiente
       comando</para>
@@ -617,15 +679,23 @@
       <title>Configurando la ruta del sistema</title>
 
       <para>Ademas de instalar los paquetes anteriormente mencionados es
-      necesario añadir las rutas de NSIS y GNU Make a la variable PATH del
-      sistema.</para>
+      necesario añadir las rutas de Python, PyQt4, NSIS y GNU Make a la
+      variable PATH del sistema.</para>
+    </section>
+
+    <section>
+      <title>Descargando el codigo fuente del sistema</title>
+
+      <para>Una vez que se ha instalado TortoiseSVN se tiene que realizar un
+      checkout de la siguiente URL
+      <uri>https://misesquipulas.svn.sourceforge.net/svnroot/misesquipulas/EsquipulasPy/trunk</uri></para>
     </section>
 
     <section>
       <title>Compilando el instalador</title>
 
-      <para>Para compilar el instalador se debe ejecutar el siguiente
-      comando:</para>
+      <para>Para compilar el instalador se debe ejecutar el siguiente comando
+      estando en la carpeta raiz de la aplicación:</para>
 
       <para><command>make exe</command></para>
 
