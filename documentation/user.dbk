@@ -614,7 +614,7 @@
           <itemizedlist>
             <listitem>
               <para>La pestaña navegación muestra todos los depositos
-              registrados en el sistemas y le permite navegar entre ellos o
+              registrados en el sistema y le permite navegar entre ellos o
               buscar uno en específico</para>
             </listitem>
 
@@ -732,15 +732,15 @@
           <itemizedlist>
             <listitem>
               <para>La pestaña navegación muestra todos los cheques
-              registrados en el sistemas y le permite navegar entre ellos o
-              buscar uno en específico</para>
+              registrados en el sistema y le permite navegar entre ellos o
+              buscar uno en específico.</para>
             </listitem>
 
             <listitem>
               <para>La pestaña Detalle le permititrá observar toda la
               información correspondiente a un cheque en específico y agregar
               información de los cheques al momento en que se está registrando
-              uno nuevo</para>
+              uno nuevo.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -755,10 +755,15 @@
           habilitará todos los campos donde usted deberá ingresar la
           información del cheque.</para>
 
-          <para>NOTA: Al momento de presionar el botón se validará si existen
-          conceptos para cheques en la base de datos y de no ser así , se le
-          mostrará un mensaje de error. En este caso usted deberá contactarse
-          con el administrador del sistema.</para>
+          <para>NOTA: Al momento de presionar el botón Nuevo se validará si
+          existen conceptos para cheques en la base de datos y de no ser así ,
+          se le mostrará un mensaje de error. En este caso usted deberá
+          contactarse con el administrador del sistema.</para>
+
+          <para>NOTA: Al momento de presionar el botón Nuevo se validará si
+          existe en la base de datos una tasa de cambio de Córdobas a Dólar y
+          de no ser así , se le mostrará un mensaje de error. En este caso
+          usted deberá contactarse con el administrador del sistema.</para>
 
           <itemizedlist>
             <listitem>
@@ -801,8 +806,8 @@
                   <imageobject>
                     <imagedata fileref="img/document-save.png" width="32"></imagedata>
                   </imageobject>
-                </inlinemediaobject> (Ctrl + g) si desea guardarf el documento
-              o <inlinemediaobject>
+                </inlinemediaobject> (Ctrl + g) si desea guardar el documento
+              o presione <inlinemediaobject>
                   <imageobject>
                     <imagedata fileref="img/dialog-cancel.png" width="32"></imagedata>
                   </imageobject>
@@ -819,19 +824,495 @@
     <section>
       <title>Conciliacion Bancaria</title>
 
-      <para></para>
+      <screenshot>
+        <info>
+          <title>Conciliacion Bancaria</title>
+        </info>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/conciliacionbancaria.jpeg"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+
+      <para>El formulario Conciliacion Bancaria le permite registrar en el
+      sistema las conciliaciones banciarias mensuales que se deben realizar en
+      cada cuenta al momento de recibir el estado de cuentas que envía el
+      banco.</para>
+
+      <para>Si usted desea registar un conciliación bancaria debe realizar lo
+      siguiente:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/btnconciliacionbancaria.jpeg"></imagedata>
+              </imageobject>
+            </inlinemediaobject> : Se abrirá el formulario Conciliación
+          bancaria el cual contiene dos pestañas ubicadas en la esquina
+          superior derecha ( Detalle y Navegación).</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>La pestaña navegación muestra todas las conciliaciones
+              registradas en el sistema y le permite navegar entre ellas o
+              buscar una en específico.</para>
+            </listitem>
+
+            <listitem>
+              <para>La pestaña Detalle le permititrá observar toda la
+              información correspondiente a una conciliación en específico y
+              agregar información de la conciliación al momento en que se está
+              registrando una nueva.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/document-new.png"></imagedata>
+              </imageobject>
+            </inlinemediaobject> ( Ctrl+n) ubicado en la barra de
+          herramientas: Al presionar el botón nuevo se abrirá una ventana que
+          le solicitará que seleccione la cuenta bancaria que se desa
+          conciliar. Esta ventana cargará automáticamente la cuentas bancarias
+          que poseen movimientos contables y que todavía no han sido
+          conciliada, el campo fecha mostrará automaticamente el més que se
+          debe conciliar dependiendo de la última conciliación realizada en la
+          cuenta bancaria seleccionada.</para>
+
+          <screenshot>
+            <info>
+              <title>Elegir la cuenta bancaria que se desea conciliar</title>
+            </info>
+
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="img/dlgelegircuenta.jpeg"></imagedata>
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+
+          <itemizedlist>
+            <listitem>
+              <para>Seleccione la cuenta bancaria que se desea conciliar: Al
+              selecionar la cuenta bancaria , el campo fecha mostrará el mes y
+              año que se debe conciliar basado en los movimientos contables
+              que han afectado la cuenta bancaria. El campo buscar le
+              permitirá buscar rapidamente entre todas las cuentas bancarias
+              para agilizar la seleccion de la misma</para>
+            </listitem>
+
+            <listitem>
+              <para>Presione el botón Aceptar : Esta acción le ubicará en la
+              pestaña detalle y habilitará todos los campos donde usted deberá
+              ingresar la información de la conciliación bancaria y le
+              permitirá registrar los documentos necesarios para la
+              conciliación.</para>
+
+              <para>NOTA: Si desea cancelar la operación presione el botón
+              Cancelar</para>
+            </listitem>
+
+            <listitem>
+              <para>Automáticamente ocurrirá lo siguiente:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Se rellenarán los campos de la información de la
+                  cuenta bancaria y el mes a conciliar</para>
+
+                  <para><inlinemediaobject>
+                      <imageobject>
+                        <imagedata fileref="img/infocuenta.jpeg"></imagedata>
+                      </imageobject>
+                    </inlinemediaobject></para>
+                </listitem>
+
+                <listitem>
+                  <para>Se cargarán los movimientos registrados en el sistema
+                  que se han realizado en la cuenta a lo largo del mes.</para>
+
+                  <screenshot>
+                    <info>
+                      <title>Movimientos registrados en el Libro Mayor</title>
+                    </info>
+
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata fileref="img/movcuentas.jpeg" scalefit="1"
+                                   width="100%"></imagedata>
+                      </imageobject>
+                    </mediaobject>
+                  </screenshot>
+
+                  <para>En esta tabla usted encontrará las siguientes
+                  columnas:</para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para>Fecha: Fecha en que se realizó el movimiento en la
+                      cuenta</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>Concepto: Descripción del Movimiento ( DP:
+                      Deposito, NC: Nota de Credito, ND: Nota de Debito, CK:
+                      Cheque)</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>DEBE: Muestra los montos que suman al saldo de la
+                      cuenta</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>HABER: Muestra los montos que restan al saldo de
+                      la cuenta</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>SALDO: Muestra el saldo de la cuenta bancaria
+                      despues de cada movimiento registrado ( La primer Linea
+                      de la tabla muestra el saldo inicial de la cuenta y la
+                      última linea muestra el saldo final de la cuenta)</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>CONCILIAR: Permite selecionar el movimiento en la
+                      cuenta para que forme parte de la conciliación bancaria.
+                      ( Seleccione un movimiento para que se agregue a la
+                      conciliación si este no ha aparece en el estado de
+                      cuenta enviado por el banco)</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>Doc.Externo: Indica Si el documento ( el cual
+                      representa un movimiento) es interno ( creado por la
+                      empresa) o externo ( creado por el banco)</para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+
+                <listitem>
+                  <para>En la parte inferior de la pantalla se mostrará el
+                  cuadro para concilar, el cual está dividido en dos
+                  secciones: Libro y Banco</para>
+
+                  <screenshot>
+                    <info>
+                      <title>Cuadro de Conciliación</title>
+                    </info>
+
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata fileref="img/conciliar.jpeg"></imagedata>
+                      </imageobject>
+                    </mediaobject>
+                  </screenshot>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para>Sección Libro: Está ubicada en la parte inferior
+                      izquierda y está conformada por:</para>
+
+                      <itemizedlist>
+                        <listitem>
+                          <para>Saldo del Banco: En este campo usted deberá
+                          ingresar el saldo en la cuenta bancaria según el
+                          estado de cuenta enviado por el Banco</para>
+                        </listitem>
+
+                        <listitem>
+                          <para>Depósitos en Transito: Muestra el monto total
+                          así como el detalle de los depósitos registrados por
+                          la empresa pero que no fueron registrado por el
+                          banco</para>
+                        </listitem>
+
+                        <listitem>
+                          <para>Cheques en Transito: Muestra el monto total
+                          así como el detalle de los cheques emitidos por la
+                          empresa pero que no han sido cobrados.</para>
+                        </listitem>
+                      </itemizedlist>
+                    </listitem>
+
+                    <listitem>
+                      <para>Sección Banco: Está ubicada en la parte inferior
+                      derecha y está conformada por:</para>
+
+                      <itemizedlist>
+                        <listitem>
+                          <para>Saldo del auxiliar de la empresa: En este
+                          campo se cargará automáticamente el saldo de la
+                          cuenta bancaria según los movimientos registrados en
+                          el sistema. El monto mostrado es igual al Saldo
+                          Final de la cuenta en el libro mayor.</para>
+                        </listitem>
+
+                        <listitem>
+                          <para>NOTAS DE CRÉDITO: Muestra el monto total así
+                          como el detalle de las notas de créditos y
+                          movimientos que aumentan el saldo de la cuenta y que
+                          fueron registrados por el banco pero no por la
+                          emrpesa</para>
+                        </listitem>
+
+                        <listitem>
+                          <para>NOTAS DE DEBITO: Muestra el monto total así
+                          como el detalle de las notas de débito y movimientos
+                          que disminuyen el saldo de la cuenta y que fueron
+                          registrados por el banco pero no por la
+                          emrpesa</para>
+                        </listitem>
+                      </itemizedlist>
+                    </listitem>
+
+                    <listitem>
+                      <para>Diferencia: Mostrará la diferencia entre el saldo
+                      de la cuenta bancaria según Banco y según la
+                      empresa.</para>
+
+                      <para>NOTA: Usted solo podrá guardar la conciliación si
+                      la diferencia es cero, es decir cuando los saldos esten
+                      conciliados</para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Ingrese el monto de la cuenta bancaria según el estado
+              enviado por el banco, en el campo Saldo del Banco ubicado en la
+              Sección Libro</para>
+            </listitem>
+
+            <listitem>
+              <para>Seleccione los movimientos que formarán parte de la
+              conciliación: En la tabla del Libro Mayor, de clic en la celda
+              de la columna Conciliar en la fila del movimiento que desea
+              agregar a la conciliación, al seleccionar la celda el movimiento
+              se agregará automaticamente en la sección correspondiente
+              dependiendo de qué tipo de movimiento es, si usted desea
+              removerlo de la conciliación solo debe deseleccionar la celda
+              del movimiento.</para>
+            </listitem>
+
+            <listitem>
+              <para>Agregue los movimientos que fueron registrados por el
+              banco y no por la empresa</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>De clic en el botón <inlinemediaobject>
+                      <imageobject>
+                        <imagedata fileref="img/list-add.png"></imagedata>
+                      </imageobject>
+                    </inlinemediaobject> (agregar).</para>
+                </listitem>
+
+                <listitem>
+                  <para>Si desea eliminar el documento agregado, seleccione el
+                  documento y de clic en <inlinemediaobject>
+                      <imageobject>
+                        <imagedata fileref="img/list-remove.png"></imagedata>
+                      </imageobject>
+                    </inlinemediaobject> ( eliminar)</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Presione el botón <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/document-save.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject> (Ctrl + g) si desea guardar el documento
+              o presione <inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="img/dialog-cancel.png"></imagedata>
+                  </imageobject>
+                </inlinemediaobject> si desea cancelar la operación. Se le
+              solicitará que confirme que está seguro que desea guardar la
+              conciliación , presione Si para guardar o No para Cancelar la
+              operación.</para>
+
+              <para>NOTA: La conciliación no podrá ser guardada si los saldos
+              no están conciliados, es decir si la diferencia entre ellos no
+              es cero.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </orderedlist>
     </section>
 
     <section>
       <title>Cierre Mensual</title>
 
-      <para></para>
+      <screenshot>
+        <info>
+          <title>Cierre Mensual</title>
+        </info>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/frmcierremensual.jpeg"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+
+      <para>El formulario Cierre Mensual le permite registrar en el sistema el
+      cierre mensual de las cuentas contables de Ventas ( Ingresos y Egresos),
+      </para>
+
+      <para>Si usted desea registar un cierre mensual debe realizar lo
+      siguiente:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/btncierremensual.jpeg"></imagedata>
+              </imageobject>
+            </inlinemediaobject> : Se abrirá el formulario Cierre Mensual el
+          cual mostrará todos los documentos del mes seleccionado en una tabla
+          con las columnas siguientes:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>No. Documento: El número del documento</para>
+            </listitem>
+
+            <listitem>
+              <para>TipoDocumento: Tipo de documento </para>
+            </listitem>
+
+            <listitem>
+              <para>Concepto: Concepto bajo el que fue creado el
+              documento</para>
+            </listitem>
+
+            <listitem>
+              <para>Total: Muestra el monto total del documento</para>
+            </listitem>
+
+            <listitem>
+              <para>Fecha: Fecha en la que fue creado el documento</para>
+            </listitem>
+
+            <listitem>
+              <para>Estado: Muestra el estado actual de cada documento. Este
+              campo permite revisar el estado en el que se encuentra cada
+              documento antes de proceder con el cierre mensual.</para>
+
+              <para>Nota: Si un documento tiene estado PENDIENTE, no se podrá
+              guardar el cierre contable.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Seleccione el mes correspondiente al cierre: No es posible
+          cerrar el més en curso ya que las operaciones contables no han
+          concluidos. </para>
+
+          <para>NOTA: el cierre mensual es consecutivo, por lo que solo se
+          puede cerrar el mes siguiente al último cierre mensual.</para>
+        </listitem>
+
+        <listitem>
+          <para>Revisé que no hayas documentos con estado PENDIENTE. En caso
+          de haber alguno debe realizar las gestiones necesarias para
+          corregirlo antes de proceder con el cierre mensual.</para>
+        </listitem>
+
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/document-save.png"></imagedata>
+              </imageobject>
+            </inlinemediaobject> ( Ctrl+g) ubicado en la barra de
+          herramientas: Se le solicitará que confirme que está seguro que
+          desea guardar el cierre mensual, y se le advertirá que esta
+          operación no puede ser revertida , presione Si para guardar o No
+          para Cancelar la operación.</para>
+        </listitem>
+      </orderedlist>
     </section>
 
     <section>
       <title>Cierre Anual</title>
 
-      <para></para>
+      <screenshot>
+        <info>
+          <title>Cierre Anual</title>
+        </info>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/frmcierreanual.jpeg"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+
+      <para>El formulario Cierre Anual le permite registrar en el sistema el
+      cierre anual de las cuentas contables de Ventas ( Ingresos y
+      Egresos),</para>
+
+      <para>Si usted desea registar un cierre Anual debe realizar lo
+      siguiente:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/btncierreanual.jpeg"></imagedata>
+              </imageobject>
+            </inlinemediaobject> : Se abrirá el formulario Cierre Anual el
+          cual mostrará todos los cierres mensuales del año seleccionado en
+          una tabla con las columnas siguientes:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Fecha: Fecha del cierre mensual</para>
+            </listitem>
+
+            <listitem>
+              <para>Mes: Mes cerrado</para>
+            </listitem>
+
+            <listitem>
+              <para>Total: Monto total de Perdidas o Ganancias del mes</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Seleccione el año correspondiente al cierre: No es posible
+          cerrar el año en curso ya que las operaciones contables no han
+          concluidos.</para>
+
+          <para>NOTA: el cierre anual es consecutivo, por lo que solo se puede
+          cerrar el año siguiente al último cierre anual.</para>
+        </listitem>
+
+        <listitem>
+          <para>Presione el botón <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="img/document-save.png"></imagedata>
+              </imageobject>
+            </inlinemediaobject> ( Ctrl+g) ubicado en la barra de
+          herramientas: Se le solicitará que confirme que está seguro que
+          desea guardar el cierre anual, y se le advertirá que esta operación
+          no puede ser revertida , presione Si para guardar o No para Cancelar
+          la operación.</para>
+        </listitem>
+      </orderedlist>
     </section>
   </chapter>
 
