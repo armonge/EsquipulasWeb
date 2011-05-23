@@ -6,7 +6,7 @@
       xmlns:ns3="http://www.w3.org/2000/svg"
       xmlns:ns="http://docbook.org/ns/docbook">
   <info>
-    <title>Manual de Usuario MIS Esquipulas</title>
+    <title>01Manual de Usuario MIS Esquipulas</title>
 
     <authorgroup>
       <author>
@@ -831,7 +831,8 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/conciliacionbancaria.jpeg"></imagedata>
+            <imagedata fileref="img/conciliacionbancaria.jpeg" scalefit="1"
+                       width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -873,7 +874,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-new.png"></imagedata>
+                <imagedata fileref="img/document-new.png" width="32"></imagedata>
               </imageobject>
             </inlinemediaobject> ( Ctrl+n) ubicado en la barra de
           herramientas: Al presionar el botón nuevo se abrirá una ventana que
@@ -1009,7 +1010,8 @@
 
                     <mediaobject>
                       <imageobject>
-                        <imagedata fileref="img/conciliar.jpeg"></imagedata>
+                        <imagedata fileref="img/conciliar.jpeg" scalefit="1"
+                                   width="100%"></imagedata>
                       </imageobject>
                     </mediaobject>
                   </screenshot>
@@ -1111,7 +1113,7 @@
                 <listitem>
                   <para>De clic en el botón <inlinemediaobject>
                       <imageobject>
-                        <imagedata fileref="img/list-add.png"></imagedata>
+                        <imagedata fileref="img/list-add.png" width="32"></imagedata>
                       </imageobject>
                     </inlinemediaobject> (agregar).</para>
                 </listitem>
@@ -1120,7 +1122,7 @@
                   <para>Si desea eliminar el documento agregado, seleccione el
                   documento y de clic en <inlinemediaobject>
                       <imageobject>
-                        <imagedata fileref="img/list-remove.png"></imagedata>
+                        <imagedata fileref="img/list-remove.png" width="32"></imagedata>
                       </imageobject>
                     </inlinemediaobject> ( eliminar)</para>
                 </listitem>
@@ -1130,12 +1132,12 @@
             <listitem>
               <para>Presione el botón <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-save.png"></imagedata>
+                    <imagedata fileref="img/document-save.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject> (Ctrl + g) si desea guardar el documento
               o presione <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/dialog-cancel.png"></imagedata>
+                    <imagedata fileref="img/dialog-cancel.png" width="32"></imagedata>
                   </imageobject>
                 </inlinemediaobject> si desea cancelar la operación. Se le
               solicitará que confirme que está seguro que desea guardar la
@@ -1161,14 +1163,15 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/frmcierremensual.jpeg"></imagedata>
+            <imagedata fileref="img/frmcierremensual.jpeg" scalefit="1"
+                       width="100%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
 
       <para>El formulario Cierre Mensual le permite registrar en el sistema el
-      cierre mensual de las cuentas contables de Ventas ( Ingresos y Egresos),
-      </para>
+      cierre mensual de las cuentas contables de Ventas ( Ingresos y
+      Egresos),</para>
 
       <para>Si usted desea registar un cierre mensual debe realizar lo
       siguiente:</para>
@@ -1189,7 +1192,7 @@
             </listitem>
 
             <listitem>
-              <para>TipoDocumento: Tipo de documento </para>
+              <para>TipoDocumento: Tipo de documento</para>
             </listitem>
 
             <listitem>
@@ -1219,7 +1222,7 @@
         <listitem>
           <para>Seleccione el mes correspondiente al cierre: No es posible
           cerrar el més en curso ya que las operaciones contables no han
-          concluidos. </para>
+          concluidos.</para>
 
           <para>NOTA: el cierre mensual es consecutivo, por lo que solo se
           puede cerrar el mes siguiente al último cierre mensual.</para>
@@ -1234,7 +1237,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-save.png"></imagedata>
+                <imagedata fileref="img/document-save.png" width="32"></imagedata>
               </imageobject>
             </inlinemediaobject> ( Ctrl+g) ubicado en la barra de
           herramientas: Se le solicitará que confirme que está seguro que
@@ -1304,7 +1307,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-save.png"></imagedata>
+                <imagedata fileref="img/document-save.png" width="32"></imagedata>
               </imageobject>
             </inlinemediaobject> ( Ctrl+g) ubicado en la barra de
           herramientas: Se le solicitará que confirme que está seguro que
