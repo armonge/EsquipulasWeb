@@ -51,7 +51,7 @@
    <object id="ActorNode1" class="com.horstmann.violet.ActorNode"> 
     <void property="name"> 
      <void property="text"> 
-      <string>Gerente/contador</string> 
+      <string>Usuario de Inventario/ Contador</string> 
      </void> 
     </void> 
    </object> 
@@ -66,7 +66,7 @@
    <object id="ActorNode2" class="com.horstmann.violet.ActorNode"> 
     <void property="name"> 
      <void property="text"> 
-      <string>Gerente/contador</string> 
+      <string>Usuario de Inventario/contador</string> 
      </void> 
     </void> 
    </object> 
