@@ -6,7 +6,7 @@
       xmlns:ns3="http://www.w3.org/2000/svg"
       xmlns:ns="http://docbook.org/ns/docbook">
   <info>
-    <title>01Manual de Usuario MIS Esquipulas</title>
+    <title>Manual de Usuario MIS Esquipulas</title>
 
     <authorgroup>
       <author>
@@ -33,8 +33,8 @@
     </authorgroup>
 
     <abstract>
-      <para>El manual de usuario de para todo el sistema <application>MIS
-      Esquipulas</application></para>
+      <para>El manual de usuario de para todo el sistema
+      <application>Facturacion e Inventario NUBIRA</application></para>
     </abstract>
   </info>
 
@@ -365,8 +365,6 @@
   </chapter>
 
   <chapter>
-    <title>Contabilidad</title>
-
     <para>Bienvenido al sistema de ayuda de la aplicación de Contabilidad en
     MIS Esquipulas</para>
 
@@ -384,69 +382,18 @@
 
       <screenshot>
         <info>
-          <title>Inicio de Sesión en módulo contable</title>
+          <title>Inicio de Sesión en módulo</title>
         </info>
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/contabilidad.jpeg"></imagedata>
+            <imagedata fileref="img/contabilidad.jpeg" />
           </imageobject>
         </mediaobject>
       </screenshot>
     </section>
 
-    <section>
-      <title>Catalogo de cuentas contables</title>
-
-      <screenshot>
-        <info>
-          <title>Formulario de cuentas contables</title>
-        </info>
-
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="img/cuentascontables.jpeg"></imagedata>
-          </imageobject>
-        </mediaobject>
-      </screenshot>
-
-      <para>El catálogo de cuentas contables le permite agregar cuentas y
-      subcuentas contables así como observar el monto actual de cada subcuenta
-      y el acumulado de las cuentas generales.</para>
-
-      <para>Para agregar una nueva cuenta contable deberá seguir los
-      siguientes pasos:</para>
-
-      <orderedlist>
-        <listitem>
-          <para>Presione el botón <inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="img/catalogocuentas.jpeg"></imagedata>
-              </imageobject>
-            </inlinemediaobject> el cual abrirá una pestaña que mostrará todas
-          las cuentas y subcuentas contables con sus respectivos montos y
-          acumulados ( el acumulado es la suma del monto de la cuenta más el
-          monto de todas las subcuentas que posee)</para>
-        </listitem>
-
-        <listitem>
-          <para>Presione el botón Añadir, Se le solicitará que ingrese el
-          código contable que le asignará a la cuenta ( conformado por 5
-          grupos de 3 digitos) , el nombre de la cuenta contable y si la
-          naturaleza de la cuenta es debe ( cuentas Activo ) o haber ( cuentas
-          pasivo y capital).</para>
-        </listitem>
-
-        <listitem>
-          <para>Ingrese la información solicitada.</para>
-        </listitem>
-
-        <listitem>
-          <para>Si desea guardar la cuenta creada presione el boton guardar,
-          de lo contrario presione cancelar</para>
-        </listitem>
-      </orderedlist>
-    </section>
+    <section />
 
     <section>
       <title>Balance Inicial</title>
@@ -467,7 +414,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/primer-inicio.jpeg"></imagedata>
+            <imagedata fileref="img/primer-inicio.jpeg" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -487,7 +434,7 @@
 
             <mediaobject>
               <imageobject>
-                <imagedata fileref="img/balance-inicial.jpeg"></imagedata>
+                <imagedata fileref="img/balance-inicial.jpeg" />
               </imageobject>
             </mediaobject>
           </screenshot>
@@ -505,7 +452,7 @@
           agregando o quitando lineas a la tabla mediante los botones
           <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/botones.jpeg"></imagedata>
+                <imagedata fileref="img/botones.jpeg" />
               </imageobject>
             </inlinemediaobject>. La cuenta CAPITAL está seleccionada por
           defecto y no se puede remover ya que es parte integral del balance
@@ -542,7 +489,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="img/ajuste-contable.jpeg" scalefit="1"
-                       width="100%"></imagedata>
+                       width="100%" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -561,14 +508,14 @@
         <listitem>
           <para>Presione el botón Nuevo (<inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-new.png"></imagedata>
+                <imagedata fileref="img/document-new.png" />
               </imageobject>
             </inlinemediaobject>): al presionar este botón se validará si ya
           han sido ingresado en la base de datos los conceptos que detallen
           los diferentes ajustes contables, en caso que no existan ningún
           concepto se mostrará un mensaje de error ( <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/error-concepto.jpeg"></imagedata>
+                <imagedata fileref="img/error-concepto.jpeg" />
               </imageobject>
             </inlinemediaobject> ) y usted deberá ponerse en contacto con el
           administrador del sistema.</para>
@@ -605,7 +552,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/btndepositos.jpeg"></imagedata>
+                <imagedata fileref="img/btndepositos.jpeg" />
               </imageobject>
             </inlinemediaobject> : Se abrirá el formulario depositos el cual
           contiene dos pestañas ubicadas en la esquina superior derecha (
@@ -630,7 +577,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-new.png" width="32"></imagedata>
+                <imagedata fileref="img/document-new.png" width="32" />
               </imageobject>
             </inlinemediaobject> ( Ctrl+n) ubicado en la barra de
           herramientas: Esta acción le ubicará en la pestaña detalle y
@@ -681,12 +628,12 @@
             <listitem>
               <para>Presione el botón <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-save.png" width="32"></imagedata>
+                    <imagedata fileref="img/document-save.png" width="32" />
                   </imageobject>
                 </inlinemediaobject> (Ctrl + g) si desea guardarf el documento
               o <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/dialog-cancel.png" width="32"></imagedata>
+                    <imagedata fileref="img/dialog-cancel.png" width="32" />
                   </imageobject>
                 </inlinemediaobject> si desea cancelar la operación. Se le
               solicitará que confirme que está seguro que desea guardar el
@@ -708,7 +655,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/cheques.png" scalefit="1" width="100%"></imagedata>
+            <imagedata fileref="img/cheques.png" scalefit="1" width="100%" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -723,7 +670,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/btncheques.jpeg" width="204"></imagedata>
+                <imagedata fileref="img/btncheques.jpeg" width="204" />
               </imageobject>
             </inlinemediaobject> : Se abrirá el formulario Cheques el cual
           contiene dos pestañas ubicadas en la esquina superior derecha (
@@ -748,7 +695,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-new.png" width="32"></imagedata>
+                <imagedata fileref="img/document-new.png" width="32" />
               </imageobject>
             </inlinemediaobject> ( Ctrl+n) ubicado en la barra de
           herramientas: Esta acción le ubicará en la pestaña detalle y
@@ -804,12 +751,12 @@
             <listitem>
               <para>Presione el botón <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-save.png" width="32"></imagedata>
+                    <imagedata fileref="img/document-save.png" width="32" />
                   </imageobject>
                 </inlinemediaobject> (Ctrl + g) si desea guardar el documento
               o presione <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/dialog-cancel.png" width="32"></imagedata>
+                    <imagedata fileref="img/dialog-cancel.png" width="32" />
                   </imageobject>
                 </inlinemediaobject> si desea cancelar la operación. Se le
               solicitará que confirme que está seguro que desea guardar el
@@ -832,7 +779,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="img/conciliacionbancaria.jpeg" scalefit="1"
-                       width="100%"></imagedata>
+                       width="100%" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -849,7 +796,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/btnconciliacionbancaria.jpeg"></imagedata>
+                <imagedata fileref="img/btnconciliacionbancaria.jpeg" />
               </imageobject>
             </inlinemediaobject> : Se abrirá el formulario Conciliación
           bancaria el cual contiene dos pestañas ubicadas en la esquina
@@ -874,7 +821,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-new.png" width="32"></imagedata>
+                <imagedata fileref="img/document-new.png" width="32" />
               </imageobject>
             </inlinemediaobject> ( Ctrl+n) ubicado en la barra de
           herramientas: Al presionar el botón nuevo se abrirá una ventana que
@@ -892,7 +839,7 @@
 
             <mediaobject>
               <imageobject>
-                <imagedata fileref="img/dlgelegircuenta.jpeg"></imagedata>
+                <imagedata fileref="img/dlgelegircuenta.jpeg" />
               </imageobject>
             </mediaobject>
           </screenshot>
@@ -926,11 +873,13 @@
                   <para>Se rellenarán los campos de la información de la
                   cuenta bancaria y el mes a conciliar</para>
 
-                  <para><inlinemediaobject>
+                  <para>
+                    <inlinemediaobject>
                       <imageobject>
-                        <imagedata fileref="img/infocuenta.jpeg"></imagedata>
+                        <imagedata fileref="img/infocuenta.jpeg" />
                       </imageobject>
-                    </inlinemediaobject></para>
+                    </inlinemediaobject>
+                  </para>
                 </listitem>
 
                 <listitem>
@@ -945,7 +894,7 @@
                     <mediaobject>
                       <imageobject>
                         <imagedata fileref="img/movcuentas.jpeg" scalefit="1"
-                                   width="100%"></imagedata>
+                                   width="100%" />
                       </imageobject>
                     </mediaobject>
                   </screenshot>
@@ -1011,7 +960,7 @@
                     <mediaobject>
                       <imageobject>
                         <imagedata fileref="img/conciliar.jpeg" scalefit="1"
-                                   width="100%"></imagedata>
+                                   width="100%" />
                       </imageobject>
                     </mediaobject>
                   </screenshot>
@@ -1113,7 +1062,7 @@
                 <listitem>
                   <para>De clic en el botón <inlinemediaobject>
                       <imageobject>
-                        <imagedata fileref="img/list-add.png" width="32"></imagedata>
+                        <imagedata fileref="img/list-add.png" width="32" />
                       </imageobject>
                     </inlinemediaobject> (agregar).</para>
                 </listitem>
@@ -1122,7 +1071,7 @@
                   <para>Si desea eliminar el documento agregado, seleccione el
                   documento y de clic en <inlinemediaobject>
                       <imageobject>
-                        <imagedata fileref="img/list-remove.png" width="32"></imagedata>
+                        <imagedata fileref="img/list-remove.png" width="32" />
                       </imageobject>
                     </inlinemediaobject> ( eliminar)</para>
                 </listitem>
@@ -1132,12 +1081,12 @@
             <listitem>
               <para>Presione el botón <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/document-save.png" width="32"></imagedata>
+                    <imagedata fileref="img/document-save.png" width="32" />
                   </imageobject>
                 </inlinemediaobject> (Ctrl + g) si desea guardar el documento
               o presione <inlinemediaobject>
                   <imageobject>
-                    <imagedata fileref="img/dialog-cancel.png" width="32"></imagedata>
+                    <imagedata fileref="img/dialog-cancel.png" width="32" />
                   </imageobject>
                 </inlinemediaobject> si desea cancelar la operación. Se le
               solicitará que confirme que está seguro que desea guardar la
@@ -1164,7 +1113,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="img/frmcierremensual.jpeg" scalefit="1"
-                       width="100%"></imagedata>
+                       width="100%" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1180,7 +1129,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/btncierremensual.jpeg"></imagedata>
+                <imagedata fileref="img/btncierremensual.jpeg" />
               </imageobject>
             </inlinemediaobject> : Se abrirá el formulario Cierre Mensual el
           cual mostrará todos los documentos del mes seleccionado en una tabla
@@ -1237,7 +1186,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-save.png" width="32"></imagedata>
+                <imagedata fileref="img/document-save.png" width="32" />
               </imageobject>
             </inlinemediaobject> ( Ctrl+g) ubicado en la barra de
           herramientas: Se le solicitará que confirme que está seguro que
@@ -1258,7 +1207,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/frmcierreanual.jpeg"></imagedata>
+            <imagedata fileref="img/frmcierreanual.jpeg" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1274,7 +1223,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/btncierreanual.jpeg"></imagedata>
+                <imagedata fileref="img/btncierreanual.jpeg" />
               </imageobject>
             </inlinemediaobject> : Se abrirá el formulario Cierre Anual el
           cual mostrará todos los cierres mensuales del año seleccionado en
@@ -1307,7 +1256,7 @@
         <listitem>
           <para>Presione el botón <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="img/document-save.png" width="32"></imagedata>
+                <imagedata fileref="img/document-save.png" width="32" />
               </imageobject>
             </inlinemediaobject> ( Ctrl+g) ubicado en la barra de
           herramientas: Se le solicitará que confirme que está seguro que
@@ -1517,7 +1466,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="img/nuevokardexentrada.png" scalefit="1"
-                       width="100%"></imagedata>
+                       width="70%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1555,7 +1504,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/docskardex.png" scalefit="1" width="100%"></imagedata>
+            <imagedata fileref="img/docskardex.png" scalefit="1" width="70%"></imagedata>
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1613,6 +1562,23 @@
     </section>
 
     <section>
+      <title>Traslados de Bodega</title>
+
+      <para>Este documento es para realizar traslados de una bodega a otra los
+      articulos deseados.</para>
+
+      <para>Debe elegir la bodega origen para que se cargue la lista de
+      articulos disponibles con su existencia a trasladarse a la bodega
+      destino.</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/trasladosbodega.png"></imagedata>
+        </imageobject>
+      </mediaobject>
+    </section>
+
+    <section>
       <title>Catalogo de Artículos</title>
 
       <para>El catalogo de artículos muestra todos los artículos que han sido
@@ -1643,7 +1609,7 @@
 
         <para>El Botón ( <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="img/list-add.png" width="32"></imagedata>
+              <imagedata fileref="img/document-new.png" width="32"></imagedata>
             </imageobject>
           </inlinemediaobject>) le permite agregar una marca cuando esta no se
         encuentre en la lista. Para poder agregar un Articulo debe tener
@@ -1668,8 +1634,6 @@
     </section>
 
     <section>
-      <title>Catalogo de Categorías</title>
-
       <para>El catalogo de categorías permite navegar, añadir y modificar las
       categorías usadas en los artículos del sistema</para>
 
@@ -1680,7 +1644,7 @@
 
         <mediaobject>
           <imageobject>
-            <imagedata fileref="img/catcategories.png" width="80%"></imagedata>
+            <imagedata fileref="img/catcategories.png" width="80%" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -1691,12 +1655,12 @@
         <para>Para añadir una nueva categoría se da click el icono
         <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="img/list-add.png" width="32"></imagedata>
+              <imagedata fileref="img/list-add.png" width="32" />
             </imageobject>
           </inlinemediaobject> y si quiere añadir una subcategoría en el icono
         <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="img/format-add-node.png" width="32"></imagedata>
+              <imagedata fileref="img/format-add-node.png" width="32" />
             </imageobject>
           </inlinemediaobject></para>
 
@@ -1708,7 +1672,7 @@
           <mediaobject>
             <imageobject>
               <imagedata fileref="img/categories-add.png" scalefit="0"
-                         width="100%"></imagedata>
+                         width="100%" />
             </imageobject>
           </mediaobject>
         </screenshot>
